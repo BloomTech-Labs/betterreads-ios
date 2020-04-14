@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  AuthViewController.swift
 //  Readrr
 //
 //  Created by Alexander Supe on 4/14/20.
@@ -8,11 +8,10 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class AuthViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
 
 

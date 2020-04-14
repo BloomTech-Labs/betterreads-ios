@@ -10,10 +10,11 @@
 		FADF23CE24460EE200E15D4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADF23CD24460EE200E15D4E /* AppDelegate.swift */; };
 		FADF23D024460EE200E15D4E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADF23CF24460EE200E15D4E /* SceneDelegate.swift */; };
 		FADF23D224460EE200E15D4E /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADF23D124460EE200E15D4E /* FirstViewController.swift */; };
-		FADF23D424460EE200E15D4E /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADF23D324460EE200E15D4E /* SecondViewController.swift */; };
+		FADF23D424460EE200E15D4E /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADF23D324460EE200E15D4E /* AuthViewController.swift */; };
 		FADF23D724460EE200E15D4E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FADF23D524460EE200E15D4E /* Main.storyboard */; };
 		FADF23D924460EE500E15D4E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FADF23D824460EE500E15D4E /* Assets.xcassets */; };
 		FADF23DC24460EE500E15D4E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FADF23DA24460EE500E15D4E /* LaunchScreen.storyboard */; };
+		FADF23EB24464FEB00E15D4E /* UIElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADF23EA24464FEB00E15D4E /* UIElements.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,11 +22,12 @@
 		FADF23CD24460EE200E15D4E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FADF23CF24460EE200E15D4E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		FADF23D124460EE200E15D4E /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		FADF23D324460EE200E15D4E /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		FADF23D324460EE200E15D4E /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		FADF23D624460EE200E15D4E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FADF23D824460EE500E15D4E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FADF23DB24460EE500E15D4E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FADF23DD24460EE500E15D4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FADF23EA24464FEB00E15D4E /* UIElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIElements.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +71,7 @@
 		FADF23E324460EF100E15D4E /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				FADF23D324460EE200E15D4E /* SecondViewController.swift */,
+				FADF23D324460EE200E15D4E /* AuthViewController.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -85,6 +87,7 @@
 		FADF23E524460F1400E15D4E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FADF23E924464FD500E15D4E /* UIElements */,
 				FADF23CF24460EE200E15D4E /* SceneDelegate.swift */,
 				FADF23CD24460EE200E15D4E /* AppDelegate.swift */,
 				FADF23D824460EE500E15D4E /* Assets.xcassets */,
@@ -100,6 +103,14 @@
 				FADF23DA24460EE500E15D4E /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		FADF23E924464FD500E15D4E /* UIElements */ = {
+			isa = PBXGroup;
+			children = (
+				FADF23EA24464FEB00E15D4E /* UIElements.swift */,
+			);
+			path = UIElements;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -173,10 +184,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FADF23D424460EE200E15D4E /* SecondViewController.swift in Sources */,
+				FADF23D424460EE200E15D4E /* AuthViewController.swift in Sources */,
 				FADF23D224460EE200E15D4E /* FirstViewController.swift in Sources */,
 				FADF23CE24460EE200E15D4E /* AppDelegate.swift in Sources */,
 				FADF23D024460EE200E15D4E /* SceneDelegate.swift in Sources */,
+				FADF23EB24464FEB00E15D4E /* UIElements.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
