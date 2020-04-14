@@ -49,8 +49,6 @@ import UIKit
     private func commoninit() {
         layer.cornerRadius = cornerRadius
         clipsToBounds = true
-        backgroundColor = .blue
-        setTitleColor(.white, for: .normal)
     }
 }
 
