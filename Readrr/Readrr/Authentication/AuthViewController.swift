@@ -13,8 +13,8 @@ class AuthViewController: UIViewController {
     @IBOutlet weak var fullnameStack: UIStackView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var nameField: ModernTextField!
-    @IBOutlet weak var usernameLabel: UILabel!
-    @IBOutlet weak var usernameField: ModernTextField!
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var emailField: ModernTextField!
     @IBOutlet weak var passwordLabel: UILabel!
     @IBOutlet weak var passwordField: ModernTextField!
     @IBOutlet weak var signupButton: ModernButton!
@@ -39,11 +39,18 @@ class AuthViewController: UIViewController {
     }
     
     private func signup() {
-        
+        // FIXME: Check for empty/invalid fields
+        guard let name = nameField.text, let email = emailField.text, let password = passwordField.text else { return }
+        AuthenticationController.signUp(with: name, email: email, password: password) { (response) in
+            
+        }
     }
     
     private func signin() {
-        
+        guard let email = emailField.text, let password = passwordField.text else { return }
+        AuthenticationController.signIn(with: email, password: password) { (response) in
+            
+        }
     }
     
     private func switchMode() {
@@ -53,12 +60,14 @@ class AuthViewController: UIViewController {
             signupButton.setTitle("Sign Up", for: .normal)
             modeLabel.text = " Already Back?"
             modeButton.setTitle("Sign In", for: .normal)
+            passwordField.textContentType = .newPassword
         } else {
             mode = .login
             fullnameStack.isHidden = true
             signupButton.setTitle("Sign In", for: .normal)
             modeLabel.text = " New?"
             modeButton.setTitle("Sign Up", for: .normal)
+            passwordField.textContentType = .password
             }
     }
     

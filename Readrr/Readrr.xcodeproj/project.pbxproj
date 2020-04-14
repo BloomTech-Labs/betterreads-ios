@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,12 @@
 		FADF23D924460EE500E15D4E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FADF23D824460EE500E15D4E /* Assets.xcassets */; };
 		FADF23DC24460EE500E15D4E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FADF23DA24460EE500E15D4E /* LaunchScreen.storyboard */; };
 		FADF23EB24464FEB00E15D4E /* UIElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADF23EA24464FEB00E15D4E /* UIElements.swift */; };
+		FADF23EE244660BF00E15D4E /* AuthenticationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADF23ED244660BF00E15D4E /* AuthenticationController.swift */; };
+		FADF23F12446610400E15D4E /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = FADF23F02446610400E15D4E /* Alamofire */; };
+		FADF23F42446613B00E15D4E /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FADF23F32446613B00E15D4E /* KeychainSwift */; };
+		FADF23F62446622F00E15D4E /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADF23F52446622F00E15D4E /* Keys.swift */; };
+		FADF23F82446630800E15D4E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADF23F72446630800E15D4E /* User.swift */; };
+		FADF23FB2446649700E15D4E /* KeychainSwift+shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADF23FA2446649700E15D4E /* KeychainSwift+shared.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +34,10 @@
 		FADF23DB24460EE500E15D4E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FADF23DD24460EE500E15D4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FADF23EA24464FEB00E15D4E /* UIElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIElements.swift; sourceTree = "<group>"; };
+		FADF23ED244660BF00E15D4E /* AuthenticationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationController.swift; sourceTree = "<group>"; };
+		FADF23F52446622F00E15D4E /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Keys.swift; path = UIElements/Keys.swift; sourceTree = "<group>"; };
+		FADF23F72446630800E15D4E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		FADF23FA2446649700E15D4E /* KeychainSwift+shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeychainSwift+shared.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +45,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FADF23F42446613B00E15D4E /* KeychainSwift in Frameworks */,
+				FADF23F12446610400E15D4E /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +84,8 @@
 			isa = PBXGroup;
 			children = (
 				FADF23D324460EE200E15D4E /* AuthViewController.swift */,
+				FADF23ED244660BF00E15D4E /* AuthenticationController.swift */,
+				FADF23F72446630800E15D4E /* User.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -87,7 +101,9 @@
 		FADF23E524460F1400E15D4E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FADF23F92446647E00E15D4E /* Extensions */,
 				FADF23E924464FD500E15D4E /* UIElements */,
+				FADF23F52446622F00E15D4E /* Keys.swift */,
 				FADF23CF24460EE200E15D4E /* SceneDelegate.swift */,
 				FADF23CD24460EE200E15D4E /* AppDelegate.swift */,
 				FADF23D824460EE500E15D4E /* Assets.xcassets */,
@@ -113,6 +129,14 @@
 			path = UIElements;
 			sourceTree = "<group>";
 		};
+		FADF23F92446647E00E15D4E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				FADF23FA2446649700E15D4E /* KeychainSwift+shared.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -129,6 +153,10 @@
 			dependencies = (
 			);
 			name = Readrr;
+			packageProductDependencies = (
+				FADF23F02446610400E15D4E /* Alamofire */,
+				FADF23F32446613B00E15D4E /* KeychainSwift */,
+			);
 			productName = Readrr;
 			productReference = FADF23CA24460EE200E15D4E /* Readrr.app */;
 			productType = "com.apple.product-type.application";
@@ -157,6 +185,10 @@
 				Base,
 			);
 			mainGroup = FADF23C124460EE200E15D4E;
+			packageReferences = (
+				FADF23EF2446610400E15D4E /* XCRemoteSwiftPackageReference "Alamofire" */,
+				FADF23F22446613B00E15D4E /* XCRemoteSwiftPackageReference "keychain-swift" */,
+			);
 			productRefGroup = FADF23CB24460EE200E15D4E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -184,9 +216,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FADF23FB2446649700E15D4E /* KeychainSwift+shared.swift in Sources */,
 				FADF23D424460EE200E15D4E /* AuthViewController.swift in Sources */,
 				FADF23D224460EE200E15D4E /* FirstViewController.swift in Sources */,
 				FADF23CE24460EE200E15D4E /* AppDelegate.swift in Sources */,
+				FADF23EE244660BF00E15D4E /* AuthenticationController.swift in Sources */,
+				FADF23F82446630800E15D4E /* User.swift in Sources */,
+				FADF23F62446622F00E15D4E /* Keys.swift in Sources */,
 				FADF23D024460EE200E15D4E /* SceneDelegate.swift in Sources */,
 				FADF23EB24464FEB00E15D4E /* UIElements.swift in Sources */,
 			);
@@ -386,6 +422,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FADF23EF2446610400E15D4E /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.0;
+			};
+		};
+		FADF23F22446613B00E15D4E /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 19.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FADF23F02446610400E15D4E /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FADF23EF2446610400E15D4E /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		FADF23F32446613B00E15D4E /* KeychainSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FADF23F22446613B00E15D4E /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			productName = KeychainSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FADF23C224460EE200E15D4E /* Project object */;
 }

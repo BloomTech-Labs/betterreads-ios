@@ -38,7 +38,7 @@
                                                             <constraint firstAttribute="height" constant="45" id="ndi-HO-5oe"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" textContentType="name"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                 <real key="value" value="10"/>
@@ -53,7 +53,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="sif-zy-rfc">
                                                 <rect key="frame" x="0.0" y="0.0" width="294" height="64.5"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TUf-hU-3b1">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TUf-hU-3b1">
                                                         <rect key="frame" x="0.0" y="0.0" width="294" height="14.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -66,7 +66,7 @@
                                                             <constraint firstAttribute="height" constant="45" id="LH4-L5-y86"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" textContentType="email"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                 <real key="value" value="10"/>
@@ -94,7 +94,7 @@
                                                             <constraint firstAttribute="height" constant="45" id="7yZ-eY-jtz"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                 <real key="value" value="10"/>
@@ -250,6 +250,8 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="Ma5-ay-wBO"/>
                     <connections>
+                        <outlet property="emailField" destination="9Fu-QC-dox" id="3hg-wP-4xH"/>
+                        <outlet property="emailLabel" destination="TUf-hU-3b1" id="C7L-bb-jN5"/>
                         <outlet property="fullnameStack" destination="ypP-jZ-lIG" id="Xzc-Ye-m9I"/>
                         <outlet property="modeButton" destination="woe-ca-aEa" id="xMj-Jb-TMs"/>
                         <outlet property="modeLabel" destination="Zua-3X-5dr" id="ayH-UD-QyS"/>
@@ -258,8 +260,6 @@
                         <outlet property="passwordField" destination="GFe-QC-Jcl" id="6TV-ct-tuH"/>
                         <outlet property="passwordLabel" destination="w6y-oy-nnN" id="0kl-O2-v5R"/>
                         <outlet property="signupButton" destination="DLv-mu-T3O" id="5py-ej-SvU"/>
-                        <outlet property="usernameField" destination="9Fu-QC-dox" id="3hg-wP-4xH"/>
-                        <outlet property="usernameLabel" destination="TUf-hU-3b1" id="C7L-bb-jN5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wr5-vt-MF5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
