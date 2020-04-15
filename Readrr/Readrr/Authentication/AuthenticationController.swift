@@ -11,39 +11,27 @@ import Alamofire
 import KeychainSwift
 
 class AuthenticationController {
-    static func signUp(with name: String, email: String, password: String, completion: @escaping (AFDataResponse<Data?>) -> Void) {
-        guard let url = Keys.baseURL?.appendingPathComponent("/api/auth/signup") else { return }
+    static func signUp(with name: String? = nil, email: String, password: String, completion: @escaping (DataResponse<Any, AFError>) -> Void) {
+        let login = (name == nil)
+        guard let url = Keys.baseURL?.appendingPathComponent(login ? "/api/auth/signin" : "/api/auth/signup") else { return }
         let user = User(fullName: name, emailAddress: email, password: password)
-        AF.request(url, method: .post, parameters: user, encoder: JSONParameterEncoder.default).validate().response { (response) in
-            completion(response)
-            switch response.result {
-            case .success(let data):
-                KeychainSwift.shared.set(email, forKey: "email")
-                KeychainSwift.shared.set(name, forKey: "name")
-                KeychainSwift.shared.set(password, forKey: "password")
-                debugPrint(data as Any)
-            case .failure(let error):
-                debugPrint(error)
-                //check for error (repeat)
-            }
-        }
-    }
-    
-    static func signIn(with email: String, password: String, completion: @escaping (AFDataResponse<Data?>) -> Void) {
-        guard let url = Keys.baseURL?.appendingPathComponent("/api/auth/signin") else { return }
-        let user = User(emailAddress: email, password: password)
-        AF.request(url, method: .post, parameters: user, encoder: JSONParameterEncoder.default).validate().response { (response) in
-            completion(response)
-            switch response.result {
-            case .success(let data):
-                KeychainSwift.shared.set(email, forKey: "email")
-                KeychainSwift.shared.set(password, forKey: "password")
-                // TODO: Add name from response
-                debugPrint(data as Any)
-            case .failure(let error):
-                debugPrint(error)
-            }
-        }
         
+        AF.request(url, method: .post, parameters: user, encoder: JSONParameterEncoder.default).validate().responseJSON { (response) in
+            switch response.result {
+            case .success(let data):
+                KeychainSwift.shared.set(email, forKey: "email")
+                KeychainSwift.shared.set(password, forKey: "password")
+                if let name = name {
+                    KeychainSwift.shared.set(name, forKey: "name")
+                } else if let dict = data as? [String: Any],
+                    let user = dict["user"] as? [String: Any],
+                    let name = user["fullName"] as? String {
+                    KeychainSwift.shared.set(name, forKey: "name")
+                }
+            case .failure(let error):
+                debugPrint(error)
+                //check for error
+            }
+        }
     }
 }

@@ -12,4 +12,5 @@ struct User: Codable {
     var fullName: String? = nil
     var emailAddress: String
     var password: String
+    var image: Data? = nil
 }

@@ -23,7 +23,7 @@ class AuthViewController: UIViewController {
     @IBOutlet weak var modeButton: ModernButton!
     
     // MARK: Properties
-    private var mode: AuthMode = .login
+    var isLogin = true
     
     // MARK: Lifecycle
     override func viewDidLoad() {
@@ -32,8 +32,7 @@ class AuthViewController: UIViewController {
 
     // MARK: IBActions
     @IBAction func signupTapped(_ sender: Any) {
-        if mode == .login { signin() }
-        else { signup() }
+        signup()
     }
     @IBAction func switchModeTapped(_ sender: Any) {
         switchMode()
@@ -44,28 +43,20 @@ class AuthViewController: UIViewController {
     
     // MARK: Helpers
     private func signup() {
-        // FIXME: Check for empty/invalid fields
-        guard let name = nameField.text, let email = emailField.text, let password = passwordField.text else { return }
-        AuthenticationController.signUp(with: name, email: email, password: password) { (response) in
-            
-        }
-    }
-    
-    private func signin() {
+        // FIXME: Check for empty/invalid fields for current state
         guard let email = emailField.text, let password = passwordField.text else { return }
-        AuthenticationController.signIn(with: email, password: password) { (response) in
+        AuthenticationController.signUp(with: isLogin ? nil : nameField.text, email: email, password: password) { (response) in
             
         }
     }
     
     private func switchMode() {
-        let isLogin = (mode == .login)
-        mode = isLogin ? .register : .login
-        fullnameStack.isHidden = isLogin ? false : true
-        signupButton.setTitle(isLogin ? "Sign Up" : "Sign In", for: .normal)
-        modeLabel.text = isLogin ? " Already Back?" : " New?"
-        modeButton.setTitle(isLogin ? "Sign In" : "Sign Up", for: .normal)
-        passwordField.textContentType = isLogin ? .newPassword : .password
+        isLogin.toggle()
+        fullnameStack.isHidden = isLogin ? true : false
+        signupButton.setTitle(isLogin ? "Sign In" : "Sign Up", for: .normal)
+        modeLabel.text = isLogin ? " New?" : " Already Back?"
+        modeButton.setTitle(isLogin ? "Sign Up" : "Sign In", for: .normal)
+        passwordField.textContentType = isLogin ? .password : .newPassword
     }
     
     private func resetPassword() {
