@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class SearchViewController: UIViewController  {
 
@@ -19,13 +20,34 @@ class SearchViewController: UIViewController  {
         super.viewDidLoad()
         searchBar?.delegate = self
         searchBar?.placeholder = "Search for book by title or author"
+        searchBar?.showsCancelButton = true
     }
 
+    private func searchByTerm(searchTerm: String) {
+        // searchFuntion() then DispatchQueue.main.async {self.tableView.reloadData()}
+               
+//        SearchController.searchByTitle(title: searchTerm) { (response) in
+//
+//            switch response.result {
+//
+//            case .success(let data):
+//                print(data)
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
+        
+        let booksWithSearchTerm = fakeBooksArray.filter {
+            $0.lowercased().contains(searchTerm.lowercased())
+        }
+        myBooksArray = booksWithSearchTerm
+    }
+    
 }
 
 extension SearchViewController: UISearchBarDelegate {
 
-    // Search when
+    // Search when typing each letter
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 
         guard let searchTerm = searchBar.text else {
@@ -33,15 +55,16 @@ extension SearchViewController: UISearchBarDelegate {
             return
         }
         print(searchTerm)
-        // searchFuntion() then DispatchQueue.main.async {self.tableView.reloadData()}
-        
-        let booksWithSearchTerm = fakeBooksArray.filter {
-            $0.lowercased().contains(searchTerm.lowercased())
-        }
-        myBooksArray = booksWithSearchTerm
-        
+        searchByTerm(searchTerm: searchTerm)
         // 2
         NotificationCenter.default.post(name: .updateEmbeddedTVC, object: self)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        // Hide the cancel button
+        searchBar.showsCancelButton = false
+        // You could also change the position, frame etc of the searchBar
     }
 }
 
