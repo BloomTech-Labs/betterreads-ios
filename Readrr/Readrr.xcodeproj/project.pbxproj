@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		FABC5E0B244770A800C2EE95 /* UIViewController+alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABC5E0A244770A800C2EE95 /* UIViewController+alert.swift */; };
+		FABC5E142447AC0C00C2EE95 /* ReadrrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABC5E132447AC0C00C2EE95 /* ReadrrTests.swift */; };
+		FABC5E1C2447B28C00C2EE95 /* String+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABC5E1B2447B28C00C2EE95 /* String+Additions.swift */; };
 		FADF23CE24460EE200E15D4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADF23CD24460EE200E15D4E /* AppDelegate.swift */; };
 		FADF23D024460EE200E15D4E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADF23CF24460EE200E15D4E /* SceneDelegate.swift */; };
 		FADF23D224460EE200E15D4E /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADF23D124460EE200E15D4E /* FirstViewController.swift */; };
@@ -24,8 +26,22 @@
 		FADF23FB2446649700E15D4E /* KeychainSwift+shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADF23FA2446649700E15D4E /* KeychainSwift+shared.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		FABC5E162447AC0C00C2EE95 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FADF23C224460EE200E15D4E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FADF23C924460EE200E15D4E;
+			remoteInfo = Readrr;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		FABC5E0A244770A800C2EE95 /* UIViewController+alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+alert.swift"; sourceTree = "<group>"; };
+		FABC5E112447AC0C00C2EE95 /* ReadrrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReadrrTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FABC5E132447AC0C00C2EE95 /* ReadrrTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadrrTests.swift; sourceTree = "<group>"; };
+		FABC5E152447AC0C00C2EE95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FABC5E1B2447B28C00C2EE95 /* String+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Additions.swift"; sourceTree = "<group>"; };
 		FADF23CA24460EE200E15D4E /* Readrr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Readrr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FADF23CD24460EE200E15D4E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FADF23CF24460EE200E15D4E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +59,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		FABC5E0E2447AC0C00C2EE95 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FADF23C724460EE200E15D4E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -55,10 +78,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FABC5E122447AC0C00C2EE95 /* ReadrrTests */ = {
+			isa = PBXGroup;
+			children = (
+				FABC5E132447AC0C00C2EE95 /* ReadrrTests.swift */,
+				FABC5E152447AC0C00C2EE95 /* Info.plist */,
+			);
+			path = ReadrrTests;
+			sourceTree = "<group>";
+		};
 		FADF23C124460EE200E15D4E = {
 			isa = PBXGroup;
 			children = (
 				FADF23CC24460EE200E15D4E /* Readrr */,
+				FABC5E122447AC0C00C2EE95 /* ReadrrTests */,
 				FADF23CB24460EE200E15D4E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -67,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				FADF23CA24460EE200E15D4E /* Readrr.app */,
+				FABC5E112447AC0C00C2EE95 /* ReadrrTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -136,6 +170,7 @@
 			children = (
 				FADF23FA2446649700E15D4E /* KeychainSwift+shared.swift */,
 				FABC5E0A244770A800C2EE95 /* UIViewController+alert.swift */,
+				FABC5E1B2447B28C00C2EE95 /* String+Additions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -143,6 +178,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		FABC5E102447AC0C00C2EE95 /* ReadrrTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FABC5E182447AC0C00C2EE95 /* Build configuration list for PBXNativeTarget "ReadrrTests" */;
+			buildPhases = (
+				FABC5E0D2447AC0C00C2EE95 /* Sources */,
+				FABC5E0E2447AC0C00C2EE95 /* Frameworks */,
+				FABC5E0F2447AC0C00C2EE95 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FABC5E172447AC0C00C2EE95 /* PBXTargetDependency */,
+			);
+			name = ReadrrTests;
+			productName = ReadrrTests;
+			productReference = FABC5E112447AC0C00C2EE95 /* ReadrrTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		FADF23C924460EE200E15D4E /* Readrr */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FADF23E024460EE500E15D4E /* Build configuration list for PBXNativeTarget "Readrr" */;
@@ -174,6 +227,10 @@
 				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = "Alexander Supe";
 				TargetAttributes = {
+					FABC5E102447AC0C00C2EE95 = {
+						CreatedOnToolsVersion = 11.4;
+						TestTargetID = FADF23C924460EE200E15D4E;
+					};
 					FADF23C924460EE200E15D4E = {
 						CreatedOnToolsVersion = 11.4;
 					};
@@ -197,11 +254,19 @@
 			projectRoot = "";
 			targets = (
 				FADF23C924460EE200E15D4E /* Readrr */,
+				FABC5E102447AC0C00C2EE95 /* ReadrrTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		FABC5E0F2447AC0C00C2EE95 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FADF23C824460EE200E15D4E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -215,6 +280,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		FABC5E0D2447AC0C00C2EE95 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FABC5E142447AC0C00C2EE95 /* ReadrrTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FADF23C624460EE200E15D4E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -229,10 +302,19 @@
 				FADF23D024460EE200E15D4E /* SceneDelegate.swift in Sources */,
 				FADF23EB24464FEB00E15D4E /* UIElements.swift in Sources */,
 				FABC5E0B244770A800C2EE95 /* UIViewController+alert.swift in Sources */,
+				FABC5E1C2447B28C00C2EE95 /* String+Additions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FABC5E172447AC0C00C2EE95 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FADF23C924460EE200E15D4E /* Readrr */;
+			targetProxy = FABC5E162447AC0C00C2EE95 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		FADF23D524460EE200E15D4E /* Main.storyboard */ = {
@@ -254,6 +336,46 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		FABC5E192447AC0C00C2EE95 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VXUQXR6S56;
+				INFOPLIST_FILE = ReadrrTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.lambdaschool.ReadrrTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Readrr.app/Readrr";
+			};
+			name = Debug;
+		};
+		FABC5E1A2447AC0C00C2EE95 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VXUQXR6S56;
+				INFOPLIST_FILE = ReadrrTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.lambdaschool.ReadrrTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Readrr.app/Readrr";
+			};
+			name = Release;
+		};
 		FADF23DE24460EE500E15D4E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -407,6 +529,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		FABC5E182447AC0C00C2EE95 /* Build configuration list for PBXNativeTarget "ReadrrTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FABC5E192447AC0C00C2EE95 /* Debug */,
+				FABC5E1A2447AC0C00C2EE95 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		FADF23C524460EE200E15D4E /* Build configuration list for PBXProject "Readrr" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
