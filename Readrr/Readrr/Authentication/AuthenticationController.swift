@@ -27,7 +27,6 @@ class AuthenticationController {
                 //check for error (repeat)
             }
         }
-        
     }
     
     static func signIn(with email: String, password: String, completion: @escaping (AFDataResponse<Data?>) -> Void) {
