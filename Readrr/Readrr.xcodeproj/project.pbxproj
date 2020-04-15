@@ -11,6 +11,8 @@
 		1B8C83E32447607B00C0C3E4 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8C83E22447607B00C0C3E4 /* SearchController.swift */; };
 		1B8C83E5244760B800C0C3E4 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8C83E4244760B800C0C3E4 /* Keys.swift */; };
 		1B8C83E8244798E700C0C3E4 /* NSNotificatios.Name+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8C83E7244798E600C0C3E4 /* NSNotificatios.Name+Additions.swift */; };
+		1B8C83EA24479F8D00C0C3E4 /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8C83E924479F8D00C0C3E4 /* SearchResultTableViewCell.swift */; };
+		1B8C83EC2447B29100C0C3E4 /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8C83EB2447B29000C0C3E4 /* SearchResultView.swift */; };
 		FADF23CE24460EE200E15D4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADF23CD24460EE200E15D4E /* AppDelegate.swift */; };
 		FADF23D024460EE200E15D4E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADF23CF24460EE200E15D4E /* SceneDelegate.swift */; };
 		FADF23D224460EE200E15D4E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADF23D124460EE200E15D4E /* SearchViewController.swift */; };
@@ -25,6 +27,8 @@
 		1B8C83E22447607B00C0C3E4 /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		1B8C83E4244760B800C0C3E4 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		1B8C83E7244798E600C0C3E4 /* NSNotificatios.Name+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotificatios.Name+Additions.swift"; sourceTree = "<group>"; };
+		1B8C83E924479F8D00C0C3E4 /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
+		1B8C83EB2447B29000C0C3E4 /* SearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultView.swift; sourceTree = "<group>"; };
 		FADF23CA24460EE200E15D4E /* Readrr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Readrr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FADF23CD24460EE200E15D4E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FADF23CF24460EE200E15D4E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -98,6 +102,8 @@
 				FADF23D124460EE200E15D4E /* SearchViewController.swift */,
 				FADF23E7244648F700E15D4E /* SearchTableViewController.swift */,
 				1B8C83E22447607B00C0C3E4 /* SearchController.swift */,
+				1B8C83E924479F8D00C0C3E4 /* SearchResultTableViewCell.swift */,
+				1B8C83EB2447B29000C0C3E4 /* SearchResultView.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -209,6 +215,8 @@
 				1B8C83E5244760B800C0C3E4 /* Keys.swift in Sources */,
 				FADF23CE24460EE200E15D4E /* AppDelegate.swift in Sources */,
 				FADF23D024460EE200E15D4E /* SceneDelegate.swift in Sources */,
+				1B8C83EA24479F8D00C0C3E4 /* SearchResultTableViewCell.swift in Sources */,
+				1B8C83EC2447B29100C0C3E4 /* SearchResultView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

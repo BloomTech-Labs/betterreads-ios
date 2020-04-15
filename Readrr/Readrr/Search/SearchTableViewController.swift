@@ -12,6 +12,8 @@ class SearchTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+        
         // 3
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(updateTableView),
@@ -22,11 +24,16 @@ class SearchTableViewController: UITableViewController {
     // Called when notification is heard
     @objc func updateTableView() {
         print("updatingTVC")
-        
+        // TODO: Get table to clear by having search results array be empty in network call
         tableView.reloadData()
     }
 
     // MARK: - Table view data source
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        // TODO: base this off of screen size? figma?
+        return 77.0
+    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1 // Change later?
@@ -43,7 +50,7 @@ class SearchTableViewController: UITableViewController {
 
         return cell
     }
-
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -54,6 +61,7 @@ class SearchTableViewController: UITableViewController {
 
 }
 
+// Global Variables for test purposes
 let fakeBooksArray = ["Harry Potter", "Twilight", "Animal Farm", "1984", "Metamorphosis", "50 Shades of Gray",
                         "Resident Evil", "Jumanji", "The Bible", "The Maze Runner", "Fahrenheit 451"]
 var myBooksArray = [String]()

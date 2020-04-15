@@ -127,13 +127,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="resultCell" id="JfK-iy-Knd">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="resultCell" rowHeight="123" id="JfK-iy-Knd" customClass="SearchResultTableViewCell" customModule="Readrr" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="123"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JfK-iy-Knd" id="FjF-yb-39M">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="123"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w5E-NG-jTF" customClass="SearchResultView" customModule="Readrr" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="123"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="w5E-NG-jTF" secondAttribute="trailing" id="6jy-nO-Pom"/>
+                                        <constraint firstItem="w5E-NG-jTF" firstAttribute="top" secondItem="FjF-yb-39M" secondAttribute="top" id="G88-08-6GR"/>
+                                        <constraint firstItem="w5E-NG-jTF" firstAttribute="leading" secondItem="FjF-yb-39M" secondAttribute="leading" id="Jkf-7a-xWU"/>
+                                        <constraint firstAttribute="bottom" secondItem="w5E-NG-jTF" secondAttribute="bottom" id="Rw8-Gy-19h"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="resultView" destination="w5E-NG-jTF" id="bSg-Bm-V5R"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -144,7 +159,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="utP-GO-aGi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1523" y="658"/>
+            <point key="canvasLocation" x="1521.7391304347827" y="657.92410714285711"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
