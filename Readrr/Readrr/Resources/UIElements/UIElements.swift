@@ -82,7 +82,6 @@ import UIKit
     
     private func commoninit() {
         layer.cornerRadius = cornerRadius
-        clipsToBounds = true
         setupShadow()
     }
 }
