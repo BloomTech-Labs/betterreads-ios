@@ -22,6 +22,7 @@ class SearchTableViewController: UITableViewController {
     // Called when notification is heard
     @objc func updateTableView() {
         print("updatingTVC")
+        
         tableView.reloadData()
     }
 

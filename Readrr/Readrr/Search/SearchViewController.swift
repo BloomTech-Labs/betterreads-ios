@@ -20,7 +20,6 @@ class SearchViewController: UIViewController  {
         super.viewDidLoad()
         searchBar?.delegate = self
         searchBar?.placeholder = "Search for book by title or author"
-        searchBar?.showsCancelButton = true
     }
 
     private func searchByTerm(searchTerm: String) {
@@ -50,6 +49,7 @@ extension SearchViewController: UISearchBarDelegate {
     // Search when typing each letter
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 
+        //searchBar.showsCancelButton = true
         guard let searchTerm = searchBar.text else {
             print("Empty searchbar")
             return
@@ -60,15 +60,13 @@ extension SearchViewController: UISearchBarDelegate {
         NotificationCenter.default.post(name: .updateEmbeddedTVC, object: self)
     }
     
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = true
+    }
+    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
-        // Hide the cancel button
+        searchBar.resignFirstResponder()
         searchBar.showsCancelButton = false
-        // You could also change the position, frame etc of the searchBar
     }
-}
-
-// 1
-extension NSNotification.Name {
-    static let updateEmbeddedTVC = NSNotification.Name("updateEmbeddedTVC")
 }
