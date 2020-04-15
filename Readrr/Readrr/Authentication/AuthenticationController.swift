@@ -12,8 +12,11 @@ import KeychainSwift
 
 class AuthenticationController {
     static func signUp(with name: String? = nil, email: String, password: String, completion: @escaping (AFResult<Any>) -> Void) {
+        
         let login = (name == nil)
-        guard let url = Keys.baseURL?.appendingPathComponent(login ? "/api/auth/signin" : "/api/auth/signup") else { return }
+        let component = (login ? "/api/auth/signin" : "/api/auth/signup")
+        guard let url = Keys.baseURL?.appendingPathComponent(component) else { return }
+        
         let user = User(fullName: name, emailAddress: email, password: password)
         
         AF.request(url, method: .post, parameters: user, encoder: JSONParameterEncoder.default).validate().responseJSON { (response) in
