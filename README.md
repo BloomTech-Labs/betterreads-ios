@@ -5,11 +5,11 @@ You can find the deployed project at [🚫URL NAME GOES HERE]).
 ## 👨‍💻Contributors👩‍💻
 
 
-|                                       [Jorge Alvarez](https://github.com/alvare52)                                        |                                       [Ciara "CC" Beitel](https://github.com/ladybeitel)                                        |                                       [Alexander Supe](https://github.com/ladybeitel)                                                                               
-| :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
-|[<img src="https://github.com/alvare52.png" width = "200" />](https://github.com/alvare52)|[<img src="https://github.com/ladybeitel.png" width = "200" />](https://github.com/ladybeitel)| [<img src="https://github.com/JustThisAlex.png" width = "200" />](https://github.com/JustThisAlex)|                      
-|[<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/alvare52)|[<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/ladybeitel)|[<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/JustThisAlex)|         
-|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/ciarabeitel/)|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/alexander-supe/)|
+| [Jorge Alvarez](https://github.com/alvare52) | [Ciara "CC" Beitel](https://github.com/ladybeitel) | [Alexander Supe](https://github.com/JustThisAlex) |
+| :------: | :------: | :------: |
+| [<img src="https://github.com/alvare52.png" width="200"/>](https://github.com/alvare52) | [<img src="https://github.com/ladybeitel.png" width="200"/>](https://github.com/ladybeitel) | [<img src="https://github.com/JustThisAlex.png" width="200"/>](https://github.com/JustThisAlex) |
+| [<img src="https://github.com/favicon.ico" width="15"/>](https://github.com/alvare52) | [<img src="https://github.com/favicon.ico" width="15"/>](https://github.com/ladybeitel) | [<img src="https://github.com/favicon.ico" width="15"/> ](https://github.com/JustThisAlex) |
+| [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"/>](https://www.linkedin.com/) | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"/>](https://www.linkedin.com/in/ciarabeitel/) | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"/>](https://www.linkedin.com/in/alexander-supe/) |
 
 ___
 
@@ -21,9 +21,6 @@ ___
 [![Platform Type](https://img.shields.io/badge/Platform-iOS-blue.svg?style=flat-square&logo=Apple&logoColor=white)](https://www.apple.com/ios/ios-…)
 
 [![PRs Type](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-
-
-
 
 ## 🛠 Project Overview
 
@@ -39,7 +36,7 @@ Readrr allows you to have a centralized location to organize and track the books
 
 Since Readrr allows you to track your reading progress on the go, you can accomplish more reading goals and have a form of accountability. No need to go to multiple places to find the information or features about books that interest you; you can simply search and view book details in the Readrr app. Readrr supports searching for different medium types too! Whether you like to turn physical pages, read on a tablet, or listen on the go, Readrr can track you book progess no matter the medium. With Readrr's conveninent and user-friendly interface, tracking reading process is easy!
 
-![](header.png) 🚫Replace header pic.
+![]() 🚫Replace header pic.
 
 ### Features
 -    User Register/Login
