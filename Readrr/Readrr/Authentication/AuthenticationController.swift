@@ -11,12 +11,13 @@ import Alamofire
 import KeychainSwift
 
 class AuthenticationController {
-    static func signUp(with name: String? = nil, email: String, password: String, completion: @escaping (DataResponse<Any, AFError>) -> Void) {
+    static func signUp(with name: String? = nil, email: String, password: String, completion: @escaping (AFResult<Any>) -> Void) {
         let login = (name == nil)
         guard let url = Keys.baseURL?.appendingPathComponent(login ? "/api/auth/signin" : "/api/auth/signup") else { return }
         let user = User(fullName: name, emailAddress: email, password: password)
         
         AF.request(url, method: .post, parameters: user, encoder: JSONParameterEncoder.default).validate().responseJSON { (response) in
+            completion(response.result)
             switch response.result {
             case .success(let data):
                 KeychainSwift.shared.set(email, forKey: "email")
@@ -28,9 +29,8 @@ class AuthenticationController {
                     let name = user["fullName"] as? String {
                     KeychainSwift.shared.set(name, forKey: "name")
                 }
-            case .failure(let error):
-                debugPrint(error)
-                //check for error
+            case .failure:
+                break
             }
         }
     }

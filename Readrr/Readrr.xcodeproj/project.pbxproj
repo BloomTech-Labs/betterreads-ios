@@ -55,13 +55,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		FABC5E0C2447925500C2EE95 /* Networking */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Networking;
-			sourceTree = "<group>";
-		};
 		FADF23C124460EE200E15D4E = {
 			isa = PBXGroup;
 			children = (
@@ -110,7 +103,6 @@
 		FADF23E524460F1400E15D4E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				FABC5E0C2447925500C2EE95 /* Networking */,
 				FADF23F92446647E00E15D4E /* Extensions */,
 				FADF23E924464FD500E15D4E /* UIElements */,
 				FADF23F52446622F00E15D4E /* Keys.swift */,

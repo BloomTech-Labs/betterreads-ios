@@ -43,10 +43,11 @@ class AuthViewController: UIViewController {
     
     // MARK: Helpers
     private func signup() {
-        // FIXME: Check for empty/invalid fields for current state
-        guard let email = emailField.text, let password = passwordField.text else { return }
-        AuthenticationController.signUp(with: isLogin ? nil : nameField.text, email: email, password: password) { (response) in
-            
+        var fields: [UITextField: UILabel] = [emailField: emailLabel, passwordField: passwordLabel]
+        if !isLogin { fields[nameField] = nameLabel }
+        guard let email = emailField.text, let password = passwordField.text, checkFields(fields: fields) else { return }
+        AuthenticationController.signUp(with: isLogin ? nil : nameField.text, email: email, password: password) { result in
+            // FIXME: Wait for status codes - implement error handling
         }
     }
     
@@ -63,10 +64,18 @@ class AuthViewController: UIViewController {
         // FIXME: Wait for backend
     }
     
-    // MARK: Enums
-    enum AuthMode {
-        case login
-        case register
+    private func checkFields(fields: [UITextField: UILabel]) -> Bool {
+        for label in fields.values {
+            label.textColor = .darkGray
+        }
+        var isEmpty = true
+        for field in fields {
+            if field.key.text?.isEmpty ?? true {
+                field.value.textColor = .red
+                isEmpty = false
+            }
+        }
+        return isEmpty
     }
 }
 
