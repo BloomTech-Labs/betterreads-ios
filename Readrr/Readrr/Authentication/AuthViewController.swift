@@ -28,8 +28,9 @@ class AuthViewController: UIViewController {
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        isModalInPresentation = true
     }
-
+    
     // MARK: IBActions
     @IBAction func signupTapped(_ sender: Any) {
         signup()
@@ -41,13 +42,32 @@ class AuthViewController: UIViewController {
         resetPassword()
     }
     
+    // MARK: TextField-Actions
+    @IBAction func nameFieldPrimaryAction(_ sender: Any) {
+        emailField.becomeFirstResponder()
+    }
+    
+    @IBAction func emailFieldPrimaryAction(_ sender: Any) {
+        passwordField.becomeFirstResponder()
+    }
+    
+    @IBAction func passwordFieldPrimaryAction(_ sender: UITextField) {
+        sender.resignFirstResponder()
+    }
+    
     // MARK: Helpers
     private func signup() {
         var fields: [UITextField: UILabel] = [emailField: emailLabel, passwordField: passwordLabel]
         if !isLogin { fields[nameField] = nameLabel }
         guard let email = emailField.text, let password = passwordField.text, checkFields(fields: fields) else { return }
         AuthenticationController.signUp(with: isLogin ? nil : nameField.text, email: email, password: password) { result in
-            // FIXME: Wait for status codes - implement error handling
+            switch(result) {
+            case .success:
+                self.dismiss(animated: true, completion: nil)
+            case .failure:
+                break
+                // FIXME: Wait for status codes - implement error handling
+            }
         }
     }
     
