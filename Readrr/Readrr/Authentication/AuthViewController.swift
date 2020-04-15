@@ -68,14 +68,18 @@ class AuthViewController: UIViewController {
         for label in fields.values {
             label.textColor = .darkGray
         }
-        var isEmpty = true
+        var valid = true
         for field in fields {
             if field.key.text?.isEmpty ?? true {
                 field.value.textColor = .red
-                isEmpty = false
+                valid = false
             }
         }
-        return isEmpty
+        if !(emailField.text?.isValidEmail() ?? false) && valid {
+            emailLabel.textColor = .red
+            displayAlert(with: "Please enter a valid email address")
+            return valid
+        }
+        return valid
     }
 }
-
