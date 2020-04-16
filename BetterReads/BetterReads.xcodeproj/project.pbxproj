@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		776A3FB22449140B000043EF /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 776A3FB12449140B000043EF /* Search.storyboard */; };
+		776A3FB524491D7A000043EF /* MyLibrary.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 776A3FB324491D7A000043EF /* MyLibrary.storyboard */; };
+		776A3FB724491DA0000043EF /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 776A3FB624491DA0000043EF /* Home.storyboard */; };
 		77B6A3992448F5A400FF604B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B6A3982448F5A400FF604B /* AppDelegate.swift */; };
 		77B6A39B2448F5A400FF604B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B6A39A2448F5A400FF604B /* SceneDelegate.swift */; };
 		77B6A3A02448F5A400FF604B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77B6A39E2448F5A400FF604B /* Main.storyboard */; };
@@ -17,6 +19,8 @@
 
 /* Begin PBXFileReference section */
 		776A3FB12449140B000043EF /* Search.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
+		776A3FB424491D7A000043EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = BetterReads/Storyboards/Base.lproj/MyLibrary.storyboard; sourceTree = "<group>"; };
+		776A3FB624491DA0000043EF /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		77B6A3952448F5A400FF604B /* BetterReads.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BetterReads.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77B6A3982448F5A400FF604B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		77B6A39A2448F5A400FF604B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -92,6 +96,8 @@
 			children = (
 				77B6A3A32448F5A600FF604B /* LaunchScreen.storyboard */,
 				77B6A39E2448F5A400FF604B /* Main.storyboard */,
+				776A3FB624491DA0000043EF /* Home.storyboard */,
+				776A3FB324491D7A000043EF /* MyLibrary.storyboard */,
 				776A3FB12449140B000043EF /* Search.storyboard */,
 			);
 			path = Storyboards;
@@ -174,7 +180,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				77B6A3A52448F5A600FF604B /* LaunchScreen.storyboard in Resources */,
+				776A3FB524491D7A000043EF /* MyLibrary.storyboard in Resources */,
 				77B6A3A22448F5A600FF604B /* Assets.xcassets in Resources */,
+				776A3FB724491DA0000043EF /* Home.storyboard in Resources */,
 				776A3FB22449140B000043EF /* Search.storyboard in Resources */,
 				77B6A3A02448F5A400FF604B /* Main.storyboard in Resources */,
 			);
@@ -195,6 +203,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		776A3FB324491D7A000043EF /* MyLibrary.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				776A3FB424491D7A000043EF /* Base */,
+			);
+			name = MyLibrary.storyboard;
+			sourceTree = "<group>";
+		};
 		77B6A39E2448F5A400FF604B /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
