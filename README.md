@@ -1,15 +1,15 @@
-# Readrr
+# 📱BetterReads
 
 You can find the deployed project at [🚫URL NAME GOES HERE]).
 
 ## 👨‍💻Contributors👩‍💻
 
 
-| [Jorge Alvarez](https://github.com/alvare52) | [Ciara "CC" Beitel](https://github.com/ladybeitel) | [Alexander Supe](https://github.com/JustThisAlex) |
-| :------: | :------: | :------: |
-| [<img src="https://github.com/alvare52.png" width="200"/>](https://github.com/alvare52) | [<img src="https://github.com/ladybeitel.png" width="200"/>](https://github.com/ladybeitel) | [<img src="https://github.com/JustThisAlex.png" width="200"/>](https://github.com/JustThisAlex) |
-| [<img src="https://github.com/favicon.ico" width="15"/>](https://github.com/alvare52) | [<img src="https://github.com/favicon.ico" width="15"/>](https://github.com/ladybeitel) | [<img src="https://github.com/favicon.ico" width="15"/> ](https://github.com/JustThisAlex) |
-| [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"/>](https://www.linkedin.com/) | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"/>](https://www.linkedin.com/in/ciarabeitel/) | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"/>](https://www.linkedin.com/in/alexander-supe/) |
+| [Jorge Alvarez](https://github.com/alvare52) | [Ciara "CC" Beitel](https://github.com/ladybeitel) |
+| :------: | :------: |
+| [<img src="https://github.com/alvare52.png" width="200"/>](https://github.com/alvare52) | [<img src="https://github.com/ladybeitel.png" width="200"/>](https://github.com/ladybeitel) | 
+| [<img src="https://github.com/favicon.ico" width="15"/>](https://github.com/alvare52) | [<img src="https://github.com/favicon.ico" width="15"/>](https://github.com/ladybeitel) |
+| [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"/>](https://www.linkedin.com/) | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"/>](https://www.linkedin.com/in/ciarabeitel/) |
 
 ___
 
@@ -36,25 +36,22 @@ Readrr allows you to have a centralized location to organize and track the books
 
 Since Readrr allows you to track your reading progress on the go, you can accomplish more reading goals and have a form of accountability. No need to go to multiple places to find the information or features about books that interest you; you can simply search and view book details in the Readrr app. Readrr supports searching for different medium types too! Whether you like to turn physical pages, read on a tablet, or listen on the go, Readrr can track you book progess no matter the medium. With Readrr's conveninent and user-friendly interface, tracking reading process is easy!
 
-![]() 🚫Replace header pic.
+![]() 🚫 Replace header pic.
 
 ### Features
--    User Register/Login
--    "Search" Screen
--    "My Books" Screen (personal library collection)
--    "Home" Screen
--    "Book Detail" Screen
--    Account Settings
+-    Search Books
+-    "My Books" (personal library collection)
+-    Book Suggestions/Recommendations
 -    🚫Add more features if necessary. 
 
 
-### 🚫Replace Authentication API Title here
+### 🚫 Replace Authentication API Title here
 
-🚫Replace text below with a description of the API. Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
+🚫 Replace text below with a description of the API. Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
 
-### 🚫Replace Misc API Title here
+### 🚫 Replace Misc API Title here
 
-🚫Replace text below with a description of the API. You can do anything your heart can imagine. In life you need colors. This is where you take out all your hostilities and frustrations. It's better than kicking the puppy dog around and all that so. I'm sort of a softy, I couldn't shoot Bambi except with a camera. Trees get lonely too, so we'll give him a little friend. We'll lay all these little funky little things in there.
+🚫 Replace text below with a description of the API. You can do anything your heart can imagine. In life you need colors. This is where you take out all your hostilities and frustrations. It's better than kicking the puppy dog around and all that so. I'm sort of a softy, I couldn't shoot Bambi except with a camera. Trees get lonely too, so we'll give him a little friend. We'll lay all these little funky little things in there.
 
 
 
@@ -70,7 +67,7 @@ Since Readrr allows you to track your reading progress on the go, you can accomp
 
 When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
 
-Please note we have a [code of conduct](./CODE_OF_CONDUCT.md). Please follow it in all your interactions with the project.
+Please note we have a [code of conduct](./code_of_conduct.md). Please follow it in all your interactions with the project.
 
 ### Issue/Bug Request
 
