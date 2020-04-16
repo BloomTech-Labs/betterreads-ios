@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		776A3FB22449140B000043EF /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 776A3FB12449140B000043EF /* Search.storyboard */; };
 		77B6A3992448F5A400FF604B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B6A3982448F5A400FF604B /* AppDelegate.swift */; };
 		77B6A39B2448F5A400FF604B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B6A39A2448F5A400FF604B /* SceneDelegate.swift */; };
 		77B6A3A02448F5A400FF604B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77B6A39E2448F5A400FF604B /* Main.storyboard */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		776A3FB12449140B000043EF /* Search.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		77B6A3952448F5A400FF604B /* BetterReads.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BetterReads.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77B6A3982448F5A400FF604B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		77B6A39A2448F5A400FF604B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -88,8 +90,9 @@
 		77B6A3AF2448F5CE00FF604B /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				77B6A39E2448F5A400FF604B /* Main.storyboard */,
 				77B6A3A32448F5A600FF604B /* LaunchScreen.storyboard */,
+				77B6A39E2448F5A400FF604B /* Main.storyboard */,
+				776A3FB12449140B000043EF /* Search.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -172,6 +175,7 @@
 			files = (
 				77B6A3A52448F5A600FF604B /* LaunchScreen.storyboard in Resources */,
 				77B6A3A22448F5A600FF604B /* Assets.xcassets in Resources */,
+				776A3FB22449140B000043EF /* Search.storyboard in Resources */,
 				77B6A3A02448F5A400FF604B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
