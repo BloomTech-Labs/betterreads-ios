@@ -6,7 +6,7 @@ You can find the deployed project at [TestFlight](🚫copy and paste URL here) a
 
 | [Ciara Beitel](https://github.com/ladybeitel/)  | [Jorge Alvarez](https://github.com/alvare52/)  | [Alexander Supe](https://github.com/justthisalex/)  |
 | :---: | :---: | :---: |
-|  [<img src="https://github.com/alvare52" width = "200" />](https://github.com/ladybeitel/) |  [<img src="https://github.com/ladybeitel.png" width = "200" />](https://github.com/alvare52/) |  [<img src="https://github.com/JustThisAlex.png" width = "200" />](https://github.com/justthisalex/) |
+|  [<img src="https://github.com/ladybeitel.png" width = "200" />](https://github.com/ladybeitel/) |  [<img src="https://github.com/alvare52.png" width = "200" />](https://github.com/alvare52/) |  [<img src="https://github.com/JustThisAlex.png" width = "200" />](https://github.com/justthisalex/) |
 | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/ladybeitel) |  [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/alvare52) | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/justthisalex)  |
 | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/ciarabeitel/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/jorge-alvarez-975a371a0/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/alexander-supe/) |
 
