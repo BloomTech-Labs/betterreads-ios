@@ -7,6 +7,25 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Home-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="BetterReads" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" id="C5r-80-B6w">
+                        <color key="badgeColor" red="0.027450980392156862" green="0.10196078431372549" blue="0.50588235294117645" alpha="1" colorSpace="calibratedRGB"/>
+                    </tabBarItem>
+                    <navigationItem key="navigationItem" title="Home" id="Bh5-af-O2p"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="313" y="868"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="dW7-u0-HBH">
             <objects>
@@ -97,7 +116,7 @@
                         <color key="selectedImageTintColor" red="0.027450980390000001" green="0.1019607843" blue="0.50588235290000005" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="Zx0-qc-mac" kind="relationship" relationship="viewControllers" id="rXL-Gq-I4f"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="rXL-Gq-I4f"/>
                         <segue destination="myB-iQ-cNC" kind="relationship" relationship="viewControllers" id="X7C-oX-KgD"/>
                         <segue destination="5QQ-rJ-F0M" kind="relationship" relationship="viewControllers" id="RVm-2y-GMM"/>
                     </connections>
@@ -133,7 +152,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vQ1-MV-vqk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1295" y="554"/>
+            <point key="canvasLocation" x="1746" y="556"/>
         </scene>
         <!--MyLibrary-->
         <scene sceneID="bl9-4D-QSl">
@@ -143,17 +162,10 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bu4-iA-UMh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1048" y="554"/>
-        </scene>
-        <!--Home-->
-        <scene sceneID="nay-wl-3IN">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Home" id="Zx0-qc-mac" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="XHa-cL-kso"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5up-5c-SUg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="796" y="554"/>
+            <point key="canvasLocation" x="1048" y="868"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="house" catalog="system" width="128" height="110"/>
+    </resources>
 </document>
