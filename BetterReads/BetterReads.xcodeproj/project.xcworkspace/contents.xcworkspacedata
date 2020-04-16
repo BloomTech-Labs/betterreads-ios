@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+<<<<<<< HEAD:Readrr/Readrr.xcodeproj/project.xcworkspace/contents.xcworkspacedata
+      location = "self:">
+=======
+      location = "self:BetterReads.xcodeproj">
+>>>>>>> 6679e4bc920c20cef9725e4dda1bbeebe05fb50f:BetterReads/BetterReads.xcodeproj/project.xcworkspace/contents.xcworkspacedata
+   </FileRef>
+</Workspace>

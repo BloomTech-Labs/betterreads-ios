@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+<<<<<<< HEAD:Readrr/Readrr.xcodeproj/project.pbxproj
 		1B8C83E12447600400C0C3E4 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 1B8C83E02447600400C0C3E4 /* Alamofire */; };
 		1B8C83E32447607B00C0C3E4 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8C83E22447607B00C0C3E4 /* SearchController.swift */; };
 		1B8C83E5244760B800C0C3E4 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8C83E4244760B800C0C3E4 /* Keys.swift */; };
@@ -39,10 +40,29 @@
 		FADF23DB24460EE500E15D4E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FADF23DD24460EE500E15D4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FADF23E7244648F700E15D4E /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
+=======
+		776A3FB22449140B000043EF /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 776A3FB12449140B000043EF /* Search.storyboard */; };
+		77B6A3992448F5A400FF604B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B6A3982448F5A400FF604B /* AppDelegate.swift */; };
+		77B6A39B2448F5A400FF604B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B6A39A2448F5A400FF604B /* SceneDelegate.swift */; };
+		77B6A3A02448F5A400FF604B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77B6A39E2448F5A400FF604B /* Main.storyboard */; };
+		77B6A3A22448F5A600FF604B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77B6A3A12448F5A600FF604B /* Assets.xcassets */; };
+		77B6A3A52448F5A600FF604B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77B6A3A32448F5A600FF604B /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		776A3FB12449140B000043EF /* Search.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
+		77B6A3952448F5A400FF604B /* BetterReads.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BetterReads.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		77B6A3982448F5A400FF604B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		77B6A39A2448F5A400FF604B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		77B6A39F2448F5A400FF604B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		77B6A3A12448F5A600FF604B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		77B6A3A42448F5A600FF604B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		77B6A3A62448F5A600FF604B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+>>>>>>> 6679e4bc920c20cef9725e4dda1bbeebe05fb50f:BetterReads/BetterReads.xcodeproj/project.pbxproj
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		FADF23C724460EE200E15D4E /* Frameworks */ = {
+		77B6A3922448F5A400FF604B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -53,6 +73,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+<<<<<<< HEAD:Readrr/Readrr.xcodeproj/project.pbxproj
 		1B8C83E62447988600C0C3E4 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -62,113 +83,148 @@
 			sourceTree = "<group>";
 		};
 		FADF23C124460EE200E15D4E = {
+=======
+		77B6A38C2448F5A400FF604B = {
+>>>>>>> 6679e4bc920c20cef9725e4dda1bbeebe05fb50f:BetterReads/BetterReads.xcodeproj/project.pbxproj
 			isa = PBXGroup;
 			children = (
-				FADF23CC24460EE200E15D4E /* Readrr */,
-				FADF23CB24460EE200E15D4E /* Products */,
+				77B6A3972448F5A400FF604B /* BetterReads */,
+				77B6A3962448F5A400FF604B /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		FADF23CB24460EE200E15D4E /* Products */ = {
+		77B6A3962448F5A400FF604B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FADF23CA24460EE200E15D4E /* Readrr.app */,
+				77B6A3952448F5A400FF604B /* BetterReads.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		FADF23CC24460EE200E15D4E /* Readrr */ = {
+		77B6A3972448F5A400FF604B /* BetterReads */ = {
 			isa = PBXGroup;
 			children = (
-				FADF23E624460FFE00E15D4E /* Storyboards */,
-				FADF23E424460F0400E15D4E /* Search */,
-				FADF23E324460EF100E15D4E /* Authentication */,
-				FADF23E524460F1400E15D4E /* Resources */,
+				77B6A3AF2448F5CE00FF604B /* Storyboards */,
+				77B6A3AE2448F5C700FF604B /* View Controllers */,
+				77B6A3B12448F63400FF604B /* Model Controllers */,
+				77B6A3AD2448F5C000FF604B /* Views */,
+				77B6A3AC2448F5B600FF604B /* Models */,
+				77B6A3B02448F5F500FF604B /* Resources */,
 			);
-			path = Readrr;
+			path = BetterReads;
 			sourceTree = "<group>";
 		};
-		FADF23E324460EF100E15D4E /* Authentication */ = {
+		77B6A3AC2448F5B600FF604B /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				FADF23D324460EE200E15D4E /* SecondViewController.swift */,
 			);
-			path = Authentication;
+			path = Models;
 			sourceTree = "<group>";
 		};
-		FADF23E424460F0400E15D4E /* Search */ = {
+		77B6A3AD2448F5C000FF604B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD:Readrr/Readrr.xcodeproj/project.pbxproj
 				FADF23D124460EE200E15D4E /* SearchViewController.swift */,
 				FADF23E7244648F700E15D4E /* SearchTableViewController.swift */,
 				1B8C83E22447607B00C0C3E4 /* SearchController.swift */,
 				1B8C83E924479F8D00C0C3E4 /* SearchResultTableViewCell.swift */,
 				1B8C83EB2447B29000C0C3E4 /* SearchResultView.swift */,
+=======
+>>>>>>> 6679e4bc920c20cef9725e4dda1bbeebe05fb50f:BetterReads/BetterReads.xcodeproj/project.pbxproj
 			);
-			path = Search;
+			path = Views;
 			sourceTree = "<group>";
 		};
-		FADF23E524460F1400E15D4E /* Resources */ = {
+		77B6A3AE2448F5C700FF604B /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD:Readrr/Readrr.xcodeproj/project.pbxproj
 				1B8C83E62447988600C0C3E4 /* Extensions */,
 				FADF23CF24460EE200E15D4E /* SceneDelegate.swift */,
 				FADF23CD24460EE200E15D4E /* AppDelegate.swift */,
 				FADF23D824460EE500E15D4E /* Assets.xcassets */,
 				FADF23DD24460EE500E15D4E /* Info.plist */,
 				1B8C83E4244760B800C0C3E4 /* Keys.swift */,
+=======
+>>>>>>> 6679e4bc920c20cef9725e4dda1bbeebe05fb50f:BetterReads/BetterReads.xcodeproj/project.pbxproj
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		77B6A3AF2448F5CE00FF604B /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				77B6A3A32448F5A600FF604B /* LaunchScreen.storyboard */,
+				77B6A39E2448F5A400FF604B /* Main.storyboard */,
+				776A3FB12449140B000043EF /* Search.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		77B6A3B02448F5F500FF604B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				77B6A3A12448F5A600FF604B /* Assets.xcassets */,
+				77B6A3A62448F5A600FF604B /* Info.plist */,
+				77B6A3982448F5A400FF604B /* AppDelegate.swift */,
+				77B6A39A2448F5A400FF604B /* SceneDelegate.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		FADF23E624460FFE00E15D4E /* Storyboards */ = {
+		77B6A3B12448F63400FF604B /* Model Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				FADF23D524460EE200E15D4E /* Main.storyboard */,
-				FADF23DA24460EE500E15D4E /* LaunchScreen.storyboard */,
 			);
-			path = Storyboards;
+			path = "Model Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		FADF23C924460EE200E15D4E /* Readrr */ = {
+		77B6A3942448F5A400FF604B /* BetterReads */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FADF23E024460EE500E15D4E /* Build configuration list for PBXNativeTarget "Readrr" */;
+			buildConfigurationList = 77B6A3A92448F5A600FF604B /* Build configuration list for PBXNativeTarget "BetterReads" */;
 			buildPhases = (
-				FADF23C624460EE200E15D4E /* Sources */,
-				FADF23C724460EE200E15D4E /* Frameworks */,
-				FADF23C824460EE200E15D4E /* Resources */,
+				77B6A3912448F5A400FF604B /* Sources */,
+				77B6A3922448F5A400FF604B /* Frameworks */,
+				77B6A3932448F5A400FF604B /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
+<<<<<<< HEAD:Readrr/Readrr.xcodeproj/project.pbxproj
 			name = Readrr;
 			packageProductDependencies = (
 				1B8C83E02447600400C0C3E4 /* Alamofire */,
 			);
 			productName = Readrr;
 			productReference = FADF23CA24460EE200E15D4E /* Readrr.app */;
+=======
+			name = BetterReads;
+			productName = BetterReads;
+			productReference = 77B6A3952448F5A400FF604B /* BetterReads.app */;
+>>>>>>> 6679e4bc920c20cef9725e4dda1bbeebe05fb50f:BetterReads/BetterReads.xcodeproj/project.pbxproj
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		FADF23C224460EE200E15D4E /* Project object */ = {
+		77B6A38D2448F5A400FF604B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1140;
 				LastUpgradeCheck = 1140;
-				ORGANIZATIONNAME = "Alexander Supe";
+				ORGANIZATIONNAME = Labs23;
 				TargetAttributes = {
-					FADF23C924460EE200E15D4E = {
+					77B6A3942448F5A400FF604B = {
 						CreatedOnToolsVersion = 11.4;
 					};
 				};
 			};
-			buildConfigurationList = FADF23C524460EE200E15D4E /* Build configuration list for PBXProject "Readrr" */;
+			buildConfigurationList = 77B6A3902448F5A400FF604B /* Build configuration list for PBXProject "BetterReads" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -176,37 +232,44 @@
 				en,
 				Base,
 			);
+<<<<<<< HEAD:Readrr/Readrr.xcodeproj/project.pbxproj
 			mainGroup = FADF23C124460EE200E15D4E;
 			packageReferences = (
 				1B8C83DF2447600400C0C3E4 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = FADF23CB24460EE200E15D4E /* Products */;
+=======
+			mainGroup = 77B6A38C2448F5A400FF604B;
+			productRefGroup = 77B6A3962448F5A400FF604B /* Products */;
+>>>>>>> 6679e4bc920c20cef9725e4dda1bbeebe05fb50f:BetterReads/BetterReads.xcodeproj/project.pbxproj
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FADF23C924460EE200E15D4E /* Readrr */,
+				77B6A3942448F5A400FF604B /* BetterReads */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		FADF23C824460EE200E15D4E /* Resources */ = {
+		77B6A3932448F5A400FF604B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FADF23DC24460EE500E15D4E /* LaunchScreen.storyboard in Resources */,
-				FADF23D924460EE500E15D4E /* Assets.xcassets in Resources */,
-				FADF23D724460EE200E15D4E /* Main.storyboard in Resources */,
+				77B6A3A52448F5A600FF604B /* LaunchScreen.storyboard in Resources */,
+				77B6A3A22448F5A600FF604B /* Assets.xcassets in Resources */,
+				776A3FB22449140B000043EF /* Search.storyboard in Resources */,
+				77B6A3A02448F5A400FF604B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		FADF23C624460EE200E15D4E /* Sources */ = {
+		77B6A3912448F5A400FF604B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+<<<<<<< HEAD:Readrr/Readrr.xcodeproj/project.pbxproj
 				FADF23D424460EE200E15D4E /* SecondViewController.swift in Sources */,
 				1B8C83E32447607B00C0C3E4 /* SearchController.swift in Sources */,
 				FADF23D224460EE200E15D4E /* SearchViewController.swift in Sources */,
@@ -217,24 +280,28 @@
 				FADF23D024460EE200E15D4E /* SceneDelegate.swift in Sources */,
 				1B8C83EA24479F8D00C0C3E4 /* SearchResultTableViewCell.swift in Sources */,
 				1B8C83EC2447B29100C0C3E4 /* SearchResultView.swift in Sources */,
+=======
+				77B6A3992448F5A400FF604B /* AppDelegate.swift in Sources */,
+				77B6A39B2448F5A400FF604B /* SceneDelegate.swift in Sources */,
+>>>>>>> 6679e4bc920c20cef9725e4dda1bbeebe05fb50f:BetterReads/BetterReads.xcodeproj/project.pbxproj
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		FADF23D524460EE200E15D4E /* Main.storyboard */ = {
+		77B6A39E2448F5A400FF604B /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				FADF23D624460EE200E15D4E /* Base */,
+				77B6A39F2448F5A400FF604B /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		FADF23DA24460EE500E15D4E /* LaunchScreen.storyboard */ = {
+		77B6A3A32448F5A600FF604B /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				FADF23DB24460EE500E15D4E /* Base */,
+				77B6A3A42448F5A600FF604B /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -242,7 +309,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		FADF23DE24460EE500E15D4E /* Debug */ = {
+		77B6A3A72448F5A600FF604B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -302,7 +369,7 @@
 			};
 			name = Debug;
 		};
-		FADF23DF24460EE500E15D4E /* Release */ = {
+		77B6A3A82448F5A600FF604B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -356,59 +423,59 @@
 			};
 			name = Release;
 		};
-		FADF23E124460EE500E15D4E /* Debug */ = {
+		77B6A3AA2448F5A600FF604B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VXUQXR6S56;
-				INFOPLIST_FILE = Readrr/Resources/Info.plist;
+				DEVELOPMENT_TEAM = 63GJL7X8L2;
+				INFOPLIST_FILE = BetterReads/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lambdaschool.Readrr;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ciaranotclara.BetterReads;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
-		FADF23E224460EE500E15D4E /* Release */ = {
+		77B6A3AB2448F5A600FF604B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VXUQXR6S56;
-				INFOPLIST_FILE = Readrr/Resources/Info.plist;
+				DEVELOPMENT_TEAM = 63GJL7X8L2;
+				INFOPLIST_FILE = BetterReads/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lambdaschool.Readrr;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ciaranotclara.BetterReads;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		FADF23C524460EE200E15D4E /* Build configuration list for PBXProject "Readrr" */ = {
+		77B6A3902448F5A400FF604B /* Build configuration list for PBXProject "BetterReads" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				FADF23DE24460EE500E15D4E /* Debug */,
-				FADF23DF24460EE500E15D4E /* Release */,
+				77B6A3A72448F5A600FF604B /* Debug */,
+				77B6A3A82448F5A600FF604B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FADF23E024460EE500E15D4E /* Build configuration list for PBXNativeTarget "Readrr" */ = {
+		77B6A3A92448F5A600FF604B /* Build configuration list for PBXNativeTarget "BetterReads" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				FADF23E124460EE500E15D4E /* Debug */,
-				FADF23E224460EE500E15D4E /* Release */,
+				77B6A3AA2448F5A600FF604B /* Debug */,
+				77B6A3AB2448F5A600FF604B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -434,5 +501,5 @@
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
-	rootObject = FADF23C224460EE200E15D4E /* Project object */;
+	rootObject = 77B6A38D2448F5A400FF604B /* Project object */;
 }
