@@ -1,9 +1,9 @@
 //
 //  SceneDelegate.swift
-//  Readrr
+//  BetterReads
 //
-//  Created by Alexander Supe on 4/14/20.
-//  Copyright © 2020 Alexander Supe. All rights reserved.
+//  Created by Ciara Beitel on 4/16/20.
+//  Copyright © 2020 Labs23. All rights reserved.
 //
 
 import UIKit
