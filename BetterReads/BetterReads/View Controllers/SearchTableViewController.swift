@@ -40,9 +40,9 @@ class SearchTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell", for: indexPath) as? SearchResultTableViewCell else { return UITableViewCell() }
 
-        cell.textLabel?.text = myBooksArray[indexPath.row]
+        cell.mainView.titleLabel.text = myBooksArray[indexPath.row]
         
         return cell
     }
