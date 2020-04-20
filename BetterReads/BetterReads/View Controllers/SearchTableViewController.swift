@@ -120,7 +120,8 @@ class SearchTableViewController: UITableViewController {
 
 extension SearchTableViewController: UISearchBarDelegate {
 
-    // TODO: Should tableview clear when searchbar is empty???
+    // FIXME: - Scroll dismisses keyboard (onScroll?)
+    // FIXME: - Should tableview clear when searchbar is empty???
     // Search when typing each letter
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 
@@ -148,5 +149,6 @@ extension SearchTableViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         //print("SearchButtonClicked (tapped return/search)")
         searchBar.resignFirstResponder()
+        searchBar.showsCancelButton = false
     }
 }
