@@ -176,6 +176,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Search Books" id="BzU-os-zxU"/>
+                    <connections>
+                        <outlet property="searchBar" destination="HID-E0-GCD" id="avE-DA-DkC"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KW8-DK-1v7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

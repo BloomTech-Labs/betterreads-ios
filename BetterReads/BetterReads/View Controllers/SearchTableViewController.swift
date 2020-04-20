@@ -8,10 +8,19 @@
 
 import UIKit
 
+// Global Variables for test purposes
+let fakeBooksArray = ["Harry Potter", "Twilight", "Animal Farm", "1984", "Metamorphosis", "50 Shades of Gray",
+                        "Resident Evil", "Jumanji", "The Bible", "The Maze Runner", "Fahrenheit 451"]
+var myBooksArray = [String]()
+
 class SearchTableViewController: UITableViewController {
 
+    
+    @IBOutlet var searchBar: UISearchBar!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchBar.delegate = self
     }
 
     // MARK: - Table view data source
@@ -23,7 +32,7 @@ class SearchTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 5
+        return myBooksArray.count
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -33,7 +42,8 @@ class SearchTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell", for: indexPath)
 
-
+        cell.textLabel?.text = myBooksArray[indexPath.row]
+        
         return cell
     }
 
@@ -82,4 +92,61 @@ class SearchTableViewController: UITableViewController {
     }
     */
 
+    // MARK: - Helpers
+    
+    private func searchByTerm(searchTerm: String) {
+            // searchFuntion() then DispatchQueue.main.async {self.tableView.reloadData()}
+                   
+    //        SearchController.searchByTitle(title: searchTerm) { (response) in
+    //
+    //            switch response.result {
+    //
+    //            case .success(let data):
+    //                print(data)
+    //            case .failure(let error):
+    //                print(error)
+    //            }
+    //        }
+            
+            let booksWithSearchTerm = fakeBooksArray.filter {
+                $0.lowercased().contains(searchTerm.lowercased())
+            }
+            myBooksArray = booksWithSearchTerm
+        }
+    
+}
+
+// MARK: - Extensions
+
+extension SearchTableViewController: UISearchBarDelegate {
+
+    // TODO: Should tableview clear when searchbar is empty???
+    // Search when typing each letter
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+
+        //searchBar.showsCancelButton = true
+        guard let searchTerm = searchBar.text else {
+            print("Empty searchbar")
+            return
+        }
+        print(searchTerm)
+        searchByTerm(searchTerm: searchTerm)
+        tableView.reloadData()
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = true
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+        searchBar.showsCancelButton = false
+    }
+    
+    // dismiss keyboard so user can view all results
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        //print("SearchButtonClicked (tapped return/search)")
+        searchBar.resignFirstResponder()
+    }
 }
