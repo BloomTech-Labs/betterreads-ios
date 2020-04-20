@@ -23,7 +23,7 @@ class SearchResultView: UIView {
     }
     
     private func setUpSubviews() {
-        backgroundColor = .gray
+        //backgroundColor = .gray
         
         // Image View
         
@@ -39,6 +39,7 @@ class SearchResultView: UIView {
         // Author Label
         
         // Rating View (stack view of image views?)
+        
     }
 
 }

@@ -9,9 +9,24 @@
 import UIKit
 
 // Global Variables for test purposes
-let fakeBooksArray = ["Harry Potter", "Twilight", "Animal Farm", "1984", "Metamorphosis", "50 Shades of Gray",
-                        "Resident Evil", "Jumanji", "The Bible", "The Maze Runner", "Fahrenheit 451"]
-var myBooksArray = [String]()
+//
+//let fakeBooksArray = ["Harry Potter", "Twilight", "Animal Farm", "1984", "Metamorphosis", "50 Shades of Gray",
+//                        "Resident Evil", "Jumanji", "The Bible", "The Maze Runner", "Fahrenheit 451"]
+
+let fakeBooksArray: [Book] = [Book(title: "Harry Potter", author: "JK Rowling", cover: "photo.fill", rating: 5.0),
+                      Book(title: "Twilight", author: "Stephenie Meyer", cover: "photo.fill", rating: 4.0),
+                      Book(title: "Animal Farm", author: "George Orwell", cover: "photo.fill", rating: 5.0),
+                      Book(title: "1984", author: "George Orwell", cover: "photo.fill", rating: 5.0),
+                      Book(title: "Metamorphosis", author: "Franz Kafka", cover: "photo.fill", rating: 5.0),
+                      Book(title: "50 Shades of Gray", author: "E.L. James", cover: "photo.fill", rating: 2.0),
+                      Book(title: "Resident Evil", author: "Capcom", cover: "photo.fill", rating: 5.0),
+                      Book(title: "Jumanji", author: "Your mom", cover: "photo.fill", rating: 4.0),
+                      Book(title: "The Bible", author: "Jesus", cover: "photo.fill", rating: 5.0),
+                      Book(title: "The Maze Runner", author: "James Dashner", cover: "photo.fill", rating: 4.0),
+                      Book(title: "Fahrenheit 451", author: "Ray Bradbury", cover: "photo.fill", rating: 4.5),
+                      Book(title: "Harry Potter 2", author: "JK Rowling", cover: "photo.fill", rating: 4.0)]
+
+var myBooksArray = [Book]()
 
 class SearchTableViewController: UITableViewController {
 
@@ -42,7 +57,7 @@ class SearchTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell", for: indexPath) as? SearchResultTableViewCell else { return UITableViewCell() }
 
-        cell.mainView.titleLabel.text = myBooksArray[indexPath.row]
+        cell.mainView.titleLabel.text = myBooksArray[indexPath.row].author
         
         return cell
     }
@@ -109,7 +124,7 @@ class SearchTableViewController: UITableViewController {
     //        }
             
             let booksWithSearchTerm = fakeBooksArray.filter {
-                $0.lowercased().contains(searchTerm.lowercased())
+                $0.title.lowercased().contains(searchTerm.lowercased()) || $0.author.lowercased().contains(searchTerm.lowercased()) 
             }
             myBooksArray = booksWithSearchTerm
         }
