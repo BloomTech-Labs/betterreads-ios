@@ -99,6 +99,7 @@
                     <connections>
                         <segue destination="Rzg-aC-Wux" kind="relationship" relationship="viewControllers" id="W40-FA-d0Q"/>
                         <segue destination="kHg-7n-qJM" kind="relationship" relationship="viewControllers" id="Ddd-Qt-JxU"/>
+                        <segue destination="ybL-9d-0ke" kind="relationship" relationship="viewControllers" id="DsE-Mp-JsO"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o8d-ce-JcD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -142,9 +143,9 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="052-7O-zDP" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="omn-38-kdQ"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="XGf-3K-DCZ">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="omn-38-kdQ"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="XGf-3K-DCZ">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -155,6 +156,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ziQ-R4-8Jl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="312" y="138"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="8E8-uY-CE6">
+            <objects>
+                <tableViewController id="ybL-9d-0ke" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="fJF-8A-2L4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="HID-E0-GCD">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="lJc-Cc-19V">
+                                <rect key="frame" x="0.0" y="72" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lJc-Cc-19V" id="IjQ-0i-CQB">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ybL-9d-0ke" id="93L-iC-mRQ"/>
+                            <outlet property="delegate" destination="ybL-9d-0ke" id="J9X-YN-onZ"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" systemItem="search" id="yq8-aY-V8V"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KW8-DK-1v7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1774" y="867"/>
         </scene>
     </scenes>
     <resources>
