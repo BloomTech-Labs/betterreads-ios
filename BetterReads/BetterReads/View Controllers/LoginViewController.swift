@@ -44,6 +44,7 @@ class LoginViewController: UIViewController {
             submitButton.setTitle("Sign In", for: .normal)
             fullNameTextField.isHidden = true
         }
+        submitButton.performFlare()
     }
     
     @IBAction func signUpTapped(_ sender: UIButton) {
@@ -92,4 +93,15 @@ class LoginViewController: UIViewController {
         print("Called seg()")
         performSegue(withIdentifier: "SignInSuccessSegue", sender: self)
     }
+}
+
+// Animation
+extension UIView {
+  func performFlare() {
+    func flare() { transform = CGAffineTransform( scaleX: 1.1, y: 1.1) }
+    func unflare() { transform = .identity }
+    UIView.animate(withDuration: 0.3,
+                   animations: { flare() },
+                   completion: { _ in UIView.animate(withDuration: 0.2) { unflare() }})
+  }
 }
