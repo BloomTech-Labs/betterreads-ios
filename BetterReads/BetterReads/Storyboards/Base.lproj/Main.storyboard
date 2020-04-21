@@ -98,7 +98,7 @@
                         <outlet property="passwordTextField" destination="RAF-Tm-ysZ" id="S5j-QE-KfD"/>
                         <outlet property="segmentedControl" destination="Gse-jB-dJc" id="peM-n4-i2R"/>
                         <outlet property="submitButton" destination="Swr-37-tmq" id="XGN-TS-hAo"/>
-                        <segue destination="V4j-lu-7nX" kind="presentation" identifier="LoginSuccessSegue" modalPresentationStyle="fullScreen" id="Q4w-Qa-WfN"/>
+                        <segue destination="V4j-lu-7nX" kind="presentation" identifier="SignInSuccessSegue" modalPresentationStyle="fullScreen" id="Q4w-Qa-WfN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Za0-7F-Pg2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

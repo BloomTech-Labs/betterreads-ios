@@ -17,7 +17,7 @@ class LoginViewController: UIViewController {
     }
     
     var loginType = LoginType.signup
-    
+    var userController = UserController()
     
     // MARK: - Outlets
     @IBOutlet weak var segmentedControl: UISegmentedControl!
@@ -31,15 +31,17 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         print("ViewDidLoad")
     }
-    
-    func seg() {
-        print("Called seg()")
-        performSegue(withIdentifier: "LoginSuccessSegue", sender: self)
-    }
-    
+        
     // MARK: - Methods
     @IBAction func segmentedControlChanged(_ sender: UISegmentedControl) {
         print("segmented control value changed")
+        if sender.selectedSegmentIndex == 0 {
+            loginType = .signup
+            submitButton.setTitle("Sign Up", for: .normal)
+        } else {
+            loginType = .signin
+            submitButton.setTitle("Sign In", for: .normal)
+        }
     }
     
     @IBAction func signUpTapped(_ sender: UIButton) {
@@ -50,13 +52,41 @@ class LoginViewController: UIViewController {
             !fullname.isEmpty,
             !email.isEmpty,
             !password.isEmpty else { return }
-        seg()
+        let user = User(fullName: fullname, email: email, password: password)
+        if loginType == .signup {
+            userController.signUp(user: user) { (networkError) in
+                if let error = networkError {
+                    NSLog("Error occured during Sign Up: \(error)")
+                } else {
+                    let alert = UIAlertController(title: "Sign Up Successful", message: "Please Sign In", preferredStyle: .alert)
+                    let signInAction = UIAlertAction(title: "Sign In", style: .default, handler: nil)
+                    alert.addAction(signInAction)
+                    DispatchQueue.main.async {
+                        self.present(alert, animated: true, completion: {
+                            self.loginType = .signin
+                            self.segmentedControl.selectedSegmentIndex = 1
+                            self.submitButton.setTitle("Sign In", for: .normal)
+                        })
+                    }
+                }
+            }
+        } else if loginType == .signin {
+            // FIXME: - remove full name text field (hide) 
+            userController.signIn(email: email, password: password) { (networkError) in
+                if let error = networkError {
+                    NSLog("Error occured during Sign In: \(error)")
+                } else {
+                    DispatchQueue.main.async {
+                        self.seg()
+                    }
+                }
+            }
+        }
     }
-    
 
     // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+    func seg() {
+        print("Called seg()")
+        performSegue(withIdentifier: "SignInSuccessSegue", sender: self)
     }
-
 }
