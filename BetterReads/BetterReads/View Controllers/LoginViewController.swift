@@ -38,9 +38,11 @@ class LoginViewController: UIViewController {
         if sender.selectedSegmentIndex == 0 {
             loginType = .signup
             submitButton.setTitle("Sign Up", for: .normal)
+            fullNameTextField.isHidden = false
         } else {
             loginType = .signin
             submitButton.setTitle("Sign In", for: .normal)
+            fullNameTextField.isHidden = true
         }
     }
     
@@ -71,7 +73,8 @@ class LoginViewController: UIViewController {
                 }
             }
         } else if loginType == .signin {
-            // FIXME: - remove full name text field (hide) 
+            // FIXME: - remove full name text field (hide)
+            
             userController.signIn(email: email, password: password) { (networkError) in
                 if let error = networkError {
                     NSLog("Error occured during Sign In: \(error)")
