@@ -11,10 +11,12 @@ import UIKit
 class LoginViewController: UIViewController {
     
     // MARK: - Properties
-    enum loginType {
+    enum LoginType {
         case signup
         case signin
     }
+    
+    var loginType = LoginType.signup
     
     
     // MARK: - Outlets
@@ -42,6 +44,12 @@ class LoginViewController: UIViewController {
     
     @IBAction func signUpTapped(_ sender: UIButton) {
         print("signUpTapped")
+        guard let fullname = fullNameTextField.text,
+            let email = emailTextField.text,
+            let password = passwordTextField.text,
+            !fullname.isEmpty,
+            !email.isEmpty,
+            !password.isEmpty else { return }
         seg()
     }
     
