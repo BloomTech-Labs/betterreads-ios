@@ -17,7 +17,7 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Swr-37-tmq">
                                 <rect key="frame" x="40" y="394.5" width="334" height="50"/>
-                                <color key="backgroundColor" red="0.027450980390000001" green="0.1019607843" blue="0.50588235290000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.027450980390000001" green="0.1019607843" blue="0.50588235290000005" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                 <inset key="contentEdgeInsets" minX="0.0" minY="15" maxX="0.0" maxY="15"/>
                                 <state key="normal" title="Sign Up">
@@ -50,7 +50,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BetterReads" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9mw-Pp-A7B">
                                 <rect key="frame" x="20" y="64" width="374" height="57.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="48"/>
-                                <color key="textColor" red="0.027450980390000001" green="0.1019607843" blue="0.50588235290000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.027450980390000001" green="0.1019607843" blue="0.50588235290000005" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Gse-jB-dJc">
@@ -63,9 +63,9 @@
                                     <action selector="segmentedControlChanged:" destination="pRd-tq-Kku" eventType="valueChanged" id="AVX-ZK-Bt3"/>
                                 </connections>
                             </segmentedControl>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="book.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="gFZ-iS-zoK">
-                                <rect key="frame" x="57" y="485" width="300" height="299"/>
-                                <color key="tintColor" red="0.027450980390000001" green="0.1019607843" blue="0.50588235290000005" alpha="1" colorSpace="calibratedRGB"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Book-Reader-Graphic" translatesAutoresizingMaskIntoConstraints="NO" id="gFZ-iS-zoK">
+                                <rect key="frame" x="57" y="484.5" width="300" height="300"/>
+                                <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="Qtj-nn-Eby"/>
                                     <constraint firstAttribute="width" secondItem="gFZ-iS-zoK" secondAttribute="height" multiplier="1:1" id="Vlw-Rh-MfO"/>
@@ -270,8 +270,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Book-Reader-Graphic" width="1020" height="735"/>
         <image name="book" catalog="system" width="128" height="101"/>
-        <image name="book.circle" catalog="system" width="128" height="121"/>
         <image name="house" catalog="system" width="128" height="110"/>
     </resources>
 </document>
