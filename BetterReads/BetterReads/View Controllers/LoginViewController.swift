@@ -24,7 +24,9 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var fullNameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var confirmPasswordTextField: UITextField!
     @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet weak var fullNameLabel: UILabel!
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -39,10 +41,12 @@ class LoginViewController: UIViewController {
             loginType = .signup
             submitButton.setTitle("Sign Up", for: .normal)
             fullNameTextField.isHidden = false
+            fullNameLabel.isHidden = false
         } else {
             loginType = .signin
             submitButton.setTitle("Sign In", for: .normal)
             fullNameTextField.isHidden = true
+            fullNameLabel.isHidden = true
         }
         submitButton.performFlare()
     }
