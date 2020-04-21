@@ -2,19 +2,29 @@
 //  LoginViewController.swift
 //  BetterReads
 //
-//  Created by Jorge Alvarez on 4/20/20.
+//  Created by Jorge Alvarez & Ciara "CC" Beitel on 4/20/20.
 //  Copyright © 2020 Labs23. All rights reserved.
 //
 
 import UIKit
 
 class LoginViewController: UIViewController {
-
-    @IBAction func signUpTapped(_ sender: UIButton) {
-        print("signUpTapped")
-        seg()
+    
+    // MARK: - Properties
+    enum loginType {
+        case signup
+        case signin
     }
     
+    
+    // MARK: - Outlets
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var fullNameTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var submitButton: UIButton!
+    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         print("ViewDidLoad")
@@ -25,15 +35,20 @@ class LoginViewController: UIViewController {
         performSegue(withIdentifier: "LoginSuccessSegue", sender: self)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // MARK: - Methods
+    @IBAction func segmentedControlChanged(_ sender: UISegmentedControl) {
+        print("segmented control value changed")
     }
-    */
+    
+    @IBAction func signUpTapped(_ sender: UIButton) {
+        print("signUpTapped")
+        seg()
+    }
+    
+
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+    }
 
 }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ybL-9d-0ke">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pRd-tq-Kku">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -57,17 +57,30 @@
                                 <rect key="frame" x="100" y="141.5" width="214" height="32"/>
                                 <segments>
                                     <segment title="Sign Up"/>
-                                    <segment title="Log In"/>
+                                    <segment title="Sign In"/>
                                 </segments>
+                                <connections>
+                                    <action selector="segmentedControlChanged:" destination="pRd-tq-Kku" eventType="valueChanged" id="AVX-ZK-Bt3"/>
+                                </connections>
                             </segmentedControl>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="book.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="gFZ-iS-zoK">
+                                <rect key="frame" x="57" y="485" width="300" height="299"/>
+                                <color key="tintColor" red="0.027450980390000001" green="0.1019607843" blue="0.50588235290000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="Qtj-nn-Eby"/>
+                                    <constraint firstAttribute="width" secondItem="gFZ-iS-zoK" secondAttribute="height" multiplier="1:1" id="Vlw-Rh-MfO"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="gFZ-iS-zoK" firstAttribute="top" secondItem="Swr-37-tmq" secondAttribute="bottom" constant="40" id="3NQ-zU-kkq"/>
                             <constraint firstItem="9mw-Pp-A7B" firstAttribute="top" secondItem="yPd-1V-V7u" secondAttribute="top" constant="20" id="7Ko-4t-Qms"/>
                             <constraint firstItem="5h2-5c-BCw" firstAttribute="leading" secondItem="yPd-1V-V7u" secondAttribute="leading" constant="40" id="7Qj-59-3nn"/>
                             <constraint firstItem="Gse-jB-dJc" firstAttribute="top" secondItem="9mw-Pp-A7B" secondAttribute="bottom" constant="20" id="IBv-Sh-iqt"/>
                             <constraint firstItem="5h2-5c-BCw" firstAttribute="top" secondItem="Gse-jB-dJc" secondAttribute="bottom" constant="40" id="JVF-Z9-g27"/>
                             <constraint firstItem="yPd-1V-V7u" firstAttribute="trailing" secondItem="5h2-5c-BCw" secondAttribute="trailing" constant="40" id="OjV-rp-ETI"/>
+                            <constraint firstItem="gFZ-iS-zoK" firstAttribute="centerX" secondItem="rly-3I-hjN" secondAttribute="centerX" id="TDl-mx-Ydu"/>
                             <constraint firstItem="Swr-37-tmq" firstAttribute="leading" secondItem="yPd-1V-V7u" secondAttribute="leading" constant="40" id="a32-HZ-TAe"/>
                             <constraint firstItem="Gse-jB-dJc" firstAttribute="leading" secondItem="yPd-1V-V7u" secondAttribute="leading" constant="100" id="a9P-OY-a0M"/>
                             <constraint firstItem="yPd-1V-V7u" firstAttribute="trailing" secondItem="9mw-Pp-A7B" secondAttribute="trailing" constant="20" id="c0c-Bg-tB6"/>
@@ -80,12 +93,17 @@
                     </view>
                     <navigationItem key="navigationItem" id="yqW-fd-873"/>
                     <connections>
+                        <outlet property="emailTextField" destination="gF7-YS-ciV" id="DZc-HW-ugM"/>
+                        <outlet property="fullNameTextField" destination="GtX-jl-fiw" id="BCB-um-0ai"/>
+                        <outlet property="passwordTextField" destination="RAF-Tm-ysZ" id="S5j-QE-KfD"/>
+                        <outlet property="segmentedControl" destination="Gse-jB-dJc" id="peM-n4-i2R"/>
+                        <outlet property="submitButton" destination="Swr-37-tmq" id="XGN-TS-hAo"/>
                         <segue destination="V4j-lu-7nX" kind="presentation" identifier="LoginSuccessSegue" modalPresentationStyle="fullScreen" id="Q4w-Qa-WfN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Za0-7F-Pg2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="149" y="138"/>
+            <point key="canvasLocation" x="147.82608695652175" y="137.94642857142856"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="2yq-w1-wcm">
@@ -253,6 +271,7 @@
     </scenes>
     <resources>
         <image name="book" catalog="system" width="128" height="101"/>
+        <image name="book.circle" catalog="system" width="128" height="121"/>
         <image name="house" catalog="system" width="128" height="110"/>
     </resources>
 </document>
