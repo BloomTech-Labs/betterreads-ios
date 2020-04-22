@@ -21,7 +21,7 @@ class SearchResultView: UIView {
     
     private let titleFont = UIFont.systemFont(ofSize: 24.0, weight: .semibold)
     private let authorFont = UIFont.systemFont(ofSize: 16.0, weight: .semibold)
-    private let authorTextColor = UIColor(red: 100.0/255.0, green: 100.0/255.0, blue: 100.0/255.0, alpha: 1.0)
+    private let authorTextColor = UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 1.0) // Tundra #404040
     
     override init(frame: CGRect) {
         super.init(frame: frame)
