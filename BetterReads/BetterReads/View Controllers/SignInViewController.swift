@@ -1,5 +1,5 @@
 //
-//  LoginViewController.swift
+//  SignInViewController.swift
 //  BetterReads
 //
 //  Created by Jorge Alvarez & Ciara "CC" Beitel on 4/20/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class SignInViewController: UIViewController {
     
     // MARK: - Properties
     enum LoginType {
@@ -22,7 +22,6 @@ class LoginViewController: UIViewController {
     let segControlDividerImage = UIImage(color: .clear, size: CGSize(width: 1, height: 32))
     let regularFont = UIFont(name: "SourceSansPro-Bold", size: 16)
     let boldFont = UIFont(name: "SourceSansPro-Bold", size: 20)
-    //let tundraColor = UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 1.0) // Tundra #404040
     let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 1.0), NSAttributedString.Key.font : UIFont(name: "SourceSansPro-Bold", size: 20)]
     let subTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 1.0), NSAttributedString.Key.font : UIFont(name: "SourceSansPro-Regular", size: 16)]
 
@@ -38,22 +37,28 @@ class LoginViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("ViewDidLoad")
-        // Change the font on the segmented control
-        // boldFont ?? UIFont()  no default generated a warning
-        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.font : boldFont ?? UIFont()], for: .selected)
-        // Change the background and divider image on the segmented control to a transparent (clear) image
-        segmentedControl.setBackgroundImage(segControlBackgroundImage, for: .normal, barMetrics: .default)
-        segmentedControl.setDividerImage(segControlDividerImage, forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
-        // Change the text color on the segmented control
-        segmentedControl.setTitleTextAttributes(titleTextAttributes as [NSAttributedString.Key : Any], for: .selected)
-        segmentedControl.setTitleTextAttributes(subTitleTextAttributes as [NSAttributedString.Key : Any], for: .normal)
+        setupCustomSegmentedControl()
         submitButton.layer.cornerRadius = 5
+        fullNameTextField.delegate = self
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        confirmPasswordTextField.delegate = self
     }
         
     // MARK: - Methods
+    
+    func setupCustomSegmentedControl() {
+        // Change font on the segmented control, add a default font to dismiss warning
+        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.font : boldFont ?? UIFont()], for: .selected)
+        // Change the background and divider image on the segmented control to a transparent (clear) image in the extension at the bottom of this file
+        segmentedControl.setBackgroundImage(segControlBackgroundImage, for: .normal, barMetrics: .default)
+        segmentedControl.setDividerImage(segControlDividerImage, forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
+        // Change the text color on the segmented control for selected and normal states
+        segmentedControl.setTitleTextAttributes(titleTextAttributes as [NSAttributedString.Key : Any], for: .selected)
+        segmentedControl.setTitleTextAttributes(subTitleTextAttributes as [NSAttributedString.Key : Any], for: .normal)
+    }
+    
     @IBAction func segmentedControlChanged(_ sender: UISegmentedControl) {
-        print("segmented control value changed")
         if sender.selectedSegmentIndex == 0 {
             loginType = .signup
             submitButton.setTitle("Sign Up", for: .normal)
@@ -67,11 +72,10 @@ class LoginViewController: UIViewController {
             fullNameLabel.isHidden = true
             segmentedControl.setTitleTextAttributes(subTitleTextAttributes as [NSAttributedString.Key : Any], for: .normal)
         }
-        submitButton.performFlare()
     }
     
-    @IBAction func signUpTapped(_ sender: UIButton) {
-        print("signUpTapped")
+    @IBAction func signUpButtonTapped(_ sender: UIButton) {
+        print("signUpButtonTapped")
         guard let fullname = fullNameTextField.text,
             let email = emailTextField.text,
             let password = passwordTextField.text,
@@ -93,14 +97,14 @@ class LoginViewController: UIViewController {
             self.present(alert, animated: true)
             return
         }
-                
+        
         let user = User(fullName: fullname, email: email, password: password)
         if loginType == .signup {
             userController.signUp(user: user) { (networkError) in
                 if let error = networkError {
                     NSLog("Error occured during Sign Up: \(error)")
                 } else {
-                    let alert = UIAlertController(title: "Sign Up Successful", message: "Please Sign In", preferredStyle: .alert)
+                    let alert = UIAlertController(title: "Sign up successful!", message: "Please sign in.", preferredStyle: .alert)
                     let signInAction = UIAlertAction(title: "Sign In", style: .default, handler: nil)
                     alert.addAction(signInAction)
                     DispatchQueue.main.async {
@@ -114,7 +118,6 @@ class LoginViewController: UIViewController {
             }
         } else if loginType == .signin {
             // FIXME: - remove full name text field (hide)
-            
             userController.signIn(email: email, password: password) { (networkError) in
                 if let error = networkError {
                     NSLog("Error occured during Sign In: \(error)")
@@ -134,18 +137,7 @@ class LoginViewController: UIViewController {
     }
 }
 
-// Animation
-extension UIView {
-  func performFlare() {
-    func flare() { transform = CGAffineTransform( scaleX: 1.1, y: 1.1) }
-    func unflare() { transform = .identity }
-    UIView.animate(withDuration: 0.3,
-                   animations: { flare() },
-                   completion: { _ in UIView.animate(withDuration: 0.2) { unflare() }})
-  }
-}
-
-// Segmented Control Background & Divider Image
+// MARK: - Segmented Control Background & Divider Image
 extension UIImage {
     convenience init(color: UIColor, size: CGSize) {
         UIGraphicsBeginImageContextWithOptions(size, false, 1)
@@ -155,5 +147,34 @@ extension UIImage {
         let image = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         self.init(data: image.pngData()!)!
+    }
+}
+
+// MARK: - Text Field Delegate
+extension SignInViewController: UITextFieldDelegate {
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        return true
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == fullNameTextField {
+            fullNameTextField.resignFirstResponder()
+            emailTextField.becomeFirstResponder()
+        } else if textField == emailTextField {
+            emailTextField.resignFirstResponder()
+            passwordTextField.becomeFirstResponder()
+        } else if textField == passwordTextField {
+            passwordTextField.resignFirstResponder()
+            confirmPasswordTextField.becomeFirstResponder()
+        } else if textField == confirmPasswordTextField {
+            confirmPasswordTextField.resignFirstResponder()
+            signUpButtonTapped(submitButton)
+        }
+        return true
     }
 }

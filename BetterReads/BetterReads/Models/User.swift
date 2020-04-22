@@ -19,3 +19,17 @@ class User {
         self.password = password
     }
 }
+
+//FIXME: Validate email with Email struct and EmailValidation.swift file
+struct Email {
+    private var string: String
+
+    init(_ string: String) throws {
+        try Validations.email(string)
+        self.string = string
+    }
+
+    func address() -> String {
+        return string
+    }
+}
