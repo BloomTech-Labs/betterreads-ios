@@ -56,9 +56,25 @@ class LoginViewController: UIViewController {
         guard let fullname = fullNameTextField.text,
             let email = emailTextField.text,
             let password = passwordTextField.text,
+            let confirmPassword = confirmPasswordTextField.text,
             !fullname.isEmpty,
             !email.isEmpty,
-            !password.isEmpty else { return }
+            !password.isEmpty,
+            !confirmPassword.isEmpty else {
+                //FIXME: Present alert message that textfields are empty
+                print("One of the textfields is empty.")
+            return
+        }
+        
+        if confirmPassword != password {
+            print("\(password) \n \(confirmPassword)")
+            let alert = UIAlertController(title: "Passwords do not match.", message: "Please confirm your passwords match.", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Okay", style: .default, handler: nil)
+            alert.addAction(okAction)
+            self.present(alert, animated: true)
+            return
+        }
+                
         let user = User(fullName: fullname, email: email, password: password)
         if loginType == .signup {
             userController.signUp(user: user) { (networkError) in
