@@ -18,7 +18,14 @@ class LoginViewController: UIViewController {
     
     var loginType = LoginType.signup
     var userController = UserController()
-    
+    let segControlBackgroundImage = UIImage(color: .clear, size: CGSize(width: 1, height: 32))
+    let segControlDividerImage = UIImage(color: .clear, size: CGSize(width: 1, height: 32))
+    let regularFont = UIFont(name: "SourceSansPro-Bold", size: 16)
+    let boldFont = UIFont(name: "SourceSansPro-Bold", size: 20)
+    //let tundraColor = UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 1.0) // Tundra #404040
+    let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 1.0), NSAttributedString.Key.font : UIFont(name: "SourceSansPro-Bold", size: 20)]
+    let subTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 1.0), NSAttributedString.Key.font : UIFont(name: "SourceSansPro-Regular", size: 16)]
+
     // MARK: - Outlets
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var fullNameTextField: UITextField!
@@ -32,6 +39,15 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("ViewDidLoad")
+        // Change the font on the segmented control
+        // boldFont ?? UIFont()  no default generated a warning
+        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.font : boldFont ?? UIFont()], for: .selected)
+        // Change the background and divider image on the segmented control to a transparent (clear) image
+        segmentedControl.setBackgroundImage(segControlBackgroundImage, for: .normal, barMetrics: .default)
+        segmentedControl.setDividerImage(segControlDividerImage, forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
+        // Change the text color on the segmented control
+        segmentedControl.setTitleTextAttributes(titleTextAttributes as [NSAttributedString.Key : Any], for: .selected)
+        segmentedControl.setTitleTextAttributes(subTitleTextAttributes as [NSAttributedString.Key : Any], for: .normal)
     }
         
     // MARK: - Methods
@@ -42,11 +58,13 @@ class LoginViewController: UIViewController {
             submitButton.setTitle("Sign Up", for: .normal)
             fullNameTextField.isHidden = false
             fullNameLabel.isHidden = false
+            segmentedControl.setTitleTextAttributes(titleTextAttributes as [NSAttributedString.Key : Any], for: .selected)
         } else {
             loginType = .signin
             submitButton.setTitle("Sign In", for: .normal)
             fullNameTextField.isHidden = true
             fullNameLabel.isHidden = true
+            segmentedControl.setTitleTextAttributes(subTitleTextAttributes as [NSAttributedString.Key : Any], for: .normal)
         }
         submitButton.performFlare()
     }
@@ -124,4 +142,17 @@ extension UIView {
                    animations: { flare() },
                    completion: { _ in UIView.animate(withDuration: 0.2) { unflare() }})
   }
+}
+
+// Segmented Control Background & Divider Image
+extension UIImage {
+    convenience init(color: UIColor, size: CGSize) {
+        UIGraphicsBeginImageContextWithOptions(size, false, 1)
+        color.set()
+        let ctx = UIGraphicsGetCurrentContext()!
+        ctx.fill(CGRect(origin: .zero, size: size))
+        let image = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        self.init(data: image.pngData()!)!
+    }
 }

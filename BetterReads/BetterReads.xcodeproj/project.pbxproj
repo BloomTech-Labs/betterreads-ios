@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1B102AC8244E170B0095733B /* Trash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B102AC7244E170B0095733B /* Trash.swift */; };
 		1B102ACB244E17790095733B /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B102ACA244E17790095733B /* SearchTableViewController.swift */; };
 		1B102ACD244E2F600095733B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B102ACC244E2F600095733B /* LoginViewController.swift */; };
 		1B102AD0244E390E0095733B /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B102ACF244E390E0095733B /* SearchResultView.swift */; };
@@ -40,7 +39,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1B102AC7244E170B0095733B /* Trash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trash.swift; sourceTree = "<group>"; };
 		1B102ACA244E17790095733B /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
 		1B102ACC244E2F600095733B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1B102ACF244E390E0095733B /* SearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultView.swift; sourceTree = "<group>"; };
@@ -206,7 +204,6 @@
 				77B6A3A62448F5A600FF604B /* Info.plist */,
 				77B6A3982448F5A400FF604B /* AppDelegate.swift */,
 				77B6A39A2448F5A400FF604B /* SceneDelegate.swift */,
-				1B102AC7244E170B0095733B /* Trash.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -302,7 +299,6 @@
 				1B102AD5244E41D00095733B /* Book.swift in Sources */,
 				1B102AD2244E3A380095733B /* SearchResultTableViewCell.swift in Sources */,
 				7732DCE5244F7F6900C82B7F /* UserController.swift in Sources */,
-				1B102AC8244E170B0095733B /* Trash.swift in Sources */,
 				1B102AD0244E390E0095733B /* SearchResultView.swift in Sources */,
 				77B6A3992448F5A400FF604B /* AppDelegate.swift in Sources */,
 				7732DCE2244F7DF400C82B7F /* User.swift in Sources */,
