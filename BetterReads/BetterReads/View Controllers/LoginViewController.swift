@@ -48,6 +48,7 @@ class LoginViewController: UIViewController {
         // Change the text color on the segmented control
         segmentedControl.setTitleTextAttributes(titleTextAttributes as [NSAttributedString.Key : Any], for: .selected)
         segmentedControl.setTitleTextAttributes(subTitleTextAttributes as [NSAttributedString.Key : Any], for: .normal)
+        submitButton.layer.cornerRadius = 5
     }
         
     // MARK: - Methods
