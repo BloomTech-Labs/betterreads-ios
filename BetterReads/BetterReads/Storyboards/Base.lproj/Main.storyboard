@@ -104,7 +104,7 @@
                                                                     <constraint firstAttribute="height" constant="40" id="PdC-2s-ECY"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits" returnKeyType="next" secureTextEntry="YES" textContentType="password"/>
+                                                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                                             </textField>
                                                         </subviews>
                                                     </stackView>
@@ -123,7 +123,7 @@
                                                                     <constraint firstAttribute="height" constant="40" id="qqa-1V-Taz"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits" returnKeyType="go" secureTextEntry="YES" textContentType="password"/>
+                                                                <textInputTraits key="textInputTraits" returnKeyType="go"/>
                                                             </textField>
                                                         </subviews>
                                                     </stackView>
