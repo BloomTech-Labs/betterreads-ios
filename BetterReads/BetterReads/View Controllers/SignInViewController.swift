@@ -39,6 +39,7 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var fullNameLabel: UILabel!
+    @IBOutlet weak var errorMessage: UILabel!
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
