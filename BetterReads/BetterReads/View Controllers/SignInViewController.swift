@@ -20,11 +20,17 @@ class SignInViewController: UIViewController {
     var userController = UserController()
     let segControlBackgroundImage = UIImage(color: .clear, size: CGSize(width: 1, height: 32))
     let segControlDividerImage = UIImage(color: .clear, size: CGSize(width: 1, height: 32))
+    let eyeballTransparentImage = UIImage(color: .clear, size: CGSize(width: 1, height: 1))
     let regularFont = UIFont(name: "SourceSansPro-Bold", size: 16)
     let boldFont = UIFont(name: "SourceSansPro-Bold", size: 20)
     let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 1.0), NSAttributedString.Key.font : UIFont(name: "SourceSansPro-Bold", size: 20)]
     let subTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 1.0), NSAttributedString.Key.font : UIFont(name: "SourceSansPro-Regular", size: 16)]
 
+    private var showPasswordHideButton: UIButton = UIButton()
+    private var passwordIsHidden = false
+    private var showConfirmHideButton: UIButton = UIButton()
+    private var confirmIsHidden = false
+    
     // MARK: - Outlets
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var fullNameTextField: UITextField!
@@ -39,12 +45,76 @@ class SignInViewController: UIViewController {
         super.viewDidLoad()
         setupCustomSegmentedControl()
         submitButton.layer.cornerRadius = 5
+        
         fullNameTextField.delegate = self
         emailTextField.delegate = self
         passwordTextField.delegate = self
         confirmPasswordTextField.delegate = self
+                
+        configurePasswordTextField()
+        configureConfirmTextField()
+    }
+    
+    // FIXME: buttons switch states when clicking into another textfield
+    // FIXME: text should always be secured when clicking outside of textfield
+    // FIXME: bottom of keyboard should never give option to use mic(?) or emoji
+    // FIXME: move button a little to the left (for both textfields)
+    private func configurePasswordTextField() {
+        passwordTextField.isSecureTextEntry = true
+        passwordTextField.rightView = showPasswordHideButton
+        passwordTextField.rightViewMode = .always
+        showPasswordHideButton.translatesAutoresizingMaskIntoConstraints = false
+        passwordTextField.addSubview(showPasswordHideButton)
+        //showPasswordHideButton.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
+        showPasswordHideButton.setImage(eyeballTransparentImage, for: .normal)
+        showPasswordHideButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: -2.0, bottom: 0, right: 0)
+        showPasswordHideButton.addTarget(self, action: #selector(tappedPasswordHideButton), for: .touchUpInside)
+    }
+    
+    private func configureConfirmTextField() {
+        confirmPasswordTextField.isSecureTextEntry = true
+        confirmPasswordTextField.rightView = showConfirmHideButton
+        confirmPasswordTextField.rightViewMode = .always
+        showConfirmHideButton.translatesAutoresizingMaskIntoConstraints = false
+        confirmPasswordTextField.addSubview(showConfirmHideButton)
+        //showConfirmHideButton.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
+        showConfirmHideButton.setImage(eyeballTransparentImage, for: .normal)
+        showConfirmHideButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: -2.0, bottom: 0, right: 0)
+        showConfirmHideButton.addTarget(self, action: #selector(tappedConfirmHideButton), for: .touchUpInside)
     }
         
+    @objc private func tappedPasswordHideButton() {
+        //showPasswordHideButton.isSelected.toggle()
+        if passwordIsHidden {
+            // Show
+            showPasswordHideButton.setImage(UIImage(systemName: "eye.fill"), for: .normal)
+            passwordTextField.isSecureTextEntry = false
+            passwordIsHidden = false
+        }
+        else {
+            // Hide
+            showPasswordHideButton.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
+            passwordTextField.isSecureTextEntry = true
+            passwordIsHidden = true
+        }
+    }
+    
+    @objc private func tappedConfirmHideButton() {
+        //showConfirmHideButton.isSelected.toggle()
+        if confirmIsHidden {
+            // Show
+            showConfirmHideButton.setImage(UIImage(systemName: "eye.fill"), for: .normal)
+            confirmPasswordTextField.isSecureTextEntry = false
+            confirmIsHidden = false
+        }
+        else {
+            // Hide
+            showConfirmHideButton.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
+            confirmPasswordTextField.isSecureTextEntry = true
+            confirmIsHidden = true
+        }
+    }
+    
     // MARK: - Methods
     
     func setupCustomSegmentedControl() {
@@ -159,6 +229,24 @@ extension SignInViewController: UITextFieldDelegate {
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        // FIXME: currently only hiding buttons when clicking one of the other 2 fields
+        // when it should hide them when clicking ANY other textfield
+        if textField == passwordTextField || textField == confirmPasswordTextField {
+            if textField == passwordTextField {
+                tappedPasswordHideButton()
+                //showPasswordHideButton.setImage(UIImage(systemName: "book.fill"), for: .normal)
+            } else {
+                tappedConfirmHideButton()
+                //showConfirmHideButton.setImage(UIImage(systemName: "book.fill"), for: .normal)
+            }
+        } else {
+            showPasswordHideButton.setImage(eyeballTransparentImage, for: .normal)
+            showConfirmHideButton.setImage(eyeballTransparentImage, for: .normal)
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
