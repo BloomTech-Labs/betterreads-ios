@@ -53,10 +53,10 @@ class SearchTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell", for: indexPath) as? SearchResultTableViewCell else { return UITableViewCell() }
 
         let book = myBooksArray[indexPath.row]
-        cell.mainView.imageView.image = UIImage(systemName: book.cover)
-        cell.mainView.titleLabel.text = book.title
-        cell.mainView.authorLabel.text = book.author
-        
+//        cell.mainView.imageView.image = UIImage(systemName: book.cover)
+//        cell.mainView.titleLabel.text = book.title
+//        cell.mainView.authorLabel.text = book.author
+        cell.book = book
         return cell
     }
     

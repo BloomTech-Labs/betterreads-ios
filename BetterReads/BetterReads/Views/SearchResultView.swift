@@ -10,6 +10,8 @@ import UIKit
 
 class SearchResultView: UIView {
 
+    // MARK: - Properties
+    
     // FIXME: make sure image fills up imageView nicely (aspectFit vs Fill etc..)
     var imageView: UIImageView!
 
@@ -23,6 +25,14 @@ class SearchResultView: UIView {
     private let authorFont = UIFont.systemFont(ofSize: 16.0, weight: .semibold)
     private let authorTextColor = UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 1.0) // Tundra #404040
     
+    // MARK: - View LifeCycle
+    
+    var book: Book? {
+        didSet {
+            updateViews()
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpSubviews()
@@ -31,6 +41,15 @@ class SearchResultView: UIView {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setUpSubviews()
+    }
+    
+    private func updateViews() {
+        guard let book = book else { return }
+        
+        titleLabel.text = book.title
+        authorLabel.text = book.author
+        imageView.image = UIImage(systemName: book.cover)
+        ratingView.text = "\(book.rating)"
     }
     
     private func setUpSubviews() {
