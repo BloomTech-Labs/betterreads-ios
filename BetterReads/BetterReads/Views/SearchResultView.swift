@@ -18,6 +18,7 @@ class SearchResultView: UIView {
     var titleLabel: UILabel! // var title = uilabel()
     var authorLabel: UILabel!
     var ratingView: UILabel! // FIXME: change back to uiview
+    var progressBar: UILabel! // white label that covers stars
     
     var standardMargin: CGFloat = CGFloat(16.0)
     
@@ -49,7 +50,7 @@ class SearchResultView: UIView {
         titleLabel.text = book.title
         authorLabel.text = book.author
         imageView.image = UIImage(systemName: book.cover)
-        ratingView.text = "\(book.rating)"
+        //ratingView.text = "\(book.rating)"
     }
     
     private func setUpSubviews() {
@@ -115,5 +116,28 @@ class SearchResultView: UIView {
         ratingView.textColor = .systemBlue
         ratingView.font = UIFont.systemFont(ofSize: 24.0,
                                             weight: .regular)
+        
+        // Rating View Progress Bar
+        ratingView.backgroundColor = .red // Delete
+        
+        let progressBar = UILabel()
+        addSubview(progressBar)
+        self.progressBar = progressBar
+        progressBar.translatesAutoresizingMaskIntoConstraints = false
+        
+        progressBar.topAnchor.constraint(equalTo: ratingView.topAnchor).isActive = true
+        progressBar.leadingAnchor.constraint(equalTo: ratingView.leadingAnchor).isActive = true
+        progressBar.trailingAnchor.constraint(equalTo: ratingView.trailingAnchor).isActive = true
+        progressBar.heightAnchor.constraint(equalTo: ratingView.heightAnchor).isActive = true
+        
+        progressBar.widthAnchor.constraint(equalTo: ratingView.widthAnchor).isActive = true
+        
+        progressBar.text = "★★★★★"
+        progressBar.textColor = .white
+        progressBar.font = UIFont.systemFont(ofSize: 24.0,
+        weight: .regular)
+        
+        // width determined by book.rating
+        
     }
 }
