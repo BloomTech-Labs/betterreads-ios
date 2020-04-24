@@ -39,7 +39,10 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var fullNameLabel: UILabel!
-    @IBOutlet weak var errorMessage: UILabel!
+    @IBOutlet weak var fullNameErrorMessage: UILabel!
+    @IBOutlet weak var emailErrorMessage: UILabel!
+    @IBOutlet weak var passwordErrorMessage: UILabel!
+    @IBOutlet weak var confirmPasswordErrorMessage: UILabel!
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -54,12 +57,14 @@ class SignInViewController: UIViewController {
                 
         configurePasswordTextField()
         configureConfirmTextField()
+        
+        hideErrorMessagesOnLoad()
     }
     
     // FIXME: buttons switch states when clicking into another textfield
     // FIXME: text should always be secured when clicking outside of textfield
     // FIXME: bottom of keyboard should never give option to use mic(?) or emoji
-    // FIXME: move button a little to the left (for both textfields)
+    // FIXME: move eyeball button a little to the left (for both textfields)
     private func configurePasswordTextField() {
         passwordTextField.isSecureTextEntry = true
         passwordTextField.rightView = showPasswordHideButton
@@ -118,6 +123,13 @@ class SignInViewController: UIViewController {
     
     // MARK: - Methods
     
+    func hideErrorMessagesOnLoad() {
+        fullNameErrorMessage.text = " "
+        emailErrorMessage.text = " "
+        passwordErrorMessage.text = " "
+        confirmPasswordErrorMessage.text = " "
+    }
+    
     func setupCustomSegmentedControl() {
         // Change font on the segmented control, add a default font to dismiss warning
         segmentedControl.setTitleTextAttributes([NSAttributedString.Key.font : boldFont ?? UIFont()], for: .selected)
@@ -147,59 +159,90 @@ class SignInViewController: UIViewController {
     
     @IBAction func signUpButtonTapped(_ sender: UIButton) {
         print("signUpButtonTapped")
-        guard let fullname = fullNameTextField.text,
-            let email = emailTextField.text,
-            let password = passwordTextField.text,
-            let confirmPassword = confirmPasswordTextField.text,
-            !fullname.isEmpty,
-            !email.isEmpty,
-            !password.isEmpty,
-            !confirmPassword.isEmpty else {
-                //FIXME: Present alert message that textfields are empty
-                print("One of the textfields is empty.")
-            return
-        }
-        
-        if confirmPassword != password {
-            print("\(password) \n \(confirmPassword)")
-            let alert = UIAlertController(title: "Passwords do not match.", message: "Please confirm your passwords match.", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "Okay", style: .default, handler: nil)
-            alert.addAction(okAction)
-            self.present(alert, animated: true)
-            return
-        }
-        
-        let user = User(fullName: fullname, email: email, password: password)
-        if loginType == .signup {
-            userController.signUp(user: user) { (networkError) in
-                if let error = networkError {
-                    NSLog("Error occured during Sign Up: \(error)")
-                } else {
-                    let alert = UIAlertController(title: "Sign up successful!", message: "Please sign in.", preferredStyle: .alert)
-                    let signInAction = UIAlertAction(title: "Sign In", style: .default, handler: nil)
-                    alert.addAction(signInAction)
-                    DispatchQueue.main.async {
-                        self.present(alert, animated: true, completion: {
-                            self.loginType = .signin
-                            self.segmentedControl.selectedSegmentIndex = 1
-                            self.submitButton.setTitle("Sign In", for: .normal)
-                        })
-                    }
-                }
-            }
-        } else if loginType == .signin {
-            // FIXME: - remove full name text field (hide)
-            userController.signIn(email: email, password: password) { (networkError) in
-                if let error = networkError {
-                    NSLog("Error occured during Sign In: \(error)")
-                } else {
-                    DispatchQueue.main.async {
-                        self.seg()
-                    }
-                }
-            }
+        //areTextfieldsEmpty()
+        validate()
+    }
+    
+    func validate() {
+        do {
+            let email = try emailTextField.validatedText(validationType: .email)
+            let password = try passwordTextField.validatedText(validationType: .required)
+            let confirmPassword = try confirmPasswordTextField.validatedText(validationType: .required)
+            //save user
+        } catch(let error) {
+            emailErrorMessage.text = (error as! ValidationError).message
         }
     }
+    
+//    func areTextfieldsEmpty() {
+//        if fullNameTextField.text == "" {
+//            fullNameErrorMessage.text = "This bitch empty, YEEEEET!."
+//        } else if emailTextField.text == "" {
+//
+//        } else if passwordTextField.text == "" {
+//            passwordErrorMessage.text = "This bitch empty, YEEEEET!."
+//        } else if confirmPasswordTextField.text == "" {
+//            confirmPasswordErrorMessage.text = "This bitch empty, YEEEEET!."
+//        } else {
+//            finishOnboarding()
+//            return
+//        }
+//    }
+//
+//    func finishOnboarding() {
+//        guard let fullName = fullNameTextField.text,
+//        let email = emailTextField.text,
+//        let password = passwordTextField.text,
+//        let confirmPassword = confirmPasswordTextField.text,
+//        !fullName.isEmpty,
+//        !email.isEmpty,
+//        !password.isEmpty,
+//        !confirmPassword.isEmpty else { return }
+//
+//        func confirmPasswordsMatch() {
+//            if confirmPassword != password {
+//                print("\(password) \n \(confirmPassword)")
+//                let alert = UIAlertController(title: "Passwords do not match.", message: "Please confirm your passwords match.", preferredStyle: .alert)
+//                let okAction = UIAlertAction(title: "Okay", style: .default, handler: nil)
+//                alert.addAction(okAction)
+//                self.present(alert, animated: true)
+//                return
+//            }
+//        }
+//
+//        func signUpOrSignInUser() {
+//            let user = User(fullName: fullName, email: email, password: password)
+//            if loginType == .signup {
+//                userController.signUp(user: user) { (networkError) in
+//                    if let error = networkError {
+//                        NSLog("Error occured during Sign Up: \(error)")
+//                    } else {
+//                        let alert = UIAlertController(title: "Sign up successful!", message: "Please sign in.", preferredStyle: .alert)
+//                        let signInAction = UIAlertAction(title: "Sign In", style: .default, handler: nil)
+//                        alert.addAction(signInAction)
+//                        DispatchQueue.main.async {
+//                            self.present(alert, animated: true, completion: {
+//                                self.loginType = .signin
+//                                self.segmentedControl.selectedSegmentIndex = 1
+//                                self.submitButton.setTitle("Sign In", for: .normal)
+//                            })
+//                        }
+//                    }
+//                }
+//            } else if loginType == .signin {
+//                // FIXME: - remove full name text field confirm password textfield (hide)
+//                userController.signIn(email: email, password: password) { (networkError) in
+//                    if let error = networkError {
+//                        NSLog("Error occured during Sign In: \(error)")
+//                    } else {
+//                        DispatchQueue.main.async {
+//                            self.seg()
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
 
     // MARK: - Navigation
     func seg() {
