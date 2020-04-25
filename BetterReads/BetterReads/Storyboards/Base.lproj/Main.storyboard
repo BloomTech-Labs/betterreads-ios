@@ -237,6 +237,7 @@
                     <size key="freeformSize" width="414" height="1000"/>
                     <connections>
                         <outlet property="confirmPasswordErrorMessage" destination="ve3-It-MEw" id="JY8-B1-dib"/>
+                        <outlet property="confirmPasswordLabel" destination="098-Ld-TdH" id="k85-gB-3eh"/>
                         <outlet property="confirmPasswordTextField" destination="WXC-Hx-PM6" id="gse-QG-cgE"/>
                         <outlet property="emailErrorMessage" destination="ctn-5m-dTW" id="xGT-fY-VOV"/>
                         <outlet property="emailTextField" destination="9aL-Hg-XuH" id="vBD-eb-Jhd"/>

@@ -39,6 +39,7 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var fullNameLabel: UILabel!
+    @IBOutlet weak var confirmPasswordLabel: UILabel!
     @IBOutlet weak var fullNameErrorMessage: UILabel!
     @IBOutlet weak var emailErrorMessage: UILabel!
     @IBOutlet weak var passwordErrorMessage: UILabel!
@@ -123,12 +124,7 @@ class SignInViewController: UIViewController {
     
     // MARK: - Methods
     
-    func hideErrorMessagesOnLoad() {
-        fullNameErrorMessage.text = " "
-        emailErrorMessage.text = " "
-        passwordErrorMessage.text = " "
-        confirmPasswordErrorMessage.text = " "
-    }
+    
     
     func setupCustomSegmentedControl() {
         // Change font on the segmented control, add a default font to dismiss warning
@@ -145,20 +141,31 @@ class SignInViewController: UIViewController {
         if sender.selectedSegmentIndex == 0 {
             loginType = .signup
             submitButton.setTitle("Sign Up", for: .normal)
-            fullNameTextField.isHidden = false
             fullNameLabel.isHidden = false
+            fullNameTextField.isHidden = false
+            confirmPasswordLabel.isHidden = false
+            confirmPasswordTextField.isHidden = false
             segmentedControl.setTitleTextAttributes(titleTextAttributes as [NSAttributedString.Key : Any], for: .selected)
         } else {
             loginType = .signin
             submitButton.setTitle("Sign In", for: .normal)
-            fullNameTextField.isHidden = true
             fullNameLabel.isHidden = true
+            fullNameTextField.isHidden = true
+            confirmPasswordLabel.isHidden = true
+            confirmPasswordTextField.isHidden = true
             segmentedControl.setTitleTextAttributes(subTitleTextAttributes as [NSAttributedString.Key : Any], for: .normal)
         }
     }
     
     @IBAction func signUpButtonTapped(_ sender: UIButton) {
         validate()
+    }
+    
+    func hideErrorMessagesOnLoad() {
+        fullNameErrorMessage.text = " "
+        emailErrorMessage.text = " "
+        passwordErrorMessage.text = " "
+        confirmPasswordErrorMessage.text = " "
     }
     
     func validate() {
