@@ -173,6 +173,7 @@ class SignInViewController: UIViewController {
         
     @IBAction func signUpButtonTapped(_ sender: UIButton) {
         validate()
+        signUpOrSignInUser()
     }
         
     func validate() {
@@ -182,10 +183,14 @@ class SignInViewController: UIViewController {
         
         do {
             let _ = try emailTextField.validatedText(validationType: .email(field: "email"))
-            let _ = try passwordTextField.validatedText(validationType: .required(field: "password"))
-            let _ = try confirmPasswordTextField.validatedText(validationType: .required(field: "confirmPassword"))
-            confirmPasswordsMatch()
+            let password = try passwordTextField.validatedText(validationType: .password(field: "password"))
+            let confirmPassword = try confirmPasswordTextField.validatedText(validationType: .password(field: "confirmPassword"))
             
+            if confirmPassword != password {
+                print("\(password) \n \(confirmPassword)")
+                confirmPasswordErrorMessage.text = "Passwords do not match."
+                return
+            }
         } catch(let error) {
             let convertedError = (error as! ValidationError)
             
@@ -202,57 +207,34 @@ class SignInViewController: UIViewController {
         }
     }
     
-    //FIXME: - Confirm passwords match
-    func confirmPasswordsMatch() {
-        guard let _ = fullNameTextField.text,
-        let _ = emailTextField.text,
-        let password = passwordTextField.text,
-        let confirmPassword = confirmPasswordTextField.text else { return }
-        
-        if confirmPassword != password {
-            print("\(password) \n \(confirmPassword)")
-            let alert = UIAlertController(title: "Passwords do not match.", message: "Please confirm your passwords match.", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "Okay", style: .default, handler: nil)
-            alert.addAction(okAction)
-            self.present(alert, animated: true)
-            return
+    //FIXME: - Once validated, move directly to sign in (without alert)
+    func signUpOrSignInUser() {
+        guard let fullName = fullNameTextField.text,
+            let email = emailTextField.text,
+            let password = passwordTextField.text else { return }
+        let user = User(fullName: fullName, email: email, password: password)
+        if loginType == .signup {
+            userController.signUp(user: user) { (networkError) in
+                if let error = networkError {
+                    NSLog("Error occured during Sign Up: \(error)")
+                } else {
+                    self.loginType = .signin
+                    self.segmentedControl.selectedSegmentIndex = 1
+                    self.submitButton.setTitle("Sign In", for: .normal)
+                }
+            }
+        } else if loginType == .signin {
+            userController.signIn(email: email, password: password) { (networkError) in
+                if let error = networkError {
+                    NSLog("Error occured during Sign In: \(error)")
+                } else {
+                    DispatchQueue.main.async {
+                        self.seg()
+                    }
+                }
+            }
         }
     }
-    
-    //FIXME: - Once validated, move directly to sign in (without alert)
-//        func signUpOrSignInUser() {
-//            let user = User(fullName: fullName, email: email, password: password)
-//            if loginType == .signup {
-//                userController.signUp(user: user) { (networkError) in
-//                    if let error = networkError {
-//                        NSLog("Error occured during Sign Up: \(error)")
-//                    } else {
-//                        let alert = UIAlertController(title: "Sign up successful!", message: "Please sign in.", preferredStyle: .alert)
-//                        let signInAction = UIAlertAction(title: "Sign In", style: .default, handler: nil)
-//                        alert.addAction(signInAction)
-//                        DispatchQueue.main.async {
-//                            self.present(alert, animated: true, completion: {
-//                                self.loginType = .signin
-//                                self.segmentedControl.selectedSegmentIndex = 1
-//                                self.submitButton.setTitle("Sign In", for: .normal)
-//                            })
-//                        }
-//                    }
-//                }
-//            } else if loginType == .signin {
-//                // FIXME: - remove full name text field confirm password textfield (hide)
-//                userController.signIn(email: email, password: password) { (networkError) in
-//                    if let error = networkError {
-//                        NSLog("Error occured during Sign In: \(error)")
-//                    } else {
-//                        DispatchQueue.main.async {
-//                            self.seg()
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
 
     // MARK: - Navigation
     func seg() {
