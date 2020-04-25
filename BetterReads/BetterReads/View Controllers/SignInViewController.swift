@@ -158,57 +158,52 @@ class SignInViewController: UIViewController {
     }
     
     @IBAction func signUpButtonTapped(_ sender: UIButton) {
-        print("signUpButtonTapped")
-        //areTextfieldsEmpty()
         validate()
     }
     
     func validate() {
+        emailErrorMessage.text = ""
+        passwordErrorMessage.text = ""
+        confirmPasswordErrorMessage.text = ""
+        
         do {
-            let email = try emailTextField.validatedText(validationType: .email)
-            let password = try passwordTextField.validatedText(validationType: .required)
-            let confirmPassword = try confirmPasswordTextField.validatedText(validationType: .required)
-            //save user
+            let _ = try emailTextField.validatedText(validationType: .email(field: "email"))
+            let _ = try passwordTextField.validatedText(validationType: .required(field: "password"))
+            let _ = try confirmPasswordTextField.validatedText(validationType: .required(field: "confirmPassword"))
+            confirmPasswordsMatch()
+            
         } catch(let error) {
-            emailErrorMessage.text = (error as! ValidationError).message
+            let convertedError = (error as! ValidationError)
+            
+            switch convertedError.fieldName {
+            case "email":
+                emailErrorMessage.text = convertedError.message
+            case "password":
+                passwordErrorMessage.text = convertedError.message
+            case "confirmPassword":
+                confirmPasswordErrorMessage.text = convertedError.message
+            default:
+                return
+            }
         }
     }
-    
-//    func areTextfieldsEmpty() {
-//        if fullNameTextField.text == "" {
-//            fullNameErrorMessage.text = "This bitch empty, YEEEEET!."
-//        } else if emailTextField.text == "" {
-//
-//        } else if passwordTextField.text == "" {
-//            passwordErrorMessage.text = "This bitch empty, YEEEEET!."
-//        } else if confirmPasswordTextField.text == "" {
-//            confirmPasswordErrorMessage.text = "This bitch empty, YEEEEET!."
-//        } else {
-//            finishOnboarding()
-//            return
-//        }
-//    }
-//
-//    func finishOnboarding() {
-//        guard let fullName = fullNameTextField.text,
-//        let email = emailTextField.text,
-//        let password = passwordTextField.text,
-//        let confirmPassword = confirmPasswordTextField.text,
-//        !fullName.isEmpty,
-//        !email.isEmpty,
-//        !password.isEmpty,
-//        !confirmPassword.isEmpty else { return }
-//
-//        func confirmPasswordsMatch() {
-//            if confirmPassword != password {
-//                print("\(password) \n \(confirmPassword)")
-//                let alert = UIAlertController(title: "Passwords do not match.", message: "Please confirm your passwords match.", preferredStyle: .alert)
-//                let okAction = UIAlertAction(title: "Okay", style: .default, handler: nil)
-//                alert.addAction(okAction)
-//                self.present(alert, animated: true)
-//                return
-//            }
-//        }
+
+
+    func confirmPasswordsMatch() {
+        guard let _ = fullNameTextField.text,
+        let _ = emailTextField.text,
+        let password = passwordTextField.text,
+        let confirmPassword = confirmPasswordTextField.text else { return }
+        
+        if confirmPassword != password {
+            print("\(password) \n \(confirmPassword)")
+            let alert = UIAlertController(title: "Passwords do not match.", message: "Please confirm your passwords match.", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Okay", style: .default, handler: nil)
+            alert.addAction(okAction)
+            self.present(alert, animated: true)
+            return
+        }
+    }
 //
 //        func signUpOrSignInUser() {
 //            let user = User(fullName: fullName, email: email, password: password)

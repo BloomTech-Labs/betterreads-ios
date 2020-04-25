@@ -13,45 +13,59 @@ protocol ValidatorConvertible {
 }
 
 enum ValidatorType {
-    case required
-    case email
+    case required(field: String)
+    case email(field: String)
 }
 
 enum VaildatorFactory {
     static func validatorFor(type: ValidatorType) -> ValidatorConvertible {
         switch type {
-        case .required: return RequiredFieldValidator()
-        case .email: return EmailFieldValidator()
+        case .required(let fieldName): return RequiredFieldValidator(fieldName)
+        case .email(let fieldName): return EmailFieldValidator(fieldName)
         }
     }
 }
 
 struct ValidationError: Error {
     var message: String
+    var fieldName: String
     
-    init(_ message: String) {
+    init(message: String, fieldName: String) {
         self.message = message
+        self.fieldName = fieldName
     }
 }
 
 struct RequiredFieldValidator: ValidatorConvertible {
+    private let fieldName: String
+    
+    init(_ field: String) {
+        fieldName = field
+    }
+    
     func validated(_ value: String?) throws -> String {
         guard let unwrappedValue = value,
             !unwrappedValue.isEmpty else {
-            throw ValidationError("Required field")
+            throw ValidationError(message: "Required field", fieldName: fieldName)
         }
         return unwrappedValue
     }
 }
 
 struct EmailFieldValidator: ValidatorConvertible {
+    private let fieldName: String
+    
+    init(_ field: String) {
+        fieldName = field
+    }
+    
     func validated(_ value: String?) throws -> String {
         do {
             if try NSRegularExpression(pattern: "^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$", options: .caseInsensitive).firstMatch(in: value!, options: [], range: NSRange(location: 0, length: value!.count)) == nil {
-                throw ValidationError("Invalid e-mail Address")
+                throw ValidationError(message: "Invalid email address", fieldName: fieldName)
             }
         } catch {
-            throw ValidationError("Invalid e-mail Address")
+            throw ValidationError(message: "Invalid email address", fieldName: fieldName)
         }
         return value!
     }
