@@ -23,8 +23,8 @@ class SignInViewController: UIViewController {
     let eyeballTransparentImage = UIImage(color: .clear, size: CGSize(width: 1, height: 1))
     let regularFont = UIFont(name: "SourceSansPro-Bold", size: 16)
     let boldFont = UIFont(name: "SourceSansPro-Bold", size: 20)
-    let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 1.0), NSAttributedString.Key.font : UIFont(name: "SourceSansPro-Bold", size: 20)]
-    let subTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 1.0), NSAttributedString.Key.font : UIFont(name: "SourceSansPro-Regular", size: 16)]
+    let selectedTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 1.0), NSAttributedString.Key.font : UIFont(name: "SourceSansPro-Bold", size: 20)]
+    let normalTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 1.0), NSAttributedString.Key.font : UIFont(name: "SourceSansPro-Regular", size: 16)]
 
     private var showPasswordHideButton: UIButton = UIButton()
     private var passwordIsHidden = false
@@ -62,10 +62,10 @@ class SignInViewController: UIViewController {
     }
     
     func hideErrorMessagesOnLoad() {
-        fullNameErrorMessage.text = " "
-        emailErrorMessage.text = " "
-        passwordErrorMessage.text = " "
-        confirmPasswordErrorMessage.text = " "
+        fullNameErrorMessage.text = ""
+        emailErrorMessage.text = ""
+        passwordErrorMessage.text = ""
+        confirmPasswordErrorMessage.text = ""
     }
     
     func textFieldDelegates() {
@@ -83,28 +83,40 @@ class SignInViewController: UIViewController {
         segmentedControl.setBackgroundImage(segControlBackgroundImage, for: .normal, barMetrics: .default)
         segmentedControl.setDividerImage(segControlDividerImage, forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
         // Change the text color on the segmented control for selected and normal states
-        segmentedControl.setTitleTextAttributes(titleTextAttributes as [NSAttributedString.Key : Any], for: .selected)
-        segmentedControl.setTitleTextAttributes(subTitleTextAttributes as [NSAttributedString.Key : Any], for: .normal)
+        segmentedControl.setTitleTextAttributes(selectedTextAttributes as [NSAttributedString.Key : Any], for: .selected)
+        segmentedControl.setTitleTextAttributes(normalTextAttributes as [NSAttributedString.Key : Any], for: .normal)
     }
     
     @IBAction func segmentedControlChanged(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
-            loginType = .signup
-            submitButton.setTitle("Sign Up", for: .normal)
-            fullNameLabel.isHidden = false
-            fullNameTextField.isHidden = false
-            confirmPasswordLabel.isHidden = false
-            confirmPasswordTextField.isHidden = false
-            segmentedControl.setTitleTextAttributes(titleTextAttributes as [NSAttributedString.Key : Any], for: .selected)
+            setUpSignUpForm()
         } else {
-            loginType = .signin
-            submitButton.setTitle("Sign In", for: .normal)
-            fullNameLabel.isHidden = true
-            fullNameTextField.isHidden = true
-            confirmPasswordLabel.isHidden = true
-            confirmPasswordTextField.isHidden = true
-            segmentedControl.setTitleTextAttributes(subTitleTextAttributes as [NSAttributedString.Key : Any], for: .normal)
+            setUpSignInForm()
         }
+    }
+    
+    func setUpSignUpForm() {
+        loginType = .signup
+        submitButton.setTitle("Sign Up", for: .normal)
+        fullNameLabel.isHidden = false
+        fullNameTextField.isHidden = false
+        confirmPasswordLabel.isHidden = false
+        confirmPasswordTextField.isHidden = false
+        segmentedControl.setTitleTextAttributes(selectedTextAttributes as [NSAttributedString.Key : Any], for: .selected)
+        hideErrorMessagesOnLoad()
+        segmentedControl.selectedSegmentIndex = 0
+    }
+    
+    func setUpSignInForm() {
+        loginType = .signin
+        submitButton.setTitle("Sign In", for: .normal)
+        fullNameLabel.isHidden = true
+        fullNameTextField.isHidden = true
+        confirmPasswordLabel.isHidden = true
+        confirmPasswordTextField.isHidden = true
+        segmentedControl.setTitleTextAttributes(normalTextAttributes as [NSAttributedString.Key : Any], for: .normal)
+        hideErrorMessagesOnLoad()
+        segmentedControl.selectedSegmentIndex = 1
     }
 
     // MARK: - Configure Text Fields for show/hide Password
@@ -173,15 +185,13 @@ class SignInViewController: UIViewController {
         
     @IBAction func signUpButtonTapped(_ sender: UIButton) {
         validate()
-        signUpOrSignInUser()
     }
         
     func validate() {
-        emailErrorMessage.text = ""
-        passwordErrorMessage.text = ""
-        confirmPasswordErrorMessage.text = ""
+        hideErrorMessagesOnLoad()
         
         do {
+            let _ = try fullNameTextField.validatedText(validationType: .required(field: "fullName"))
             let _ = try emailTextField.validatedText(validationType: .email(field: "email"))
             let password = try passwordTextField.validatedText(validationType: .password(field: "password"))
             let confirmPassword = try confirmPasswordTextField.validatedText(validationType: .password(field: "confirmPassword"))
@@ -191,10 +201,13 @@ class SignInViewController: UIViewController {
                 confirmPasswordErrorMessage.text = "Passwords do not match."
                 return
             }
+            signUpOrSignInUser()
         } catch(let error) {
             let convertedError = (error as! ValidationError)
             
             switch convertedError.fieldName {
+            case "fullName":
+                fullNameErrorMessage.text = convertedError.message
             case "email":
                 emailErrorMessage.text = convertedError.message
             case "password":
@@ -214,18 +227,29 @@ class SignInViewController: UIViewController {
             let password = passwordTextField.text else { return }
         let user = User(fullName: fullName, email: email, password: password)
         if loginType == .signup {
+            //FIXME: Dismiss keyboard
             userController.signUp(user: user) { (networkError) in
                 if let error = networkError {
                     NSLog("Error occured during Sign Up: \(error)")
                 } else {
-                    self.loginType = .signin
-                    self.segmentedControl.selectedSegmentIndex = 1
-                    self.submitButton.setTitle("Sign In", for: .normal)
+                    self.userController.signIn(email: email, password: password) { (networkError) in
+                        if let error = networkError {
+                            self.setUpSignInForm()
+                            //FIXME: Alert user there was an error signing in, please try again.
+                            NSLog("Error occured during Sign In: \(error)")
+                        } else {
+                            DispatchQueue.main.async {
+                                self.seg()
+                            }
+                        }
+                    }
                 }
             }
         } else if loginType == .signin {
+            //FIXME: Dismiss keyboard
             userController.signIn(email: email, password: password) { (networkError) in
                 if let error = networkError {
+                    //FIXME: Alert user there was an error signing in, please try again.
                     NSLog("Error occured during Sign In: \(error)")
                 } else {
                     DispatchQueue.main.async {
