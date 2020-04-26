@@ -185,24 +185,47 @@ class SignInViewController: UIViewController {
         
     @IBAction func signUpButtonTapped(_ sender: UIButton) {
         view.endEditing(true)
-        validate()
+        //FIXME: - validate each text field on the retun key, not on the submit button tapped
+        validate {
+            signUpOrSignInUser()
+        }
     }
         
-    func validate() {
+    private func validate(field: String? = nil, completion: () -> ()) {
         hideErrorMessagesOnLoad()
         
         do {
-            let _ = try fullNameTextField.validatedText(validationType: .required(field: "fullName"))
-            let _ = try emailTextField.validatedText(validationType: .email(field: "email"))
-            let password = try passwordTextField.validatedText(validationType: .password(field: "password"))
-            let confirmPassword = try confirmPasswordTextField.validatedText(validationType: .password(field: "confirmPassword"))
-            
-            if confirmPassword != password {
-                print("\(password) \n \(confirmPassword)")
-                confirmPasswordErrorMessage.text = "Passwords do not match."
-                return
+            switch field {
+            case "fullName":
+                let _ = try fullNameTextField.validatedText(validationType: .required(field: "fullName"))
+                completion()
+            case "email":
+                let _ = try emailTextField.validatedText(validationType: .email(field: "email"))
+                completion()
+            case "password":
+                let _ = try passwordTextField.validatedText(validationType: .password(field: "password"))
+                completion()
+            case "confirmPassword":
+                let confirmPassword = try confirmPasswordTextField.validatedText(validationType: .password(field: "confirmPassword"))
+                let password = try passwordTextField.validatedText(validationType: .password(field: "password"))
+                if confirmPassword != password {
+                    print("\(password) \n \(confirmPassword)")
+                    confirmPasswordErrorMessage.text = "Passwords do not match."
+                    return
+                }
+                completion()
+            default:
+                let _ = try fullNameTextField.validatedText(validationType: .required(field: "fullName"))
+                let _ = try passwordTextField.validatedText(validationType: .password(field: "password"))
+                let confirmPassword = try confirmPasswordTextField.validatedText(validationType: .password(field: "confirmPassword"))
+                let password = try passwordTextField.validatedText(validationType: .password(field: "password"))
+                if confirmPassword != password {
+                    print("\(password) \n \(confirmPassword)")
+                    confirmPasswordErrorMessage.text = "Passwords do not match."
+                    return
+                }
+                completion()
             }
-            signUpOrSignInUser()
         } catch(let error) {
             let convertedError = (error as! ValidationError)
             
@@ -221,7 +244,7 @@ class SignInViewController: UIViewController {
         }
     }
     
-    func signUpOrSignInUser() {
+    private func signUpOrSignInUser() {
         guard let fullName = fullNameTextField.text,
             let email = emailTextField.text,
             let password = passwordTextField.text else { return }
@@ -229,6 +252,7 @@ class SignInViewController: UIViewController {
         if loginType == .signup {
             userController.signUp(user: user) { (networkError) in
                 if let error = networkError {
+                    self.presentSignUpErrorAlert()
                     NSLog("Error occured during Sign Up: \(error)")
                 } else {
                     self.userController.signIn(email: email, password: password) { (networkError) in
@@ -258,7 +282,13 @@ class SignInViewController: UIViewController {
         }
     }
     
-    func presentSignInErrorAlert() {
+    private func presentSignUpErrorAlert() {
+        let alert = UIAlertController(title: "Sign Up Error", message: "An error occured during Sign Up,\nplease try again later.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    private func presentSignInErrorAlert() {
         let alert = UIAlertController(title: "Sign In Error", message: "An error occured during Sign In,\nplease try again later.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
@@ -314,17 +344,25 @@ extension SignInViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == fullNameTextField {
-            fullNameTextField.resignFirstResponder()
-            emailTextField.becomeFirstResponder()
+            validate(field: "fullName") {
+                fullNameTextField.resignFirstResponder()
+                emailTextField.becomeFirstResponder()
+            }
         } else if textField == emailTextField {
-            emailTextField.resignFirstResponder()
-            passwordTextField.becomeFirstResponder()
+            validate(field: "email") {
+                emailTextField.resignFirstResponder()
+                passwordTextField.becomeFirstResponder()
+            }
         } else if textField == passwordTextField {
-            passwordTextField.resignFirstResponder()
-            confirmPasswordTextField.becomeFirstResponder()
+            validate(field: "password") {
+                passwordTextField.resignFirstResponder()
+                confirmPasswordTextField.becomeFirstResponder()
+            }
         } else if textField == confirmPasswordTextField {
-            confirmPasswordTextField.resignFirstResponder()
-            signUpButtonTapped(submitButton)
+            validate(field: "confirmPassword") {
+                confirmPasswordTextField.resignFirstResponder()
+                signUpOrSignInUser()
+            }
         }
         return true
     }
