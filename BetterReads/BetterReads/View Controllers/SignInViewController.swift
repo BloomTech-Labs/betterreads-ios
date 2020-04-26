@@ -234,7 +234,7 @@ class SignInViewController: UIViewController {
                     self.userController.signIn(email: email, password: password) { (networkError) in
                         if let error = networkError {
                             self.setUpSignInForm()
-                            //FIXME: Alert user there was an error signing in, please try again.
+                            self.presentSignInErrorAlert()
                             NSLog("Error occured during Sign In: \(error)")
                         } else {
                             DispatchQueue.main.async {
@@ -247,7 +247,7 @@ class SignInViewController: UIViewController {
         } else if loginType == .signin {
             userController.signIn(email: email, password: password) { (networkError) in
                 if let error = networkError {
-                    //FIXME: Alert user there was an error signing in, please try again.
+                    self.presentSignInErrorAlert()
                     NSLog("Error occured during Sign In: \(error)")
                 } else {
                     DispatchQueue.main.async {
@@ -256,6 +256,12 @@ class SignInViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    func presentSignInErrorAlert() {
+        let alert = UIAlertController(title: "Sign In Error", message: "An error occured during Sign In,\nplease try again later.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 
     // MARK: - Navigation
@@ -290,7 +296,6 @@ extension SignInViewController: UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        
         // FIXME: currently only hiding buttons when clicking one of the other 2 fields
         // when it should hide them when clicking ANY other textfield
         if textField == passwordTextField || textField == confirmPasswordTextField {
