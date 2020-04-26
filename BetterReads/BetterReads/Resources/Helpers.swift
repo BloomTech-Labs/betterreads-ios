@@ -8,11 +8,6 @@
 
 import UIKit
 
-class Helpers {
-    
-}
-
-
 // Animation
 extension UIView {
   func performFlare() {

@@ -83,21 +83,19 @@ struct PasswordFieldValidator: ValidatorConvertible {
     }
     
     func validated(_ value: String?) throws -> String {
-        guard let unwrappedValue = value, unwrappedValue != "" else { throw ValidationError(message: "Password is required", fieldName: fieldName) }
-        guard unwrappedValue.count >= 6 else { throw ValidationError(message: "Password must be at least 6 characters", fieldName: fieldName) }
+        guard let unwrappedValue = value, unwrappedValue != "" else { throw ValidationError(message: "Required field", fieldName: fieldName) }
+        guard unwrappedValue.count >= 6 else { throw ValidationError(message: "Must be at least 6 characters", fieldName: fieldName) }
         
         do {
             if try NSRegularExpression(pattern: "^(?=.*?[A-Za-z])(?=.*?[0-9]).{6,}$",  options: .caseInsensitive).firstMatch(in: unwrappedValue, options: [], range: NSRange(location: 0, length: unwrappedValue.count)) == nil {
-                throw ValidationError(message: "Password must be at least 6 characters, with at least one number", fieldName: fieldName)
+                throw ValidationError(message: "Must be at least 6 characters, with at least 1 number", fieldName: fieldName)
             }
         } catch {
-            throw ValidationError(message: "Password must be at least 6 characters, with at least one number", fieldName: fieldName)
+            throw ValidationError(message: "Must be at least 6 characters, with at least 1 number", fieldName: fieldName)
         }
         return unwrappedValue
     }
 }
-
-
 
 extension UITextField {
     func validatedText(validationType: ValidatorType) throws -> String {

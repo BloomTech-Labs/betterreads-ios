@@ -33,7 +33,7 @@
 		7732DD0C244FAD0000C82B7F /* SourceSansPro-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7732DCFB244FACE200C82B7F /* SourceSansPro-SemiBold.ttf */; };
 		7732DD0D244FAD0200C82B7F /* SourceSansPro-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7732DCFE244FACE200C82B7F /* SourceSansPro-SemiBoldItalic.ttf */; };
 		773F109E245390030012B8DA /* Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773F109D245390030012B8DA /* Validators.swift */; };
-		777B65A52450EC86007D01E8 /* Ideas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777B65A42450EC86007D01E8 /* Ideas.swift */; };
+		777B65A52450EC86007D01E8 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777B65A42450EC86007D01E8 /* Helpers.swift */; };
 		77B6A3992448F5A400FF604B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B6A3982448F5A400FF604B /* AppDelegate.swift */; };
 		77B6A39B2448F5A400FF604B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B6A39A2448F5A400FF604B /* SceneDelegate.swift */; };
 		77B6A3A02448F5A400FF604B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77B6A39E2448F5A400FF604B /* Main.storyboard */; };
@@ -68,7 +68,7 @@
 		7732DD00244FACE200C82B7F /* SourceSansPro-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-BoldItalic.ttf"; sourceTree = "<group>"; };
 		7732DD01244FACE200C82B7F /* SourceSansPro-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-BlackItalic.ttf"; sourceTree = "<group>"; };
 		773F109D245390030012B8DA /* Validators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validators.swift; sourceTree = "<group>"; };
-		777B65A42450EC86007D01E8 /* Ideas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ideas.swift; sourceTree = "<group>"; };
+		777B65A42450EC86007D01E8 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		77B6A3952448F5A400FF604B /* BetterReads.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BetterReads.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77B6A3982448F5A400FF604B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		77B6A39A2448F5A400FF604B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -207,7 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				773F109D245390030012B8DA /* Validators.swift */,
-				777B65A42450EC86007D01E8 /* Ideas.swift */,
+				777B65A42450EC86007D01E8 /* Helpers.swift */,
 				7732DCE6244FA74D00C82B7F /* Fonts */,
 				77B6A3A12448F5A600FF604B /* Assets.xcassets */,
 				77B6A3A62448F5A600FF604B /* Info.plist */,
@@ -316,7 +316,7 @@
 				1B102ACD244E2F600095733B /* SignInViewController.swift in Sources */,
 				1B102ACB244E17790095733B /* SearchTableViewController.swift in Sources */,
 				773F109E245390030012B8DA /* Validators.swift in Sources */,
-				777B65A52450EC86007D01E8 /* Ideas.swift in Sources */,
+				777B65A52450EC86007D01E8 /* Helpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

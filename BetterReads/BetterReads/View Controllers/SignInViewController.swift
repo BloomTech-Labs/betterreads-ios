@@ -21,10 +21,10 @@ class SignInViewController: UIViewController {
     let segControlBackgroundImage = UIImage(color: .clear, size: CGSize(width: 1, height: 32))
     let segControlDividerImage = UIImage(color: .clear, size: CGSize(width: 1, height: 32))
     let eyeballTransparentImage = UIImage(color: .clear, size: CGSize(width: 1, height: 1))
-    let regularFont = UIFont(name: "SourceSansPro-Bold", size: 16)
-    let boldFont = UIFont(name: "SourceSansPro-Bold", size: 20)
-    let selectedTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 1.0), NSAttributedString.Key.font : UIFont(name: "SourceSansPro-Bold", size: 20)]
-    let normalTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 1.0), NSAttributedString.Key.font : UIFont(name: "SourceSansPro-Regular", size: 16)]
+    let regularFont = UIFont(name: "SourceSansPro-Regular", size: 16)
+    let semiBoldFont = UIFont(name: "SourceSansPro-SemiBold", size: 20)
+    let selectedTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.tundra, NSAttributedString.Key.font : UIFont(name: "SourceSansPro-SemiBold", size: 20)]
+    let normalTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.tundra, NSAttributedString.Key.font : UIFont(name: "SourceSansPro-Regular", size: 16)]
 
     private var showPasswordHideButton: UIButton = UIButton()
     private var passwordIsHidden = false
@@ -53,7 +53,7 @@ class SignInViewController: UIViewController {
     }
     
     // MARK: - Methods
-    func setupUIElements() {
+    private func setupUIElements() {
         hideErrorMessagesOnLoad()
         setupCustomSegmentedControl()
         configurePasswordTextField()
@@ -61,14 +61,14 @@ class SignInViewController: UIViewController {
         submitButton.layer.cornerRadius = 5
     }
     
-    func hideErrorMessagesOnLoad() {
+    private func hideErrorMessagesOnLoad() {
         fullNameErrorMessage.text = ""
         emailErrorMessage.text = ""
         passwordErrorMessage.text = ""
         confirmPasswordErrorMessage.text = ""
     }
     
-    func textFieldDelegates() {
+    private func textFieldDelegates() {
         fullNameTextField.delegate = self
         emailTextField.delegate = self
         passwordTextField.delegate = self
@@ -76,9 +76,9 @@ class SignInViewController: UIViewController {
     }
     
     // MARK: - Custom Segmented Control
-    func setupCustomSegmentedControl() {
+    private func setupCustomSegmentedControl() {
         // Change font on the segmented control, add a default font to dismiss warning
-        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.font : boldFont ?? UIFont()], for: .selected)
+        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.font : semiBoldFont ?? UIFont()], for: .selected)
         // Change the background and divider image on the segmented control to a transparent (clear) image in the extension at the bottom of this file
         segmentedControl.setBackgroundImage(segControlBackgroundImage, for: .normal, barMetrics: .default)
         segmentedControl.setDividerImage(segControlDividerImage, forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
@@ -95,7 +95,7 @@ class SignInViewController: UIViewController {
         }
     }
     
-    func setUpSignUpForm() {
+    private func setUpSignUpForm() {
         loginType = .signup
         submitButton.setTitle("Sign Up", for: .normal)
         fullNameLabel.isHidden = false
@@ -107,7 +107,7 @@ class SignInViewController: UIViewController {
         segmentedControl.selectedSegmentIndex = 0
     }
     
-    func setUpSignInForm() {
+    private func setUpSignInForm() {
         loginType = .signin
         submitButton.setTitle("Sign In", for: .normal)
         fullNameLabel.isHidden = true
@@ -295,7 +295,7 @@ class SignInViewController: UIViewController {
     }
 
     // MARK: - Navigation
-    func seg() {
+    private func seg() {
         print("Called seg()")
         performSegue(withIdentifier: "SignInSuccessSegue", sender: self)
     }
