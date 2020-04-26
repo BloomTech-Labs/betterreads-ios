@@ -184,6 +184,7 @@ class SignInViewController: UIViewController {
     // MARK: - Validate text in Text Fields
         
     @IBAction func signUpButtonTapped(_ sender: UIButton) {
+        view.endEditing(true)
         validate()
     }
         
@@ -220,14 +221,12 @@ class SignInViewController: UIViewController {
         }
     }
     
-    //FIXME: - Once validated, move directly to sign in (without alert)
     func signUpOrSignInUser() {
         guard let fullName = fullNameTextField.text,
             let email = emailTextField.text,
             let password = passwordTextField.text else { return }
         let user = User(fullName: fullName, email: email, password: password)
         if loginType == .signup {
-            //FIXME: Dismiss keyboard
             userController.signUp(user: user) { (networkError) in
                 if let error = networkError {
                     NSLog("Error occured during Sign Up: \(error)")
@@ -246,7 +245,6 @@ class SignInViewController: UIViewController {
                 }
             }
         } else if loginType == .signin {
-            //FIXME: Dismiss keyboard
             userController.signIn(email: email, password: password) { (networkError) in
                 if let error = networkError {
                     //FIXME: Alert user there was an error signing in, please try again.
