@@ -129,13 +129,14 @@ class SignInViewController: UIViewController {
         passwordInfoCircle.isHidden = true
         confirmPasswordInfoCircle.isHidden = true
         passwordTextField.returnKeyType = .done
+        passwordTextField.textContentType = .password
+        emailTextField.textContentType = .emailAddress
     }
 
     // MARK: - Configure Text Fields for show/hide Password
     // FIXME: buttons switch states when clicking into another textfield
     // FIXME: text should always be secured when clicking outside of textfield
     // FIXME: bottom of keyboard should never give option to use mic(?) or emoji
-    // FIXME: move eyeball button a little to the left (for both textfields)
     private func configurePasswordTextField() {
         passwordTextField.isSecureTextEntry = true
         passwordTextField.rightView = showPasswordHideButton
@@ -144,7 +145,7 @@ class SignInViewController: UIViewController {
         passwordTextField.addSubview(showPasswordHideButton)
         //showPasswordHideButton.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
         showPasswordHideButton.setImage(eyeballTransparentImage, for: .normal)
-        showPasswordHideButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: -2.0, bottom: 0, right: 0)
+        showPasswordHideButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: -20.0, bottom: 0, right: 5.0)
         showPasswordHideButton.addTarget(self, action: #selector(tappedPasswordEyeballButton), for: .touchUpInside)
     }
     
@@ -156,7 +157,7 @@ class SignInViewController: UIViewController {
         confirmPasswordTextField.addSubview(showConfirmHideButton)
         //showConfirmHideButton.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
         showConfirmHideButton.setImage(eyeballTransparentImage, for: .normal)
-        showConfirmHideButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: -2.0, bottom: 0, right: 0)
+        showConfirmHideButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: -20.0, bottom: 0, right: 5.0)
         showConfirmHideButton.addTarget(self, action: #selector(tappedConfirmEyeballButton), for: .touchUpInside)
     }
         
