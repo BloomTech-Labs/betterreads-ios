@@ -91,6 +91,8 @@ class SearchResultView: UIView {
                                          multiplier: 0.20).isActive = true
         imageView.heightAnchor.constraint(equalTo: heightAnchor,
                                           multiplier: 0.75).isActive = true
+        //imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: 3 / 4).isActive = true
+        
         // mult for height used to be 1.5 of imageView.widthAnchor // widthAnchor used to be 0.25
         // FIXME: (later) change imageView scale/size based on what image is passed in? cell size?
         imageView.contentMode = .scaleAspectFit
@@ -124,8 +126,8 @@ class SearchResultView: UIView {
         authorLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor,
                                              constant: standardMargin).isActive = true
         
-        authorLabel.textColor = UIColor(red: 115.0/255.0, green: 115.0/255.0, blue: 115.0/255.0, alpha: 1.0)//authorTextColor
-        authorLabel.font = UIFont(name: "SourceSansPro-Regular", size: 16) //authorFont
+        authorLabel.textColor = UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 1.0)//authorTextColor
+        authorLabel.font = UIFont(name: "FrankRuhlLibre-Regular", size: 16) //authorFont
         
         // Rating View
 //        let rating = UILabel()
@@ -156,6 +158,21 @@ class SearchResultView: UIView {
                                            constant: standardMargin - 1.0).isActive = true
         starsView.heightAnchor.constraint(equalTo: titleLabel.heightAnchor).isActive = true
         starsView.widthAnchor.constraint(equalTo: imageView.heightAnchor).isActive = true
+        
+        // FIXME: Add Button? (NOT DONE, this needs to be assigned to a property )
+        let button = UIButton()
+        addSubview(button)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        //button.topAnchor.constraint(equalTo: titleLabel.topAnchor).isActive = true
+        button.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        button.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        button.setTitle("Add", for: .normal)
+        button.tintColor = .white
+        button.layer.cornerRadius = 5
+        button.backgroundColor = UIColor(red: 11.0/255.0, green: 28.0/255.0, blue: 124.0/255.0, alpha: 1.0)
                 
         // Stars Array (goes inside starsView)
         let starSize = Int(self.frame.size.height * CGFloat(0.15)) // FIXME: should be based on cell size?
@@ -174,8 +191,8 @@ class SearchResultView: UIView {
                 star.image = UIImage(systemName: "star.lefthalf.fill")
             }
             if i == 5 {
-//                star.image = UIImage(systemName: "star")
-                star.tintColor = .white
+                star.image = UIImage(systemName: "star")
+                //star.tintColor = .white
             }
         }
     }
