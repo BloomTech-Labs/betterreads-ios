@@ -55,6 +55,8 @@ class SignInViewController: UIViewController {
         setupUIElements()
         textFieldDelegates()
         forgotPassword.isHidden = true
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tap)
     }
     
     // MARK: - Methods
