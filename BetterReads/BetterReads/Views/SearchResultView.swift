@@ -120,7 +120,7 @@ class SearchResultView: UIView {
         authorLabel.translatesAutoresizingMaskIntoConstraints = false
         
         authorLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor,
-                                         constant: standardMargin * 0.25).isActive = true
+                                         constant: standardMargin * 0).isActive = true
         authorLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor,
                                              constant: standardMargin).isActive = true
         
@@ -149,7 +149,8 @@ class SearchResultView: UIView {
         self.starsView = view
         starsView.translatesAutoresizingMaskIntoConstraints = false
         
-        starsView.topAnchor.constraint(equalTo: authorLabel.bottomAnchor).isActive = true
+        starsView.topAnchor.constraint(equalTo: authorLabel.bottomAnchor,
+                                       constant: standardMargin * 0.15).isActive = true
         // pushed to left by 1 so star point lines up with author name (and so I don't wake up screaming at night)
         starsView.leadingAnchor.constraint(equalTo: imageView.trailingAnchor,
                                            constant: standardMargin - 1.0).isActive = true
@@ -157,7 +158,7 @@ class SearchResultView: UIView {
         starsView.widthAnchor.constraint(equalTo: imageView.heightAnchor).isActive = true
                 
         // Stars Array (goes inside starsView)
-        let starSize = 30
+        let starSize = Int(self.frame.size.height * CGFloat(0.15)) // FIXME: should be based on cell size?
         for i in 1...5 {
             let star = UIImageView()
             starsView.addSubview(star)
@@ -173,7 +174,8 @@ class SearchResultView: UIView {
                 star.image = UIImage(systemName: "star.lefthalf.fill")
             }
             if i == 5 {
-                star.image = UIImage(systemName: "star")
+//                star.image = UIImage(systemName: "star")
+                star.tintColor = .white
             }
         }
     }
