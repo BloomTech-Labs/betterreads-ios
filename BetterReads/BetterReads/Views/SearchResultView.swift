@@ -18,7 +18,8 @@ class SearchResultView: UIView {
     var titleLabel: UILabel! // var title = uilabel()
     var authorLabel: UILabel!
     var ratingView: UILabel! // FIXME: change back to uiview
-    var progressBar: UILabel! // white label that covers stars
+    var starsView: UIView! // NEW holds 5 image views inside
+    var starsArray: [UIImageView] = [] // NEW holds stars sf icons
     
     var standardMargin: CGFloat = CGFloat(16.0)
     
@@ -31,6 +32,12 @@ class SearchResultView: UIView {
     var book: Book? {
         didSet {
             updateViews()
+        }
+    }
+    
+    var value: Double = 1.0 {
+        didSet {
+            updateStarRating()
         }
     }
     
@@ -53,7 +60,22 @@ class SearchResultView: UIView {
         //ratingView.text = "\(book.rating)"
     }
     
+    private func updateStarRating() {
+        print("updateStarRating")
+        for star in starsArray {
+            if star.tag <= Int(value) {
+                star.image = UIImage(systemName: "star.fill")
+                star.tintColor = .red
+            } else {
+                star.image = UIImage(systemName: "star")
+                star.tintColor = .green
+            }
+        }
+    }
+    
     private func setUpSubviews() {
+        // DELETE
+        value = 3.0
         
         // Image View
         let imageView = UIImageView()
@@ -74,6 +96,7 @@ class SearchResultView: UIView {
                                             green: 200.0/255.0,
                                             blue: 200.0/255.0,
                                             alpha: 1.0)
+        imageView.tintColor = UIColor(red: 11.0/255.0, green: 28.0/255.0, blue: 124.0/255.0, alpha: 1.0)
         
         // Title Label
         let label = UILabel()
@@ -102,42 +125,53 @@ class SearchResultView: UIView {
         authorLabel.font = authorFont
         
         // Rating View
-        let rating = UILabel()
-        addSubview(rating)
-        self.ratingView = rating
-        ratingView.translatesAutoresizingMaskIntoConstraints = false
+//        let rating = UILabel()
+//        addSubview(rating)
+//        self.ratingView = rating
+//        ratingView.translatesAutoresizingMaskIntoConstraints = false
+//
+//        ratingView.topAnchor.constraint(equalTo: authorLabel.bottomAnchor).isActive = true
+//        // pushed to left by 1 so star point lines up with author name (and so I don't wake up screaming at night)
+//        ratingView.leadingAnchor.constraint(equalTo: imageView.trailingAnchor,
+//                                            constant: standardMargin - 1.0).isActive = true
+//
+//        ratingView.text = "★★★★★"
+//        ratingView.textColor = .systemBlue
+//        ratingView.font = UIFont.systemFont(ofSize: 24.0,
+//                                            weight: .regular)
         
-        ratingView.topAnchor.constraint(equalTo: authorLabel.bottomAnchor).isActive = true
+        // stars view (5 image view inside)
+        let view = UIView()
+        addSubview(view)
+        self.starsView = view
+        starsView.translatesAutoresizingMaskIntoConstraints = false
+        
+        starsView.topAnchor.constraint(equalTo: authorLabel.bottomAnchor).isActive = true
         // pushed to left by 1 so star point lines up with author name (and so I don't wake up screaming at night)
-        ratingView.leadingAnchor.constraint(equalTo: imageView.trailingAnchor,
-                                            constant: standardMargin - 1.0).isActive = true
-        
-        ratingView.text = "★★★★★"
-        ratingView.textColor = .systemBlue
-        ratingView.font = UIFont.systemFont(ofSize: 24.0,
-                                            weight: .regular)
-        
-        // Rating View Progress Bar
-        ratingView.backgroundColor = .red // Delete
-        
-        let progressBar = UILabel()
-        addSubview(progressBar)
-        self.progressBar = progressBar
-        progressBar.translatesAutoresizingMaskIntoConstraints = false
-        
-        progressBar.topAnchor.constraint(equalTo: ratingView.topAnchor).isActive = true
-        progressBar.leadingAnchor.constraint(equalTo: ratingView.leadingAnchor).isActive = true
-        progressBar.trailingAnchor.constraint(equalTo: ratingView.trailingAnchor).isActive = true
-        progressBar.heightAnchor.constraint(equalTo: ratingView.heightAnchor).isActive = true
-        
-        progressBar.widthAnchor.constraint(equalTo: ratingView.widthAnchor).isActive = true
-        
-        progressBar.text = "★★★★★"
-        progressBar.textColor = .white
-        progressBar.font = UIFont.systemFont(ofSize: 24.0,
-        weight: .regular)
-        
-        // width determined by book.rating
-        
+        starsView.leadingAnchor.constraint(equalTo: imageView.trailingAnchor,
+                                           constant: standardMargin - 1.0).isActive = true
+        starsView.heightAnchor.constraint(equalTo: titleLabel.heightAnchor).isActive = true
+        starsView.widthAnchor.constraint(equalTo: imageView.heightAnchor).isActive = true
+                
+        // Stars Array (goes inside starsView)
+        let starSize = 30
+        for i in 1...5 {
+            let star = UIImageView()
+            starsView.addSubview(star)
+            starsArray.append(star)
+            star.tag = i
+            star.frame = CGRect(x: (starSize * (i - 1)),
+                                y: 0,
+                                width: starSize,
+                                height: starSize)
+            star.image = UIImage(systemName: "star.fill")
+            star.tintColor = UIColor(red: 11.0/255.0, green: 28.0/255.0, blue: 124.0/255.0, alpha: 1.0)
+            if i == 4 {
+                star.image = UIImage(systemName: "star.lefthalf.fill")
+            }
+            if i == 5 {
+                star.image = UIImage(systemName: "star")
+            }
+        }
     }
 }
