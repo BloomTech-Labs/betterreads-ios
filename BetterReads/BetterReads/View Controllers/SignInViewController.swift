@@ -131,7 +131,6 @@ class SignInViewController: UIViewController {
     }
 
     // MARK: - Configure Text Fields for show/hide Password
-
     // FIXME: buttons switch states when clicking into another textfield
     // FIXME: text should always be secured when clicking outside of textfield
     // FIXME: bottom of keyboard should never give option to use mic(?) or emoji
@@ -193,8 +192,7 @@ class SignInViewController: UIViewController {
     }
     
     // MARK: - Validate text in Text Fields
-        
-    @IBAction func signUpOrInButtonTapped(_ sender: UIButton) {
+    @IBAction func submitButtonTapped(_ sender: UIButton) {
         view.endEditing(true)
         validate {
             signUpOrSignInUser()
@@ -321,7 +319,6 @@ class SignInViewController: UIViewController {
     }
     
     // MARK: - Password Information Circles
-    
     @IBAction func passwordInfoCircleTapped(_ sender: UIButton) {
         let alert = UIAlertController(title: "Password Required", message: "Must be at least 6 characters, with at least 1 number.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
@@ -339,8 +336,7 @@ class SignInViewController: UIViewController {
         //FIXME: - Add web link here
         print("Forgot your password button was tapped.")
     }
-
-
+    
     // MARK: - Navigation
     private func seg() {
         print("Called seg()")
@@ -402,13 +398,34 @@ extension SignInViewController: UITextFieldDelegate {
             }
         } else if textField == passwordTextField {
             validate(field: "password") {
-                passwordTextField.resignFirstResponder()
-                confirmPasswordTextField.becomeFirstResponder()
+                if loginType == .signup {
+                    passwordTextField.resignFirstResponder()
+                    confirmPasswordTextField.becomeFirstResponder()
+                } else {
+                    passwordTextField.resignFirstResponder()
+                    guard let fullNameText = fullNameTextField.text,
+                        let emailText = emailTextField.text,
+                        let passwordText = passwordTextField.text,
+                        let confirmPasswordText = confirmPasswordTextField.text else { return }
+                    if fullNameText.isEmpty || emailText.isEmpty || passwordText.isEmpty || confirmPasswordText.isEmpty {
+                        return
+                    } else {
+                        submitButton.backgroundColor = UIColor.catalinaBlue
+                    }
+                }
             }
         } else if textField == confirmPasswordTextField {
             validate(field: "confirmPassword") {
                 confirmPasswordTextField.resignFirstResponder()
-                signUpOrSignInUser()
+                guard let fullNameText = fullNameTextField.text,
+                    let emailText = emailTextField.text,
+                    let passwordText = passwordTextField.text,
+                    let confirmPasswordText = confirmPasswordTextField.text else { return }
+                if fullNameText.isEmpty || emailText.isEmpty || passwordText.isEmpty || confirmPasswordText.isEmpty {
+                    return
+                } else {
+                    submitButton.backgroundColor = UIColor.catalinaBlue
+                }
             }
         }
         return true
