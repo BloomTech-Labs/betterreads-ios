@@ -44,12 +44,14 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var emailErrorMessage: UILabel!
     @IBOutlet weak var passwordErrorMessage: UILabel!
     @IBOutlet weak var confirmPasswordErrorMessage: UILabel!
+    @IBOutlet weak var forgotPassword: UIButton!
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUIElements()
         textFieldDelegates()
+        forgotPassword.isHidden = true
     }
     
     // MARK: - Methods
@@ -105,6 +107,7 @@ class SignInViewController: UIViewController {
         segmentedControl.setTitleTextAttributes(selectedTextAttributes as [NSAttributedString.Key : Any], for: .selected)
         hideErrorMessagesOnLoad()
         segmentedControl.selectedSegmentIndex = 0
+        forgotPassword.isHidden = true
     }
     
     private func setUpSignInForm() {
@@ -117,6 +120,7 @@ class SignInViewController: UIViewController {
         segmentedControl.setTitleTextAttributes(normalTextAttributes as [NSAttributedString.Key : Any], for: .normal)
         hideErrorMessagesOnLoad()
         segmentedControl.selectedSegmentIndex = 1
+        forgotPassword.isHidden = false
     }
 
     // MARK: - Configure Text Fields for show/hide Password
@@ -308,6 +312,13 @@ class SignInViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }
+    
+    // MARK: - Forget Password
+    @IBAction func forgetPasswordTapped() {
+        //FIXME: - Add web link here
+        print("Forgot your password button was tapped.")
+    }
+
 
     // MARK: - Navigation
     private func seg() {
