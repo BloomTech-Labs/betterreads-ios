@@ -183,9 +183,8 @@ class SignInViewController: UIViewController {
     
     // MARK: - Validate text in Text Fields
         
-    @IBAction func signUpButtonTapped(_ sender: UIButton) {
+    @IBAction func signUpOrInButtonTapped(_ sender: UIButton) {
         view.endEditing(true)
-        //FIXME: - validate each text field on the retun key, not on the submit button tapped
         validate {
             signUpOrSignInUser()
         }
@@ -197,6 +196,10 @@ class SignInViewController: UIViewController {
         do {
             switch field {
             case "fullName":
+                // if signIn, don't validate fullName textfield
+                if segmentedControl.selectedSegmentIndex == 1 {
+                    completion()
+                }
                 let _ = try fullNameTextField.validatedText(validationType: .required(field: "fullName"))
                 completion()
             case "email":
@@ -206,6 +209,10 @@ class SignInViewController: UIViewController {
                 let _ = try passwordTextField.validatedText(validationType: .password(field: "password"))
                 completion()
             case "confirmPassword":
+                // if signIn, don't validate confirmPassword textfield
+                if segmentedControl.selectedSegmentIndex == 1 {
+                    completion()
+                }
                 let confirmPassword = try confirmPasswordTextField.validatedText(validationType: .password(field: "confirmPassword"))
                 let password = try passwordTextField.validatedText(validationType: .password(field: "password"))
                 if confirmPassword != password {
@@ -215,14 +222,22 @@ class SignInViewController: UIViewController {
                 }
                 completion()
             default:
-                let _ = try fullNameTextField.validatedText(validationType: .required(field: "fullName"))
-                let _ = try passwordTextField.validatedText(validationType: .password(field: "password"))
-                let confirmPassword = try confirmPasswordTextField.validatedText(validationType: .password(field: "confirmPassword"))
+                // default: validate all textfields one last time and call completion
+                // unless you're on sign in, then don't validate fullName textfield
+                if segmentedControl.selectedSegmentIndex == 0 {
+                    let _ = try fullNameTextField.validatedText(validationType: .required(field: "fullName"))
+                }
+                let _ = try emailTextField.validatedText(validationType: .email(field: "email"))
                 let password = try passwordTextField.validatedText(validationType: .password(field: "password"))
-                if confirmPassword != password {
-                    print("\(password) \n \(confirmPassword)")
-                    confirmPasswordErrorMessage.text = "Passwords do not match."
-                    return
+                // unless you're on sign in, then don't validate confirmPassword textfield
+                if segmentedControl.selectedSegmentIndex == 0 {
+                    let confirmPassword = try confirmPasswordTextField.validatedText(validationType: .password(field: "confirmPassword"))
+                    
+                    if confirmPassword != password {
+                        print("\(password) \n \(confirmPassword)")
+                        confirmPasswordErrorMessage.text = "Passwords do not match."
+                        return
+                    }
                 }
                 completion()
             }
