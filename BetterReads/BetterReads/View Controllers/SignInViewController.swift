@@ -128,6 +128,7 @@ class SignInViewController: UIViewController {
         forgotPassword.isHidden = false
         passwordInfoCircle.isHidden = true
         confirmPasswordInfoCircle.isHidden = true
+        passwordTextField.returnKeyType = .done
     }
 
     // MARK: - Configure Text Fields for show/hide Password
@@ -407,7 +408,7 @@ extension SignInViewController: UITextFieldDelegate {
                         let emailText = emailTextField.text,
                         let passwordText = passwordTextField.text,
                         let confirmPasswordText = confirmPasswordTextField.text else { return }
-                    if fullNameText.isEmpty || emailText.isEmpty || passwordText.isEmpty || confirmPasswordText.isEmpty {
+                    if emailText.isEmpty || passwordText.isEmpty {
                         return
                     } else {
                         submitButton.backgroundColor = UIColor.catalinaBlue
