@@ -141,6 +141,7 @@ class SignInViewController: UIViewController {
         passwordTextField.isSecureTextEntry = true
         passwordTextField.rightView = showPasswordHideButton
         passwordTextField.rightViewMode = .always
+        showPasswordHideButton.tintColor = .doveGray
         showPasswordHideButton.translatesAutoresizingMaskIntoConstraints = false
         passwordTextField.addSubview(showPasswordHideButton)
         //showPasswordHideButton.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
@@ -153,6 +154,7 @@ class SignInViewController: UIViewController {
         confirmPasswordTextField.isSecureTextEntry = true
         confirmPasswordTextField.rightView = showConfirmHideButton
         confirmPasswordTextField.rightViewMode = .always
+        showConfirmHideButton.tintColor = .doveGray
         showConfirmHideButton.translatesAutoresizingMaskIntoConstraints = false
         confirmPasswordTextField.addSubview(showConfirmHideButton)
         //showConfirmHideButton.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
@@ -376,10 +378,8 @@ extension SignInViewController: UITextFieldDelegate {
         if textField == passwordTextField || textField == confirmPasswordTextField {
             if textField == passwordTextField {
                 tappedPasswordEyeballButton()
-                //showPasswordHideButton.setImage(UIImage(systemName: "book.fill"), for: .normal)
             } else {
                 tappedConfirmEyeballButton()
-                //showConfirmHideButton.setImage(UIImage(systemName: "book.fill"), for: .normal)
             }
         } else {
             showPasswordHideButton.setImage(eyeballTransparentImage, for: .normal)
@@ -405,10 +405,10 @@ extension SignInViewController: UITextFieldDelegate {
                     confirmPasswordTextField.becomeFirstResponder()
                 } else {
                     passwordTextField.resignFirstResponder()
-                    guard let fullNameText = fullNameTextField.text,
+                    guard let _ = fullNameTextField.text,
                         let emailText = emailTextField.text,
                         let passwordText = passwordTextField.text,
-                        let confirmPasswordText = confirmPasswordTextField.text else { return }
+                        let _ = confirmPasswordTextField.text else { return }
                     if emailText.isEmpty || passwordText.isEmpty {
                         return
                     } else {

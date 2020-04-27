@@ -118,7 +118,7 @@
                                                                     </label>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQ3-Y9-XlB" userLabel="Info Button">
                                                                         <rect key="frame" x="79.333333333333343" y="0.0" width="294.66666666666663" height="22"/>
-                                                                        <color key="tintColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <color key="tintColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <state key="normal" image="info.circle.fill" catalog="system"/>
                                                                         <connections>
                                                                             <action selector="passwordInfoCircleTapped:" destination="pRd-tq-Kku" eventType="touchUpInside" id="Mcf-kU-xeZ"/>
@@ -126,7 +126,7 @@
                                                                     </button>
                                                                 </subviews>
                                                             </stackView>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HAQ-16-GNd">
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Create a password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HAQ-16-GNd">
                                                                 <rect key="frame" x="0.0" y="26" width="374" height="40"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="PdC-2s-ECY"/>
@@ -156,7 +156,7 @@
                                                                     </label>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9hS-a4-rJR" userLabel="Info Button">
                                                                         <rect key="frame" x="143.66666666666663" y="0.0" width="230.33333333333337" height="22"/>
-                                                                        <color key="tintColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <color key="tintColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <state key="normal" image="info.circle.fill" catalog="system"/>
                                                                         <connections>
                                                                             <action selector="confirmPasswordInfoCircleTapped:" destination="pRd-tq-Kku" eventType="touchUpInside" id="sDY-df-sOQ"/>
