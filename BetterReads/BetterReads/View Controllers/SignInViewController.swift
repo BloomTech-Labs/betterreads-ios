@@ -45,6 +45,9 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var passwordErrorMessage: UILabel!
     @IBOutlet weak var confirmPasswordErrorMessage: UILabel!
     @IBOutlet weak var forgotPassword: UIButton!
+    @IBOutlet weak var passwordInfoCircle: UIButton!
+    @IBOutlet weak var confirmPasswordInfoCircle: UIButton!
+    
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -108,6 +111,8 @@ class SignInViewController: UIViewController {
         hideErrorMessagesOnLoad()
         segmentedControl.selectedSegmentIndex = 0
         forgotPassword.isHidden = true
+        passwordInfoCircle.isHidden = false
+        confirmPasswordInfoCircle.isHidden = false
     }
     
     private func setUpSignInForm() {
@@ -121,6 +126,8 @@ class SignInViewController: UIViewController {
         hideErrorMessagesOnLoad()
         segmentedControl.selectedSegmentIndex = 1
         forgotPassword.isHidden = false
+        passwordInfoCircle.isHidden = true
+        confirmPasswordInfoCircle.isHidden = true
     }
 
     // MARK: - Configure Text Fields for show/hide Password
@@ -309,6 +316,20 @@ class SignInViewController: UIViewController {
     
     private func presentSignInErrorAlert() {
         let alert = UIAlertController(title: "Sign In Error", message: "An error occured during Sign In,\nplease try again later.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    // MARK: - Password Information Circles
+    
+    @IBAction func passwordInfoCircleTapped(_ sender: UIButton) {
+        let alert = UIAlertController(title: "Password Required", message: "Must be at least 6 characters, with at least 1 number.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func confirmPasswordInfoCircleTapped(_ sender: UIButton) {
+        let alert = UIAlertController(title: "Confirm Password Required", message: "Must be at least 6 characters, with at least 1 number, and must match your password.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }
