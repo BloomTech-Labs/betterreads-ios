@@ -33,6 +33,26 @@ class SearchTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
+        searchBar.tintColor = UIColor(red: 11.0/255.0, green: 28.0/255.0, blue: 124.0/255.0, alpha: 1.0)
+        setupToolBar()
+    }
+    
+    private func setupToolBar() {
+        let bar = UIToolbar()
+        let done = UIBarButtonItem(title: "Hide",
+                                   style: .plain,
+                                   target: self,
+                                   action: #selector(hideKeyboardAndCancelButton))
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        bar.items = [flexSpace, done]
+        bar.sizeToFit()
+        searchBar.inputAccessoryView = bar
+    }
+    
+    // FIXME: this should also be called inside searchBarSearchButtonClicked and searchClicked
+    @objc private func hideKeyboardAndCancelButton() {
+        searchBar.resignFirstResponder()
+        searchBar.showsCancelButton = false
     }
 
     // MARK: - Table view data source
@@ -46,7 +66,7 @@ class SearchTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 175
+        return 150 // was 175 when we started
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -117,14 +137,13 @@ extension SearchTableViewController: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
-        searchBar.resignFirstResponder()
-        searchBar.showsCancelButton = false
+        myBooksArray = []; tableView.reloadData() // FIXME: clear table another way?
+        hideKeyboardAndCancelButton()
     }
     
     // dismiss keyboard so user can view all results
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         //print("SearchButtonClicked (tapped return/search)")
-        searchBar.resignFirstResponder()
-        searchBar.showsCancelButton = false
+        hideKeyboardAndCancelButton()
     }
 }

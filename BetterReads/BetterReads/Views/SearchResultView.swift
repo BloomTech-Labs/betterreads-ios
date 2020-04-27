@@ -83,14 +83,16 @@ class SearchResultView: UIView {
         self.imageView = imageView
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
+        // FIXME: use top and bottom anchors instead to always give 8ish points from top and bottom?
         imageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         imageView.leadingAnchor.constraint(equalTo: leadingAnchor,
                                            constant: standardMargin).isActive = true
         imageView.widthAnchor.constraint(equalTo: widthAnchor,
-                                         multiplier: 0.25).isActive = true
-        imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor,
-                                          multiplier: 1.5).isActive = true
-        
+                                         multiplier: 0.20).isActive = true
+        imageView.heightAnchor.constraint(equalTo: heightAnchor,
+                                          multiplier: 0.75).isActive = true
+        // mult for height used to be 1.5 of imageView.widthAnchor // widthAnchor used to be 0.25
+        // FIXME: (later) change imageView scale/size based on what image is passed in? cell size?
         imageView.contentMode = .scaleAspectFit
         imageView.backgroundColor = UIColor(red: 200.0/255.0,
                                             green: 200.0/255.0,
@@ -108,7 +110,8 @@ class SearchResultView: UIView {
         titleLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor,
                                             constant: standardMargin).isActive = true
         
-        titleLabel.font = titleFont
+        titleLabel.font = UIFont(name: "SourceSansPro-Regular", size: 20)//titleFont
+        titleLabel.textColor = UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 1.0)
         
         // Author Label
         let author = UILabel()
@@ -121,8 +124,8 @@ class SearchResultView: UIView {
         authorLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor,
                                              constant: standardMargin).isActive = true
         
-        authorLabel.textColor = authorTextColor
-        authorLabel.font = authorFont
+        authorLabel.textColor = UIColor(red: 115.0/255.0, green: 115.0/255.0, blue: 115.0/255.0, alpha: 1.0)//authorTextColor
+        authorLabel.font = UIFont(name: "SourceSansPro-Regular", size: 16) //authorFont
         
         // Rating View
 //        let rating = UILabel()
