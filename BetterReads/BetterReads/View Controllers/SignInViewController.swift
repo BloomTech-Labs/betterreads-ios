@@ -16,13 +16,7 @@ class SignInViewController: UIViewController {
         case signin
     }
     
-    enum PasswordType {
-        case show
-        case hide
-    }
-    
     var loginType = LoginType.signup
-    var passwordType = PasswordType.hide
     var userController = UserController()
     let segControlBackgroundImage = UIImage(color: .clear, size: CGSize(width: 1, height: 32))
     let segControlDividerImage = UIImage(color: .clear, size: CGSize(width: 1, height: 32))
@@ -30,34 +24,24 @@ class SignInViewController: UIViewController {
     let semiBoldFont = UIFont(name: "SourceSansPro-SemiBold", size: 20)
     let selectedTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.tundra, NSAttributedString.Key.font : UIFont(name: "SourceSansPro-SemiBold", size: 20)]
     let normalTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.tundra, NSAttributedString.Key.font : UIFont(name: "SourceSansPro-Regular", size: 16)]
-    
-    
     var passwordEyeballButton = UIButton()
     var confirmPasswordEyeballButton = UIButton()
     
-    
-    
     // MARK: - Outlets
     @IBOutlet weak var segmentedControl: UISegmentedControl!
-    
     @IBOutlet weak var fullNameLabel: UILabel!
     @IBOutlet weak var fullNameTextField: UITextField!
     @IBOutlet weak var fullNameErrorMessage: UILabel!
-    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var emailErrorMessage: UILabel!
-
     @IBOutlet weak var passwordInfoCircle: UIButton!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var passwordErrorMessage: UILabel!
-
     @IBOutlet weak var confirmPasswordInfoCircle: UIButton!
     @IBOutlet weak var confirmPasswordLabel: UILabel!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     @IBOutlet weak var confirmPasswordErrorMessage: UILabel!
-
     @IBOutlet weak var submitButton: UIButton!
-    
     @IBOutlet weak var forgotPassword: UIButton!
         
     // MARK: - Lifecycle
@@ -65,8 +49,29 @@ class SignInViewController: UIViewController {
         super.viewDidLoad()
         setupUIElements()
         textFieldDelegates()
+        // Dismiss the keyboard on tap
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)
+        // Register View Controller as Observer
+        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange(_:)), name: UITextField.textDidChangeNotification, object: nil)
+    }
+    
+    @objc private func textDidChange(_ notification: Notification) {
+        var formIsValid = false
+        submitButton.backgroundColor = .tundra
+        
+        let textFields: [UITextField] = [fullNameTextField, emailTextField, passwordTextField, confirmPasswordTextField]
+
+        for textField in textFields {
+            // Validate Text Field
+            let _ = validate(field: textField) {
+                formIsValid = true
+            }
+            break
+        }
+        // Update Save Button
+        submitButton.backgroundColor = formIsValid ? .catalinaBlue : .tundra
+        submitButton.isEnabled = formIsValid
     }
     
     // MARK: - Methods
@@ -147,8 +152,7 @@ class SignInViewController: UIViewController {
     }
 
     // MARK: - Configure Text Fields for show/hide Password
-    // FIXME: buttons switch states when clicking into another textfield
-    // FIXME: text should always be secured when clicking outside of textfield
+    // FIXME: text should always be secured when clicking outside of textfield (on tap gesture)
     private func configurePasswordTextField() {
         passwordTextField.isSecureTextEntry = true
         passwordTextField.rightView = passwordEyeballButton
@@ -205,25 +209,25 @@ class SignInViewController: UIViewController {
         }
     }
         
-    private func validate(field: String? = nil, completion: () -> ()) {
+    private func validate(field: UITextField? = nil, completion: () -> ()) {
         hideErrorMessagesOnLoad()
         
         do {
             switch field {
-            case "fullName":
+            case fullNameTextField:
                 // if signIn, don't validate fullName textfield
                 if segmentedControl.selectedSegmentIndex == 1 {
                     completion()
                 }
                 let _ = try fullNameTextField.validatedText(validationType: .required(field: "fullName"))
                 completion()
-            case "email":
+            case emailTextField:
                 let _ = try emailTextField.validatedText(validationType: .email(field: "email"))
                 completion()
-            case "password":
+            case passwordTextField:
                 let _ = try passwordTextField.validatedText(validationType: .password(field: "password"))
                 completion()
-            case "confirmPassword":
+            case confirmPasswordTextField:
                 // if signIn, don't validate confirmPassword textfield
                 if segmentedControl.selectedSegmentIndex == 1 {
                     completion()
@@ -394,17 +398,17 @@ extension SignInViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == fullNameTextField {
-            validate(field: "fullName") {
+            validate(field: fullNameTextField) {
                 fullNameTextField.resignFirstResponder()
                 emailTextField.becomeFirstResponder()
             }
         } else if textField == emailTextField {
-            validate(field: "email") {
+            validate(field: emailTextField) {
                 emailTextField.resignFirstResponder()
                 passwordTextField.becomeFirstResponder()
             }
         } else if textField == passwordTextField {
-            validate(field: "password") {
+            validate(field: passwordTextField) {
                 if loginType == .signup {
                     passwordTextField.resignFirstResponder()
                     confirmPasswordTextField.becomeFirstResponder()
@@ -422,7 +426,7 @@ extension SignInViewController: UITextFieldDelegate {
                 }
             }
         } else if textField == confirmPasswordTextField {
-            validate(field: "confirmPassword") {
+            validate(field: confirmPasswordTextField) {
                 confirmPasswordTextField.resignFirstResponder()
                 guard let fullNameText = fullNameTextField.text,
                     let emailText = emailTextField.text,
