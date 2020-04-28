@@ -16,7 +16,13 @@ class SignInViewController: UIViewController {
         case signin
     }
     
+    enum PasswordType {
+        case show
+        case hide
+    }
+    
     var loginType = LoginType.signup
+    var passwordType = PasswordType.hide
     var userController = UserController()
     let segControlBackgroundImage = UIImage(color: .clear, size: CGSize(width: 1, height: 32))
     let segControlDividerImage = UIImage(color: .clear, size: CGSize(width: 1, height: 32))
@@ -25,28 +31,32 @@ class SignInViewController: UIViewController {
     let semiBoldFont = UIFont(name: "SourceSansPro-SemiBold", size: 20)
     let selectedTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.tundra, NSAttributedString.Key.font : UIFont(name: "SourceSansPro-SemiBold", size: 20)]
     let normalTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.tundra, NSAttributedString.Key.font : UIFont(name: "SourceSansPro-Regular", size: 16)]
-
-    private var showPasswordHideButton: UIButton = UIButton()
-    private var passwordIsHidden = false
-    private var showConfirmHideButton: UIButton = UIButton()
-    private var confirmIsHidden = false
     
     // MARK: - Outlets
     @IBOutlet weak var segmentedControl: UISegmentedControl!
-    @IBOutlet weak var fullNameTextField: UITextField!
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var confirmPasswordTextField: UITextField!
-    @IBOutlet weak var submitButton: UIButton!
+    
     @IBOutlet weak var fullNameLabel: UILabel!
-    @IBOutlet weak var confirmPasswordLabel: UILabel!
+    @IBOutlet weak var fullNameTextField: UITextField!
     @IBOutlet weak var fullNameErrorMessage: UILabel!
+    
+    @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var emailErrorMessage: UILabel!
-    @IBOutlet weak var passwordErrorMessage: UILabel!
-    @IBOutlet weak var confirmPasswordErrorMessage: UILabel!
-    @IBOutlet weak var forgotPassword: UIButton!
+
     @IBOutlet weak var passwordInfoCircle: UIButton!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var passwordErrorMessage: UILabel!
+    @IBOutlet weak var passwordEyeballButton: UIButton!
+
     @IBOutlet weak var confirmPasswordInfoCircle: UIButton!
+    @IBOutlet weak var confirmPasswordLabel: UILabel!
+    @IBOutlet weak var confirmPasswordTextField: UITextField!
+    @IBOutlet weak var confirmPasswordErrorMessage: UILabel!
+    @IBOutlet weak var confirmPasswordEyeballButton: UIButton!
+
+    @IBOutlet weak var submitButton: UIButton!
+    
+    @IBOutlet weak var forgotPassword: UIButton!
+    
     
     
     // MARK: - Lifecycle
@@ -54,7 +64,6 @@ class SignInViewController: UIViewController {
         super.viewDidLoad()
         setupUIElements()
         textFieldDelegates()
-        forgotPassword.isHidden = true
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)
     }
@@ -65,6 +74,7 @@ class SignInViewController: UIViewController {
         setupCustomSegmentedControl()
         configurePasswordTextField()
         configureConfirmTextField()
+        forgotPassword.isHidden = true
         submitButton.layer.cornerRadius = 5
     }
     
