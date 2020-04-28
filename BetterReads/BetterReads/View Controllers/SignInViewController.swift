@@ -341,6 +341,7 @@ class SignInViewController: UIViewController {
     @IBAction func forgetPasswordTapped() {
         //FIXME: - Add web link here
         print("Forgot your password button was tapped.")
+        self.seg()
     }
     
     // MARK: - Navigation
