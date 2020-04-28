@@ -150,7 +150,7 @@ class SignInViewController: UIViewController {
     // FIXME: buttons switch states when clicking into another textfield
     // FIXME: text should always be secured when clicking outside of textfield
     private func configurePasswordTextField() {
-        passwordTextField.isSecureTextEntry = false
+        passwordTextField.isSecureTextEntry = true
         passwordTextField.rightView = passwordEyeballButton
         passwordTextField.rightViewMode = .always
         passwordEyeballButton.tintColor = .doveGray
@@ -160,7 +160,7 @@ class SignInViewController: UIViewController {
     }
     
     private func configureConfirmTextField() {
-        confirmPasswordTextField.isSecureTextEntry = false
+        confirmPasswordTextField.isSecureTextEntry = true
         confirmPasswordTextField.rightView = confirmPasswordEyeballButton
         confirmPasswordTextField.rightViewMode = .always
         confirmPasswordEyeballButton.tintColor = .doveGray
