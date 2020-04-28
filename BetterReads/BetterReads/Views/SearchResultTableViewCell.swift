@@ -12,7 +12,16 @@ class SearchResultTableViewCell: UITableViewCell {
 
     @IBOutlet var mainView: SearchResultView!
     
+    var book: Book? {
+        didSet {
+            updateViews()
+        }
+    }
     
+    private func updateViews() {
+        guard let book = book else { return }
+        mainView.book = book
+    }
 //    override func awakeFromNib() {
 //        super.awakeFromNib()
 //        // Initialization code

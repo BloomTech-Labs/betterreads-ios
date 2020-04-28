@@ -10,18 +10,36 @@ import UIKit
 
 class SearchResultView: UIView {
 
+    // MARK: - Properties
+    
     // FIXME: make sure image fills up imageView nicely (aspectFit vs Fill etc..)
     var imageView: UIImageView!
 
     var titleLabel: UILabel! // var title = uilabel()
     var authorLabel: UILabel!
     var ratingView: UILabel! // FIXME: change back to uiview
+    var starsView: UIView! // NEW holds 5 image views inside
+    var starsArray: [UIImageView] = [] // NEW holds stars sf icons
     
     var standardMargin: CGFloat = CGFloat(16.0)
     
     private let titleFont = UIFont.systemFont(ofSize: 24.0, weight: .semibold)
     private let authorFont = UIFont.systemFont(ofSize: 16.0, weight: .semibold)
     private let authorTextColor = UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 1.0) // Tundra #404040
+    
+    // MARK: - View LifeCycle
+    
+    var book: Book? {
+        didSet {
+            updateViews()
+        }
+    }
+    
+    var value: Double = 1.0 {
+        didSet {
+            updateStarRating()
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,7 +51,31 @@ class SearchResultView: UIView {
         setUpSubviews()
     }
     
+    private func updateViews() {
+        guard let book = book else { return }
+        
+        titleLabel.text = book.title
+        authorLabel.text = book.author
+        imageView.image = UIImage(systemName: book.cover)
+        //ratingView.text = "\(book.rating)"
+    }
+    
+    private func updateStarRating() {
+        print("updateStarRating")
+        for star in starsArray {
+            if star.tag <= Int(value) {
+                star.image = UIImage(systemName: "star.fill")
+                star.tintColor = .red
+            } else {
+                star.image = UIImage(systemName: "star")
+                star.tintColor = .green
+            }
+        }
+    }
+    
     private func setUpSubviews() {
+        // This is a temporary value
+        value = 3.0
         
         // Image View
         let imageView = UIImageView()
@@ -41,19 +83,26 @@ class SearchResultView: UIView {
         self.imageView = imageView
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
+        // FIXME: use top and bottom anchors instead to always give 8ish points from top and bottom?
         imageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         imageView.leadingAnchor.constraint(equalTo: leadingAnchor,
                                            constant: standardMargin).isActive = true
         imageView.widthAnchor.constraint(equalTo: widthAnchor,
-                                         multiplier: 0.25).isActive = true
-        imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor,
-                                          multiplier: 1.5).isActive = true
+                                         multiplier: 0.20).isActive = true
+        imageView.heightAnchor.constraint(equalTo: heightAnchor,
+                                          multiplier: 0.75).isActive = true
+        //imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: 3 / 4).isActive = true
         
+        // mult for height used to be 1.5 of imageView.widthAnchor // widthAnchor used to be 0.25
+        // FIXME: (later) change imageView scale/size based on what image is passed in? cell size?
         imageView.contentMode = .scaleAspectFit
+        
+        // Catalina Blue
         imageView.backgroundColor = UIColor(red: 200.0/255.0,
                                             green: 200.0/255.0,
                                             blue: 200.0/255.0,
                                             alpha: 1.0)
+        imageView.tintColor = UIColor(red: 11.0/255.0, green: 28.0/255.0, blue: 124.0/255.0, alpha: 1.0)
         
         // Title Label
         let label = UILabel()
@@ -65,7 +114,8 @@ class SearchResultView: UIView {
         titleLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor,
                                             constant: standardMargin).isActive = true
         
-        titleLabel.font = titleFont
+        titleLabel.font = UIFont(name: "SourceSansPro-Regular", size: 20)//titleFont
+        titleLabel.textColor = UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 1.0)
         
         // Author Label
         let author = UILabel()
@@ -74,27 +124,78 @@ class SearchResultView: UIView {
         authorLabel.translatesAutoresizingMaskIntoConstraints = false
         
         authorLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor,
-                                         constant: standardMargin * 0.25).isActive = true
+                                         constant: standardMargin * 0).isActive = true
         authorLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor,
                                              constant: standardMargin).isActive = true
         
-        authorLabel.textColor = authorTextColor
-        authorLabel.font = authorFont
+        authorLabel.textColor = UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 1.0)//authorTextColor
+        authorLabel.font = UIFont(name: "FrankRuhlLibre-Regular", size: 16) //authorFont
         
         // Rating View
-        let rating = UILabel()
-        addSubview(rating)
-        self.ratingView = rating
-        ratingView.translatesAutoresizingMaskIntoConstraints = false
+//        let rating = UILabel()
+//        addSubview(rating)
+//        self.ratingView = rating
+//        ratingView.translatesAutoresizingMaskIntoConstraints = false
+//
+//        ratingView.topAnchor.constraint(equalTo: authorLabel.bottomAnchor).isActive = true
+//        // pushed to left by 1 so star point lines up with author name (and so I don't wake up screaming at night)
+//        ratingView.leadingAnchor.constraint(equalTo: imageView.trailingAnchor,
+//                                            constant: standardMargin - 1.0).isActive = true
+//
+//        ratingView.text = "★★★★★"
+//        ratingView.textColor = .systemBlue
+//        ratingView.font = UIFont.systemFont(ofSize: 24.0,
+//                                            weight: .regular)
         
-        ratingView.topAnchor.constraint(equalTo: authorLabel.bottomAnchor).isActive = true
+        // stars view (5 image view inside)
+        let view = UIView()
+        addSubview(view)
+        self.starsView = view
+        starsView.translatesAutoresizingMaskIntoConstraints = false
+        
+        starsView.topAnchor.constraint(equalTo: authorLabel.bottomAnchor,
+                                       constant: standardMargin * 0.15).isActive = true
         // pushed to left by 1 so star point lines up with author name (and so I don't wake up screaming at night)
-        ratingView.leadingAnchor.constraint(equalTo: imageView.trailingAnchor,
-                                            constant: standardMargin - 1.0).isActive = true
+        starsView.leadingAnchor.constraint(equalTo: imageView.trailingAnchor,
+                                           constant: standardMargin - 1.0).isActive = true
+        starsView.heightAnchor.constraint(equalTo: titleLabel.heightAnchor).isActive = true
+        starsView.widthAnchor.constraint(equalTo: imageView.heightAnchor).isActive = true
         
-        ratingView.text = "★★★★★"
-        ratingView.textColor = .systemBlue
-        ratingView.font = UIFont.systemFont(ofSize: 24.0,
-                                            weight: .regular)
+        // FIXME: Add Button? (NOT DONE, this needs to be assigned to a property )
+        let button = UIButton()
+        addSubview(button)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        //button.topAnchor.constraint(equalTo: titleLabel.topAnchor).isActive = true
+        button.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        button.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        button.setTitle("Add", for: .normal)
+        button.tintColor = .white
+        button.layer.cornerRadius = 5
+        button.backgroundColor = UIColor(red: 11.0/255.0, green: 28.0/255.0, blue: 124.0/255.0, alpha: 1.0)
+                
+        // Stars Array (goes inside starsView)
+        let starSize = Int(self.frame.size.height * CGFloat(0.15)) // FIXME: should be based on cell size?
+        for i in 1...5 {
+            let star = UIImageView()
+            starsView.addSubview(star)
+            starsArray.append(star)
+            star.tag = i
+            star.frame = CGRect(x: (starSize * (i - 1)),
+                                y: 0,
+                                width: starSize,
+                                height: starSize)
+            star.image = UIImage(systemName: "star.fill")
+            star.tintColor = UIColor(red: 11.0/255.0, green: 28.0/255.0, blue: 124.0/255.0, alpha: 1.0)
+            if i == 4 {
+                star.image = UIImage(systemName: "star.lefthalf.fill")
+            }
+            if i == 5 {
+                star.image = UIImage(systemName: "star")
+                //star.tintColor = .white
+            }
+        }
     }
 }
