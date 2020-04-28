@@ -154,9 +154,10 @@ class SignInViewController: UIViewController {
         passwordTextField.rightView = passwordEyeballButton
         passwordTextField.rightViewMode = .always
         passwordEyeballButton.tintColor = .doveGray
-        passwordEyeballButton.setImage(UIImage(color: .clear, size: CGSize(width: 1, height: 1)), for: .normal)
+        passwordEyeballButton.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
         passwordEyeballButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: -20.0, bottom: 0, right: 5.0)
         passwordEyeballButton.addTarget(self, action: #selector(tappedPasswordEyeballButton), for: .touchUpInside)
+        passwordEyeballButton.isHidden = true
     }
     
     private func configureConfirmTextField() {
@@ -164,9 +165,10 @@ class SignInViewController: UIViewController {
         confirmPasswordTextField.rightView = confirmPasswordEyeballButton
         confirmPasswordTextField.rightViewMode = .always
         confirmPasswordEyeballButton.tintColor = .doveGray
-        confirmPasswordEyeballButton.setImage(UIImage(color: .clear, size: CGSize(width: 1, height: 1)), for: .normal)
+        confirmPasswordEyeballButton.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
         confirmPasswordEyeballButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: -20.0, bottom: 0, right: 5.0)
         confirmPasswordEyeballButton.addTarget(self, action: #selector(tappedConfirmPasswordEyeballButton), for: .touchUpInside)
+        confirmPasswordEyeballButton.isHidden = true
     }
         
     @objc private func tappedPasswordEyeballButton() {
