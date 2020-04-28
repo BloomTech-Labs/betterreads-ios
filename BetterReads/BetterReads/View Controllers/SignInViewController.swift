@@ -16,45 +16,55 @@ class SignInViewController: UIViewController {
         case signin
     }
     
+    enum PasswordType {
+        case show
+        case hide
+    }
+    
     var loginType = LoginType.signup
+    var passwordType = PasswordType.hide
     var userController = UserController()
     let segControlBackgroundImage = UIImage(color: .clear, size: CGSize(width: 1, height: 32))
     let segControlDividerImage = UIImage(color: .clear, size: CGSize(width: 1, height: 32))
-    let eyeballTransparentImage = UIImage(color: .clear, size: CGSize(width: 1, height: 1))
     let regularFont = UIFont(name: "SourceSansPro-Regular", size: 16)
     let semiBoldFont = UIFont(name: "SourceSansPro-SemiBold", size: 20)
     let selectedTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.tundra, NSAttributedString.Key.font : UIFont(name: "SourceSansPro-SemiBold", size: 20)]
     let normalTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.tundra, NSAttributedString.Key.font : UIFont(name: "SourceSansPro-Regular", size: 16)]
-
-    private var showPasswordHideButton: UIButton = UIButton()
-    private var passwordIsHidden = false
-    private var showConfirmHideButton: UIButton = UIButton()
-    private var confirmIsHidden = false
+    
+    
+    var passwordEyeballButton = UIButton()
+    var confirmPasswordEyeballButton = UIButton()
+    
+    
     
     // MARK: - Outlets
     @IBOutlet weak var segmentedControl: UISegmentedControl!
-    @IBOutlet weak var fullNameTextField: UITextField!
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var confirmPasswordTextField: UITextField!
-    @IBOutlet weak var submitButton: UIButton!
+    
     @IBOutlet weak var fullNameLabel: UILabel!
-    @IBOutlet weak var confirmPasswordLabel: UILabel!
+    @IBOutlet weak var fullNameTextField: UITextField!
     @IBOutlet weak var fullNameErrorMessage: UILabel!
+    
+    @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var emailErrorMessage: UILabel!
-    @IBOutlet weak var passwordErrorMessage: UILabel!
-    @IBOutlet weak var confirmPasswordErrorMessage: UILabel!
-    @IBOutlet weak var forgotPassword: UIButton!
+
     @IBOutlet weak var passwordInfoCircle: UIButton!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var passwordErrorMessage: UILabel!
+
     @IBOutlet weak var confirmPasswordInfoCircle: UIButton!
+    @IBOutlet weak var confirmPasswordLabel: UILabel!
+    @IBOutlet weak var confirmPasswordTextField: UITextField!
+    @IBOutlet weak var confirmPasswordErrorMessage: UILabel!
+
+    @IBOutlet weak var submitButton: UIButton!
     
-    
+    @IBOutlet weak var forgotPassword: UIButton!
+        
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUIElements()
         textFieldDelegates()
-        forgotPassword.isHidden = true
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)
     }
@@ -65,6 +75,7 @@ class SignInViewController: UIViewController {
         setupCustomSegmentedControl()
         configurePasswordTextField()
         configureConfirmTextField()
+        forgotPassword.isHidden = true
         submitButton.layer.cornerRadius = 5
     }
     
@@ -138,62 +149,51 @@ class SignInViewController: UIViewController {
     // MARK: - Configure Text Fields for show/hide Password
     // FIXME: buttons switch states when clicking into another textfield
     // FIXME: text should always be secured when clicking outside of textfield
-    // FIXME: bottom of keyboard should never give option to use mic(?) or emoji
     private func configurePasswordTextField() {
         passwordTextField.isSecureTextEntry = true
-        passwordTextField.rightView = showPasswordHideButton
+        passwordTextField.rightView = passwordEyeballButton
         passwordTextField.rightViewMode = .always
-        showPasswordHideButton.tintColor = .doveGray
-        showPasswordHideButton.translatesAutoresizingMaskIntoConstraints = false
-        passwordTextField.addSubview(showPasswordHideButton)
-        //showPasswordHideButton.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
-        showPasswordHideButton.setImage(eyeballTransparentImage, for: .normal)
-        showPasswordHideButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: -20.0, bottom: 0, right: 5.0)
-        showPasswordHideButton.addTarget(self, action: #selector(tappedPasswordEyeballButton), for: .touchUpInside)
+        passwordEyeballButton.tintColor = .doveGray
+        passwordEyeballButton.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
+        passwordEyeballButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: -20.0, bottom: 0, right: 5.0)
+        passwordEyeballButton.addTarget(self, action: #selector(tappedPasswordEyeballButton), for: .touchUpInside)
+        passwordEyeballButton.isHidden = true
     }
     
     private func configureConfirmTextField() {
         confirmPasswordTextField.isSecureTextEntry = true
-        confirmPasswordTextField.rightView = showConfirmHideButton
+        confirmPasswordTextField.rightView = confirmPasswordEyeballButton
         confirmPasswordTextField.rightViewMode = .always
-        showConfirmHideButton.tintColor = .doveGray
-        showConfirmHideButton.translatesAutoresizingMaskIntoConstraints = false
-        confirmPasswordTextField.addSubview(showConfirmHideButton)
-        //showConfirmHideButton.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
-        showConfirmHideButton.setImage(eyeballTransparentImage, for: .normal)
-        showConfirmHideButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: -20.0, bottom: 0, right: 5.0)
-        showConfirmHideButton.addTarget(self, action: #selector(tappedConfirmEyeballButton), for: .touchUpInside)
+        confirmPasswordEyeballButton.tintColor = .doveGray
+        confirmPasswordEyeballButton.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
+        confirmPasswordEyeballButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: -20.0, bottom: 0, right: 5.0)
+        confirmPasswordEyeballButton.addTarget(self, action: #selector(tappedConfirmPasswordEyeballButton), for: .touchUpInside)
+        confirmPasswordEyeballButton.isHidden = true
     }
         
     @objc private func tappedPasswordEyeballButton() {
-        //showPasswordHideButton.isSelected.toggle()
-        if passwordIsHidden {
+        if passwordTextField.isSecureTextEntry == true {
             // Show
-            showPasswordHideButton.setImage(UIImage(systemName: "eye.fill"), for: .normal)
+            passwordEyeballButton.setImage(UIImage(systemName: "eye.fill"), for: .normal)
             passwordTextField.isSecureTextEntry = false
-            passwordIsHidden = false
         }
         else {
             // Hide
-            showPasswordHideButton.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
+            passwordEyeballButton.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
             passwordTextField.isSecureTextEntry = true
-            passwordIsHidden = true
         }
     }
     
-    @objc private func tappedConfirmEyeballButton() {
-        //showConfirmHideButton.isSelected.toggle()
-        if confirmIsHidden {
+    @objc private func tappedConfirmPasswordEyeballButton() {
+        if confirmPasswordTextField.isSecureTextEntry == true {
             // Show
-            showConfirmHideButton.setImage(UIImage(systemName: "eye.fill"), for: .normal)
+            confirmPasswordEyeballButton.setImage(UIImage(systemName: "eye.fill"), for: .normal)
             confirmPasswordTextField.isSecureTextEntry = false
-            confirmIsHidden = false
         }
         else {
             // Hide
-            showConfirmHideButton.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
+            confirmPasswordEyeballButton.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
             confirmPasswordTextField.isSecureTextEntry = true
-            confirmIsHidden = true
         }
     }
     
@@ -376,17 +376,19 @@ extension SignInViewController: UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        // FIXME: currently only hiding buttons when clicking one of the other 2 fields
-        // when it should hide them when clicking ANY other textfield
-        if textField == passwordTextField || textField == confirmPasswordTextField {
-            if textField == passwordTextField {
-                tappedPasswordEyeballButton()
-            } else {
-                tappedConfirmEyeballButton()
-            }
+        if textField == passwordTextField {
+            confirmPasswordTextField.isSecureTextEntry = true
+            passwordEyeballButton.isHidden = false
+            confirmPasswordEyeballButton.isHidden = true
+        } else if textField == confirmPasswordTextField {
+            passwordTextField.isSecureTextEntry = true
+            passwordEyeballButton.isHidden = true
+            confirmPasswordEyeballButton.isHidden = false
         } else {
-            showPasswordHideButton.setImage(eyeballTransparentImage, for: .normal)
-            showConfirmHideButton.setImage(eyeballTransparentImage, for: .normal)
+            passwordTextField.isSecureTextEntry = true
+            passwordEyeballButton.isHidden = true
+            confirmPasswordTextField.isSecureTextEntry = true
+            confirmPasswordEyeballButton.isHidden = true
         }
     }
     

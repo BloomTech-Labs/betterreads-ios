@@ -51,6 +51,13 @@
                                                     <action selector="segmentedControlChanged:" destination="pRd-tq-Kku" eventType="valueChanged" id="S1Z-BE-RoM"/>
                                                 </connections>
                                             </segmentedControl>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J5E-Ve-Vix" userLabel="Line">
+                                                <rect key="frame" x="20" y="117" width="374" height="1"/>
+                                                <color key="backgroundColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="bgS-ee-SPw"/>
+                                                </constraints>
+                                            </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="BR6-EK-6gl" userLabel="UserStackView">
                                                 <rect key="frame" x="20" y="155.99999999999997" width="374" height="356.33333333333326"/>
                                                 <subviews>
@@ -206,13 +213,6 @@
                                                     <constraint firstAttribute="width" constant="374" id="jEN-fZ-B6y"/>
                                                 </constraints>
                                             </imageView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J5E-Ve-Vix" userLabel="Line">
-                                                <rect key="frame" x="20" y="117" width="374" height="1"/>
-                                                <color key="backgroundColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="1" id="bgS-ee-SPw"/>
-                                                </constraints>
-                                            </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mKe-xP-9Fu">
                                                 <rect key="frame" x="20" y="587.33333333333337" width="374" height="29"/>
                                                 <fontDescription key="fontDescription" name="FrankRuhlLibre-Regular" family="Frank Ruhl Libre" pointSize="14"/>
