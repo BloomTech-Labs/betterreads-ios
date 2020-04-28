@@ -10,18 +10,20 @@ import UIKit
 
 // Global Variables for test purposes
 
-let fakeBooksArray: [Book] = [Book(title: "Harry Potter", author: "JK Rowling", cover: "book.fill", rating: 5.0),
-                      Book(title: "Twilight", author: "Stephenie Meyer", cover: "book.fill", rating: 4.0),
-                      Book(title: "Animal Farm", author: "George Orwell", cover: "book.fill", rating: 5.0),
-                      Book(title: "1984", author: "George Orwell", cover: "book.fill", rating: 5.0),
-                      Book(title: "Metamorphosis", author: "Franz Kafka", cover: "book.fill", rating: 5.0),
-                      Book(title: "50 Shades of Gray", author: "E.L. James", cover: "book.fill", rating: 2.0),
-                      Book(title: "Resident Evil", author: "Capcom", cover: "book.fill", rating: 5.0),
-                      Book(title: "Jumanji", author: "Your mom", cover: "book.fill", rating: 4.0),
-                      Book(title: "The Bible", author: "Jesus", cover: "book.fill", rating: 5.0),
-                      Book(title: "The Maze Runner", author: "James Dashner", cover: "book.fill", rating: 4.0),
-                      Book(title: "Fahrenheit 451", author: "Ray Bradbury", cover: "book.fill", rating: 4.5),
-                      Book(title: "Harry Potter 2", author: "JK Rowling", cover: "book.fill", rating: 4.0)]
+
+let fakeBooksArray: [Book] = [Book(title: "Harry Potter", author: "JK Rowling", cover: "book.fill", rating: 0.0),
+                              Book(title: "Twilight", author: "Stephenie Meyer", cover: "book.fill", rating: 0.5),
+                              Book(title: "Animal Farm", author: "George Orwell", cover: "book.fill", rating: 1.0),
+                              Book(title: "1984", author: "George Orwell", cover: "book.fill", rating: 1.0),
+                              Book(title: "Metamorphosis", author: "Franz Kafka", cover: "book.fill", rating: 1.3),
+                              Book(title: "50 Shades of Gray", author: "E.L. James", cover: "book.fill", rating: 0.5),
+                              Book(title: "Resident Evil", author: "Capcom", cover: "book.fill", rating: 1.6),
+                              Book(title: "Jumanji", author: "Your mom", cover: "book.fill", rating: 3.4),
+                              Book(title: "The Bible", author: "Jesus", cover: "book.fill", rating: 1.9),
+                              Book(title: "The Maze Runner", author: "James Dashner", cover: "book.fill", rating: 2.1),
+                              Book(title: "Fahrenheit 451", author: "Ray Bradbury", cover: "book.fill", rating: 2.5),
+                              Book(title: "Harry Potter 2", author: "JK Rowling", cover: "book.fill", rating: 5.0)]
+
 
 var myBooksArray = [Book]()
 

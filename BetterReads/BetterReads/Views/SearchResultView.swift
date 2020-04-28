@@ -55,27 +55,38 @@ class SearchResultView: UIView {
         guard let book = book else { return }
         
         titleLabel.text = book.title
-        authorLabel.text = book.author
+        authorLabel.text = book.author + " \(book.rating)"
         imageView.image = UIImage(systemName: book.cover)
-        //ratingView.text = "\(book.rating)"
+        self.value = book.rating
     }
     
+    // FIXME: does not round up, ask about rules for rounding up
     private func updateStarRating() {
         print("updateStarRating")
+        let tempValue: Double = value
+        let chunk = value - floor(value)
+        var restEmpty = false
         for star in starsArray {
-            if star.tag <= Int(value) {
+            print(star.tag)
+            print("chunk = \(chunk)")
+            if star.tag <= Int(tempValue) && !restEmpty {
                 star.image = UIImage(systemName: "star.fill")
-                star.tintColor = .red
-            } else {
+                print("full")
+            } else if chunk >= 0.33 && chunk <= 0.66 && !restEmpty{
+                // half
+                print("half")
+                star.image = UIImage(systemName: "star.lefthalf.fill")
+                restEmpty = true
+            }
+            else {
+                print("empty")
                 star.image = UIImage(systemName: "star")
-                star.tintColor = .green
             }
         }
     }
     
     private func setUpSubviews() {
-        // This is a temporary value
-        value = 3.0
+        
         
         // Image View
         let imageView = UIImageView()
@@ -182,20 +193,23 @@ class SearchResultView: UIView {
             let star = UIImageView()
             starsView.addSubview(star)
             starsArray.append(star)
+            print("starsArray.count = \(starsArray.count)")
             star.tag = i
             star.frame = CGRect(x: (starSize * (i - 1)),
                                 y: 0,
                                 width: starSize,
                                 height: starSize)
-            star.image = UIImage(systemName: "star.fill")
+            star.image = UIImage(systemName: "star")
             star.tintColor = UIColor(red: 11.0/255.0, green: 28.0/255.0, blue: 124.0/255.0, alpha: 1.0)
-            if i == 4 {
-                star.image = UIImage(systemName: "star.lefthalf.fill")
-            }
-            if i == 5 {
-                star.image = UIImage(systemName: "star")
-                //star.tintColor = .white
-            }
+//            if i == 4 {
+//                star.image = UIImage(systemName: "star.lefthalf.fill")
+//            }
+//            if i == 5 {
+//                star.image = UIImage(systemName: "star")
+//                //star.tintColor = .white
+//            }
         }
+        // This is a temporary value
+        //value = 4.2
     }
 }
