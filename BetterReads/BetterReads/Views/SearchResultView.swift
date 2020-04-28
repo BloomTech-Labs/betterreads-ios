@@ -74,7 +74,7 @@ class SearchResultView: UIView {
     }
     
     private func setUpSubviews() {
-        // DELETE
+        // This is a temporary value
         value = 3.0
         
         // Image View
@@ -96,6 +96,8 @@ class SearchResultView: UIView {
         // mult for height used to be 1.5 of imageView.widthAnchor // widthAnchor used to be 0.25
         // FIXME: (later) change imageView scale/size based on what image is passed in? cell size?
         imageView.contentMode = .scaleAspectFit
+        
+        // Catalina Blue
         imageView.backgroundColor = UIColor(red: 200.0/255.0,
                                             green: 200.0/255.0,
                                             blue: 200.0/255.0,
