@@ -35,12 +35,6 @@ class SearchResultView: UIView {
         }
     }
     
-    var value: Double = 1.0 {
-        didSet {
-            updateStarRating()
-        }
-    }
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpSubviews()
@@ -57,11 +51,12 @@ class SearchResultView: UIView {
         titleLabel.text = book.title
         authorLabel.text = book.author + " \(book.rating)"
         imageView.image = UIImage(systemName: book.cover)
-        self.value = book.rating
+        //self.value = book.rating
+        updateStarRating(value: book.rating)
     }
     
-    // FIXME: does not round up, ask about rules for rounding up
-    private func updateStarRating() {
+    // FIXME: rounding bug for 1.3 rating when scrolling out of view
+    private func updateStarRating(value: Double) {
         print("updateStarRating")
         let tempValue: Double = value
         let chunk = value - floor(value)
@@ -72,16 +67,19 @@ class SearchResultView: UIView {
             if star.tag <= Int(tempValue) && !restEmpty {
                 star.image = UIImage(named: "Stars_Chunky-CatalinaBlue")
                 print("full")
+                //break
             } else if chunk >= 0.01 && chunk <= 0.99 && !restEmpty{
                 // half
                 if chunk >= 0.33 && chunk <= 0.66 {
                     print("half")
                     star.image = UIImage(named: "Stars_Chunky-AltoGray-LeftHalf")
+                    
                 }
                 // round up
                 else if chunk >= 0.67 && chunk <= 0.98 {
                     print("rounded up to full")
                     star.image = UIImage(named: "Stars_Chunky-CatalinaBlue")
+                    
                 }
                 restEmpty = true
             }
