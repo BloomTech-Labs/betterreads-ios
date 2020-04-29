@@ -1,6 +1,9 @@
 # 📱BetterReads
+[![Swift Version](https://img.shields.io/badge/Swift-5.0-orange.svg?style=flat-square&logo=Swift&logoColor=white)](https://swift.org) [![Licence Type](https://img.shields.io/badge/Licence-MIT-blue.svg?style=flat-square)](https://github.com/Lambda-School-Labs/betterreads-ios/blob/master/LICENSE) [![Platform Type](https://img.shields.io/badge/Platform-iOS-blue.svg?style=flat-square&logo=Apple&logoColor=white)](https://www.apple.com/ios/ios-…) [![PRs Type](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)[![Maintainability](https://api.codeclimate.com/v1/badges/475ccef59e573e11c796/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/betterreads-ios/maintainability)
 
 You can find the deployed project at [🚫URL NAME GOES HERE]).
+
+---
 
 ## 👨‍💻Contributors👩‍💻
 
@@ -11,16 +14,7 @@ You can find the deployed project at [🚫URL NAME GOES HERE]).
 | [<img src="https://github.com/favicon.ico" width="15"/>](https://github.com/alvare52) | [<img src="https://github.com/favicon.ico" width="15"/>](https://github.com/ladybeitel) |
 | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"/>](https://www.linkedin.com/) | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"/>](https://www.linkedin.com/in/ciarabeitel/) |
 
-___
-
-[![Swift Version](https://img.shields.io/badge/Swift-5.0-orange.svg?style=flat-square&logo=Swift&logoColor=white)](https://swift.org)
-
-[![Licence Type](https://img.shields.io/badge/Licence-MIT-blue.svg?style=flat-square)](https://github.com/Lambda-School-Labs/betterreads-ios/blob/master/LICENSE)
-
-
-[![Platform Type](https://img.shields.io/badge/Platform-iOS-blue.svg?style=flat-square&logo=Apple&logoColor=white)](https://www.apple.com/ios/ios-…)
-
-[![PRs Type](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+---
 
 ## 🛠 Project Overview
 
@@ -32,11 +26,15 @@ You can find the deployed project at [🚫URL NAME GOES HERE].
 
 [UX Design files](https://www.figma.com/file/lowMNFiywxfBHZI2bFYhe9/Better-Reads%2C-Lynn?node-id=177%3A0)
 
-Readrr allows you to have a centralized location to organize and track the books that you've read, are currently reading, and/or books that you would like to read in the future. Readrr is also a great way to easily discover new books with recommendations based on your personal library collection. 
+BetterReads allows you to have a centralized location to organize and track the books that you've read, are currently reading, and/or books that you would like to read in the future. BetterReads is also a great way to easily discover new books with recommendations based on your personal library collection. 
 
-Since Readrr allows you to track your reading progress on the go, you can accomplish more reading goals and have a form of accountability. No need to go to multiple places to find the information or features about books that interest you; you can simply search and view book details in the Readrr app. Readrr supports searching for different medium types too! Whether you like to turn physical pages, read on a tablet, or listen on the go, Readrr can track you book progess no matter the medium. With Readrr's conveninent and user-friendly interface, tracking reading process is easy!
+Since BetterReads allows you to track your reading progress on the go, you can accomplish more reading goals and have a form of accountability. No need to go to multiple places to find the information or features about books that interest you; you can simply search and view book details in the BetterReads app. BetterReads supports searching for different medium types too! Whether you like to turn physical pages, read on a tablet, or listen on the go, BetterReads can track your book progess no matter your preference. With BetterReads' conveninent and user-friendly interface, tracking reading process is easy!
 
-![]() 🚫 Replace header pic.
+---
+
+![]() 🚫 Insert screenshot(s) here.
+
+---
 
 ### Features
 -    Search Books
@@ -44,24 +42,25 @@ Since Readrr allows you to track your reading progress on the go, you can accomp
 -    Book Suggestions/Recommendations
 -    🚫Add more features if necessary. 
 
+---
 
 ### 🚫 Replace Authentication API Title here
 
-🚫 Replace text below with a description of the API. Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
+🚫 Replace text below with a description of the API. 
 
 ### 🚫 Replace Misc API Title here
 
-🚫 Replace text below with a description of the API. You can do anything your heart can imagine. In life you need colors. This is where you take out all your hostilities and frustrations. It's better than kicking the puppy dog around and all that so. I'm sort of a softy, I couldn't shoot Bambi except with a camera. Trees get lonely too, so we'll give him a little friend. We'll lay all these little funky little things in there.
+🚫 Replace text below with a description of the API.
 
-
+---
 
 ## ✅ Requirements
 
 -   iOS 13.0+
 -   Xcode 11.4
--   Cocoa Pods
 -   🚫 Add more requirements if neccessary
 
+---
 
 ## 🤝 Contributing
 
@@ -99,6 +98,7 @@ Remember that this project is licensed under the MIT license, and by submitting 
 
 These contribution guidelines have been adapted from [this good-Contributing.md-template](https://gist.github.com/PurpleBooth/b24679402957c63ec426).
 
+---
 
 ## 📄 Documentation
 
