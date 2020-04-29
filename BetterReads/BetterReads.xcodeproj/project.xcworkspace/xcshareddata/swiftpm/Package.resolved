@@ -9,6 +9,42 @@
           "revision": "fca036f7aeca07124067cb6e0c12b0ad6359e3d4",
           "version": "5.1.0"
         }
+      },
+      {
+        "package": "JWTDecode",
+        "repositoryURL": "https://github.com/auth0/JWTDecode.swift.git",
+        "state": {
+          "branch": null,
+          "revision": "7875753f26400a9456e3305ba47255d7629a8a69",
+          "version": "2.4.1"
+        }
+      },
+      {
+        "package": "Nimble",
+        "repositoryURL": "https://github.com/Quick/Nimble",
+        "state": {
+          "branch": null,
+          "revision": "7fd118ec8795888bcbbebc1a41f6984454c4cd6f",
+          "version": "8.0.7"
+        }
+      },
+      {
+        "package": "Quick",
+        "repositoryURL": "https://github.com/Quick/Quick",
+        "state": {
+          "branch": null,
+          "revision": "33682c2f6230c60614861dfc61df267e11a1602f",
+          "version": "2.2.0"
+        }
+      },
+      {
+        "package": "SwiftyJSON",
+        "repositoryURL": "https://github.com/SwiftyJSON/SwiftyJSON.git",
+        "state": {
+          "branch": null,
+          "revision": "2b6054efa051565954e1d2b9da831680026cd768",
+          "version": "5.0.0"
+        }
       }
     ]
   },

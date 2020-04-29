@@ -8,14 +8,12 @@
 
 import Foundation
 
-class User {
+class User: Codable {
     let fullName: String
-    var email: String
-    var password: String
+    var emailAddress: String
     
-    init(fullName: String, email: String, password: String) {
+    init(fullName: String, emailAddress: String) {
         self.fullName = fullName
-        self.email = email
-        self.password = password
+        self.emailAddress = emailAddress
     }
 }
