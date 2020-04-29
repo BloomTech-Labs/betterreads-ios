@@ -21,7 +21,15 @@ let fakeBooksArray: [Book] = [Book(title: "Harry Potter", author: "JK Rowling", 
                               Book(title: "Jumanji", author: "Your mom", cover: "book.fill", rating: 3.4),
                               Book(title: "The Bible", author: "Jesus", cover: "book.fill", rating: 1.9),
                               Book(title: "The Maze Runner", author: "James Dashner", cover: "book.fill", rating: 2.1),
-                              Book(title: "Fahrenheit 451", author: "Ray Bradbury", cover: "book.fill", rating: 2.5),
+                              Book(title: "Fahrenheit 452", author: "Ray Bradbury", cover: "book.fill", rating: 2.5),
+                              Book(title: "Fahrenheit 453", author: "Ray Bradbury", cover: "book.fill", rating: 3.0),
+                              Book(title: "Fahrenheit 454", author: "Ray Bradbury", cover: "book.fill", rating: 3.3),
+                              Book(title: "Fahrenheit 455", author: "Ray Bradbury", cover: "book.fill", rating: 3.5),
+                              Book(title: "Fahrenheit 456", author: "Ray Bradbury", cover: "book.fill", rating: 3.9),
+                              Book(title: "Fahrenheit 457", author: "Ray Bradbury", cover: "book.fill", rating: 4.2),
+                              Book(title: "Fahrenheit 458", author: "Ray Bradbury", cover: "book.fill", rating: 4.5),
+                              Book(title: "Fahrenheit 459", author: "Ray Bradbury", cover: "book.fill", rating: 4.7),
+                              Book(title: "Fahrenheit 460", author: "Ray Bradbury", cover: "book.fill", rating: 4.5),
                               Book(title: "Harry Potter 2", author: "JK Rowling", cover: "book.fill", rating: 5.0)]
 
 

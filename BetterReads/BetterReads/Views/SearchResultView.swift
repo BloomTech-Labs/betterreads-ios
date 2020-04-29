@@ -70,17 +70,24 @@ class SearchResultView: UIView {
             print(star.tag)
             print("chunk = \(chunk)")
             if star.tag <= Int(tempValue) && !restEmpty {
-                star.image = UIImage(systemName: "star.fill")
+                star.image = UIImage(named: "Stars_Chunky-CatalinaBlue")
                 print("full")
-            } else if chunk >= 0.33 && chunk <= 0.66 && !restEmpty{
+            } else if chunk >= 0.01 && chunk <= 0.99 && !restEmpty{
                 // half
-                print("half")
-                star.image = UIImage(systemName: "star.lefthalf.fill")
+                if chunk >= 0.33 && chunk <= 0.66 {
+                    print("half")
+                    star.image = UIImage(named: "Stars_Chunky-AltoGray-LeftHalf")
+                }
+                // round up
+                else if chunk >= 0.67 && chunk <= 0.98 {
+                    print("rounded up to full")
+                    star.image = UIImage(named: "Stars_Chunky-CatalinaBlue")
+                }
                 restEmpty = true
             }
             else {
                 print("empty")
-                star.image = UIImage(systemName: "star")
+                star.image = UIImage(named: "Stars_Chunky-AltoGray")
             }
         }
     }
@@ -199,7 +206,7 @@ class SearchResultView: UIView {
                                 y: 0,
                                 width: starSize,
                                 height: starSize)
-            star.image = UIImage(systemName: "star")
+            star.image = UIImage(named: "Stars_Chunky-AltoGray")
             star.tintColor = UIColor(red: 11.0/255.0, green: 28.0/255.0, blue: 124.0/255.0, alpha: 1.0)
 //            if i == 4 {
 //                star.image = UIImage(systemName: "star.lefthalf.fill")
