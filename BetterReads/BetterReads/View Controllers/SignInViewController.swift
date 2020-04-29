@@ -8,21 +8,15 @@
 
 import UIKit
 
+enum LoginType {
+    case signup
+    case signin
+}
+
 class SignInViewController: UIViewController {
-    
+
     // MARK: - Properties
-    enum LoginType {
-        case signup
-        case signin
-    }
-    
-    enum PasswordType {
-        case show
-        case hide
-    }
-    
     var loginType = LoginType.signup
-    var passwordType = PasswordType.hide
     var userController = UserController()
     let segControlBackgroundImage = UIImage(color: .clear, size: CGSize(width: 1, height: 32))
     let segControlDividerImage = UIImage(color: .clear, size: CGSize(width: 1, height: 32))
@@ -30,67 +24,77 @@ class SignInViewController: UIViewController {
     let semiBoldFont = UIFont(name: "SourceSansPro-SemiBold", size: 20)
     let selectedTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.tundra, NSAttributedString.Key.font : UIFont(name: "SourceSansPro-SemiBold", size: 20)]
     let normalTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.tundra, NSAttributedString.Key.font : UIFont(name: "SourceSansPro-Regular", size: 16)]
-    
-    
     var passwordEyeballButton = UIButton()
     var confirmPasswordEyeballButton = UIButton()
     
-    
-    
     // MARK: - Outlets
     @IBOutlet weak var segmentedControl: UISegmentedControl!
-    
     @IBOutlet weak var fullNameLabel: UILabel!
     @IBOutlet weak var fullNameTextField: UITextField!
     @IBOutlet weak var fullNameErrorMessage: UILabel!
-    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var emailErrorMessage: UILabel!
-
     @IBOutlet weak var passwordInfoCircle: UIButton!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var passwordErrorMessage: UILabel!
-
     @IBOutlet weak var confirmPasswordInfoCircle: UIButton!
     @IBOutlet weak var confirmPasswordLabel: UILabel!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     @IBOutlet weak var confirmPasswordErrorMessage: UILabel!
-
     @IBOutlet weak var submitButton: UIButton!
-    
     @IBOutlet weak var forgotPassword: UIButton!
         
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUIElements()
-        textFieldDelegates()
-        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
-        view.addGestureRecognizer(tap)
-    }
-    
-    // MARK: - Methods
-    private func setupUIElements() {
-        hideErrorMessagesOnLoad()
+        
+        fullNameTextField.delegate = self
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        confirmPasswordTextField.delegate = self
+        
+        clearErrorMessages()
         setupCustomSegmentedControl()
         configurePasswordTextField()
         configureConfirmTextField()
         forgotPassword.isHidden = true
         submitButton.layer.cornerRadius = 5
+        
+        // Dismiss the keyboard on tap
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tap)
+        
+        // Register View Controller as Observer
+        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange(_:)), name: UITextField.textDidChangeNotification, object: nil)
+        
+        
     }
     
-    private func hideErrorMessagesOnLoad() {
-        fullNameErrorMessage.text = ""
-        emailErrorMessage.text = ""
-        passwordErrorMessage.text = ""
-        confirmPasswordErrorMessage.text = ""
+    @objc private func textDidChange(_ notification: Notification) {
+        var formIsValid = true
+        submitButton.backgroundColor = .catalinaBlue
+        
+        let textFields: [UITextField] = [fullNameTextField, emailTextField, passwordTextField, confirmPasswordTextField]
+
+        for textField in textFields {
+            // Validate Text Field
+            let (valid, _) = validate(textField)
+            guard valid else {
+                formIsValid = false
+                break
+            }
+        }
+        // Update Save Button
+        submitButton.backgroundColor = formIsValid ? .catalinaBlue : .tundra
+        submitButton.isEnabled = formIsValid
     }
     
-    private func textFieldDelegates() {
-        fullNameTextField.delegate = self
-        emailTextField.delegate = self
-        passwordTextField.delegate = self
-        confirmPasswordTextField.delegate = self
+    // MARK: - Methods
+    private func clearErrorMessages() {
+        fullNameErrorMessage.text = " "
+        emailErrorMessage.text = " "
+        passwordErrorMessage.text = " "
+        confirmPasswordErrorMessage.text = " "
     }
     
     // MARK: - Custom Segmented Control
@@ -121,7 +125,7 @@ class SignInViewController: UIViewController {
         confirmPasswordLabel.isHidden = false
         confirmPasswordTextField.isHidden = false
         segmentedControl.setTitleTextAttributes(selectedTextAttributes as [NSAttributedString.Key : Any], for: .selected)
-        hideErrorMessagesOnLoad()
+        clearErrorMessages()
         segmentedControl.selectedSegmentIndex = 0
         forgotPassword.isHidden = true
         passwordInfoCircle.isHidden = false
@@ -136,7 +140,7 @@ class SignInViewController: UIViewController {
         confirmPasswordLabel.isHidden = true
         confirmPasswordTextField.isHidden = true
         segmentedControl.setTitleTextAttributes(normalTextAttributes as [NSAttributedString.Key : Any], for: .normal)
-        hideErrorMessagesOnLoad()
+        clearErrorMessages()
         segmentedControl.selectedSegmentIndex = 1
         forgotPassword.isHidden = false
         passwordInfoCircle.isHidden = true
@@ -147,8 +151,7 @@ class SignInViewController: UIViewController {
     }
 
     // MARK: - Configure Text Fields for show/hide Password
-    // FIXME: buttons switch states when clicking into another textfield
-    // FIXME: text should always be secured when clicking outside of textfield
+    // FIXME: text should always be secured when clicking outside of textfield (on tap gesture)
     private func configurePasswordTextField() {
         passwordTextField.isSecureTextEntry = true
         passwordTextField.rightView = passwordEyeballButton
@@ -171,7 +174,7 @@ class SignInViewController: UIViewController {
         confirmPasswordEyeballButton.isHidden = true
     }
         
-    @objc private func tappedPasswordEyeballButton() {
+    @objc private func tappedPasswordEyeballButton(field: UITextField) {
         if passwordTextField.isSecureTextEntry == true {
             // Show
             passwordEyeballButton.setImage(UIImage(systemName: "eye.fill"), for: .normal)
@@ -200,42 +203,44 @@ class SignInViewController: UIViewController {
     // MARK: - Validate text in Text Fields
     @IBAction func submitButtonTapped(_ sender: UIButton) {
         view.endEditing(true)
-        validate {
-            signUpOrSignInUser()
+        let (valid, _) = validate()
+        if valid {
+            if loginType == .signup {
+                signUpUser()
+            } else {
+                signInUser()
+            }
         }
     }
         
-    private func validate(field: String? = nil, completion: () -> ()) {
-        hideErrorMessagesOnLoad()
-        
+    private func validate(_ field: UITextField? = nil) -> (Bool, String?) {
         do {
             switch field {
-            case "fullName":
+            case fullNameTextField:
                 // if signIn, don't validate fullName textfield
                 if segmentedControl.selectedSegmentIndex == 1 {
-                    completion()
+                    return (true, nil)
                 }
                 let _ = try fullNameTextField.validatedText(validationType: .required(field: "fullName"))
-                completion()
-            case "email":
+                return (true, nil)
+            case emailTextField:
                 let _ = try emailTextField.validatedText(validationType: .email(field: "email"))
-                completion()
-            case "password":
+                return (true, nil)
+            case passwordTextField:
                 let _ = try passwordTextField.validatedText(validationType: .password(field: "password"))
-                completion()
-            case "confirmPassword":
+                return (true, nil)
+            case confirmPasswordTextField:
                 // if signIn, don't validate confirmPassword textfield
                 if segmentedControl.selectedSegmentIndex == 1 {
-                    completion()
+                    return (true, nil)
                 }
                 let confirmPassword = try confirmPasswordTextField.validatedText(validationType: .password(field: "confirmPassword"))
-                let password = try passwordTextField.validatedText(validationType: .password(field: "password"))
+                guard let password = passwordTextField.text else { return (false, "Passwords do not match.")}
                 if confirmPassword != password {
                     print("\(password) \n \(confirmPassword)")
-                    confirmPasswordErrorMessage.text = "Passwords do not match."
-                    return
+                    return (false, "Passwords do not match.")
                 }
-                completion()
+                return (true, nil)
             default:
                 // default: validate all textfields one last time and call completion
                 // unless you're on sign in, then don't validate fullName textfield
@@ -250,63 +255,55 @@ class SignInViewController: UIViewController {
                     
                     if confirmPassword != password {
                         print("\(password) \n \(confirmPassword)")
-                        confirmPasswordErrorMessage.text = "Passwords do not match."
-                        return
+                        return (false, "Passwords do not match.")
                     }
                 }
-                completion()
+                return (true, nil)
             }
         } catch(let error) {
             let convertedError = (error as! ValidationError)
-            
-            switch convertedError.fieldName {
-            case "fullName":
-                fullNameErrorMessage.text = convertedError.message
-            case "email":
-                emailErrorMessage.text = convertedError.message
-            case "password":
-                passwordErrorMessage.text = convertedError.message
-            case "confirmPassword":
-                confirmPasswordErrorMessage.text = convertedError.message
-            default:
-                return
-            }
+            return (false, convertedError.message)
         }
     }
     
-    private func signUpOrSignInUser() {
+    private func signUpUser() {
         guard let fullName = fullNameTextField.text,
             let email = emailTextField.text,
             let password = passwordTextField.text else { return }
+        
         let user = User(fullName: fullName, email: email, password: password)
-        if loginType == .signup {
-            userController.signUp(user: user) { (networkError) in
-                if let error = networkError {
-                    self.presentSignUpErrorAlert()
-                    NSLog("Error occured during Sign Up: \(error)")
-                } else {
-                    self.userController.signIn(email: email, password: password) { (networkError) in
-                        if let error = networkError {
-                            self.setUpSignInForm()
-                            self.presentSignInErrorAlert()
-                            NSLog("Error occured during Sign In: \(error)")
-                        } else {
-                            DispatchQueue.main.async {
-                                self.seg()
-                            }
+        
+        userController.signUp(user: user) { (networkError) in
+            if let error = networkError {
+                self.presentSignUpErrorAlert()
+                NSLog("Error occured during Sign Up: \(error)")
+            } else {
+                self.userController.signIn(email: email, password: password) { (networkError) in
+                    if let error = networkError {
+                        self.setUpSignInForm()
+                        self.presentSignInErrorAlert()
+                        NSLog("Error occured during Sign In: \(error)")
+                    } else {
+                        DispatchQueue.main.async {
+                            self.seg()
                         }
                     }
                 }
             }
-        } else if loginType == .signin {
-            userController.signIn(email: email, password: password) { (networkError) in
-                if let error = networkError {
-                    self.presentSignInErrorAlert()
-                    NSLog("Error occured during Sign In: \(error)")
-                } else {
-                    DispatchQueue.main.async {
-                        self.seg()
-                    }
+        }
+    }
+    
+    private func signInUser() {
+        guard let email = emailTextField.text,
+            let password = passwordTextField.text else { return }
+        
+        userController.signIn(email: email, password: password) { (networkError) in
+            if let error = networkError {
+                self.presentSignInErrorAlert()
+                NSLog("Error occured during Sign In: \(error)")
+            } else {
+                DispatchQueue.main.async {
+                    self.seg()
                 }
             }
         }
@@ -366,7 +363,6 @@ extension UIImage {
 
 // MARK: - Text Field Delegate
 extension SignInViewController: UITextFieldDelegate {
-    
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         return true
     }
@@ -376,15 +372,16 @@ extension SignInViewController: UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == passwordTextField {
+        switch textField {
+        case passwordTextField:
             confirmPasswordTextField.isSecureTextEntry = true
             passwordEyeballButton.isHidden = false
             confirmPasswordEyeballButton.isHidden = true
-        } else if textField == confirmPasswordTextField {
+        case confirmPasswordTextField:
             passwordTextField.isSecureTextEntry = true
             passwordEyeballButton.isHidden = true
             confirmPasswordEyeballButton.isHidden = false
-        } else {
+        default:
             passwordTextField.isSecureTextEntry = true
             passwordEyeballButton.isHidden = true
             confirmPasswordTextField.isSecureTextEntry = true
@@ -393,47 +390,57 @@ extension SignInViewController: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == fullNameTextField {
-            validate(field: "fullName") {
-                fullNameTextField.resignFirstResponder()
+        switch textField {
+        case fullNameTextField:
+            let (valid, message) = validate(textField)
+            
+            if valid {
                 emailTextField.becomeFirstResponder()
             }
-        } else if textField == emailTextField {
-            validate(field: "email") {
-                emailTextField.resignFirstResponder()
+            
+            self.fullNameErrorMessage.text = message
+            if (valid) {
+                self.fullNameErrorMessage.text = " "
+            }
+        case emailTextField:
+            let (valid, message) = validate(textField)
+            
+            if valid {
                 passwordTextField.becomeFirstResponder()
             }
-        } else if textField == passwordTextField {
-            validate(field: "password") {
+            
+            self.emailErrorMessage.text = message
+            if (valid) {
+                self.emailErrorMessage.text = " "
+            }
+        case passwordTextField:
+            let (valid, message) = validate(textField)
+            
+            if valid {
                 if loginType == .signup {
-                    passwordTextField.resignFirstResponder()
                     confirmPasswordTextField.becomeFirstResponder()
                 } else {
                     passwordTextField.resignFirstResponder()
-                    guard let _ = fullNameTextField.text,
-                        let emailText = emailTextField.text,
-                        let passwordText = passwordTextField.text,
-                        let _ = confirmPasswordTextField.text else { return }
-                    if emailText.isEmpty || passwordText.isEmpty {
-                        return
-                    } else {
-                        submitButton.backgroundColor = UIColor.catalinaBlue
-                    }
                 }
             }
-        } else if textField == confirmPasswordTextField {
-            validate(field: "confirmPassword") {
+            
+            self.passwordErrorMessage.text = message
+            if (valid) {
+                self.passwordErrorMessage.text = " "
+            }
+        case confirmPasswordTextField:
+            let (valid, message) = validate(textField)
+            
+            if valid {
                 confirmPasswordTextField.resignFirstResponder()
-                guard let fullNameText = fullNameTextField.text,
-                    let emailText = emailTextField.text,
-                    let passwordText = passwordTextField.text,
-                    let confirmPasswordText = confirmPasswordTextField.text else { return }
-                if fullNameText.isEmpty || emailText.isEmpty || passwordText.isEmpty || confirmPasswordText.isEmpty {
-                    return
-                } else {
-                    submitButton.backgroundColor = UIColor.catalinaBlue
-                }
             }
+            
+            self.confirmPasswordErrorMessage.text = message
+            if (valid) {
+                self.confirmPasswordErrorMessage.text = " "
+            }
+        default:
+            return true
         }
         return true
     }
