@@ -55,16 +55,15 @@ class SearchResultView: UIView {
         updateStarRating(value: book.rating)
     }
     
-    // FIXME: rounding bug for 1.3 rating when scrolling out of view
     private func updateStarRating(value: Double) {
         print("updateStarRating")
         
         switch value {
-        case 0.0:
+        case 0.0..<0.33:
             for star in starsArray {
                 star.image = UIImage(named: "Stars_Chunky-AltoGray")
             }
-        case 0.01...0.99:
+        case 0.33..<0.66:
             for star in starsArray {
                 if star.tag == 1 {
                     star.image = UIImage(named: "Stars_Chunky-AltoGray-LeftHalf")
@@ -73,7 +72,7 @@ class SearchResultView: UIView {
                     star.image = UIImage(named: "Stars_Chunky-AltoGray")
                 }
             }
-        case 1.0:
+        case 0.66..<1.33:
             for star in starsArray {
                 if star.tag == 1 {
                     star.image = UIImage(named: "Stars_Chunky-CatalinaBlue")
@@ -82,7 +81,7 @@ class SearchResultView: UIView {
                     star.image = UIImage(named: "Stars_Chunky-AltoGray")
                 }
             }
-        case 1.01...1.99:
+        case 1.33..<1.66:
             for star in starsArray {
                 if star.tag <= 1 {
                     star.image = UIImage(named: "Stars_Chunky-CatalinaBlue")
@@ -92,7 +91,7 @@ class SearchResultView: UIView {
                     star.image = UIImage(named: "Stars_Chunky-AltoGray")
                 }
             }
-        case 2.0:
+        case 1.66..<2.33:
             for star in starsArray {
                 if star.tag <= 2 {
                     star.image = UIImage(named: "Stars_Chunky-CatalinaBlue")
@@ -100,7 +99,7 @@ class SearchResultView: UIView {
                     star.image = UIImage(named: "Stars_Chunky-AltoGray")
                 }
             }
-        case 2.01...2.99:
+        case 2.33..<2.66:
             for star in starsArray {
                 if star.tag <= 2 {
                     star.image = UIImage(named: "Stars_Chunky-CatalinaBlue")
@@ -110,7 +109,7 @@ class SearchResultView: UIView {
                     star.image = UIImage(named: "Stars_Chunky-AltoGray")
                 }
             }
-        case 3.0:
+        case 2.66..<3.33:
             for star in starsArray {
                 if star.tag <= 3 {
                     star.image = UIImage(named: "Stars_Chunky-CatalinaBlue")
@@ -118,7 +117,7 @@ class SearchResultView: UIView {
                     star.image = UIImage(named: "Stars_Chunky-AltoGray")
                 }
             }
-        case 3.01...3.99:
+        case 3.33..<3.66:
             for star in starsArray {
                 if star.tag <= 3 {
                     star.image = UIImage(named: "Stars_Chunky-CatalinaBlue")
@@ -128,7 +127,7 @@ class SearchResultView: UIView {
                     star.image = UIImage(named: "Stars_Chunky-AltoGray")
                 }
             }
-        case 4.0:
+        case 3.66..<4.33:
             for star in starsArray {
                 if star.tag <= 4 {
                     star.image = UIImage(named: "Stars_Chunky-CatalinaBlue")
@@ -136,7 +135,7 @@ class SearchResultView: UIView {
                     star.image = UIImage(named: "Stars_Chunky-AltoGray")
                 }
             }
-        case 4.01...4.99:
+        case 4.33..<4.66:
             for star in starsArray {
                 if star.tag <= 4 {
                     star.image = UIImage(named: "Stars_Chunky-CatalinaBlue")
@@ -146,83 +145,14 @@ class SearchResultView: UIView {
                     star.image = UIImage(named: "Stars_Chunky-AltoGray")
                 }
             }
-        case 5.0:
+        case 4.66...5.0:
             for star in starsArray {
                 star.image = UIImage(named: "Stars_Chunky-CatalinaBlue")
             }
         default:
             break
         }
-        
-//        let decimal = value - floor(value)
-//        var chunk = value
-//        var restEmpty = false
-//        guard let book = book else { print("no book"); return }
-//        // Stars 1...5
-//        for star in starsArray {
-//            print("tag = \(star.tag), chunk = \(chunk) book = \(book.title)")
-//
-//
-//            // full or half
-//
-//            // full or roundup 1 <= 3.5, 3.0, 0.7
-//            if star.tag <= Int(chunk) {
-//                star.image = UIImage(named: "Stars_Chunky-CatalinaBlue")
-//                print("full")
-//            }
-//
-//                //
-//            else if chunk >= 0.01 && chunk <= 0.99 {
-//                // half
-//                if chunk >= 0.33 && chunk <= 0.66 {
-//                    print("half")
-//                    star.image = UIImage(named: "Stars_Chunky-AltoGray-LeftHalf")
-//
-//                }
-//                    // round up
-//                else if chunk >= 0.67 && chunk <= 0.98 {
-//                    print("rounded up to full")
-//                    star.image = UIImage(named: "Stars_Chunky-CatalinaBlue")
-//
-//                } else {
-//                    // round down (just isn't given half or full)
-//                    print("rounded down to empty")
-//                    star.image = UIImage(named: "Stars_Chunky-AltoGray")
-//                }
-//            } else {
-//                print("Empty or rating is less than 0.0?")
-//                star.image = UIImage(named: "Stars_Chunky-AltoGray")
-//            }
-//
-//            chunk -= 1.0
-//        }
     }
-    // Temp, delete later
-    /*
-     if star.tag <= Int(tempValue) && !restEmpty {
-         star.image = UIImage(named: "Stars_Chunky-CatalinaBlue")
-         print("full")
-         //break
-     } else if decimal >= 0.01 && decimal <= 0.99 && !restEmpty{
-         // half
-         if decimal >= 0.33 && decimal <= 0.66 {
-             print("half")
-             star.image = UIImage(named: "Stars_Chunky-AltoGray-LeftHalf")
-             
-         }
-         // round up
-         else if decimal >= 0.67 && decimal <= 0.98 {
-             print("rounded up to full")
-             star.image = UIImage(named: "Stars_Chunky-CatalinaBlue")
-             
-         }
-         restEmpty = true
-     }
-     else {
-         print("empty")
-         star.image = UIImage(named: "Stars_Chunky-AltoGray")
-     }
-     */
     
     private func setUpSubviews() {
         
