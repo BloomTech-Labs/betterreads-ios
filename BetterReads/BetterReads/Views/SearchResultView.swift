@@ -35,12 +35,6 @@ class SearchResultView: UIView {
         }
     }
     
-    var value: Double = 1.0 {
-        didSet {
-            updateStarRating()
-        }
-    }
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpSubviews()
@@ -55,27 +49,113 @@ class SearchResultView: UIView {
         guard let book = book else { return }
         
         titleLabel.text = book.title
-        authorLabel.text = book.author
+        authorLabel.text = book.author + " \(book.rating)"
         imageView.image = UIImage(systemName: book.cover)
-        //ratingView.text = "\(book.rating)"
+        //self.value = book.rating
+        updateStarRating(value: book.rating)
     }
     
-    private func updateStarRating() {
+    private func updateStarRating(value: Double) {
         print("updateStarRating")
-        for star in starsArray {
-            if star.tag <= Int(value) {
-                star.image = UIImage(systemName: "star.fill")
-                star.tintColor = .red
-            } else {
-                star.image = UIImage(systemName: "star")
-                star.tintColor = .green
+        
+        switch value {
+        case 0.0..<0.33:
+            for star in starsArray {
+                star.image = UIImage(named: "Stars_Chunky-AltoGray")
             }
+        case 0.33..<0.66:
+            for star in starsArray {
+                if star.tag == 1 {
+                    star.image = UIImage(named: "Stars_Chunky-AltoGray-LeftHalf")
+                }
+                else {
+                    star.image = UIImage(named: "Stars_Chunky-AltoGray")
+                }
+            }
+        case 0.66..<1.33:
+            for star in starsArray {
+                if star.tag == 1 {
+                    star.image = UIImage(named: "Stars_Chunky-CatalinaBlue")
+                }
+                else {
+                    star.image = UIImage(named: "Stars_Chunky-AltoGray")
+                }
+            }
+        case 1.33..<1.66:
+            for star in starsArray {
+                if star.tag <= 1 {
+                    star.image = UIImage(named: "Stars_Chunky-CatalinaBlue")
+                } else if star.tag == 2 {
+                    star.image = UIImage(named: "Stars_Chunky-AltoGray-LeftHalf")
+                } else {
+                    star.image = UIImage(named: "Stars_Chunky-AltoGray")
+                }
+            }
+        case 1.66..<2.33:
+            for star in starsArray {
+                if star.tag <= 2 {
+                    star.image = UIImage(named: "Stars_Chunky-CatalinaBlue")
+                } else {
+                    star.image = UIImage(named: "Stars_Chunky-AltoGray")
+                }
+            }
+        case 2.33..<2.66:
+            for star in starsArray {
+                if star.tag <= 2 {
+                    star.image = UIImage(named: "Stars_Chunky-CatalinaBlue")
+                } else if star.tag == 3 {
+                    star.image = UIImage(named: "Stars_Chunky-AltoGray-LeftHalf")
+                } else {
+                    star.image = UIImage(named: "Stars_Chunky-AltoGray")
+                }
+            }
+        case 2.66..<3.33:
+            for star in starsArray {
+                if star.tag <= 3 {
+                    star.image = UIImage(named: "Stars_Chunky-CatalinaBlue")
+                } else {
+                    star.image = UIImage(named: "Stars_Chunky-AltoGray")
+                }
+            }
+        case 3.33..<3.66:
+            for star in starsArray {
+                if star.tag <= 3 {
+                    star.image = UIImage(named: "Stars_Chunky-CatalinaBlue")
+                } else if star.tag == 4 {
+                    star.image = UIImage(named: "Stars_Chunky-AltoGray-LeftHalf")
+                } else {
+                    star.image = UIImage(named: "Stars_Chunky-AltoGray")
+                }
+            }
+        case 3.66..<4.33:
+            for star in starsArray {
+                if star.tag <= 4 {
+                    star.image = UIImage(named: "Stars_Chunky-CatalinaBlue")
+                } else {
+                    star.image = UIImage(named: "Stars_Chunky-AltoGray")
+                }
+            }
+        case 4.33..<4.66:
+            for star in starsArray {
+                if star.tag <= 4 {
+                    star.image = UIImage(named: "Stars_Chunky-CatalinaBlue")
+                } else if star.tag == 5 {
+                    star.image = UIImage(named: "Stars_Chunky-AltoGray-LeftHalf")
+                } else {
+                    star.image = UIImage(named: "Stars_Chunky-AltoGray")
+                }
+            }
+        case 4.66...5.0:
+            for star in starsArray {
+                star.image = UIImage(named: "Stars_Chunky-CatalinaBlue")
+            }
+        default:
+            break
         }
     }
     
     private func setUpSubviews() {
-        // This is a temporary value
-        value = 3.0
+        
         
         // Image View
         let imageView = UIImageView()
@@ -182,20 +262,23 @@ class SearchResultView: UIView {
             let star = UIImageView()
             starsView.addSubview(star)
             starsArray.append(star)
+            print("starsArray.count = \(starsArray.count)")
             star.tag = i
             star.frame = CGRect(x: (starSize * (i - 1)),
                                 y: 0,
                                 width: starSize,
                                 height: starSize)
-            star.image = UIImage(systemName: "star.fill")
+            star.image = UIImage(named: "Stars_Chunky-AltoGray")
             star.tintColor = UIColor(red: 11.0/255.0, green: 28.0/255.0, blue: 124.0/255.0, alpha: 1.0)
-            if i == 4 {
-                star.image = UIImage(systemName: "star.lefthalf.fill")
-            }
-            if i == 5 {
-                star.image = UIImage(systemName: "star")
-                //star.tintColor = .white
-            }
+//            if i == 4 {
+//                star.image = UIImage(systemName: "star.lefthalf.fill")
+//            }
+//            if i == 5 {
+//                star.image = UIImage(systemName: "star")
+//                //star.tintColor = .white
+//            }
         }
+        // This is a temporary value
+        //value = 4.2
     }
 }
