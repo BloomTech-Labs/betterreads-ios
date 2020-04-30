@@ -51,109 +51,24 @@ class SearchResultView: UIView {
         titleLabel.text = book.title
         authorLabel.text = book.author + " \(book.rating)"
         imageView.image = UIImage(systemName: book.cover)
-        //self.value = book.rating
         updateStarRating(value: book.rating)
     }
     
+    // FIXME: change else if back to half star when we get gray half star icons
     private func updateStarRating(value: Double) {
-        print("updateStarRating")
-        
-        switch value {
-        case 0.0..<0.33:
-            for star in starsArray {
+        var chunk = value
+        for star in starsArray {
+            if chunk >= 0.66 && chunk <= 5.0 {
+                star.image = UIImage(named: "Stars_Chunky-DoveGray")
+            } else if chunk >= 0.33 && chunk < 0.66 {
+                star.image = UIImage(named: "Stars_Chunky-DoveGray")
+            } else {
                 star.image = UIImage(named: "Stars_Chunky-AltoGray")
             }
-        case 0.33..<0.66:
-            for star in starsArray {
-                if star.tag == 1 {
-                    star.image = UIImage(named: "Stars_Chunky-AltoGray-LeftHalf")
-                }
-                else {
-                    star.image = UIImage(named: "Stars_Chunky-AltoGray")
-                }
-            }
-        case 0.66..<1.33:
-            for star in starsArray {
-                if star.tag == 1 {
-                    star.image = UIImage(named: "Stars_Chunky-CatalinaBlue")
-                }
-                else {
-                    star.image = UIImage(named: "Stars_Chunky-AltoGray")
-                }
-            }
-        case 1.33..<1.66:
-            for star in starsArray {
-                if star.tag <= 1 {
-                    star.image = UIImage(named: "Stars_Chunky-CatalinaBlue")
-                } else if star.tag == 2 {
-                    star.image = UIImage(named: "Stars_Chunky-AltoGray-LeftHalf")
-                } else {
-                    star.image = UIImage(named: "Stars_Chunky-AltoGray")
-                }
-            }
-        case 1.66..<2.33:
-            for star in starsArray {
-                if star.tag <= 2 {
-                    star.image = UIImage(named: "Stars_Chunky-CatalinaBlue")
-                } else {
-                    star.image = UIImage(named: "Stars_Chunky-AltoGray")
-                }
-            }
-        case 2.33..<2.66:
-            for star in starsArray {
-                if star.tag <= 2 {
-                    star.image = UIImage(named: "Stars_Chunky-CatalinaBlue")
-                } else if star.tag == 3 {
-                    star.image = UIImage(named: "Stars_Chunky-AltoGray-LeftHalf")
-                } else {
-                    star.image = UIImage(named: "Stars_Chunky-AltoGray")
-                }
-            }
-        case 2.66..<3.33:
-            for star in starsArray {
-                if star.tag <= 3 {
-                    star.image = UIImage(named: "Stars_Chunky-CatalinaBlue")
-                } else {
-                    star.image = UIImage(named: "Stars_Chunky-AltoGray")
-                }
-            }
-        case 3.33..<3.66:
-            for star in starsArray {
-                if star.tag <= 3 {
-                    star.image = UIImage(named: "Stars_Chunky-CatalinaBlue")
-                } else if star.tag == 4 {
-                    star.image = UIImage(named: "Stars_Chunky-AltoGray-LeftHalf")
-                } else {
-                    star.image = UIImage(named: "Stars_Chunky-AltoGray")
-                }
-            }
-        case 3.66..<4.33:
-            for star in starsArray {
-                if star.tag <= 4 {
-                    star.image = UIImage(named: "Stars_Chunky-CatalinaBlue")
-                } else {
-                    star.image = UIImage(named: "Stars_Chunky-AltoGray")
-                }
-            }
-        case 4.33..<4.66:
-            for star in starsArray {
-                if star.tag <= 4 {
-                    star.image = UIImage(named: "Stars_Chunky-CatalinaBlue")
-                } else if star.tag == 5 {
-                    star.image = UIImage(named: "Stars_Chunky-AltoGray-LeftHalf")
-                } else {
-                    star.image = UIImage(named: "Stars_Chunky-AltoGray")
-                }
-            }
-        case 4.66...5.0:
-            for star in starsArray {
-                star.image = UIImage(named: "Stars_Chunky-CatalinaBlue")
-            }
-        default:
-            break
+            chunk = value - Double(star.tag)
         }
     }
-    
+        
     private func setUpSubviews() {
         
         
@@ -210,23 +125,7 @@ class SearchResultView: UIView {
         
         authorLabel.textColor = UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 1.0)//authorTextColor
         authorLabel.font = UIFont(name: "FrankRuhlLibre-Regular", size: 16) //authorFont
-        
-        // Rating View
-//        let rating = UILabel()
-//        addSubview(rating)
-//        self.ratingView = rating
-//        ratingView.translatesAutoresizingMaskIntoConstraints = false
-//
-//        ratingView.topAnchor.constraint(equalTo: authorLabel.bottomAnchor).isActive = true
-//        // pushed to left by 1 so star point lines up with author name (and so I don't wake up screaming at night)
-//        ratingView.leadingAnchor.constraint(equalTo: imageView.trailingAnchor,
-//                                            constant: standardMargin - 1.0).isActive = true
-//
-//        ratingView.text = "★★★★★"
-//        ratingView.textColor = .systemBlue
-//        ratingView.font = UIFont.systemFont(ofSize: 24.0,
-//                                            weight: .regular)
-        
+                
         // stars view (5 image view inside)
         let view = UIView()
         addSubview(view)
@@ -242,19 +141,6 @@ class SearchResultView: UIView {
         starsView.widthAnchor.constraint(equalTo: imageView.heightAnchor).isActive = true
         
         // FIXME: Add Button? (NOT DONE, this needs to be assigned to a property )
-        let button = UIButton()
-        addSubview(button)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        //button.topAnchor.constraint(equalTo: titleLabel.topAnchor).isActive = true
-        button.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
-        button.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        button.widthAnchor.constraint(equalToConstant: 60).isActive = true
-        button.setTitle("Add", for: .normal)
-        button.tintColor = .white
-        button.layer.cornerRadius = 5
-        button.backgroundColor = UIColor(red: 11.0/255.0, green: 28.0/255.0, blue: 124.0/255.0, alpha: 1.0)
                 
         // Stars Array (goes inside starsView)
         let starSize = Int(self.frame.size.height * CGFloat(0.15)) // FIXME: should be based on cell size?
@@ -270,15 +156,6 @@ class SearchResultView: UIView {
                                 height: starSize)
             star.image = UIImage(named: "Stars_Chunky-AltoGray")
             star.tintColor = UIColor(red: 11.0/255.0, green: 28.0/255.0, blue: 124.0/255.0, alpha: 1.0)
-//            if i == 4 {
-//                star.image = UIImage(systemName: "star.lefthalf.fill")
-//            }
-//            if i == 5 {
-//                star.image = UIImage(systemName: "star")
-//                //star.tintColor = .white
-//            }
         }
-        // This is a temporary value
-        //value = 4.2
     }
 }
