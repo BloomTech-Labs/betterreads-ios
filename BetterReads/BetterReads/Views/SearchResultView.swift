@@ -97,7 +97,8 @@ class SearchResultView: UIView {
                                             green: 200.0/255.0,
                                             blue: 200.0/255.0,
                                             alpha: 1.0)
-        imageView.tintColor = UIColor(red: 11.0/255.0, green: 28.0/255.0, blue: 124.0/255.0, alpha: 1.0)
+
+        imageView.tintColor = UIColor(red: 212/255, green: 72/255, blue: 8/255, alpha: 1)
         
         // Title Label
         let label = UILabel()
