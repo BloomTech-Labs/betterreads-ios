@@ -61,7 +61,7 @@ class SearchResultView: UIView {
             if chunk >= 0.66 && chunk <= 5.0 {
                 star.image = UIImage(named: "Stars_Chunky-DoveGray")
             } else if chunk >= 0.33 && chunk < 0.66 {
-                star.image = UIImage(named: "Stars_Chunky-DoveGray")
+                star.image = UIImage(named: "Stars_Chunky-AltoGray-LeftHalf")
             } else {
                 star.image = UIImage(named: "Stars_Chunky-AltoGray")
             }

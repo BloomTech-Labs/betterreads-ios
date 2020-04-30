@@ -11,4 +11,7 @@ import Foundation
 class SearchController {
     
     let baseUrl = URL(string: "https://pokeapi.co/api/v2/pokemon/gengar")!
+    
+    var books: [Book] = []
+    
 }
