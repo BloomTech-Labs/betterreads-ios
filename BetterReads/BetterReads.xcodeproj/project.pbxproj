@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -39,6 +39,9 @@
 		77B6A3A02448F5A400FF604B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77B6A39E2448F5A400FF604B /* Main.storyboard */; };
 		77B6A3A22448F5A600FF604B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77B6A3A12448F5A600FF604B /* Assets.xcassets */; };
 		77B6A3A52448F5A600FF604B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77B6A3A32448F5A600FF604B /* LaunchScreen.storyboard */; };
+		77FD28AE2459E5890008C3E4 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 77FD28AD2459E5890008C3E4 /* Alamofire */; };
+		77FD28B6245A31CC0008C3E4 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 77FD28B5245A31CC0008C3E4 /* SwiftyJSON */; };
+		77FD28B9245A35A60008C3E4 /* JWTDecode in Frameworks */ = {isa = PBXBuildFile; productRef = 77FD28B8245A35A60008C3E4 /* JWTDecode */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +86,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77FD28B6245A31CC0008C3E4 /* SwiftyJSON in Frameworks */,
+				77FD28AE2459E5890008C3E4 /* Alamofire in Frameworks */,
+				77FD28B9245A35A60008C3E4 /* JWTDecode in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,6 +239,11 @@
 			dependencies = (
 			);
 			name = BetterReads;
+			packageProductDependencies = (
+				77FD28AD2459E5890008C3E4 /* Alamofire */,
+				77FD28B5245A31CC0008C3E4 /* SwiftyJSON */,
+				77FD28B8245A35A60008C3E4 /* JWTDecode */,
+			);
 			productName = BetterReads;
 			productReference = 77B6A3952448F5A400FF604B /* BetterReads.app */;
 			productType = "com.apple.product-type.application";
@@ -261,6 +272,11 @@
 				Base,
 			);
 			mainGroup = 77B6A38C2448F5A400FF604B;
+			packageReferences = (
+				77FD28AC2459E5890008C3E4 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				77FD28B4245A31CC0008C3E4 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				77FD28B7245A35A60008C3E4 /* XCRemoteSwiftPackageReference "JWTDecode.swift" */,
+			);
 			productRefGroup = 77B6A3962448F5A400FF604B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -516,6 +532,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		77FD28AC2459E5890008C3E4 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.0;
+			};
+		};
+		77FD28B4245A31CC0008C3E4 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		77FD28B7245A35A60008C3E4 /* XCRemoteSwiftPackageReference "JWTDecode.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/auth0/JWTDecode.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.4.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		77FD28AD2459E5890008C3E4 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 77FD28AC2459E5890008C3E4 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		77FD28B5245A31CC0008C3E4 /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 77FD28B4245A31CC0008C3E4 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
+		77FD28B8245A35A60008C3E4 /* JWTDecode */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 77FD28B7245A35A60008C3E4 /* XCRemoteSwiftPackageReference "JWTDecode.swift" */;
+			productName = JWTDecode;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 77B6A38D2448F5A400FF604B /* Project object */;
 }

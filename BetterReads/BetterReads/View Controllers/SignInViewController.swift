@@ -66,8 +66,6 @@ class SignInViewController: UIViewController {
         
         // Register View Controller as Observer
         NotificationCenter.default.addObserver(self, selector: #selector(textDidChange(_:)), name: UITextField.textDidChangeNotification, object: nil)
-        
-        
     }
     
     @objc private func textDidChange(_ notification: Notification) {
@@ -268,17 +266,16 @@ class SignInViewController: UIViewController {
     
     private func signUpUser() {
         guard let fullName = fullNameTextField.text,
-            let email = emailTextField.text,
+            let emailAddress = emailTextField.text,
             let password = passwordTextField.text else { return }
         
-        let user = User(fullName: fullName, email: email, password: password)
-        
-        userController.signUp(user: user) { (networkError) in
+        userController.signUp(fullName: fullName, emailAddress: emailAddress, password: password) { (networkError) in
             if let error = networkError {
                 self.presentSignUpErrorAlert()
                 NSLog("Error occured during Sign Up: \(error)")
             } else {
-                self.userController.signIn(email: email, password: password) { (networkError) in
+                print("Sign up successful...now signing in...")
+                self.userController.signIn(emailAddress: emailAddress, password: password) { (networkError) in
                     if let error = networkError {
                         self.setUpSignInForm()
                         self.presentSignInErrorAlert()
@@ -294,14 +291,15 @@ class SignInViewController: UIViewController {
     }
     
     private func signInUser() {
-        guard let email = emailTextField.text,
+        guard let emailAddress = emailTextField.text,
             let password = passwordTextField.text else { return }
         
-        userController.signIn(email: email, password: password) { (networkError) in
+        userController.signIn(emailAddress: emailAddress, password: password) { (networkError) in
             if let error = networkError {
                 self.presentSignInErrorAlert()
                 NSLog("Error occured during Sign In: \(error)")
             } else {
+                print("Sign in successful...")
                 DispatchQueue.main.async {
                     self.seg()
                 }
