@@ -55,13 +55,13 @@ class ForgotPasswordViewController: UIViewController {
             
             userController.forgotPasswordEmail(emailAddress: emailAddress) { (networkError) in
                 if let error = networkError {
-                    let alert = UIAlertController(title: "Forgot Password Error", message: "An error occured while submitting your request,\nplease try again later.", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+                    let alert = UIAlertController(title: "Forgot Password Error", message: "An error occurred when processing your request.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Try again", style: .default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
                     NSLog("Error occured during Forgot Password: \(error)")
                 } else {
                     print("Forgot password reset in progress...")
-                    self.successOrFailureMessage.text = "Thank you! An email has been sent to you with further instructions on how to reset your password."
+                    self.successOrFailureMessage.text = "Thank you! A reset password email has been sent."
                 }
             }
         }
