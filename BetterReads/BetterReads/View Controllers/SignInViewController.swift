@@ -332,12 +332,12 @@ class SignInViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    // MARK: - Forget Password
-    @IBAction func forgetPasswordTapped() {
-//        if let url = URL(string: "https://www.apple.com") {
-//            let request = URLRequest(url: url)
-//            webView.load(request)
-//        }
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ModalForgotPasswordSegue" {
+            guard let destinationVC = segue.destination as? ForgotPasswordViewController else { return }
+            destinationVC.userController = userController
+        }
     }
 }
 
@@ -389,23 +389,21 @@ extension SignInViewController: UITextFieldDelegate {
             
             if valid {
                 emailTextField.becomeFirstResponder()
+                self.fullNameErrorMessage.text = " "
+                return true
             }
             
             self.fullNameErrorMessage.text = message
-            if (valid) {
-                self.fullNameErrorMessage.text = " "
-            }
         case emailTextField:
             let (valid, message) = validate(textField)
             
             if valid {
                 passwordTextField.becomeFirstResponder()
+                self.emailErrorMessage.text = " "
+                return true
             }
             
             self.emailErrorMessage.text = message
-            if (valid) {
-                self.emailErrorMessage.text = " "
-            }
         case passwordTextField:
             let (valid, message) = validate(textField)
             
@@ -415,23 +413,21 @@ extension SignInViewController: UITextFieldDelegate {
                 } else {
                     passwordTextField.resignFirstResponder()
                 }
+                self.passwordErrorMessage.text = " "
+                return true
             }
             
             self.passwordErrorMessage.text = message
-            if (valid) {
-                self.passwordErrorMessage.text = " "
-            }
         case confirmPasswordTextField:
             let (valid, message) = validate(textField)
             
             if valid {
                 confirmPasswordTextField.resignFirstResponder()
+                self.confirmPasswordErrorMessage.text = " "
+                return true
             }
             
             self.confirmPasswordErrorMessage.text = message
-            if (valid) {
-                self.confirmPasswordErrorMessage.text = " "
-            }
         default:
             return true
         }

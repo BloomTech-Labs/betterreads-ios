@@ -10,7 +10,7 @@ import UIKit
 
 class ForgotPasswordViewController: UIViewController {
     
-    var userController = UserController()
+    var userController: UserController?
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var doneButton: UIButton!
@@ -19,8 +19,7 @@ class ForgotPasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         emailTextField.delegate = self
-        clearMessages()
-        successOrFailureMessage.isHidden = true
+        successOrFailureMessage.text = " "
         doneButton.layer.cornerRadius = 5
         
         // Dismiss the keyboard on tap
@@ -32,92 +31,60 @@ class ForgotPasswordViewController: UIViewController {
     }
     
     @objc private func textDidChange(_ notification: Notification) {
-        var formIsValid = true
         doneButton.backgroundColor = .catalinaBlue
-        
-        let textFields: [UITextField] = [emailTextField]
 
-        for textField in textFields {
-            // Validate Text Field
-            let (valid, _) = validate(textField)
-            guard valid else {
-                formIsValid = false
-                break
-            }
+        let (valid, _) = validate(emailTextField)
+        guard valid else {
+            doneButton.backgroundColor = .tundra
+            doneButton.isEnabled = false
+            return
         }
-        
-        doneButton.backgroundColor = formIsValid ? .catalinaBlue : .tundra
-        doneButton.isEnabled = formIsValid
-    }
-    
-    private func clearMessages() {
-        successOrFailureMessage.text = " "
+
+        doneButton.backgroundColor = .catalinaBlue
+        doneButton.isEnabled = true
     }
     
     @IBAction func doneButtonTapped(_ sender: UIButton) {
         view.endEditing(true)
         let (valid, _) = validate()
         if valid {
-            sendEmailToUser()
+            guard let emailAddress = emailTextField.text,
+                let userController = userController else { return }
+            
+            userController.forgotPasswordEmail(emailAddress: emailAddress) { (networkError) in
+                if let error = networkError {
+                    let alert = UIAlertController(title: "Forgot Password Error", message: "An error occured while submitting your request,\nplease try again later.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                    
+                    NSLog("Error occured during Forgot Password: \(error)")
+                } else {
+                    print("Forgot password reset in progress...")
+                }
+            }
         }
     }
     
     private func validate(_ field: UITextField? = nil) -> (Bool, String?) {
         do {
-            switch field {
-            case emailTextField:
-                let _ = try emailTextField.validatedText(validationType: .email(field: "email"))
-                return (true, nil)
-            default:
-                let _ = try emailTextField.validatedText(validationType: .email(field: "email"))
-                return (true, nil)
-            }
+            let _ = try emailTextField.validatedText(validationType: .email(field: "email"))
+            return (true, nil)
         } catch(let error) {
             let convertedError = (error as! ValidationError)
             return (false, convertedError.message)
         }
     }
-    
-    private func sendEmailToUser() {
-        guard let emailAddress = emailTextField.text else { return }
-        
-        userController.forgotPasswordEmail(emailAddress: emailAddress) { (networkError) in
-            if let error = networkError {
-                self.presentForgotPasswordErrorAlert()
-                NSLog("Error occured during Forgot Password: \(error)")
-            } else {
-                print("Forgot password reset in progress...")
-            }
-        }
-    }
-    
-    private func presentForgotPasswordErrorAlert() {
-        let alert = UIAlertController(title: "Forgot Password Error", message: "An error occured while submitting your request,\nplease try again later.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
-        present(alert, animated: true, completion: nil)
-    }
 }
 
 extension ForgotPasswordViewController: UITextFieldDelegate {
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        return true
-    }
-    
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        return true
-    }
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        let (valid, message) = validate(textField)
-        
+        let (valid, message) = validate()
         if valid {
-            emailTextField.resignFirstResponder()
-        }
-        
-        self.successOrFailureMessage.text = message
-        if (valid) {
             self.successOrFailureMessage.text = " "
+            emailTextField.resignFirstResponder()
+            return true
         }
+        self.successOrFailureMessage.text = message
         return true
     }
 }
