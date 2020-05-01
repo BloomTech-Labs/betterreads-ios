@@ -107,15 +107,8 @@ class UserController {
                    encoder: JSONParameterEncoder.default,
                    headers: headers).responseJSON { response in
                     switch (response.result) {
-                    case .success(let value):
-                        let jsonData = JSON(value)
-                        let authToken = jsonData["token"].stringValue
-                        self.authToken = authToken
-                        do {
-                            completion(nil)
-                        } catch {
-                            completion(NetworkError.otherError)
-                        }
+                    case .success(_):
+                        completion(nil)
                     case .failure(let error):
                         print("Error: \(error)")
                         completion(NetworkError.otherError)

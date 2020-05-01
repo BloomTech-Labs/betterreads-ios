@@ -23,6 +23,7 @@ class ForgotPasswordViewController: UIViewController {
         emailErrorMessage.text = " "
         successOrFailureMessage.text = " "
         doneButton.layer.cornerRadius = 5
+        doneButton.isEnabled = false
         
         // Dismiss the keyboard on tap
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
