@@ -43,6 +43,8 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var confirmPasswordErrorMessage: UILabel!
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var forgotPassword: UIButton!
+    @IBOutlet weak var directToSearch: UIButton!
+    
         
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -282,7 +284,7 @@ class SignInViewController: UIViewController {
                         NSLog("Error occured during Sign In: \(error)")
                     } else {
                         DispatchQueue.main.async {
-                            self.seg()
+                            //self.seg()
                         }
                     }
                 }
@@ -301,7 +303,7 @@ class SignInViewController: UIViewController {
             } else {
                 print("Sign in successful...")
                 DispatchQueue.main.async {
-                    self.seg()
+                    //self.seg()
                 }
             }
         }
@@ -332,17 +334,12 @@ class SignInViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    // MARK: - Forget Password
-    @IBAction func forgetPasswordTapped() {
-        //FIXME: - Add web link here
-        print("Forgot your password button was tapped.")
-        self.seg()
-    }
-    
     // MARK: - Navigation
-    private func seg() {
-        print("Called seg()")
-        performSegue(withIdentifier: "SignInSuccessSegue", sender: self)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ModalForgotPasswordSegue" {
+            guard let destinationVC = segue.destination as? ForgotPasswordViewController else { return }
+            destinationVC.userController = userController
+        }
     }
 }
 
@@ -394,23 +391,21 @@ extension SignInViewController: UITextFieldDelegate {
             
             if valid {
                 emailTextField.becomeFirstResponder()
+                self.fullNameErrorMessage.text = " "
+                return true
             }
             
             self.fullNameErrorMessage.text = message
-            if (valid) {
-                self.fullNameErrorMessage.text = " "
-            }
         case emailTextField:
             let (valid, message) = validate(textField)
             
             if valid {
                 passwordTextField.becomeFirstResponder()
+                self.emailErrorMessage.text = " "
+                return true
             }
             
             self.emailErrorMessage.text = message
-            if (valid) {
-                self.emailErrorMessage.text = " "
-            }
         case passwordTextField:
             let (valid, message) = validate(textField)
             
@@ -420,23 +415,21 @@ extension SignInViewController: UITextFieldDelegate {
                 } else {
                     passwordTextField.resignFirstResponder()
                 }
+                self.passwordErrorMessage.text = " "
+                return true
             }
             
             self.passwordErrorMessage.text = message
-            if (valid) {
-                self.passwordErrorMessage.text = " "
-            }
         case confirmPasswordTextField:
             let (valid, message) = validate(textField)
             
             if valid {
                 confirmPasswordTextField.resignFirstResponder()
+                self.confirmPasswordErrorMessage.text = " "
+                return true
             }
             
             self.confirmPasswordErrorMessage.text = message
-            if (valid) {
-                self.confirmPasswordErrorMessage.text = " "
-            }
         default:
             return true
         }
