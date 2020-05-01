@@ -13,12 +13,14 @@ class ForgotPasswordViewController: UIViewController {
     var userController: UserController?
     
     @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var emailErrorMessage: UILabel!
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var successOrFailureMessage: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         emailTextField.delegate = self
+        emailErrorMessage.text = " "
         successOrFailureMessage.text = " "
         doneButton.layer.cornerRadius = 5
         
@@ -39,7 +41,7 @@ class ForgotPasswordViewController: UIViewController {
             doneButton.isEnabled = false
             return
         }
-
+        emailErrorMessage.text = " "
         doneButton.backgroundColor = .catalinaBlue
         doneButton.isEnabled = true
     }
@@ -56,10 +58,10 @@ class ForgotPasswordViewController: UIViewController {
                     let alert = UIAlertController(title: "Forgot Password Error", message: "An error occured while submitting your request,\nplease try again later.", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
-                    
                     NSLog("Error occured during Forgot Password: \(error)")
                 } else {
                     print("Forgot password reset in progress...")
+                    self.successOrFailureMessage.text = "Thank you! An email has been sent to you with further instructions on how to reset your password."
                 }
             }
         }
@@ -80,11 +82,11 @@ extension ForgotPasswordViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         let (valid, message) = validate()
         if valid {
-            self.successOrFailureMessage.text = " "
+            self.emailErrorMessage.text = " "
             emailTextField.resignFirstResponder()
             return true
         }
-        self.successOrFailureMessage.text = message
+        self.emailErrorMessage.text = message
         return true
     }
 }
