@@ -282,7 +282,7 @@ class SignInViewController: UIViewController {
                         NSLog("Error occured during Sign In: \(error)")
                     } else {
                         DispatchQueue.main.async {
-                            self.seg()
+                            //self.seg()
                         }
                     }
                 }
@@ -301,7 +301,7 @@ class SignInViewController: UIViewController {
             } else {
                 print("Sign in successful...")
                 DispatchQueue.main.async {
-                    self.seg()
+                    //self.seg()
                 }
             }
         }
@@ -334,15 +334,10 @@ class SignInViewController: UIViewController {
     
     // MARK: - Forget Password
     @IBAction func forgetPasswordTapped() {
-        //FIXME: - Add web link here
-        print("Forgot your password button was tapped.")
-        self.seg()
-    }
-    
-    // MARK: - Navigation
-    private func seg() {
-        print("Called seg()")
-        performSegue(withIdentifier: "SignInSuccessSegue", sender: self)
+//        if let url = URL(string: "https://www.apple.com") {
+//            let request = URLRequest(url: url)
+//            webView.load(request)
+//        }
     }
 }
 

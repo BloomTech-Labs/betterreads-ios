@@ -41,23 +41,56 @@
                                 <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LoW-M6-5MY">
-                                <rect key="frame" x="0.0" y="219" width="414" height="497"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <wkWebViewConfiguration key="configuration">
-                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                    <wkPreferences key="preferences"/>
-                                </wkWebViewConfiguration>
-                            </wkWebView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="janesmith@email.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rgm-bZ-Ks6">
+                                <rect key="frame" x="20" y="219" width="374" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="XyH-cU-sVk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
+                            </textField>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="BetterReads-Graphics_Man" translatesAutoresizingMaskIntoConstraints="NO" id="AlX-hN-YS8">
+                                <rect key="frame" x="20" y="397" width="374" height="299"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aOZ-94-Io4">
+                                <rect key="frame" x="20" y="299" width="374" height="40"/>
+                                <color key="backgroundColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="LuV-Ir-Ioz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="18"/>
+                                <inset key="contentEdgeInsets" minX="0.0" minY="15" maxX="0.0" maxY="15"/>
+                                <state key="normal" title="Done">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="submitButtonTapped:" destination="pRd-tq-Kku" eventType="touchUpInside" id="E62-rs-j6d"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Success or Failure Message" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eAz-Wf-Ror">
+                                <rect key="frame" x="20" y="359" width="374" height="18"/>
+                                <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
+                                <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="rgm-bZ-Ks6" firstAttribute="leading" secondItem="LHQ-VR-oYC" secondAttribute="leading" constant="20" id="0fW-fz-4wZ"/>
                             <constraint firstItem="LoE-zJ-L00" firstAttribute="top" secondItem="1zX-eX-IL3" secondAttribute="bottom" constant="40" id="1xx-sP-X7M"/>
-                            <constraint firstItem="LoW-M6-5MY" firstAttribute="leading" secondItem="LHQ-VR-oYC" secondAttribute="leading" id="Aus-gC-I5s"/>
-                            <constraint firstItem="LoW-M6-5MY" firstAttribute="trailing" secondItem="LHQ-VR-oYC" secondAttribute="trailing" id="T1A-BE-3FW"/>
-                            <constraint firstItem="LoW-M6-5MY" firstAttribute="top" secondItem="LoE-zJ-L00" secondAttribute="bottom" constant="40" id="WUC-Jp-ZFa"/>
-                            <constraint firstItem="LoW-M6-5MY" firstAttribute="bottom" secondItem="LHQ-VR-oYC" secondAttribute="bottom" id="g0q-sL-IKn"/>
+                            <constraint firstItem="LHQ-VR-oYC" firstAttribute="trailing" secondItem="AlX-hN-YS8" secondAttribute="trailing" constant="20" id="BMP-lO-s3m"/>
+                            <constraint firstItem="AlX-hN-YS8" firstAttribute="top" secondItem="eAz-Wf-Ror" secondAttribute="bottom" constant="20" id="L3p-du-raq"/>
+                            <constraint firstItem="aOZ-94-Io4" firstAttribute="top" secondItem="rgm-bZ-Ks6" secondAttribute="bottom" constant="40" id="OzE-GM-mO8"/>
+                            <constraint firstItem="rgm-bZ-Ks6" firstAttribute="top" secondItem="LoE-zJ-L00" secondAttribute="bottom" constant="40" id="Qzf-2l-ueb"/>
+                            <constraint firstItem="eAz-Wf-Ror" firstAttribute="top" secondItem="aOZ-94-Io4" secondAttribute="bottom" constant="20" id="R4z-g6-UvO"/>
+                            <constraint firstItem="LHQ-VR-oYC" firstAttribute="trailing" secondItem="rgm-bZ-Ks6" secondAttribute="trailing" constant="20" id="RjH-h7-ICk"/>
+                            <constraint firstItem="LHQ-VR-oYC" firstAttribute="trailing" secondItem="eAz-Wf-Ror" secondAttribute="trailing" constant="20" id="bO5-XA-vhn"/>
+                            <constraint firstItem="LHQ-VR-oYC" firstAttribute="bottom" secondItem="AlX-hN-YS8" secondAttribute="bottom" constant="20" id="dEy-8S-7y1"/>
+                            <constraint firstItem="aOZ-94-Io4" firstAttribute="leading" secondItem="LHQ-VR-oYC" secondAttribute="leading" constant="20" id="dy5-d3-hTP"/>
+                            <constraint firstItem="eAz-Wf-Ror" firstAttribute="leading" secondItem="LHQ-VR-oYC" secondAttribute="leading" constant="20" id="eAP-9Y-prK"/>
+                            <constraint firstItem="AlX-hN-YS8" firstAttribute="leading" secondItem="LHQ-VR-oYC" secondAttribute="leading" constant="20" id="fFS-TD-ewq"/>
                             <constraint firstAttribute="trailing" secondItem="LoE-zJ-L00" secondAttribute="trailing" constant="40" id="gAK-cs-OtY"/>
+                            <constraint firstItem="LHQ-VR-oYC" firstAttribute="trailing" secondItem="aOZ-94-Io4" secondAttribute="trailing" constant="20" id="lAb-79-2JM"/>
                             <constraint firstItem="LHQ-VR-oYC" firstAttribute="trailing" secondItem="1zX-eX-IL3" secondAttribute="trailing" constant="20" id="nUJ-dz-fyx"/>
                             <constraint firstItem="1zX-eX-IL3" firstAttribute="leading" secondItem="LHQ-VR-oYC" secondAttribute="leading" constant="20" id="ok9-zv-POr"/>
                             <constraint firstItem="LoE-zJ-L00" firstAttribute="leading" secondItem="bgp-uT-hom" secondAttribute="leading" constant="40" id="sxQ-7O-8fM"/>
@@ -253,7 +286,7 @@
                                                     <action selector="submitButtonTapped:" destination="pRd-tq-Kku" eventType="touchUpInside" id="P92-dw-gop"/>
                                                 </connections>
                                             </button>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Book-Reader-Graphic" translatesAutoresizingMaskIntoConstraints="NO" id="MMk-Qt-2zY">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BetterReads-Graphics_Sitting" translatesAutoresizingMaskIntoConstraints="NO" id="MMk-Qt-2zY">
                                                 <rect key="frame" x="20" y="636.66666666666663" width="374" height="270"/>
                                                 <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
@@ -511,7 +544,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Book-Reader-Graphic" width="1020" height="735"/>
+        <image name="BetterReads-Graphics_Man" width="1000" height="852"/>
+        <image name="BetterReads-Graphics_Sitting" width="1000" height="720"/>
         <image name="book" catalog="system" width="128" height="101"/>
         <image name="house" catalog="system" width="128" height="110"/>
         <image name="info.circle.fill" catalog="system" width="128" height="121"/>
