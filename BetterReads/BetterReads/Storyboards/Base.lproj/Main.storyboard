@@ -21,10 +21,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--Forgot Password View Controller-->
         <scene sceneID="2zn-9j-qqa">
             <objects>
-                <viewController id="p8v-6O-0X8" sceneMemberID="viewController">
+                <viewController id="p8v-6O-0X8" customClass="ForgotPasswordViewController" customModule="BetterReads" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bgp-uT-hom">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -64,6 +64,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
+                                    <action selector="doneButtonTapped:" destination="p8v-6O-0X8" eventType="touchUpInside" id="GWw-mc-Dqz"/>
                                     <action selector="submitButtonTapped:" destination="pRd-tq-Kku" eventType="touchUpInside" id="E62-rs-j6d"/>
                                 </connections>
                             </button>
@@ -98,6 +99,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LHQ-VR-oYC"/>
                     </view>
+                    <connections>
+                        <outlet property="doneButton" destination="aOZ-94-Io4" id="Qtq-r3-lPs"/>
+                        <outlet property="emailTextField" destination="rgm-bZ-Ks6" id="3YD-0M-P94"/>
+                        <outlet property="successOrFailureMessage" destination="eAz-Wf-Ror" id="ihm-cw-4C8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tRp-Nw-G5Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

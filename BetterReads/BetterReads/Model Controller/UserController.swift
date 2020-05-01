@@ -92,4 +92,38 @@ class UserController {
                     }
         }
     }
+    
+    func forgotPasswordEmail(emailAddress: String, completion: @escaping CompletionHandler = { _ in }) {
+        let forgotPasswordEmailURL = baseURL.appendingPathComponent("auth")
+        .appendingPathComponent("reset").appendingPathComponent("requestreset")
+        let parameters = ["email": emailAddress]
+        let headers: HTTPHeaders = [
+            "Accept": "application/json"
+        ]
+        
+        AF.request(forgotPasswordEmailURL,
+                   method: .post,
+                   parameters: parameters,
+                   encoder: JSONParameterEncoder.default,
+                   headers: headers).responseJSON { response in
+                    switch (response.result) {
+                    case .success(let value):
+                        let jsonData = JSON(value)
+                        let authToken = jsonData["token"].stringValue
+                        self.authToken = authToken
+                        do {
+                            let jwt = try decode(jwt: authToken)
+                            let fullNameClaim = jwt.claim(name: "fullName")
+                            guard let fullName = fullNameClaim.string else { return }
+                            self.user = User(fullName: fullName, emailAddress: emailAddress)
+                            completion(nil)
+                        } catch {
+                            completion(NetworkError.otherError)
+                        }
+                    case .failure(let error):
+                        print("Error: \(error)")
+                        completion(NetworkError.otherError)
+                    }
+        }
+    }
 }
