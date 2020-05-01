@@ -43,6 +43,8 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var confirmPasswordErrorMessage: UILabel!
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var forgotPassword: UIButton!
+    @IBOutlet weak var directToSearch: UIButton!
+    
         
     // MARK: - Lifecycle
     override func viewDidLoad() {

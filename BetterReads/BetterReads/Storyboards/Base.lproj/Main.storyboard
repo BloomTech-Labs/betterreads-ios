@@ -117,7 +117,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tRp-Nw-G5Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-501.44927536231887" y="116.57608695652175"/>
+            <point key="canvasLocation" x="-687" y="395"/>
         </scene>
         <!--Sign In View Controller-->
         <scene sceneID="dW7-u0-HBH">
@@ -321,6 +321,15 @@
                                                     <segue destination="p8v-6O-0X8" kind="presentation" identifier="ModalForgotPasswordSegue" id="a0c-Jp-Tqr"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nCj-7m-Vxz">
+                                                <rect key="frame" x="356" y="10" width="48" height="30"/>
+                                                <state key="normal" title="Search">
+                                                    <color key="titleColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="bIc-hZ-hBf" kind="presentation" modalPresentationStyle="fullScreen" id="f62-GZ-GvY"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="J5E-Ve-Vix" firstAttribute="width" secondItem="Owr-0V-qP7" secondAttribute="width" id="0Ve-pK-Apx"/>
@@ -333,9 +342,11 @@
                                             <constraint firstItem="MMk-Qt-2zY" firstAttribute="top" secondItem="mKe-xP-9Fu" secondAttribute="bottom" constant="5" id="D4e-iZ-hbT"/>
                                             <constraint firstAttribute="trailing" secondItem="K7M-FW-P5n" secondAttribute="trailing" constant="20" id="EK8-0j-BXr"/>
                                             <constraint firstItem="mKe-xP-9Fu" firstAttribute="top" secondItem="R5i-h0-MfM" secondAttribute="bottom" constant="10" id="Eab-7G-JXG"/>
+                                            <constraint firstAttribute="trailing" secondItem="nCj-7m-Vxz" secondAttribute="trailing" constant="10" id="LUg-Ja-tLd"/>
                                             <constraint firstItem="J5E-Ve-Vix" firstAttribute="centerX" secondItem="UwA-YK-r6A" secondAttribute="centerX" id="R3R-LH-CIX"/>
                                             <constraint firstItem="J5E-Ve-Vix" firstAttribute="top" secondItem="Owr-0V-qP7" secondAttribute="bottom" constant="1" id="RKR-pc-Sgs"/>
                                             <constraint firstItem="J5E-Ve-Vix" firstAttribute="leading" secondItem="UwA-YK-r6A" secondAttribute="leading" constant="20" id="S7m-wu-lqQ"/>
+                                            <constraint firstItem="nCj-7m-Vxz" firstAttribute="top" secondItem="UwA-YK-r6A" secondAttribute="top" constant="10" id="bJr-JT-zPN"/>
                                             <constraint firstAttribute="trailing" secondItem="mKe-xP-9Fu" secondAttribute="trailing" constant="20" id="dr4-M2-0vO"/>
                                             <constraint firstItem="Owr-0V-qP7" firstAttribute="top" secondItem="K7M-FW-P5n" secondAttribute="bottom" constant="25" id="iyi-1x-Jia"/>
                                             <constraint firstItem="Owr-0V-qP7" firstAttribute="leading" secondItem="UwA-YK-r6A" secondAttribute="leading" constant="20" id="jjW-DW-YBy"/>
@@ -392,7 +403,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Za0-7F-Pg2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="457" y="9"/>
+            <point key="canvasLocation" x="52" y="19"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="2yq-w1-wcm">
@@ -400,7 +411,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="V4j-lu-7nX" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="5Tu-05-Tnx"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ICa-xX-CrB">
+                    <tabBar key="tabBar" tag="-1" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ICa-xX-CrB">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -414,7 +425,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o8d-ce-JcD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1109" y="117"/>
+            <point key="canvasLocation" x="1013" y="127"/>
         </scene>
         <!--BetterReads-->
         <scene sceneID="AOt-BX-vD7">
@@ -430,7 +441,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tDj-d5-t0P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="457" y="867"/>
+            <point key="canvasLocation" x="322" y="1592"/>
         </scene>
         <!--My Library-->
         <scene sceneID="hOp-HG-gK9">
@@ -446,7 +457,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mo2-vf-fwo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1109" y="867"/>
+            <point key="canvasLocation" x="1012" y="1592"/>
         </scene>
         <!--Search Books-->
         <scene sceneID="8E8-uY-CE6">
@@ -497,7 +508,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KW8-DK-1v7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1761" y="867"/>
+            <point key="canvasLocation" x="1706" y="1591"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="l1u-02-j9p">
@@ -505,6 +516,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bIc-hZ-hBf" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="search" id="yq8-aY-V8V"/>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="Mhv-bi-APM"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="39s-my-Te0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -516,7 +528,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="um6-fX-c1B" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2432" y="867"/>
+            <point key="canvasLocation" x="1707" y="867"/>
         </scene>
         <!--My Library-->
         <scene sceneID="rD7-J0-bsb">
@@ -535,7 +547,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="28d-fF-4uo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1109" y="1519"/>
+            <point key="canvasLocation" x="1012" y="867"/>
         </scene>
         <!--Home-->
         <scene sceneID="Jmf-S3-ESh">
@@ -554,9 +566,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cg2-jY-Bz6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-197" y="867"/>
+            <point key="canvasLocation" x="322" y="867"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="f62-GZ-GvY"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="BetterReads-Graphics_Man" width="1000" height="852"/>
         <image name="BetterReads-Graphics_Sitting" width="1000" height="720"/>
