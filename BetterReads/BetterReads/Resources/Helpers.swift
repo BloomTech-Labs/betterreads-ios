@@ -20,11 +20,8 @@ extension UIView {
 }
 
 extension UIColor {
-    /// Catalina Blue #071A81
-    static let catalinaBlue = UIColor(red: 11.0/255.0, green: 28.0/255.0, blue: 124.0/255.0, alpha: 1.0)
-    
-    /// Cinnabar Red #E33434
-    static let cinnabarRed = UIColor(red: 208.0/255.0, green: 68.0/255.0, blue: 61.0/255.0, alpha: 1.0)
+    /// Trinidad Orange #D44808
+    static let trinidadOrange = UIColor(red: 212.0/255.0, green: 72.0/255.0, blue: 8.0/255.0, alpha: 1.0)
     
     /// Tundra #404040
     static let tundra = UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 1.0)
@@ -34,4 +31,7 @@ extension UIColor {
     
     /// Alto Gray #D9D9D9
     static let altoGray = UIColor(red: 217.0/255.0, green: 217.0/255.0, blue: 217.0/255.0, alpha: 1.0)
+    
+    /// Cinnabar Red #E33434
+    static let cinnabarRed = UIColor(red: 208.0/255.0, green: 68.0/255.0, blue: 61.0/255.0, alpha: 1.0)
 }
