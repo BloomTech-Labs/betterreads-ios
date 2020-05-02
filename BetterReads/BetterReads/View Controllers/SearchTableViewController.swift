@@ -10,7 +10,6 @@ import UIKit
 
 // Global Variables for test purposes
 
-
 let fakeBooksArray: [Book] = [Book(title: "Harry Potter", author: "JK Rowling", cover: "book.fill", rating: 0.0),
                               Book(title: "Twilight", author: "Stephenie Meyer", cover: "book.fill", rating: 0.5),
                               Book(title: "Animal Farm", author: "George Orwell", cover: "book.fill", rating: 1.0),
@@ -45,6 +44,12 @@ class SearchTableViewController: UITableViewController {
         searchBar.delegate = self
         searchBar.tintColor = UIColor(red: 212/255, green: 72/255, blue: 8/255, alpha: 1)
         setupToolBar()
+        let controller = SearchController()
+        controller.searchBook(with: "animal farm") { (error) in
+            DispatchQueue.main.async {
+                print("searchBook called in TVC")
+            }
+        }
     }
     
     private func setupToolBar() {
@@ -103,20 +108,20 @@ class SearchTableViewController: UITableViewController {
     
     private func searchByTerm(searchTerm: String) {
             // searchFuntion() then DispatchQueue.main.async {self.tableView.reloadData()}
-                   
-    //        SearchController.searchByTitle(title: searchTerm) { (response) in
-    //
-    //            switch response.result {
-    //
-    //            case .success(let data):
-    //                print(data)
-    //            case .failure(let error):
-    //                print(error)
-    //            }
-    //        }
-            
+
+//            SearchController.searchByTitle(title: searchTerm) { (response) in
+//
+//                switch response.result {
+//
+//                case .success(let data):
+//                    print(data)
+//                case .failure(let error):
+//                    print(error)
+//                }
+//            }
+
             let booksWithSearchTerm = fakeBooksArray.filter {
-                $0.title.lowercased().contains(searchTerm.lowercased()) || $0.author.lowercased().contains(searchTerm.lowercased()) 
+                $0.title.lowercased().contains(searchTerm.lowercased()) || $0.author.lowercased().contains(searchTerm.lowercased())
             }
             myBooksArray = booksWithSearchTerm
         }

@@ -101,6 +101,7 @@ class SearchResultView: UIView {
         imageView.tintColor = UIColor(red: 212/255, green: 72/255, blue: 8/255, alpha: 1)
         
         // Title Label
+        // FIXME: should we make this a double line label for long titles?
         let label = UILabel()
         addSubview(label)
         self.titleLabel = label
