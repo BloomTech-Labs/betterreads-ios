@@ -150,7 +150,7 @@ class SearchResultView: UIView {
             let star = UIImageView()
             starsView.addSubview(star)
             starsArray.append(star)
-            print("starsArray.count = \(starsArray.count)")
+            //print("starsArray.count = \(starsArray.count)")
             star.tag = i
             star.frame = CGRect(x: (starSize * (i - 1)),
                                 y: 0,

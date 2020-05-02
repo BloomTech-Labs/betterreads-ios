@@ -33,6 +33,7 @@ let fakeBooksArray: [Book] = [Book(title: "Harry Potter", author: "JK Rowling", 
 
 
 var myBooksArray = [Book]()
+let searchController = SearchController()
 
 class SearchTableViewController: UITableViewController {
 
@@ -44,12 +45,11 @@ class SearchTableViewController: UITableViewController {
         searchBar.delegate = self
         searchBar.tintColor = UIColor(red: 212/255, green: 72/255, blue: 8/255, alpha: 1)
         setupToolBar()
-        let controller = SearchController()
-        controller.searchBook(with: "1984") { (error) in
-            DispatchQueue.main.async {
-                print("searchBook called in TVC")
-            }
-        }
+//        searchController.searchBook(with: "1984") { (error) in
+//            DispatchQueue.main.async {
+//                print("searchBook called in TVC")
+//            }
+//        }
     }
     
     private func setupToolBar() {
@@ -78,7 +78,8 @@ class SearchTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return myBooksArray.count
+        return searchController.searchResultBooks.count
+        //return myBooksArray.count
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -86,15 +87,22 @@ class SearchTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell", for: indexPath) as? SearchResultTableViewCell else { return UITableViewCell() }
-
-        let book = myBooksArray[indexPath.row]
-//        cell.mainView.imageView.image = UIImage(systemName: book.cover)
-//        cell.mainView.titleLabel.text = book.title
-//        cell.mainView.authorLabel.text = book.author
-        cell.book = book
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell", for: indexPath)
+        let book = searchController.searchResultBooks[indexPath.row]
+        cell.textLabel?.text = "\(book.title), \(book.authors?.first), \(book.averageRating), \(book.thumbnail)"
         return cell
     }
+    
+//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell", for: indexPath) as? SearchResultTableViewCell else { return UITableViewCell() }
+//
+//        let book = myBooksArray[indexPath.row]
+////        cell.mainView.imageView.image = UIImage(systemName: book.cover)
+////        cell.mainView.titleLabel.text = book.title
+////        cell.mainView.authorLabel.text = book.author
+//        cell.book = book
+//        return cell
+//    }
     
     // MARK: - Navigation
 
@@ -159,7 +167,21 @@ extension SearchTableViewController: UISearchBarDelegate {
     
     // dismiss keyboard so user can view all results
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        //print("SearchButtonClicked (tapped return/search)")
+        
+        guard let searchTerm = searchBar.text, !searchTerm.isEmpty else {
+            print("Empty searchbar")
+            return
+        }
+        
+        print("SearchButtonClicked (tapped return/search)")
+        searchController.searchBook(with: searchTerm) { (error) in
+            DispatchQueue.main.async {
+                print("searchBook called in searchBarSearchButtonClicked")
+                print("array count now: \(searchController.searchResultBooks.count)")
+                self.tableView.reloadData()
+            }
+        }
+        
         hideKeyboardAndCancelButton()
     }
 }
