@@ -51,19 +51,19 @@ struct FakeBook: Codable {
 
 // MARK: - Item
 struct Item: Codable {
-    let authors: [Author]?
+    let authors: [String]?
     let categories: [String]?
     let itemDescription: String?
-    let googleID: String
-    let isEbook: Bool
-    let language: Language
+    let googleID: String? // wasn't optional
+    let isEbook: Bool? // wasn't optional
+    let language: String? // used to be Language and not optional
     let pageCount: Int?
-    let publisher: String
-    let smallThumbnail: String
+    let publisher: String? // wasn't optional
+    let smallThumbnail: String? // wasn't optional
     let textSnippet: String?
-    let thumbnail: String
-    let title: String
-    let webReaderLink: String
+    let thumbnail: String? // wasn't optional
+    let title: String? // wasn't optional
+    let webReaderLink: String? // wasn't optional
     let averageRating: Double?
     let isbn10, isbn13, publishedDate: String?
 
@@ -75,13 +75,35 @@ struct Item: Codable {
     }
 }
 
-enum Author: String, Codable {
-    case aMHeath = "A.M. Heath"
-    case georgeOrwell = "George Orwell"
-    case najoudEnsaff = "Najoud Ensaff"
-}
+//enum Author: String, Codable {
+//    case aMHeath = "A.M. Heath"
+//    case georgeOrwell = "George Orwell"
+//    case najoudEnsaff = "Najoud Ensaff"
+//}
 
-enum Language: String, Codable {
-    case en = "en"
-}
+//enum Language: String, Codable {
+//    case en = "en"
+//}
 
+// from the docs
+/*
+ {
+   googleId: STRING,
+   title: STRING,
+   authors: STRING,
+   publisher: STRING,
+   publishedDate: STRING,
+   description: STRING,
+   isbn10: STRING,
+   isbn13: STRING,
+   pageCount: INTEGER,
+   categories: STRING,
+   thumbnail: STRING,
+   smallThumbnail: STRING,
+   language: STRING,
+   webReaderLink: STRING,
+   textSnippet: STRING,
+   isEbook: BOOLEAN,
+   averageRating: DECIMAL
+ }
+ */

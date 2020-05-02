@@ -45,7 +45,7 @@ class SearchTableViewController: UITableViewController {
         searchBar.tintColor = UIColor(red: 212/255, green: 72/255, blue: 8/255, alpha: 1)
         setupToolBar()
         let controller = SearchController()
-        controller.searchBook(with: "animal farm") { (error) in
+        controller.searchBook(with: "1984") { (error) in
             DispatchQueue.main.async {
                 print("searchBook called in TVC")
             }
