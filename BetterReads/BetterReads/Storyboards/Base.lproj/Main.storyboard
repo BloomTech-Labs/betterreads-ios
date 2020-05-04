@@ -402,7 +402,7 @@
                         <outlet property="passwordTextField" destination="HAQ-16-GNd" id="Su1-kq-HZg"/>
                         <outlet property="segmentedControl" destination="Owr-0V-qP7" id="v2t-UV-Qzp"/>
                         <outlet property="submitButton" destination="R5i-h0-MfM" id="Q89-dK-w0q"/>
-                        <segue destination="V4j-lu-7nX" kind="presentation" identifier="SignInSuccessSegue" modalPresentationStyle="fullScreen" id="Q4w-Qa-WfN"/>
+                        <segue destination="V4j-lu-7nX" kind="presentation" identifier="ShowHomeScreenSegue" modalPresentationStyle="fullScreen" id="Q4w-Qa-WfN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Za0-7F-Pg2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -820,7 +820,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="aze-FP-TB8"/>
+        <segue reference="Q4w-Qa-WfN"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="BetterReads-Graphics_Man" width="1000" height="852"/>

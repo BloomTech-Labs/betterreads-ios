@@ -10,11 +10,18 @@ import UIKit
 
 class RecommendationCollectionViewCell: UICollectionViewCell {
     
-    //MARK: - Properties
-    
-    //MARK: - Outlets
+    var book: Book? {
+        didSet {
+            updateViews()
+        }
+    }
     
     @IBOutlet weak var bookCoverImageView: UIImageView!
     
-    
+    private func updateViews() {
+        guard let book = book,
+            let imageName = book.smallThumbnail else { return }
+        
+        bookCoverImageView.image = UIImage(named: imageName)
+    }
 }

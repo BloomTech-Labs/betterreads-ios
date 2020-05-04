@@ -18,6 +18,7 @@ enum NetworkError: Error {
     case badData
     case noDecode
     case existingUser
+    case noUser
 }
 
 class UserController {
@@ -49,7 +50,7 @@ class UserController {
                         let jsonData = JSON(value)
                         let authToken = jsonData["token"].stringValue
                         self.authToken = authToken
-                        self.user = User(fullName: fullName, emailAddress: emailAddress)
+                        self.user = User(id: UUID(), fullName: fullName, emailAddress: emailAddress)
                         completion(nil)
                     case .failure(let error):
                         print("Error: \(error)")
@@ -80,8 +81,11 @@ class UserController {
                         do {
                             let jwt = try decode(jwt: authToken)
                             let fullNameClaim = jwt.claim(name: "fullName")
-                            guard let fullName = fullNameClaim.string else { return }
-                            self.user = User(fullName: fullName, emailAddress: emailAddress)
+                            let idClaim = jwt.claim(name: "id")
+                            guard let fullName = fullNameClaim.string,
+                                let id = idClaim.string else { completion(NetworkError.otherError) }
+                            guard let uuid = UUID(uuidString: id) else { completion(NetworkError.otherError) }
+                            self.user = User(id: uuid, fullName: fullName, emailAddress: emailAddress)
                             completion(nil)
                         } catch {
                             completion(NetworkError.otherError)
@@ -93,6 +97,7 @@ class UserController {
         }
     }
     
+    //MARK: - Forgot Password Email
     func forgotPasswordEmail(emailAddress: String, completion: @escaping CompletionHandler = { _ in }) {
         let forgotPasswordEmailURL = baseURL.appendingPathComponent("auth")
         .appendingPathComponent("reset").appendingPathComponent("requestreset")
@@ -103,6 +108,35 @@ class UserController {
         
         AF.request(forgotPasswordEmailURL,
                    method: .post,
+                   parameters: parameters,
+                   encoder: JSONParameterEncoder.default,
+                   headers: headers).responseJSON { response in
+                    switch (response.result) {
+                    case .success(_):
+                        completion(nil)
+                    case .failure(let error):
+                        print("Error: \(error)")
+                        completion(NetworkError.otherError)
+                    }
+        }
+    }
+    
+    //MARK: - Recommendations
+    func getRecommendations(completion: @escaping CompletionHandler = { _ in }) {
+        if user == nil {
+            completion(NetworkError.noUser)
+        }
+        
+        guard let user = user else { completion(NetworkError.otherError) }
+        
+        let getRecommendationsURL = baseURL.appendingPathComponent(":\(user.id)").appendingPathComponent("recommendations")
+        let parameters = ["id": user.id]
+        let headers: HTTPHeaders = [
+            "Accept": "application/json"
+        ]
+        
+        AF.request(getRecommendationsURL,
+                   method: .get,
                    parameters: parameters,
                    encoder: JSONParameterEncoder.default,
                    headers: headers).responseJSON { response in
