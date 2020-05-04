@@ -72,7 +72,7 @@ class SignInViewController: UIViewController {
     
     @objc private func textDidChange(_ notification: Notification) {
         var formIsValid = true
-        submitButton.backgroundColor = .catalinaBlue
+        submitButton.backgroundColor = .trinidadOrange
         
         let textFields: [UITextField] = [fullNameTextField, emailTextField, passwordTextField, confirmPasswordTextField]
 
@@ -85,7 +85,7 @@ class SignInViewController: UIViewController {
             }
         }
         // Update Save Button
-        submitButton.backgroundColor = formIsValid ? .catalinaBlue : .tundra
+        submitButton.backgroundColor = formIsValid ? .trinidadOrange : .tundra
         submitButton.isEnabled = formIsValid
     }
     

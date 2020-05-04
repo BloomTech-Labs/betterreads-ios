@@ -34,7 +34,7 @@ class ForgotPasswordViewController: UIViewController {
     }
     
     @objc private func textDidChange(_ notification: Notification) {
-        doneButton.backgroundColor = .catalinaBlue
+        doneButton.backgroundColor = .trinidadOrange
 
         let (valid, _) = validate(emailTextField)
         guard valid else {
@@ -43,7 +43,7 @@ class ForgotPasswordViewController: UIViewController {
             return
         }
         emailErrorMessage.text = " "
-        doneButton.backgroundColor = .catalinaBlue
+        doneButton.backgroundColor = .trinidadOrange
         doneButton.isEnabled = true
     }
     
