@@ -591,6 +591,7 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstItem="XrN-eJ-L2C" firstAttribute="top" secondItem="3xZ-Rv-Ed4" secondAttribute="bottom" constant="4" id="0pc-0y-tB5"/>
+                                            <constraint firstAttribute="height" constant="855" id="3pm-OP-qTW"/>
                                             <constraint firstItem="wFQ-NH-hVw" firstAttribute="leading" secondItem="ND2-O2-Ina" secondAttribute="leading" id="7Sm-s4-xB2"/>
                                             <constraint firstItem="XrN-eJ-L2C" firstAttribute="leading" secondItem="ND2-O2-Ina" secondAttribute="leading" constant="20" id="9ZR-Yd-X4G"/>
                                             <constraint firstItem="wFQ-NH-hVw" firstAttribute="top" secondItem="Fbc-rw-XHQ" secondAttribute="bottom" constant="8" id="H5g-PT-Zfg"/>
@@ -609,7 +610,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="ND2-O2-Ina" firstAttribute="height" secondItem="PRK-xs-FOr" secondAttribute="height" priority="250" id="L3h-Pc-L3C"/>
                                     <constraint firstItem="ND2-O2-Ina" firstAttribute="width" secondItem="PRK-xs-FOr" secondAttribute="width" id="hx2-yO-kpc"/>
@@ -766,26 +767,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cg2-jY-Bz6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="322" y="867"/>
-        </scene>
-        <!--BetterReads-->
-        <scene sceneID="tN6-sc-Y9y">
-            <objects>
-                <viewController id="wms-Ab-gJW" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="46b-E8-bzr">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="NFV-sT-Git"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="BetterReads" id="G3k-js-a7y">
-                        <barButtonItem key="rightBarButtonItem" image="person.circle.fill" catalog="system" id="0tJ-vK-D7D">
-                            <color key="tintColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
-                        </barButtonItem>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZrI-fu-Ney" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-365" y="1591"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
