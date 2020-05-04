@@ -23,6 +23,11 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
+        setupUserContoller()
+    }
+    
+    //MARK: - Methods
+    private func setupUserContoller() {
         guard let userController = userController else { return }
         userController.getRecommendations { (error) in
             if let error = error {
@@ -30,12 +35,9 @@ class HomeViewController: UIViewController {
             alert.addAction(UIAlertAction(title: "Try again", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
             NSLog("Error occured during Get Recommendations: \(error)")
+            } else {
+                self.welcomeUser.text = "Welcome,"
             }
         }
     }
-    
-    //MARK: - Methods
-
-    
-
 }

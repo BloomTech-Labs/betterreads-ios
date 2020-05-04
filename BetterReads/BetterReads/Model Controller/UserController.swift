@@ -83,8 +83,8 @@ class UserController {
                             let fullNameClaim = jwt.claim(name: "fullName")
                             let idClaim = jwt.claim(name: "id")
                             guard let fullName = fullNameClaim.string,
-                                let id = idClaim.string else { completion(NetworkError.otherError) }
-                            guard let uuid = UUID(uuidString: id) else { completion(NetworkError.otherError) }
+                                let id = idClaim.string else { return completion(NetworkError.otherError) }
+                            guard let uuid = UUID(uuidString: id) else { return completion(NetworkError.otherError) }
                             self.user = User(id: uuid, fullName: fullName, emailAddress: emailAddress)
                             completion(nil)
                         } catch {
@@ -127,7 +127,7 @@ class UserController {
             completion(NetworkError.noUser)
         }
         
-        guard let user = user else { completion(NetworkError.otherError) }
+        guard let user = user else { return completion(NetworkError.otherError) }
         
         let getRecommendationsURL = baseURL.appendingPathComponent(":\(user.id)").appendingPathComponent("recommendations")
         let parameters = ["id": user.id]
