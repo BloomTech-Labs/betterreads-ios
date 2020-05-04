@@ -284,7 +284,7 @@ class SignInViewController: UIViewController {
                         NSLog("Error occured during Sign In: \(error)")
                     } else {
                         DispatchQueue.main.async {
-                            //self.seg()
+                            self.performSegue(withIdentifier: "SignInSuccessSegue", sender: self)
                         }
                     }
                 }
@@ -303,7 +303,7 @@ class SignInViewController: UIViewController {
             } else {
                 print("Sign in successful...")
                 DispatchQueue.main.async {
-                    //self.seg()
+                    self.performSegue(withIdentifier: "SignInSuccessSegue", sender: self)
                 }
             }
         }
