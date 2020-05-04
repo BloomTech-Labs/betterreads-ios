@@ -327,7 +327,7 @@
                                                     <color key="titleColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="bIc-hZ-hBf" kind="presentation" modalPresentationStyle="fullScreen" id="f62-GZ-GvY"/>
+                                                    <segue destination="V4j-lu-7nX" kind="presentation" modalPresentationStyle="fullScreen" id="aze-FP-TB8"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -570,7 +570,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="f62-GZ-GvY"/>
+        <segue reference="aze-FP-TB8"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="BetterReads-Graphics_Man" width="1000" height="852"/>
