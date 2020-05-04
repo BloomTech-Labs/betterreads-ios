@@ -14,6 +14,9 @@
         <array key="FrankRuhlLibre-Regular.ttf">
             <string>FrankRuhlLibre-Regular</string>
         </array>
+        <array key="SourceSansPro-Black.ttf">
+            <string>SourceSansPro-Black</string>
+        </array>
         <array key="SourceSansPro-Bold.ttf">
             <string>SourceSansPro-Bold</string>
         </array>
@@ -431,32 +434,32 @@
         <!--BetterReads-->
         <scene sceneID="AOt-BX-vD7">
             <objects>
-                <viewController id="Rzg-aC-Wux" sceneMemberID="viewController">
+                <viewController id="Rzg-aC-Wux" customClass="HomeViewController" customModule="BetterReads" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mwp-RS-WaK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PRK-xs-FOr">
-                                <rect key="frame" x="0.0" y="96" width="414" height="855"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="907"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ND2-O2-Ina" userLabel="Content View inside Scroll View">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="855"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome, User!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3xZ-Rv-Ed4">
-                                                <rect key="frame" x="20" y="8" width="374" height="31"/>
+                                                <rect key="frame" x="20" y="78" width="374" height="31"/>
                                                 <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="24"/>
                                                 <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XrN-eJ-L2C">
-                                                <rect key="frame" x="20" y="42.999999999999993" width="374" height="72.333333333333314"/>
+                                                <rect key="frame" x="20" y="113" width="374" height="72.333333333333314"/>
                                                 <string key="text">Si ergo illa tantum fastidium compesce contra lem naturalem usum habili, quem habetis vestra potate, non aliud quam aversantur incurrere. Sed si ipses aversaris, ad languorem: et mors, paupertas et tu miseros fore.</string>
                                                 <fontDescription key="fontDescription" name="FrankRuhlLibre-Regular" family="Frank Ruhl Libre" pointSize="14"/>
                                                 <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1YI-ls-ORZ">
-                                                <rect key="frame" x="0.0" y="123.33333333333334" width="414" height="225.00000000000003"/>
+                                                <rect key="frame" x="0.0" y="193.33333333333337" width="414" height="225"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recommended based on &quot;Animal Farm&quot;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TvC-EH-p2C">
                                                         <rect key="frame" x="20" y="8" width="374" height="21"/>
@@ -500,7 +503,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fbc-rw-XHQ">
-                                                <rect key="frame" x="0.0" y="356.33333333333331" width="414" height="224.99999999999994"/>
+                                                <rect key="frame" x="0.0" y="426.33333333333326" width="414" height="225"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recommended based on &quot;Talking to Strangers&quot;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hzI-wY-lOI">
                                                         <rect key="frame" x="20" y="8" width="374" height="21"/>
@@ -544,7 +547,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wFQ-NH-hVw">
-                                                <rect key="frame" x="0.0" y="589.33333333333337" width="414" height="225"/>
+                                                <rect key="frame" x="0.0" y="659.33333333333337" width="414" height="225"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recommended based on &quot;In Five Years&quot;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yjV-yN-K8e">
                                                         <rect key="frame" x="20" y="8" width="374" height="21"/>
@@ -587,23 +590,42 @@
                                                     <constraint firstItem="YPm-Ix-cQ6" firstAttribute="leading" secondItem="wFQ-NH-hVw" secondAttribute="leading" constant="20" id="wV0-LI-dMy"/>
                                                 </constraints>
                                             </view>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Ahv-Zq-U3t">
+                                                <rect key="frame" x="354" y="20" width="40" height="38.666666666666671"/>
+                                                <color key="tintColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="40" id="3AL-KH-ogr"/>
+                                                    <constraint firstAttribute="height" constant="40" id="Mzn-dW-otb"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BetterReads Logo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bho-2J-Kbq">
+                                                <rect key="frame" x="20" y="20" width="237" height="38"/>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-Black" family="Source Sans Pro" pointSize="30"/>
+                                                <color key="textColor" red="0.83137254900000002" green="0.28235294119999998" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstItem="XrN-eJ-L2C" firstAttribute="top" secondItem="3xZ-Rv-Ed4" secondAttribute="bottom" constant="4" id="0pc-0y-tB5"/>
                                             <constraint firstAttribute="height" constant="855" id="3pm-OP-qTW"/>
+                                            <constraint firstItem="Bho-2J-Kbq" firstAttribute="top" secondItem="ND2-O2-Ina" secondAttribute="top" constant="20" id="7AV-Ss-Gay"/>
                                             <constraint firstItem="wFQ-NH-hVw" firstAttribute="leading" secondItem="ND2-O2-Ina" secondAttribute="leading" id="7Sm-s4-xB2"/>
                                             <constraint firstItem="XrN-eJ-L2C" firstAttribute="leading" secondItem="ND2-O2-Ina" secondAttribute="leading" constant="20" id="9ZR-Yd-X4G"/>
+                                            <constraint firstItem="Ahv-Zq-U3t" firstAttribute="centerY" secondItem="Bho-2J-Kbq" secondAttribute="centerY" id="CaL-Ds-lkt"/>
                                             <constraint firstItem="wFQ-NH-hVw" firstAttribute="top" secondItem="Fbc-rw-XHQ" secondAttribute="bottom" constant="8" id="H5g-PT-Zfg"/>
+                                            <constraint firstItem="Ahv-Zq-U3t" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Bho-2J-Kbq" secondAttribute="trailing" constant="16" id="HtN-YB-aXL"/>
+                                            <constraint firstItem="Bho-2J-Kbq" firstAttribute="leading" secondItem="ND2-O2-Ina" secondAttribute="leading" constant="20" id="NyQ-zX-8Qo"/>
                                             <constraint firstAttribute="trailing" secondItem="XrN-eJ-L2C" secondAttribute="trailing" constant="20" id="Ruw-dG-aBi"/>
                                             <constraint firstItem="3xZ-Rv-Ed4" firstAttribute="leading" secondItem="ND2-O2-Ina" secondAttribute="leading" constant="20" id="TZq-mx-hld"/>
                                             <constraint firstAttribute="trailing" secondItem="1YI-ls-ORZ" secondAttribute="trailing" id="Vt2-Wl-9wr"/>
-                                            <constraint firstItem="3xZ-Rv-Ed4" firstAttribute="top" secondItem="ND2-O2-Ina" secondAttribute="top" constant="8" id="WCV-2s-STa"/>
                                             <constraint firstItem="Fbc-rw-XHQ" firstAttribute="top" secondItem="1YI-ls-ORZ" secondAttribute="bottom" constant="8" id="WER-Sh-1eu"/>
                                             <constraint firstItem="XrN-eJ-L2C" firstAttribute="top" secondItem="3xZ-Rv-Ed4" secondAttribute="bottom" constant="4" id="bcd-Hh-ovI"/>
                                             <constraint firstAttribute="trailing" secondItem="Fbc-rw-XHQ" secondAttribute="trailing" id="cOF-N1-XF0"/>
+                                            <constraint firstAttribute="trailing" secondItem="Ahv-Zq-U3t" secondAttribute="trailing" constant="20" id="frg-Ce-AMd"/>
                                             <constraint firstItem="Fbc-rw-XHQ" firstAttribute="leading" secondItem="ND2-O2-Ina" secondAttribute="leading" id="jFb-zy-VhK"/>
                                             <constraint firstItem="1YI-ls-ORZ" firstAttribute="leading" secondItem="ND2-O2-Ina" secondAttribute="leading" id="kQk-dM-uDg"/>
+                                            <constraint firstItem="3xZ-Rv-Ed4" firstAttribute="top" secondItem="Bho-2J-Kbq" secondAttribute="bottom" constant="20" id="o0g-hw-GJJ"/>
                                             <constraint firstAttribute="trailing" secondItem="3xZ-Rv-Ed4" secondAttribute="trailing" constant="20" id="sJw-cd-bze"/>
                                             <constraint firstItem="1YI-ls-ORZ" firstAttribute="top" secondItem="XrN-eJ-L2C" secondAttribute="bottom" constant="8" id="wRq-ei-u4q"/>
                                             <constraint firstAttribute="trailing" secondItem="wFQ-NH-hVw" secondAttribute="trailing" id="wrg-n9-jvm"/>
@@ -632,11 +654,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Il2-zb-RAW"/>
                     </view>
-                    <navigationItem key="navigationItem" title="BetterReads" id="HkD-6o-ShA">
-                        <barButtonItem key="rightBarButtonItem" image="person.circle.fill" catalog="system" id="xUq-0p-UJM">
-                            <color key="tintColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="BetterReads" id="HkD-6o-ShA"/>
                     <size key="freeformSize" width="414" height="1000"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tDj-d5-t0P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -752,11 +770,12 @@
         <!--Home-->
         <scene sceneID="Jmf-S3-ESh">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cg2-jY-Bz6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="B0r-D0-4bK" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" id="xjP-qK-a99"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="08q-wx-DKz">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="96"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="08q-wx-DKz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -764,7 +783,6 @@
                         <segue destination="Rzg-aC-Wux" kind="relationship" relationship="rootViewController" id="dhD-4e-c4A"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cg2-jY-Bz6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="322" y="867"/>
         </scene>
@@ -778,6 +796,6 @@
         <image name="book" catalog="system" width="128" height="101"/>
         <image name="house" catalog="system" width="128" height="110"/>
         <image name="info.circle.fill" catalog="system" width="128" height="121"/>
-        <image name="person.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="person.crop.circle" catalog="system" width="128" height="121"/>
     </resources>
 </document>

@@ -34,6 +34,7 @@
 		7732DD0D244FAD0200C82B7F /* SourceSansPro-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7732DCFE244FACE200C82B7F /* SourceSansPro-SemiBoldItalic.ttf */; };
 		773F109E245390030012B8DA /* Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773F109D245390030012B8DA /* Validators.swift */; };
 		777B65A52450EC86007D01E8 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777B65A42450EC86007D01E8 /* Helpers.swift */; };
+		778C4DB22460A5C400FBC573 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C4DB12460A5C400FBC573 /* HomeViewController.swift */; };
 		77B6A3992448F5A400FF604B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B6A3982448F5A400FF604B /* AppDelegate.swift */; };
 		77B6A39B2448F5A400FF604B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B6A39A2448F5A400FF604B /* SceneDelegate.swift */; };
 		77B6A3A02448F5A400FF604B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77B6A39E2448F5A400FF604B /* Main.storyboard */; };
@@ -73,6 +74,7 @@
 		7732DD01244FACE200C82B7F /* SourceSansPro-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-BlackItalic.ttf"; sourceTree = "<group>"; };
 		773F109D245390030012B8DA /* Validators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validators.swift; sourceTree = "<group>"; };
 		777B65A42450EC86007D01E8 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		778C4DB12460A5C400FBC573 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		77B6A3952448F5A400FF604B /* BetterReads.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BetterReads.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77B6A3982448F5A400FF604B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		77B6A39A2448F5A400FF604B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				1B102ACC244E2F600095733B /* SignInViewController.swift */,
 				1B102ACA244E17790095733B /* SearchTableViewController.swift */,
 				77ECC9E6245BAF01007509D5 /* ForgotPasswordViewController.swift */,
+				778C4DB12460A5C400FBC573 /* HomeViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				7732DCE5244F7F6900C82B7F /* UserController.swift in Sources */,
 				1B102AD0244E390E0095733B /* SearchResultView.swift in Sources */,
 				77B6A3992448F5A400FF604B /* AppDelegate.swift in Sources */,
+				778C4DB22460A5C400FBC573 /* HomeViewController.swift in Sources */,
 				7732DCE2244F7DF400C82B7F /* User.swift in Sources */,
 				1B102AD824524D3F0095733B /* SearchController.swift in Sources */,
 				77B6A39B2448F5A400FF604B /* SceneDelegate.swift in Sources */,
