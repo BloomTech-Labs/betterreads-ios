@@ -477,14 +477,40 @@
                                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         </collectionViewFlowLayout>
                                                         <cells>
-                                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="5HD-8Q-ctc">
+                                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="5HD-8Q-ctc" customClass="RecommendationCollectionViewCell" customModule="BetterReads" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.66666666666666663" width="125" height="175"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="b1d-OL-Fzs">
                                                                     <rect key="frame" x="0.0" y="0.0" width="125" height="175"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
+                                                                    <subviews>
+                                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="caN-6n-BWu">
+                                                                            <rect key="frame" x="4" y="4" width="117" height="167"/>
+                                                                            <subviews>
+                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1EK-77-Ugp">
+                                                                                    <rect key="frame" x="4" y="4" width="109" height="159"/>
+                                                                                </imageView>
+                                                                            </subviews>
+                                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="trailing" secondItem="1EK-77-Ugp" secondAttribute="trailing" constant="4" id="6DQ-pK-pKt"/>
+                                                                                <constraint firstAttribute="bottom" secondItem="1EK-77-Ugp" secondAttribute="bottom" constant="4" id="EZ1-xN-2Rr"/>
+                                                                                <constraint firstItem="1EK-77-Ugp" firstAttribute="leading" secondItem="caN-6n-BWu" secondAttribute="leading" constant="4" id="j84-1q-fJB"/>
+                                                                                <constraint firstItem="1EK-77-Ugp" firstAttribute="top" secondItem="caN-6n-BWu" secondAttribute="top" constant="4" id="jhH-M6-RyK"/>
+                                                                            </constraints>
+                                                                        </view>
+                                                                    </subviews>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="bottom" secondItem="caN-6n-BWu" secondAttribute="bottom" constant="4" id="6v2-6X-bcI"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="caN-6n-BWu" secondAttribute="trailing" constant="4" id="eFu-hN-biG"/>
+                                                                        <constraint firstItem="caN-6n-BWu" firstAttribute="top" secondItem="b1d-OL-Fzs" secondAttribute="top" constant="4" id="h12-8L-VdJ"/>
+                                                                        <constraint firstItem="caN-6n-BWu" firstAttribute="leading" secondItem="b1d-OL-Fzs" secondAttribute="leading" constant="4" id="npO-Hf-byV"/>
+                                                                    </constraints>
                                                                 </collectionViewCellContentView>
                                                                 <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <connections>
+                                                                    <outlet property="bookCoverImageView" destination="1EK-77-Ugp" id="Nbm-gq-euH"/>
+                                                                </connections>
                                                             </collectionViewCell>
                                                         </cells>
                                                     </collectionView>
