@@ -458,7 +458,7 @@
                                                 <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1YI-ls-ORZ">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1YI-ls-ORZ" userLabel="Top View for Recommendations">
                                                 <rect key="frame" x="0.0" y="193.33333333333337" width="414" height="225"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recommended based on &quot;Animal Farm&quot;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TvC-EH-p2C">
@@ -502,7 +502,7 @@
                                                     <constraint firstItem="GSU-Jq-gQb" firstAttribute="leading" secondItem="1YI-ls-ORZ" secondAttribute="leading" constant="20" id="y3S-MZ-cM5"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fbc-rw-XHQ">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fbc-rw-XHQ" userLabel="Middle View for Recommendations">
                                                 <rect key="frame" x="0.0" y="426.33333333333326" width="414" height="225"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recommended based on &quot;Talking to Strangers&quot;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hzI-wY-lOI">
@@ -546,7 +546,7 @@
                                                     <constraint firstAttribute="bottom" secondItem="Ohc-zm-K8V" secondAttribute="bottom" constant="12" id="q1n-CV-dyI"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wFQ-NH-hVw">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wFQ-NH-hVw" userLabel="Bottom View for Recommendations">
                                                 <rect key="frame" x="0.0" y="659.33333333333337" width="414" height="225"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recommended based on &quot;In Five Years&quot;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yjV-yN-K8e">
@@ -656,6 +656,12 @@
                     </view>
                     <navigationItem key="navigationItem" title="BetterReads" id="HkD-6o-ShA"/>
                     <size key="freeformSize" width="414" height="1000"/>
+                    <connections>
+                        <outlet property="bottomRecommendationLabel" destination="yjV-yN-K8e" id="ibG-E4-RPV"/>
+                        <outlet property="middleRecommendationLabel" destination="hzI-wY-lOI" id="fCp-q3-JIU"/>
+                        <outlet property="topRecommendationLabel" destination="TvC-EH-p2C" id="tHD-OL-5EM"/>
+                        <outlet property="welcomeUser" destination="3xZ-Rv-Ed4" id="Kgp-q0-GRa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tDj-d5-t0P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
