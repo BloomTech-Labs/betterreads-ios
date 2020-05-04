@@ -9,32 +9,32 @@
 import Foundation
 
 /// Rough draft of our Book model
-class Book: Codable {
-    
-    let title: String
-    /// array of authors
-    let author: String
-    let cover: String
-    let rating: Double // should this be optional since some might have no rating?
-    
-    enum CodingKeys: String, CodingKey {
-        case title
-        case author = "authors"
-        case cover = "thumbnail"
-        case rating = "averageRating"
-    }
-    
-    init(title: String, author: String, cover: String, rating: Double) {
-        self.title = title
-        self.author = author
-        self.cover = cover
-        self.rating = rating
-    }
-}
+//class Book: Codable {
+//
+//    let title: String
+//    /// array of authors
+//    let author: String
+//    let cover: String
+//    let rating: Double // should this be optional since some might have no rating?
+//
+//    enum CodingKeys: String, CodingKey {
+//        case title
+//        case author = "authors"
+//        case cover = "thumbnail"
+//        case rating = "averageRating"
+//    }
+//
+//    init(title: String, author: String, cover: String, rating: Double) {
+//        self.title = title
+//        self.author = author
+//        self.cover = cover
+//        self.rating = rating
+//    }
+//}
 
-struct Items: Codable {
-    var items: [Book]
-}
+//struct Items: Codable {
+//    var items: [Book]
+//}
 
 struct TypeQuery: Codable {
     var type: String
@@ -45,12 +45,12 @@ struct TypeQuery: Codable {
 
 // MARK: - FakeBook
 struct FakeBook: Codable {
-    let items: [Item]
+    let items: [Book]
     let totalItems: Int
 }
 
 // MARK: - Item
-struct Item: Codable {
+struct Book: Codable {
     let authors: [String]?
     let categories: [String]?
     let itemDescription: String?

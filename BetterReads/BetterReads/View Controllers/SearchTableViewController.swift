@@ -10,26 +10,26 @@ import UIKit
 
 // Global Variables for test purposes
 
-let fakeBooksArray: [Book] = [Book(title: "Harry Potter", author: "JK Rowling", cover: "book.fill", rating: 0.0),
-                              Book(title: "Twilight", author: "Stephenie Meyer", cover: "book.fill", rating: 0.5),
-                              Book(title: "Animal Farm", author: "George Orwell", cover: "book.fill", rating: 1.0),
-                              Book(title: "1984", author: "George Orwell", cover: "book.fill", rating: 1.0),
-                              Book(title: "Metamorphosis", author: "Franz Kafka", cover: "book.fill", rating: 1.3),
-                              Book(title: "50 Shades of Gray", author: "E.L. James", cover: "book.fill", rating: 0.5),
-                              Book(title: "Resident Evil", author: "Capcom", cover: "book.fill", rating: 1.6),
-                              Book(title: "Jumanji", author: "Your mom", cover: "book.fill", rating: 3.4),
-                              Book(title: "The Bible", author: "Jesus", cover: "book.fill", rating: 1.9),
-                              Book(title: "The Maze Runner", author: "James Dashner", cover: "book.fill", rating: 2.1),
-                              Book(title: "Fahrenheit 452", author: "Ray Bradbury", cover: "book.fill", rating: 2.5),
-                              Book(title: "Fahrenheit 453", author: "Ray Bradbury", cover: "book.fill", rating: 3.0),
-                              Book(title: "Fahrenheit 454", author: "Ray Bradbury", cover: "book.fill", rating: 3.3),
-                              Book(title: "Fahrenheit 455", author: "Ray Bradbury", cover: "book.fill", rating: 3.5),
-                              Book(title: "Fahrenheit 456", author: "Ray Bradbury", cover: "book.fill", rating: 3.9),
-                              Book(title: "Fahrenheit 457", author: "Ray Bradbury", cover: "book.fill", rating: 4.2),
-                              Book(title: "Fahrenheit 458", author: "Ray Bradbury", cover: "book.fill", rating: 4.5),
-                              Book(title: "Fahrenheit 459", author: "Ray Bradbury", cover: "book.fill", rating: 4.7),
-                              Book(title: "Fahrenheit 460", author: "Ray Bradbury", cover: "book.fill", rating: 4.5),
-                              Book(title: "Harry Potter 2", author: "JK Rowling", cover: "book.fill", rating: 5.0)]
+//let fakeBooksArray: [Book] = [Book(title: "Harry Potter", author: "JK Rowling", cover: "book.fill", rating: 0.0),
+//                              Book(title: "Twilight", author: "Stephenie Meyer", cover: "book.fill", rating: 0.5),
+//                              Book(title: "Animal Farm", author: "George Orwell", cover: "book.fill", rating: 1.0),
+//                              Book(title: "1984", author: "George Orwell", cover: "book.fill", rating: 1.0),
+//                              Book(title: "Metamorphosis", author: "Franz Kafka", cover: "book.fill", rating: 1.3),
+//                              Book(title: "50 Shades of Gray", author: "E.L. James", cover: "book.fill", rating: 0.5),
+//                              Book(title: "Resident Evil", author: "Capcom", cover: "book.fill", rating: 1.6),
+//                              Book(title: "Jumanji", author: "Your mom", cover: "book.fill", rating: 3.4),
+//                              Book(title: "The Bible", author: "Jesus", cover: "book.fill", rating: 1.9),
+//                              Book(title: "The Maze Runner", author: "James Dashner", cover: "book.fill", rating: 2.1),
+//                              Book(title: "Fahrenheit 452", author: "Ray Bradbury", cover: "book.fill", rating: 2.5),
+//                              Book(title: "Fahrenheit 453", author: "Ray Bradbury", cover: "book.fill", rating: 3.0),
+//                              Book(title: "Fahrenheit 454", author: "Ray Bradbury", cover: "book.fill", rating: 3.3),
+//                              Book(title: "Fahrenheit 455", author: "Ray Bradbury", cover: "book.fill", rating: 3.5),
+//                              Book(title: "Fahrenheit 456", author: "Ray Bradbury", cover: "book.fill", rating: 3.9),
+//                              Book(title: "Fahrenheit 457", author: "Ray Bradbury", cover: "book.fill", rating: 4.2),
+//                              Book(title: "Fahrenheit 458", author: "Ray Bradbury", cover: "book.fill", rating: 4.5),
+//                              Book(title: "Fahrenheit 459", author: "Ray Bradbury", cover: "book.fill", rating: 4.7),
+//                              Book(title: "Fahrenheit 460", author: "Ray Bradbury", cover: "book.fill", rating: 4.5),
+//                              Book(title: "Harry Potter 2", author: "JK Rowling", cover: "book.fill", rating: 5.0)]
 
 
 var myBooksArray = [Book]()
@@ -45,11 +45,6 @@ class SearchTableViewController: UITableViewController {
         searchBar.delegate = self
         searchBar.tintColor = UIColor(red: 212/255, green: 72/255, blue: 8/255, alpha: 1)
         setupToolBar()
-//        searchController.searchBook(with: "1984") { (error) in
-//            DispatchQueue.main.async {
-//                print("searchBook called in TVC")
-//            }
-//        }
     }
     
     private func setupToolBar() {
@@ -85,24 +80,14 @@ class SearchTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150 // was 175 when we started
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell", for: indexPath) as? SearchResultTableViewCell else { return UITableViewCell() }
+
         let book = searchController.searchResultBooks[indexPath.row]
-        cell.textLabel?.text = "\(book.title), \(book.authors?.first), \(book.averageRating), \(book.thumbnail)"
+        cell.book = book
         return cell
     }
-    
-//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell", for: indexPath) as? SearchResultTableViewCell else { return UITableViewCell() }
-//
-//        let book = myBooksArray[indexPath.row]
-////        cell.mainView.imageView.image = UIImage(systemName: book.cover)
-////        cell.mainView.titleLabel.text = book.title
-////        cell.mainView.authorLabel.text = book.author
-//        cell.book = book
-//        return cell
-//    }
     
     // MARK: - Navigation
 
@@ -128,10 +113,11 @@ class SearchTableViewController: UITableViewController {
 //                }
 //            }
 
-            let booksWithSearchTerm = fakeBooksArray.filter {
-                $0.title.lowercased().contains(searchTerm.lowercased()) || $0.author.lowercased().contains(searchTerm.lowercased())
-            }
-            myBooksArray = booksWithSearchTerm
+//            let booksWithSearchTerm = fakeBooksArray.filter {
+//                $0.title.lowercased().contains(searchTerm.lowercased()) || $0.author.lowercased().contains(searchTerm.lowercased())
+//            }
+//            myBooksArray = booksWithSearchTerm
+            
         }
     
 }
@@ -161,7 +147,8 @@ extension SearchTableViewController: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
-        myBooksArray = []; tableView.reloadData() // FIXME: clear table another way?
+        //myBooksArray = []; tableView.reloadData() // FIXME: clear table another way?
+        searchController.searchResultBooks = []; tableView.reloadData() // FIXME: clear table another way?
         hideKeyboardAndCancelButton()
     }
     

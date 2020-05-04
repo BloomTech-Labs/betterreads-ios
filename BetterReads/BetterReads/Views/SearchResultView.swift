@@ -47,11 +47,11 @@ class SearchResultView: UIView {
     
     private func updateViews() {
         guard let book = book else { return }
-        
+                
         titleLabel.text = book.title
-        authorLabel.text = book.author + " \(book.rating)"
-        imageView.image = UIImage(systemName: book.cover)
-        updateStarRating(value: book.rating)
+        authorLabel.text = book.authors?.first
+        imageView.image = UIImage(systemName: "book.fill") // book.thumbnail session
+        updateStarRating(value: book.averageRating ?? 0.5) // book.rating
     }
     
     // FIXME: change else if back to half star when we get gray half star icons

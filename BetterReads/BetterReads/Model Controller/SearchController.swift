@@ -13,7 +13,7 @@ class SearchController {
     let baseUrl = URL(string: "https://readrr-heroku-test.herokuapp.com/search")!
     
     /// Holds books that are returned from search
-    var searchResultBooks: [Item] = []
+    var searchResultBooks: [Book] = []
     
     /// Gets ALL Listings from the server. Sets searchResultsArray to listings that contain term
     func searchBook(with term: String, completion: @escaping (Error?) -> Void = { _ in }) {
