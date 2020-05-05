@@ -26,7 +26,8 @@ class SearchResultView: UIView {
     private let titleFont = UIFont.systemFont(ofSize: 24.0, weight: .semibold)
     private let authorFont = UIFont.systemFont(ofSize: 16.0, weight: .semibold)
     private let authorTextColor = UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 1.0) // Tundra #404040
-    private var hasImage: Bool = false
+    private var lastThumbnailImage: String?
+    
     // MARK: - View LifeCycle
     
     var book: Book? {
@@ -52,15 +53,15 @@ class SearchResultView: UIView {
         authorLabel.text = book.authors?.first
         updateStarRating(value: book.averageRating ?? 0.0) // book.rating
 
-        // FIXME: bug where old images are staying an wont let new ones load
+        // FIXME: use cache to improve this?
         guard let thumbnail = book.thumbnail else { return }
-        print("updateViews, hasImage = \(hasImage)")
-        if !hasImage {
+        print("updateViews, lastImage = \(lastThumbnailImage ?? "nil thumbnail")")
+        if lastThumbnailImage != thumbnail {
             print("no image in imageView, fetching an image")
             SearchController.fetchImage(with: thumbnail) { (image) in
                 DispatchQueue.main.async {
                     self.imageView.image = image
-                    self.hasImage = true
+                    self.lastThumbnailImage = thumbnail
                 }
             }
         }
