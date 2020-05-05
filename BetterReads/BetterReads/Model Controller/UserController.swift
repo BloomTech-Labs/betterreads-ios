@@ -24,7 +24,7 @@ enum NetworkError: Error {
 class UserController {
     private var baseURL = URL(string: "https://api.readrr.app/api")!
     private var authToken: String? = nil
-    private var user: User? = nil
+    var user: User? = nil
         
     init() {
     }
@@ -142,6 +142,7 @@ class UserController {
                    headers: headers).responseJSON { response in
                     switch (response.result) {
                     case .success(_):
+                        //FIXME: Do something with data returned
                         completion(nil)
                     case .failure(let error):
                         print("Error: \(error)")

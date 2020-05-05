@@ -683,8 +683,11 @@
                     <navigationItem key="navigationItem" title="BetterReads" id="HkD-6o-ShA"/>
                     <size key="freeformSize" width="414" height="1000"/>
                     <connections>
+                        <outlet property="bottomCollectionView" destination="YPm-Ix-cQ6" id="jKM-1u-Bmg"/>
                         <outlet property="bottomRecommendationLabel" destination="yjV-yN-K8e" id="ibG-E4-RPV"/>
+                        <outlet property="middleCollectionView" destination="Ohc-zm-K8V" id="Osm-49-9eF"/>
                         <outlet property="middleRecommendationLabel" destination="hzI-wY-lOI" id="fCp-q3-JIU"/>
+                        <outlet property="topCollectionView" destination="GSU-Jq-gQb" id="JmV-4K-5xt"/>
                         <outlet property="topRecommendationLabel" destination="TvC-EH-p2C" id="tHD-OL-5EM"/>
                         <outlet property="welcomeUser" destination="3xZ-Rv-Ed4" id="Kgp-q0-GRa"/>
                     </connections>
