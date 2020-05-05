@@ -52,7 +52,7 @@ class SearchResultView: UIView {
         authorLabel.text = book.authors?.first
         updateStarRating(value: book.averageRating ?? 0.0) // book.rating
 
-        // FIXME: round corners
+        // FIXME: bug where old images are staying an wont let new ones load
         guard let thumbnail = book.thumbnail else { return }
         print("updateViews, hasImage = \(hasImage)")
         if !hasImage {
@@ -102,8 +102,10 @@ class SearchResultView: UIView {
         //imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: 3 / 4).isActive = true
         
         // mult for height used to be 1.5 of imageView.widthAnchor // widthAnchor used to be 0.25
+        
         // FIXME: (later) change imageView scale/size based on what image is passed in? cell size?
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleToFill//.scaleAspectFit
+        imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 5
         imageView.tintColor = .trinidadOrange
         
