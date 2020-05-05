@@ -64,7 +64,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
         if collectionView == self.topCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TopCollectionCell", for: indexPath) as? RecommendationCollectionViewCell ?? RecommendationCollectionViewCell()
             
-            //cell.bookCoverImageView.image = 
+            //cell.bookCoverImageView.image = UIImage(
             
             return cell
         } else if collectionView == self.middleCollectionView {
