@@ -9,10 +9,12 @@
 import Foundation
 
 class User: Codable {
+    let id: Int
     let fullName: String
     var emailAddress: String
     
-    init(fullName: String, emailAddress: String) {
+    init(id: Int, fullName: String, emailAddress: String) {
+        self.id = id
         self.fullName = fullName
         self.emailAddress = emailAddress
     }

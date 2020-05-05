@@ -284,7 +284,7 @@ class SignInViewController: UIViewController {
                         NSLog("Error occured during Sign In: \(error)")
                     } else {
                         DispatchQueue.main.async {
-                            self.performSegue(withIdentifier: "SignInSuccessSegue", sender: self)
+                            self.performSegue(withIdentifier: "ShowHomeScreenSegue", sender: self)
                         }
                     }
                 }
@@ -303,7 +303,7 @@ class SignInViewController: UIViewController {
             } else {
                 print("Sign in successful...")
                 DispatchQueue.main.async {
-                    self.performSegue(withIdentifier: "SignInSuccessSegue", sender: self)
+                    self.performSegue(withIdentifier: "ShowHomeScreenSegue", sender: self)
                 }
             }
         }
@@ -338,6 +338,14 @@ class SignInViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ModalForgotPasswordSegue" {
             guard let destinationVC = segue.destination as? ForgotPasswordViewController else { return }
+            destinationVC.userController = userController
+        } else if segue.identifier == "ShowHomeScreenSegue" {
+            
+            guard let barViewControllers = segue.destination as? UITabBarController,
+                let nav = barViewControllers.viewControllers?[0] as? UINavigationController,
+                let destinationVC = nav.topViewController as? HomeViewController else {
+                    //FIXME: - Better error handling and alert
+                return }
             destinationVC.userController = userController
         }
     }

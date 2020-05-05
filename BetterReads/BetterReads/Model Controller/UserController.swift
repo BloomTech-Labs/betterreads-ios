@@ -18,12 +18,13 @@ enum NetworkError: Error {
     case badData
     case noDecode
     case existingUser
+    case noUser
 }
 
 class UserController {
     private var baseURL = URL(string: "https://api.readrr.app/api")!
     private var authToken: String? = nil
-    private var user: User? = nil
+    var user: User? = nil
         
     init() {
     }
@@ -49,7 +50,7 @@ class UserController {
                         let jsonData = JSON(value)
                         let authToken = jsonData["token"].stringValue
                         self.authToken = authToken
-                        self.user = User(fullName: fullName, emailAddress: emailAddress)
+                        self.user = User(id: Int(), fullName: fullName, emailAddress: emailAddress)
                         completion(nil)
                     case .failure(let error):
                         print("Error: \(error)")
@@ -75,13 +76,17 @@ class UserController {
                     switch (response.result) {
                     case .success(let value):
                         let jsonData = JSON(value)
-                        let authToken = jsonData["token"].stringValue
+                        guard let authToken = jsonData["token"].string else { return completion(NetworkError.noDecode) }
                         self.authToken = authToken
                         do {
                             let jwt = try decode(jwt: authToken)
                             let fullNameClaim = jwt.claim(name: "fullName")
-                            guard let fullName = fullNameClaim.string else { return }
-                            self.user = User(fullName: fullName, emailAddress: emailAddress)
+                            // get the id from the token NOT the user
+                            let idClaim = jwt.claim(name: "subject")
+                            guard let fullName = fullNameClaim.string,
+                                let id = idClaim.integer else {
+                                    return completion(NetworkError.otherError) }
+                            self.user = User(id: id, fullName: fullName, emailAddress: emailAddress)
                             completion(nil)
                         } catch {
                             completion(NetworkError.otherError)
@@ -93,6 +98,7 @@ class UserController {
         }
     }
     
+    //MARK: - Forgot Password Email
     func forgotPasswordEmail(emailAddress: String, completion: @escaping CompletionHandler = { _ in }) {
         let forgotPasswordEmailURL = baseURL.appendingPathComponent("auth")
         .appendingPathComponent("reset").appendingPathComponent("requestreset")
@@ -108,6 +114,36 @@ class UserController {
                    headers: headers).responseJSON { response in
                     switch (response.result) {
                     case .success(_):
+                        completion(nil)
+                    case .failure(let error):
+                        print("Error: \(error)")
+                        completion(NetworkError.otherError)
+                    }
+        }
+    }
+    
+    //MARK: - Recommendations
+    func getRecommendations(completion: @escaping CompletionHandler = { _ in }) {
+        if user == nil {
+            completion(NetworkError.noUser)
+        }
+        
+        guard let user = user else { return completion(NetworkError.otherError) }
+        
+        let getRecommendationsURL = baseURL.appendingPathComponent(":\(user.id)").appendingPathComponent("recommendations")
+        let parameters = ["id": user.id]
+        let headers: HTTPHeaders = [
+            "Accept": "application/json"
+        ]
+        
+        AF.request(getRecommendationsURL,
+                   method: .get,
+                   parameters: parameters,
+                   encoder: JSONParameterEncoder.default,
+                   headers: headers).responseJSON { response in
+                    switch (response.result) {
+                    case .success(_):
+                        //FIXME: Do something with data returned
                         completion(nil)
                     case .failure(let error):
                         print("Error: \(error)")
