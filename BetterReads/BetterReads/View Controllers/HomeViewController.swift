@@ -39,7 +39,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
     
     //MARK: - Methods
     private func setupUserContoller() {
-        guard let userController = userController else { return }
+        guard let userController = userController else {
+            return }
         userController.getRecommendations { (error) in
             if let error = error {
             let alert = UIAlertController(title: "Recommendations Error", message: "An error occurred while getting recommendations.", preferredStyle: .alert)
@@ -52,15 +53,15 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
         }
     }
     
-    public func numberOfSections(in collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 5
     }
     
-    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.topCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TopCollectionCell", for: indexPath) as? RecommendationCollectionViewCell ?? RecommendationCollectionViewCell()
             

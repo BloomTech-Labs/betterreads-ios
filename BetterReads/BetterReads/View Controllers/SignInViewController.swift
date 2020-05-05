@@ -340,7 +340,12 @@ class SignInViewController: UIViewController {
             guard let destinationVC = segue.destination as? ForgotPasswordViewController else { return }
             destinationVC.userController = userController
         } else if segue.identifier == "ShowHomeScreenSegue" {
-            guard let destinationVC = segue.destination as? HomeViewController else { return }
+            
+            guard let barViewControllers = segue.destination as? UITabBarController,
+                let nav = barViewControllers.viewControllers?[0] as? UINavigationController,
+                let destinationVC = nav.topViewController as? HomeViewController else {
+                    //FIXME: - Better error handling and alert
+                return }
             destinationVC.userController = userController
         }
     }

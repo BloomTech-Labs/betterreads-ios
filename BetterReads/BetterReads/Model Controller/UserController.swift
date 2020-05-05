@@ -50,7 +50,7 @@ class UserController {
                         let jsonData = JSON(value)
                         let authToken = jsonData["token"].stringValue
                         self.authToken = authToken
-                        self.user = User(id: UUID(), fullName: fullName, emailAddress: emailAddress)
+                        self.user = User(id: Int(), fullName: fullName, emailAddress: emailAddress)
                         completion(nil)
                     case .failure(let error):
                         print("Error: \(error)")
@@ -76,16 +76,17 @@ class UserController {
                     switch (response.result) {
                     case .success(let value):
                         let jsonData = JSON(value)
-                        let authToken = jsonData["token"].stringValue
+                        guard let authToken = jsonData["token"].string else { return completion(NetworkError.noDecode) }
                         self.authToken = authToken
                         do {
                             let jwt = try decode(jwt: authToken)
                             let fullNameClaim = jwt.claim(name: "fullName")
-                            let idClaim = jwt.claim(name: "id")
+                            // get the id from the token NOT the user
+                            let idClaim = jwt.claim(name: "subject")
                             guard let fullName = fullNameClaim.string,
-                                let id = idClaim.string else { return completion(NetworkError.otherError) }
-                            guard let uuid = UUID(uuidString: id) else { return completion(NetworkError.otherError) }
-                            self.user = User(id: uuid, fullName: fullName, emailAddress: emailAddress)
+                                let id = idClaim.integer else {
+                                    return completion(NetworkError.otherError) }
+                            self.user = User(id: id, fullName: fullName, emailAddress: emailAddress)
                             completion(nil)
                         } catch {
                             completion(NetworkError.otherError)
