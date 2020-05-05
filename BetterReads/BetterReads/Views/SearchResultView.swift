@@ -26,7 +26,7 @@ class SearchResultView: UIView {
     private let titleFont = UIFont.systemFont(ofSize: 24.0, weight: .semibold)
     private let authorFont = UIFont.systemFont(ofSize: 16.0, weight: .semibold)
     private let authorTextColor = UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 1.0) // Tundra #404040
-    
+    private var hasImage: Bool = false
     // MARK: - View LifeCycle
     
     var book: Book? {
@@ -50,18 +50,21 @@ class SearchResultView: UIView {
                 
         titleLabel.text = book.title
         authorLabel.text = book.authors?.first
-        
-        imageView.image = UIImage(systemName: "book.fill") // book.thumbnail session
-        // gengar image url = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/94.png"
-        // FIXME: error when trying to fetch image. NSLocalizedDescription=The resource could not be loaded because the App Transport Security policy requires the use of a secure connection.
+        updateStarRating(value: book.averageRating ?? 0.0) // book.rating
+
+        // FIXME: round corners
         guard let thumbnail = book.thumbnail else { return }
-        SearchController.fetchImage(with: thumbnail) { (image) in
-            DispatchQueue.main.async {
-                self.imageView.image = image
+        print("updateViews, hasImage = \(hasImage)")
+        if !hasImage {
+            print("no image in imageView, fetching an image")
+            SearchController.fetchImage(with: thumbnail) { (image) in
+                DispatchQueue.main.async {
+                    self.imageView.image = image
+                    self.hasImage = true
+                }
             }
         }
         
-        updateStarRating(value: book.averageRating ?? 0.0) // book.rating
     }
     
     // FIXME: change else if back to half star when we get gray half star icons
@@ -101,14 +104,8 @@ class SearchResultView: UIView {
         // mult for height used to be 1.5 of imageView.widthAnchor // widthAnchor used to be 0.25
         // FIXME: (later) change imageView scale/size based on what image is passed in? cell size?
         imageView.contentMode = .scaleAspectFit
-        
-        // Catalina Blue
-        imageView.backgroundColor = UIColor(red: 200.0/255.0,
-                                            green: 200.0/255.0,
-                                            blue: 200.0/255.0,
-                                            alpha: 1.0)
-
-        imageView.tintColor = UIColor(red: 212/255, green: 72/255, blue: 8/255, alpha: 1)
+        imageView.layer.cornerRadius = 5
+        imageView.tintColor = .trinidadOrange
         
         // Title Label
         // FIXME: should we make this a double line label for long titles?
