@@ -50,8 +50,18 @@ class SearchResultView: UIView {
                 
         titleLabel.text = book.title
         authorLabel.text = book.authors?.first
+        
         imageView.image = UIImage(systemName: "book.fill") // book.thumbnail session
-        updateStarRating(value: book.averageRating ?? 0.5) // book.rating
+        // gengar image url = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/94.png"
+        // FIXME: error when trying to fetch image. NSLocalizedDescription=The resource could not be loaded because the App Transport Security policy requires the use of a secure connection.
+        guard let thumbnail = book.thumbnail else { return }
+        SearchController.fetchImage(with: thumbnail) { (image) in
+            DispatchQueue.main.async {
+                self.imageView.image = image
+            }
+        }
+        
+        updateStarRating(value: book.averageRating ?? 0.0) // book.rating
     }
     
     // FIXME: change else if back to half star when we get gray half star icons

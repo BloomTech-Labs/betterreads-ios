@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class SearchController {
     
@@ -14,6 +15,70 @@ class SearchController {
     
     /// Holds books that are returned from search
     var searchResultBooks: [Book] = []
+    
+    /// Fetches image at url passed in and returns a uimage (place holder image if none exists)
+    static func fetchImage(with urlString: String, completion: @escaping (UIImage?) -> Void = { _ in }) {
+        
+        let defaultImage = UIImage(systemName: "book.fill")
+        print("called fetchImage with url: \(urlString)")
+        guard let url = URL(string: urlString) else {
+            print("cant make url from passed in string")
+            completion(defaultImage)
+            return
+        }
+        
+        let http = url
+        let urlComponents = URLComponents(url: http, resolvingAgainstBaseURL: false)
+        guard let comps = urlComponents else {
+            print("cant make urlComponents")
+            completion(defaultImage)
+            return
+        }
+        var components = comps
+        components.scheme = "https"
+        guard let secureUrl = components.url else {
+            print("cant make secureUrl from http")
+            completion(defaultImage)
+            return
+        }
+        print("secureUrl now = \(secureUrl)")
+        
+        URLSession.shared.dataTask(with: secureUrl) { (data, _, error) in
+            if let error = error {
+                NSLog("Error fetching image: \(error)")
+                return
+            }
+            
+            guard let data = data else {
+                NSLog("No data returned from data task")
+                completion(defaultImage)
+                return
+            }
+            
+            let imageToReturn = UIImage(data: data)
+            completion(imageToReturn)
+        }.resume()
+    }
+    /*
+         
+         URLSession.shared.dataTask(with: url) { (data, _, error) in
+             if let error = error {
+                 NSLog("Error fetching image: \(error)")
+                 return
+             }
+             
+             guard let data = data else {
+                 NSLog("No data returned from data task")
+                 completion(nil)
+                 return
+             }
+             
+             let image = UIImage(data: data)
+             
+             completion(image)
+         }.resume()
+     }
+     */
     
     /// Gets ALL Listings from the server. Sets searchResultsArray to listings that contain term
     func searchBook(with term: String, completion: @escaping (Error?) -> Void = { _ in }) {
