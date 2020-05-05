@@ -41,14 +41,13 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
     private func setupUserContoller() {
         guard let userController = userController else {
             return }
+        self.welcomeUser.text = "Hello, \(userController.user?.fullName ?? "there")!"
         userController.getRecommendations { (error) in
             if let error = error {
             let alert = UIAlertController(title: "Recommendations Error", message: "An error occurred while getting recommendations.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Try again", style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
             NSLog("Error occured during Get Recommendations: \(error)")
-            } else {
-                self.welcomeUser.text = "Hello \(userController.user?.fullName ?? "there")"
             }
         }
     }
