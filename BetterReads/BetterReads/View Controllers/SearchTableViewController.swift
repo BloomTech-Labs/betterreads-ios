@@ -43,7 +43,7 @@ class SearchTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
-        searchBar.tintColor = UIColor(red: 212/255, green: 72/255, blue: 8/255, alpha: 1)
+        searchBar.tintColor = .trinidadOrange
         setupToolBar()
     }
     
@@ -53,7 +53,7 @@ class SearchTableViewController: UITableViewController {
                                    style: .plain,
                                    target: self,
                                    action: #selector(hideKeyboardAndCancelButton))
-        done.tintColor = UIColor(red: 212/255, green: 72/255, blue: 8/255, alpha: 1)
+        done.tintColor = .trinidadOrange
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         bar.items = [flexSpace, done]
         bar.sizeToFit()
