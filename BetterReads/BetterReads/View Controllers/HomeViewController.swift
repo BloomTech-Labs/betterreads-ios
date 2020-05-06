@@ -26,6 +26,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.isHidden = true
         setupUserContoller()
         topCollectionView.delegate = self
         topCollectionView.dataSource = self
@@ -33,25 +34,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
         middleCollectionView.dataSource = self
         bottomCollectionView.delegate = self
         bottomCollectionView.dataSource = self
-        addNavBarImage()
+
     }
     
     //MARK: - Methods
-    private func addNavBarImage() {
-        let navController = navigationController!
-        let image = UIImage(named: "BetterReads-Logo_Orange.png")
-        let imageView = UIImageView(image: image)
-        let bannerWidth = navController.navigationBar.frame.size.width
-        let bannerHeight = navController.navigationBar.frame.size.height
-        let bannerX = bannerWidth / 2 - (image?.size.width)! / 2
-        let bannerY = bannerHeight / 2 - (image?.size.height)! / 2
-        imageView.frame = CGRect(x: bannerX, y: bannerY, width: bannerWidth, height: bannerHeight)
-        imageView.frame = CGRect(x: 0.0, y: 0.0, width: bannerWidth, height: bannerHeight)
-        imageView.contentMode = .scaleAspectFit
-        navigationItem.titleView = imageView
-    }
-    
-    
     private func setupUserContoller() {
         guard let userController = userController else {
             return }
