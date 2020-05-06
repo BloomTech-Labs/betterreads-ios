@@ -12,9 +12,11 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
     
     //MARK: - Properties
     var userController: UserController?
+    var isNewUser: Bool?
     
     //MARK: - Outlets
     @IBOutlet weak var welcomeUser: UILabel!
+    @IBOutlet weak var welcomeMessage: UILabel!
     @IBOutlet weak var topRecommendationLabel: UILabel!
     @IBOutlet weak var topCollectionView: UICollectionView!
     @IBOutlet weak var middleRecommendationLabel: UILabel!
@@ -35,6 +37,11 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
         bottomCollectionView.delegate = self
         bottomCollectionView.dataSource = self
 
+        if (isNewUser ?? false) {
+            welcomeMessage.text = "It’s great to have you! Discover interesting stories and unique perspectives from the suggestions below. Already a book nerd? Add your favorites to your library collection."
+        } else {
+            welcomeMessage.text = "Welcome back! Flip through the tailored recommendations below from a variety of authors and storytellers."
+        }
     }
     
     //MARK: - Methods

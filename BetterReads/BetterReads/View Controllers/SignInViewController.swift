@@ -26,6 +26,7 @@ class SignInViewController: UIViewController {
     let normalTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.tundra, NSAttributedString.Key.font : UIFont(name: "SourceSansPro-Regular", size: 16)]
     var passwordEyeballButton = UIButton()
     var confirmPasswordEyeballButton = UIButton()
+    var isNewUser: Bool = false
     
     // MARK: - Outlets
     @IBOutlet weak var segmentedControl: UISegmentedControl!
@@ -277,6 +278,7 @@ class SignInViewController: UIViewController {
                 NSLog("Error occured during Sign Up: \(error)")
             } else {
                 print("Sign up successful...now signing in...")
+                self.isNewUser = true
                 self.userController.signIn(emailAddress: emailAddress, password: password) { (networkError) in
                     if let error = networkError {
                         self.setUpSignInForm()
@@ -347,6 +349,7 @@ class SignInViewController: UIViewController {
                     //FIXME: - Better error handling and alert
                 return }
             destinationVC.userController = userController
+            destinationVC.isNewUser = isNewUser
         }
     }
 }
