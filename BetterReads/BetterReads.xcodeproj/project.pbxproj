@@ -17,6 +17,7 @@
 		1B102B0C246363AC0095733B /* LibraryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B102B0B246363AC0095733B /* LibraryCollectionViewCell.swift */; };
 		1B102B0E246366300095733B /* ShelfDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B102B0D246366300095733B /* ShelfDetailCollectionViewCell.swift */; };
 		1B102B10246366870095733B /* ShelfDetailCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B102B0F246366870095733B /* ShelfDetailCollectionViewController.swift */; };
+		1B102B1224636D640095733B /* BookDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B102B1124636D640095733B /* BookDetailViewController.swift */; };
 		7732DCE2244F7DF400C82B7F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7732DCE1244F7DF400C82B7F /* User.swift */; };
 		7732DCE5244F7F6900C82B7F /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7732DCE4244F7F6900C82B7F /* UserController.swift */; };
 		7732DCEE244FA93800C82B7F /* FrankRuhlLibre-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7732DCED244FA8F000C82B7F /* FrankRuhlLibre-Black.ttf */; };
@@ -62,6 +63,7 @@
 		1B102B0B246363AC0095733B /* LibraryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryCollectionViewCell.swift; sourceTree = "<group>"; };
 		1B102B0D246366300095733B /* ShelfDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ShelfDetailCollectionViewCell.swift; path = "../View Controllers/ShelfDetailCollectionViewCell.swift"; sourceTree = "<group>"; };
 		1B102B0F246366870095733B /* ShelfDetailCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelfDetailCollectionViewController.swift; sourceTree = "<group>"; };
+		1B102B1124636D640095733B /* BookDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailViewController.swift; sourceTree = "<group>"; };
 		7732DCE1244F7DF400C82B7F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7732DCE4244F7F6900C82B7F /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		7732DCE9244FA8EF00C82B7F /* FrankRuhlLibre-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FrankRuhlLibre-Bold.ttf"; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				778C4DB12460A5C400FBC573 /* HomeViewController.swift */,
 				1B102B092463635B0095733B /* MyLibraryCollectionViewController.swift */,
 				1B102B0F246366870095733B /* ShelfDetailCollectionViewController.swift */,
+				1B102B1124636D640095733B /* BookDetailViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 				1B102B0A2463635B0095733B /* MyLibraryCollectionViewController.swift in Sources */,
 				77B6A39B2448F5A400FF604B /* SceneDelegate.swift in Sources */,
 				1B102ACD244E2F600095733B /* SignInViewController.swift in Sources */,
+				1B102B1224636D640095733B /* BookDetailViewController.swift in Sources */,
 				1B102ACB244E17790095733B /* SearchTableViewController.swift in Sources */,
 				778C4DB42460ABBA00FBC573 /* RecommendationCollectionViewCell.swift in Sources */,
 				77ECC9E7245BAF01007509D5 /* ForgotPasswordViewController.swift in Sources */,

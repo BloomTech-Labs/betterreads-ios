@@ -753,7 +753,7 @@
             </objects>
             <point key="canvasLocation" x="321.73913043478262" y="1698.913043478261"/>
         </scene>
-        <!--Shelf Name-->
+        <!--New Shelf-->
         <scene sceneID="gjP-lF-ATg">
             <objects>
                 <collectionViewController id="7Ac-R4-NMw" customClass="ShelfDetailCollectionViewController" customModule="BetterReads" customModuleProvider="target" sceneMemberID="viewController">
@@ -775,6 +775,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </collectionViewCellContentView>
+                                <connections>
+                                    <segue destination="KfY-WO-sJ9" kind="show" id="13q-cF-JSj"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -782,7 +785,7 @@
                             <outlet property="delegate" destination="7Ac-R4-NMw" id="NQM-Zb-9vI"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Shelf Name" id="z3M-PE-MiS">
+                    <navigationItem key="navigationItem" title="New Shelf" id="z3M-PE-MiS">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="syc-O0-QAV">
                             <connections>
                                 <action selector="addBookToShelfTapped:" destination="7Ac-R4-NMw" id="jE4-To-B5y"/>
@@ -796,6 +799,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pah-8L-GHs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1013" y="2260"/>
+        </scene>
+        <!--Book Details-->
+        <scene sceneID="aeV-sS-U0h">
+            <objects>
+                <viewController id="KfY-WO-sJ9" customClass="BookDetailViewController" customModule="BetterReads" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FvX-ex-a9D">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="eR8-ug-sk3"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Book Details" id="Taw-AY-tTN"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8rX-fA-r9P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1706" y="2260"/>
         </scene>
         <!--My Library-->
         <scene sceneID="zcO-xC-gwK">
@@ -893,7 +912,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KW8-DK-1v7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1706" y="1591"/>
+            <point key="canvasLocation" x="1706" y="1555"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="l1u-02-j9p">
