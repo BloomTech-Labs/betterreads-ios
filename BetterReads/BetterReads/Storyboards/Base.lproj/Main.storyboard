@@ -782,7 +782,16 @@
                             <outlet property="delegate" destination="7Ac-R4-NMw" id="NQM-Zb-9vI"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Shelf Name" id="z3M-PE-MiS"/>
+                    <navigationItem key="navigationItem" title="Shelf Name" id="z3M-PE-MiS">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="syc-O0-QAV">
+                            <connections>
+                                <action selector="addBookToShelfTapped:" destination="7Ac-R4-NMw" id="jE4-To-B5y"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="addBookToShelfButtonLabel" destination="syc-O0-QAV" id="bHT-fv-9fH"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pah-8L-GHs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -820,7 +829,16 @@
                             <outlet property="delegate" destination="ZiB-AS-eCM" id="avd-cl-u5C"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="My Library" id="zVS-CP-SNd"/>
+                    <navigationItem key="navigationItem" title="My Library" id="zVS-CP-SNd">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="GGL-vn-laG">
+                            <connections>
+                                <action selector="addShelfButtonTapped:" destination="ZiB-AS-eCM" id="9bf-QN-Kfe"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="addShelfButtonLabel" destination="GGL-vn-laG" id="ob8-eF-eg2"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="buO-pk-Swc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

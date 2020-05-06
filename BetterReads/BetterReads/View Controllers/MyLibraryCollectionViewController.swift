@@ -11,7 +11,18 @@ import UIKit
 private let reuseIdentifier = "LibraryCell"
 
 class MyLibraryCollectionViewController: UICollectionViewController {
-
+    
+    var tempShelfCount: Int = 1
+    
+    // FIXME: change system color to trinidadOrange?
+    @IBOutlet var addShelfButtonLabel: UIBarButtonItem!
+    
+    @IBAction func addShelfButtonTapped(_ sender: UIBarButtonItem) {
+        print("addShelfButtonTapped")
+        tempShelfCount += 1
+        collectionView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -37,7 +48,7 @@ class MyLibraryCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 6
+        return tempShelfCount
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

@@ -11,7 +11,18 @@ import UIKit
 private let reuseIdentifier = "ShelfDetailCell"
 
 class ShelfDetailCollectionViewController: UICollectionViewController {
-
+    
+    var tempShelfDetailCount: Int = 1
+    // FIXME: change system color to trinidadOrange?
+    @IBOutlet var addBookToShelfButtonLabel: UIBarButtonItem!
+    
+    @IBAction func addBookToShelfTapped(_ sender: UIBarButtonItem) {
+        print("addBookToShelfTapped")
+        tempShelfDetailCount += 1
+        collectionView.reloadData()
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -37,7 +48,7 @@ class ShelfDetailCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 6
+        return tempShelfDetailCount
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
