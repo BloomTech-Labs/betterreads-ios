@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pRd-tq-Kku">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -753,21 +753,78 @@
             </objects>
             <point key="canvasLocation" x="321.73913043478262" y="1698.913043478261"/>
         </scene>
-        <!--My Library-->
-        <scene sceneID="hOp-HG-gK9">
+        <!--Shelf Name-->
+        <scene sceneID="gjP-lF-ATg">
             <objects>
-                <viewController id="kHg-7n-qJM" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Dr2-BL-EP2">
+                <collectionViewController id="7Ac-R4-NMw" customClass="ShelfDetailCollectionViewController" customModule="BetterReads" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="AfK-WT-yPL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="3ZQ-55-VC9"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="My Library" id="JED-WT-xOe"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mo2-vf-fwo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="yOA-uJ-hgP">
+                            <size key="itemSize" width="128" height="128"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ShelfDetailCell" id="yBV-LS-RBd" customClass="ShelfDetailCollectionViewCell" customModule="BetterReads" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="gru-ZP-7dC">
+                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </collectionViewCellContentView>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="7Ac-R4-NMw" id="M68-Bz-Tng"/>
+                            <outlet property="delegate" destination="7Ac-R4-NMw" id="NQM-Zb-9vI"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" title="Shelf Name" id="z3M-PE-MiS"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pah-8L-GHs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1012" y="1592"/>
+            <point key="canvasLocation" x="1013" y="2260"/>
+        </scene>
+        <!--My Library-->
+        <scene sceneID="zcO-xC-gwK">
+            <objects>
+                <collectionViewController id="ZiB-AS-eCM" customClass="MyLibraryCollectionViewController" customModule="BetterReads" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="DU3-4S-lum">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ewQ-Q4-JZk">
+                            <size key="itemSize" width="128" height="128"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LibraryCell" id="Aeg-B9-6gd" customClass="LibraryCollectionViewCell" customModule="BetterReads" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="WwK-Xr-521">
+                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </collectionViewCellContentView>
+                                <connections>
+                                    <segue destination="7Ac-R4-NMw" kind="show" id="hg3-I5-mNb"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="ZiB-AS-eCM" id="ZKV-Ck-z6x"/>
+                            <outlet property="delegate" destination="ZiB-AS-eCM" id="avd-cl-u5C"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" title="My Library" id="zVS-CP-SNd"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="buO-pk-Swc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1016" y="1555"/>
         </scene>
         <!--Search Books-->
         <scene sceneID="8E8-uY-CE6">
@@ -852,7 +909,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="kHg-7n-qJM" kind="relationship" relationship="rootViewController" id="qKN-VN-Rj0"/>
+                        <segue destination="ZiB-AS-eCM" kind="relationship" relationship="rootViewController" id="8oY-s1-cRX"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="28d-fF-4uo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
