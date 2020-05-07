@@ -11,7 +11,6 @@ import UIKit
 private let reuseIdentifier = "LibraryCell"
 
 class MyLibraryCollectionViewController: UICollectionViewController {
-    
     var tempShelfCount: Int = 1
     
     // FIXME: change system color to trinidadOrange?

@@ -9,9 +9,6 @@
 import UIKit
 
 class ForgotPasswordViewController: UIViewController {
-    
-    var userController: UserController?
-    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var emailErrorMessage: UILabel!
     @IBOutlet weak var doneButton: UIButton!
@@ -51,10 +48,9 @@ class ForgotPasswordViewController: UIViewController {
         view.endEditing(true)
         let (valid, _) = validate()
         if valid {
-            guard let emailAddress = emailTextField.text,
-                let userController = userController else { return }
+            guard let emailAddress = emailTextField.text else { return }
             
-            userController.forgotPasswordEmail(emailAddress: emailAddress) { (networkError) in
+            UserController.shared.forgotPasswordEmail(emailAddress: emailAddress) { (networkError) in
                 if let error = networkError {
                     let alert = UIAlertController(title: "Forgot Password Error", message: "An error occurred when processing your request.", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "Try again", style: .default, handler: nil))

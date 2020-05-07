@@ -14,10 +14,8 @@ enum LoginType {
 }
 
 class SignInViewController: UIViewController {
-
     // MARK: - Properties
     var loginType = LoginType.signup
-    var userController = UserController()
     let segControlBackgroundImage = UIImage(color: .clear, size: CGSize(width: 1, height: 32))
     let segControlDividerImage = UIImage(color: .clear, size: CGSize(width: 1, height: 32))
     let regularFont = UIFont(name: "SourceSansPro-Regular", size: 16)
@@ -26,7 +24,6 @@ class SignInViewController: UIViewController {
     let normalTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.tundra, NSAttributedString.Key.font : UIFont(name: "SourceSansPro-Regular", size: 16)]
     var passwordEyeballButton = UIButton()
     var confirmPasswordEyeballButton = UIButton()
-    var isNewUser: Bool = false
     
     // MARK: - Outlets
     @IBOutlet weak var segmentedControl: UISegmentedControl!
@@ -281,14 +278,14 @@ class SignInViewController: UIViewController {
             let emailAddress = emailTextField.text,
             let password = passwordTextField.text else { return }
         
-        userController.signUp(fullName: fullName, emailAddress: emailAddress, password: password) { (networkError) in
+        UserController.shared.signUp(fullName: fullName, emailAddress: emailAddress, password: password) { (networkError) in
             if let error = networkError {
                 self.presentSignUpErrorAlert()
                 NSLog("Error occured during Sign Up: \(error)")
             } else {
                 print("Sign up successful...now signing in...")
-                self.isNewUser = true
-                self.userController.signIn(emailAddress: emailAddress, password: password) { (networkError) in
+                UserController.shared.isNewUser = true
+                UserController.shared.signIn(emailAddress: emailAddress, password: password) { (networkError) in
                     if let error = networkError {
                         self.setUpSignInForm()
                         self.presentSignInErrorAlert()
@@ -307,7 +304,7 @@ class SignInViewController: UIViewController {
         guard let emailAddress = emailTextField.text,
             let password = passwordTextField.text else { return }
         
-        userController.signIn(emailAddress: emailAddress, password: password) { (networkError) in
+        UserController.shared.signIn(emailAddress: emailAddress, password: password) { (networkError) in
             if let error = networkError {
                 self.presentSignInErrorAlert()
                 NSLog("Error occured during Sign In: \(error)")
@@ -347,18 +344,13 @@ class SignInViewController: UIViewController {
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ModalForgotPasswordSegue" {
-            guard let destinationVC = segue.destination as? ForgotPasswordViewController else { return }
-            destinationVC.userController = userController
-        } else if segue.identifier == "ShowHomeScreenSegue" {
-            
+        if segue.identifier == "ShowHomeScreenSegue" {
             guard let barViewControllers = segue.destination as? UITabBarController,
                 let nav = barViewControllers.viewControllers?[0] as? UINavigationController,
-                let destinationVC = nav.topViewController as? HomeViewController else {
-                    //FIXME: - Better error handling and alert
-                return }
-            destinationVC.userController = userController
-            destinationVC.isNewUser = isNewUser
+                let _ = nav.topViewController as? HomeViewController else {
+                //FIXME: - Better error handling and alert
+                return
+            }
         }
     }
 }
