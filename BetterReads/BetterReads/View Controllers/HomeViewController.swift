@@ -9,11 +9,6 @@
 import UIKit
 
 class HomeViewController: UIViewController, UICollectionViewDataSource {
-    
-    //MARK: - Properties
-    var userController: UserController?
-    var isNewUser: Bool?
-    
     //MARK: - Outlets
     @IBOutlet weak var welcomeUser: UILabel!
     @IBOutlet weak var welcomeMessage: UILabel!
@@ -23,7 +18,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
     @IBOutlet weak var middleCollectionView: UICollectionView!
     @IBOutlet weak var bottomRecommendationLabel: UILabel!
     @IBOutlet weak var bottomCollectionView: UICollectionView!
-    
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -37,7 +31,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
         bottomCollectionView.delegate = self
         bottomCollectionView.dataSource = self
 
-        if (isNewUser ?? false) {
+        if (UserController.shared.isNewUser ?? false) {
             welcomeMessage.text = "It’s great to have you! Discover interesting stories and unique perspectives from the suggestions below. Already a book nerd? Add your favorites to your library collection."
         } else {
             welcomeMessage.text = "Welcome back! Flip through the tailored recommendations below from a variety of authors and storytellers."
@@ -46,10 +40,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
     
     //MARK: - Methods
     private func setupUserContoller() {
-        guard let userController = userController else {
-            return }
-        self.welcomeUser.text = "Hello, \(userController.user?.fullName ?? "there")!"
-        userController.getRecommendations { (error) in
+        self.welcomeUser.text = "Hello, \(UserController.shared.user?.fullName ?? "there")!"
+        UserController.shared.getRecommendations { (error) in
             if let error = error {
             let alert = UIAlertController(title: "Recommendations Error", message: "An error occurred while getting recommendations.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
