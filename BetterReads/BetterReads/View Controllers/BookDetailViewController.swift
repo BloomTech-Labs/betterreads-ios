@@ -51,12 +51,17 @@ class BookDetailViewController: UIViewController {
     let ratingView: UIView = {
         let tempView = UIView()
         tempView.translatesAutoresizingMaskIntoConstraints = false
-        tempView.backgroundColor = .altoGray
+//        tempView.backgroundColor = .black
         return tempView
     }()
     
-    // FIXME: Average Rating label (3.12 avg rating / or No ratings)
+    private var starsArray = [UIImageView]()
+    private var starSpacing: Int = 4 // change to double/float?
     
+    // FIXME: Average Rating label (3.12 avg rating / or No ratings)
+    // Average Rating Label
+    
+    // FIXME: make button have default "pressing" animation that comes with storyboard buttons
     let addButton: UIButton = {
         let tempButton = UIButton(type: .system)
         tempButton.translatesAutoresizingMaskIntoConstraints = false
@@ -152,6 +157,23 @@ class BookDetailViewController: UIViewController {
         ratingView.leadingAnchor.constraint(equalTo: bookCoverImageView.trailingAnchor, constant: 8).isActive = true
         ratingView.widthAnchor.constraint(equalTo: authorLabel.widthAnchor).isActive = true
         ratingView.heightAnchor.constraint(equalTo: authorLabel.heightAnchor, multiplier: 1.2).isActive = true
+        
+        // Stars in Rating View
+        let starSize = Int(20) // FIXME: should be based on cell size?
+//        let starSize = Int(ratingView.frame.size.height * CGFloat(0.10)) // FIXME: should be based on cell size?
+        for i in 1...5 {
+            let star = UIImageView()
+            ratingView.addSubview(star)
+            starsArray.append(star)
+            star.tag = i
+            star.frame = CGRect(x: ((starSize + starSpacing) * (i - 1)),
+                                y: 0,
+                                width: starSize,
+                                height: starSize)
+//            star.image = UIImage(named: "Stars_Chunky-AltoGray")
+            star.image = UIImage(named: "Stars_Chunky-Tundra")
+        }
+
         
         // Average Rating Label
         
