@@ -20,6 +20,7 @@ class SearchResultView: UIView {
     var ratingView: UILabel! // FIXME: change back to uiview mayhaps?
     var starsView: UIView! // NEW holds 5 image views inside
     var starsArray: [UIImageView] = [] // NEW holds stars sf icons
+    // FIXME: add audiobook icon in corner and ebook? icon (look at figma)
     
     var standardMargin: CGFloat = CGFloat(16.0)
     var starSpacing: Int = 4 // change to double/float?
