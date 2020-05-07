@@ -493,8 +493,8 @@
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="caN-6n-BWu">
                                                                             <rect key="frame" x="2.6666666666666643" y="2.6666666666666714" width="120" height="170"/>
                                                                             <subviews>
-                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="book.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="1EK-77-Ugp">
-                                                                                    <rect key="frame" x="5" y="7" width="110" height="156.33333333333331"/>
+                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BetterReads-DefaultBookImage" translatesAutoresizingMaskIntoConstraints="NO" id="1EK-77-Ugp">
+                                                                                    <rect key="frame" x="5" y="5" width="110" height="160"/>
                                                                                     <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                                     <color key="tintColor" red="0.83137254900000002" green="0.28235294119999998" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                                     <constraints>
@@ -566,8 +566,8 @@
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wQm-fW-Lna">
                                                                             <rect key="frame" x="2.6666666666666643" y="2.6666666666666714" width="120" height="170"/>
                                                                             <subviews>
-                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="book.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="TIO-IA-ihl">
-                                                                                    <rect key="frame" x="5" y="7" width="110" height="156.33333333333331"/>
+                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BetterReads-DefaultBookImage" translatesAutoresizingMaskIntoConstraints="NO" id="TIO-IA-ihl">
+                                                                                    <rect key="frame" x="5" y="5" width="110" height="160"/>
                                                                                     <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                                     <color key="tintColor" red="0.83137254900000002" green="0.28235294119999998" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                                     <constraints>
@@ -639,8 +639,8 @@
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gtM-ak-uZv">
                                                                             <rect key="frame" x="2.6666666666666643" y="2.6666666666666714" width="120" height="170"/>
                                                                             <subviews>
-                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="book.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="m1W-2k-kFT">
-                                                                                    <rect key="frame" x="5" y="7" width="110" height="156.33333333333331"/>
+                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BetterReads-DefaultBookImage" translatesAutoresizingMaskIntoConstraints="NO" id="m1W-2k-kFT">
+                                                                                    <rect key="frame" x="5" y="5" width="110" height="160"/>
                                                                                     <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                                     <color key="tintColor" red="0.83137254900000002" green="0.28235294119999998" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                                     <constraints>
@@ -972,11 +972,11 @@
         <segue reference="Q4w-Qa-WfN"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="BetterReads-DefaultBookImage" width="267" height="400"/>
         <image name="BetterReads-Graphics_Man" width="1000" height="852"/>
         <image name="BetterReads-Graphics_Sitting" width="1000" height="720"/>
         <image name="BetterReads-Logo_Orange" width="400" height="50"/>
         <image name="book" catalog="system" width="128" height="101"/>
-        <image name="book.fill" catalog="system" width="128" height="100"/>
         <image name="house" catalog="system" width="128" height="110"/>
         <image name="info.circle.fill" catalog="system" width="128" height="121"/>
         <image name="person.crop.circle" catalog="system" width="128" height="121"/>
