@@ -40,11 +40,21 @@ class SearchTableViewController: UITableViewController {
     
     @IBOutlet var searchBar: UISearchBar!
     
+    // FIXME: change so cancel/x button act like they do in Goodreads/Apple Books?
+    // FIXME: add swipe gesture to dismiss keyboard instead of having "Hide" button?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
         searchBar.tintColor = .trinidadOrange
         setupToolBar()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if searchBar.text == "" {
+            searchBar.becomeFirstResponder()
+        }
     }
     
     private func setupToolBar() {
@@ -91,6 +101,7 @@ class SearchTableViewController: UITableViewController {
     
     // MARK: - Navigation
 
+    // FIXME: add segue that goes to BookDetailViewController
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
