@@ -40,11 +40,19 @@ class SearchTableViewController: UITableViewController {
     
     @IBOutlet var searchBar: UISearchBar!
     
+    // FIXME: change so cancel/x button act like they do in Goodreads/Apple Books?
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
         searchBar.tintColor = .trinidadOrange
         setupToolBar()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if searchBar.text == "" {
+            searchBar.becomeFirstResponder()
+        }
     }
     
     private func setupToolBar() {
