@@ -63,6 +63,11 @@ class SignInViewController: UIViewController {
         forgotPassword.isHidden = true
         submitButton.layer.cornerRadius = 5
         
+        //Show sign in form first, so returning users can sign in quickly
+        loginType = .signin
+        segmentedControl.selectedSegmentIndex = 1
+        setUpSignInForm()
+        
         // Dismiss the keyboard on tap
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)
@@ -88,6 +93,10 @@ class SignInViewController: UIViewController {
         // Update Save Button
         submitButton.backgroundColor = formIsValid ? .trinidadOrange : .tundra
         submitButton.isEnabled = formIsValid
+        if formIsValid {
+            submitButton.performFlare()
+        }
+        
     }
     
     // MARK: - Methods
