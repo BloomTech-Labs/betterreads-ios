@@ -15,6 +15,8 @@ class MyLibraryCollectionViewController: UICollectionViewController {
     var tempShelfCount: Int = 1
     
     // FIXME: change system color to trinidadOrange?
+    // FIXME: add either an alert controller pop up to make a new shelf or use small(?) modal pop up instead?
+    
     @IBOutlet var addShelfButtonLabel: UIBarButtonItem!
     
     @IBAction func addShelfButtonTapped(_ sender: UIBarButtonItem) {

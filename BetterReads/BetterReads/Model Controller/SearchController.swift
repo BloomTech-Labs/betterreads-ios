@@ -16,6 +16,7 @@ class SearchController {
     /// Holds books that are returned from search
     var searchResultBooks: [Book] = []
     
+    // FIXME: default image should be a custom image for no book cover
     /// Fetches image at url passed in and returns a uimage (place holder image if none exists)
     static func fetchImage(with urlString: String, completion: @escaping (UIImage?) -> Void = { _ in }) {
         

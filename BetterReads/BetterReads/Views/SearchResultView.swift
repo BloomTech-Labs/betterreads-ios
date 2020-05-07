@@ -17,7 +17,7 @@ class SearchResultView: UIView {
 
     var titleLabel: UILabel! // var title = uilabel()
     var authorLabel: UILabel!
-    var ratingView: UILabel! // FIXME: change back to uiview
+    var ratingView: UILabel! // FIXME: change back to uiview mayhaps?
     var starsView: UIView! // NEW holds 5 image views inside
     var starsArray: [UIImageView] = [] // NEW holds stars sf icons
     
@@ -61,6 +61,7 @@ class SearchResultView: UIView {
             print("no image in imageView, fetching an image")
             SearchController.fetchImage(with: thumbnail) { (image) in
                 DispatchQueue.main.async {
+                    // Add quick fade-in animation (alpha) 
                     self.imageView.image = image
                     self.lastThumbnailImage = thumbnail
                 }
@@ -167,7 +168,6 @@ class SearchResultView: UIView {
                                 width: starSize,
                                 height: starSize)
             star.image = UIImage(named: "Stars_Chunky-AltoGray")
-            //star.tintColor = UIColor(red: 11.0/255.0, green: 28.0/255.0, blue: 124.0/255.0, alpha: 1.0)
         }
     }
 }
