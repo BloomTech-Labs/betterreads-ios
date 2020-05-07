@@ -20,13 +20,42 @@ class MyLibraryCollectionViewController: UICollectionViewController {
     
     @IBAction func addShelfButtonTapped(_ sender: UIBarButtonItem) {
         print("addShelfButtonTapped")
+        present(alertController, animated: true)
+    }
+    
+    fileprivate lazy var alertController: UIAlertController = {
+        let ac = UIAlertController(title: "Create new shelf", message: "Enter shelf name below", preferredStyle: .alert)
+        
+        ac.addTextField { textField in
+            
+            self.alertTextField = textField
+        }
+        self.alertTextField?.placeholder = "maximum 15 characters"
+        
+        ac.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+            print(self.alertTextField?.text ?? "")
+            self.createNewShelf()
+            self.alertTextField?.text = ""
+        }))
+        
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+            print("cancel button tapped, do cancel logic in here")
+            self.alertTextField?.text = ""
+        }))
+        
+        return ac
+    }()
+    
+    fileprivate var alertTextField: UITextField?
+    
+    private func createNewShelf() {
+        print("createNewShelf called, textField text = \(alertTextField?.text ?? "nil")")
         tempShelfCount += 1
         collectionView.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
 
     /*
@@ -114,8 +143,7 @@ extension MyLibraryCollectionViewController: UICollectionViewDelegateFlowLayout 
         let itemSpacing = (self.collectionView(collectionView, layout: collectionViewLayout, minimumInteritemSpacingForSectionAt: 0)) * (itemsPerRow - 1)
         
         let width = (collectionView.frame.width - horizontalInsets - itemSpacing) / itemsPerRow
-        //print("sizeForItemAt = \(CGSize(width: width, height: width * 1.3))")
-        //print("safeAreaLayoutGuide = \(self.view.safeAreaLayoutGuide)")
+
         return CGSize(width: width, height: width * 1.4)
     }
 }
