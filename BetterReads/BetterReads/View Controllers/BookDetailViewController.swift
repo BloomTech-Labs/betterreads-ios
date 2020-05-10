@@ -10,7 +10,7 @@ import UIKit
 
 class BookDetailViewController: UIViewController {
     
-    // FIXME: make these properties with an ! at the end?
+    // FIXME: make these properties with an ! at the end???
     let scrollView: UIScrollView = {
         let v = UIScrollView()
         v.translatesAutoresizingMaskIntoConstraints = false
@@ -90,6 +90,37 @@ class BookDetailViewController: UIViewController {
         lb.layer.cornerRadius = 5
         lb.backgroundColor = .altoGray
         return lb
+    }()
+    
+    let bottomStackView: UIStackView = {
+        let sv = UIStackView()
+        sv.axis = .vertical
+        sv.distribution = .equalSpacing
+        sv.spacing = 4
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        return sv
+    }()
+    
+    let publisherLabel: UILabel = {
+        let pl = UILabel()
+        pl.text = "Publisher: Little, Brown Books for Young Readers, 2008"
+        pl.font = UIFont(name: "SourceSansPro-Light", size: 16)
+        pl.numberOfLines = 0
+        return pl
+    }()
+    
+    let isbnLabel: UILabel = {
+        let il = UILabel()
+        il.text = "ISBN: 9780316032834"
+        il.font = UIFont(name: "SourceSansPro-Light", size: 16)
+        return il
+    }()
+    
+    let lengthLabel: UILabel = {
+        let ll = UILabel()
+        ll.text = "Length: 768 pages"
+        ll.font = UIFont(name: "SourceSansPro-Light", size: 16)
+        return ll
     }()
     
     /// This is a label because it's height can be easily based on it's content (text) inside so scroll view changes accordingly
@@ -187,6 +218,7 @@ class BookDetailViewController: UIViewController {
         blurredBackgroundView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
         blurredBackgroundView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.5).isActive = true
         
+        // FIXME: Change tint/text color to white and remove back button text
         // Transparent Nav bar
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
@@ -250,7 +282,7 @@ class BookDetailViewController: UIViewController {
         }
 
 
-        // Average Rating Label
+        // Average Rating Label?
 
         // Add Book Button
         contentView.addSubview(addButton)
@@ -268,7 +300,7 @@ class BookDetailViewController: UIViewController {
         lineBreak.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
         lineBreak.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
         lineBreak.heightAnchor.constraint(equalToConstant: 2).isActive = true
-
+        
         // Description Label
         contentView.addSubview(descriptionLabel)
         descriptionLabel.topAnchor.constraint(equalTo: lineBreak.bottomAnchor, constant: 16).isActive = true
@@ -282,9 +314,18 @@ class BookDetailViewController: UIViewController {
         //descriptionTextView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -20).isActive = true
         //descriptionTextView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20).isActive = true
 
+        // Bottom Stack View (holds publisher, isbn, and length labels)
+        contentView.addSubview(bottomStackView)
+        bottomStackView.addArrangedSubview(publisherLabel)
+        bottomStackView.addArrangedSubview(isbnLabel)
+        bottomStackView.addArrangedSubview(lengthLabel)
+        bottomStackView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 16).isActive = true
+        bottomStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
+        bottomStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
+        
         // Bottom Thing (change to genre tags later?)
         contentView.addSubview(dummyView)
-        dummyView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 16).isActive = true
+        dummyView.topAnchor.constraint(equalTo: bottomStackView.bottomAnchor, constant: 16).isActive = true
         dummyView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
         //dummyView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
         // this bottom anchor is important (makes scroll view scrollable basically)
