@@ -57,7 +57,17 @@ class BookDetailViewController: UIViewController {
         return label
     }()
     
+    let ratingStackView: UIStackView = {
+        let rv = UIStackView()
+        rv.axis = .horizontal
+        rv.distribution = .fill
+        rv.spacing = 4
+        rv.translatesAutoresizingMaskIntoConstraints = false
+        return rv
+    }()
+    
     // FIXME: make this like the star view in SearchResultsView (make this custom later?)
+    // FIXME: stars are in upper left corner. Change to UIStackView later with fill?
     let ratingView: UIView = {
         let tempView = UIView()
         tempView.translatesAutoresizingMaskIntoConstraints = false
@@ -70,11 +80,19 @@ class BookDetailViewController: UIViewController {
     
     // FIXME: Average Rating label (3.12 avg rating / or No ratings)
     // Average Rating Label
-    
+    let averageRatingLabel: UILabel = {
+        let al = UILabel()
+        al.translatesAutoresizingMaskIntoConstraints = false
+        al.text = "4.7 average rating"
+        al.font = UIFont(name: "SourceSansPro-Regular", size: 14)
+        al.textAlignment = .center
+//        al.backgroundColor = .red
+        return al
+    }()
     
     // FIXME: make button have default "pressing" animation that comes with storyboard buttons
     let addButton: UIButton = {
-        let tempButton = UIButton(type: .system)
+        let tempButton = UIButton(type: .custom) // .system
         tempButton.translatesAutoresizingMaskIntoConstraints = false
         tempButton.backgroundColor = .trinidadOrange
         tempButton.tintColor = .white
@@ -257,6 +275,16 @@ class BookDetailViewController: UIViewController {
         authorLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor, constant: 0).isActive = true
         //authorLabel.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 0).isActive = true
 
+        // Rating Stack View ?
+//        contentView.addSubview(ratingStackView)
+//        ratingStackView.addArrangedSubview(ratingView)
+//        ratingStackView.addArrangedSubview(averageRatingLabel)
+//        ratingStackView.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 8).isActive = true
+//        ratingStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+//        //ratingView.leadingAnchor.constraint(equalTo: bookCoverImageView.trailingAnchor, constant: 8).isActive = true
+//        ratingStackView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.4).isActive = true
+//        ratingStackView.heightAnchor.constraint(equalTo: authorLabel.heightAnchor, multiplier: 1.2).isActive = true
+        
         // Rating View
         contentView.addSubview(ratingView)
         ratingView.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 8).isActive = true
@@ -264,10 +292,19 @@ class BookDetailViewController: UIViewController {
         //ratingView.leadingAnchor.constraint(equalTo: bookCoverImageView.trailingAnchor, constant: 8).isActive = true
         ratingView.widthAnchor.constraint(equalTo: authorLabel.widthAnchor).isActive = true
         ratingView.heightAnchor.constraint(equalTo: authorLabel.heightAnchor, multiplier: 1.2).isActive = true
+        
+        // Average Rating Label
+        contentView.addSubview(averageRatingLabel)
+        averageRatingLabel.topAnchor.constraint(equalTo: ratingView.bottomAnchor, constant: 4).isActive = true
+        averageRatingLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        //ratingView.leadingAnchor.constraint(equalTo: bookCoverImageView.trailingAnchor, constant: 8).isActive = true
+        //averageRatingLabel.widthAnchor.constraint(equalTo: authorLabel.widthAnchor).isActive = true
+        //averageRatingLabel.heightAnchor.constraint(equalTo: authorLabel.heightAnchor, multiplier: 1.2).isActive = true
 
         // Stars in Rating View
         let starSize = Int(20) // FIXME: should be based on cell size?
 //        let starSize = Int(ratingView.frame.size.height * CGFloat(0.10)) // FIXME: should be based on cell size?
+
         for i in 1...5 {
             let star = UIImageView()
             ratingView.addSubview(star)
@@ -286,7 +323,7 @@ class BookDetailViewController: UIViewController {
 
         // Add Book Button
         contentView.addSubview(addButton)
-        addButton.topAnchor.constraint(equalTo: ratingView.bottomAnchor, constant: 8).isActive = true
+        addButton.topAnchor.constraint(equalTo: averageRatingLabel.bottomAnchor, constant: 8).isActive = true
         addButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         //addButton.bottomAnchor.constraint(equalTo: bookCoverImageView.bottomAnchor).isActive = true
         //addButton.leadingAnchor.constraint(equalTo: bookCoverImageView.trailingAnchor, constant: 8).isActive = true
