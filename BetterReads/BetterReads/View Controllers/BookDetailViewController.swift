@@ -14,8 +14,16 @@ class BookDetailViewController: UIViewController {
     let scrollView: UIScrollView = {
         let v = UIScrollView()
         v.translatesAutoresizingMaskIntoConstraints = false
-//        v.backgroundColor = .cyan
+        //v.backgroundColor = .cyan
         return v
+    }()
+    
+    let blurredBackgroundView: UIImageView = {
+        let bg = UIImageView()
+        bg.translatesAutoresizingMaskIntoConstraints = false
+        bg.image = UIImage(named: "twilightBookCover")
+        bg.contentMode = .scaleToFill
+        return bg
     }()
     
     let bookCoverImageView: UIImageView = {
@@ -33,6 +41,7 @@ class BookDetailViewController: UIViewController {
     let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Twilight Breaking Dawn"
+        label.font = UIFont(name: "FrankRuhlLibre-Regular", size: 24)
 //        label.backgroundColor = .red
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -41,7 +50,8 @@ class BookDetailViewController: UIViewController {
     // FIXME: make this numberOfLines = 0 for long authors?
     let authorLabel: UILabel = {
         let label = UILabel()
-        label.text = "Stephenie Meyer"
+        label.text = "by Stephenie Meyer"
+        label.font = UIFont(name: "SourceSansPro-Light", size: 16)
 //        label.backgroundColor = .green
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -61,6 +71,7 @@ class BookDetailViewController: UIViewController {
     // FIXME: Average Rating label (3.12 avg rating / or No ratings)
     // Average Rating Label
     
+    
     // FIXME: make button have default "pressing" animation that comes with storyboard buttons
     let addButton: UIButton = {
         let tempButton = UIButton(type: .system)
@@ -69,7 +80,7 @@ class BookDetailViewController: UIViewController {
         tempButton.tintColor = .white
         tempButton.setTitle("Add Book", for: .normal)
         tempButton.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
-        tempButton.layer.cornerRadius = 5
+        tempButton.layer.cornerRadius = 10
         return tempButton
     }()
         
@@ -86,7 +97,7 @@ class BookDetailViewController: UIViewController {
         let tv = UILabel()
         tv.translatesAutoresizingMaskIntoConstraints = false
 //        tv.backgroundColor = .magenta
-        tv.text = "With 160 million copies of the Twilight Saga sold worldwide, this addictive love story between a teenage girl and a vampire redefined romance for a generation. For readers hungry for more, here is book two. With 160 million copies of the Twilight Saga sold worldwide, this addictive love story between a teenage girl and a vampire redefined romance for a generation. For readers hungry for more, here is book two. With 160 million copies of the Twilight Saga sold worldwide, this addictive love story between a teenage girl and a vampire redefined romance for a generation. For readers hungry for more, here is book two. With 160 million copies of the Twilight Saga sold worldwide, this addictive love story between a teenage girl and a vampire redefined romance for a generation. For readers hungry for more, here is book two. With 160 million copies of the Twilight Saga sold worldwide, this addictive love story between a teenage girl and a vampire redefined romance for a generation. For readers hungry for more, here is book two."
+        tv.text = "With 160 million copies of the Twilight Saga sold worldwide, this addictive love story between a teenage girl and a vampire redefined romance for a generation. Here is the series finale."
         tv.numberOfLines = 0
         return tv
     }()
@@ -103,6 +114,13 @@ class BookDetailViewController: UIViewController {
         return dv
     }()
     
+    let contentView: UIView = {
+        let cv = UIView()
+        cv.translatesAutoresizingMaskIntoConstraints = false
+        //cv.backgroundColor = .yellow
+        return cv
+    }()
+    
     // FIXME: add sound effect for add book to library? (similar to App store purchase success)?
     @objc func showAlert() {
         print("add button tapped")
@@ -116,48 +134,105 @@ class BookDetailViewController: UIViewController {
         setupSubviews()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // To change status bar text to white
+        navigationController?.navigationBar.barStyle = .black
+    }
+    
+    // To change status bar text back to black
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.barStyle = .default
+    }
+    
+    // FIXME: THIS NEEDS TO RUN BEFORE THIS VIEW LOADS. USE NOTIFICATION TO PASS TOP BAR HEIGTH BEFOREHAND
+    private func statusAndNavigationBarHeight() -> CGFloat {
+        let navHeight = self.navigationController?.navigationBar.frame.height ?? 0.0
+        let statusHeight = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0.0
+        print("nav height = \(navHeight)")
+        print("status height = \(statusHeight)")
+        return navHeight + statusHeight
+    }
+    
     private func setupSubviews() {
         // Scroll View
         // add the scroll view to self.view
+        title = ""
         self.view.addSubview(scrollView)
         // constrain the scroll view to 8-pts on each side
+        scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         scrollView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 0).isActive = true
-        scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
         scrollView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: 0).isActive = true
         scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
+        // Holy fuck this solved my issue
+        scrollView.contentInsetAdjustmentBehavior = .never
+        // quick fix to keep from scrolling too high
+        scrollView.bounces = false
+        
+        
+        // Content View
+        scrollView.addSubview(contentView)
+        contentView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
+        contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
+        contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
+        contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
+        contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
+        
+        
+        // Blurred Background Image View
+        contentView.addSubview(blurredBackgroundView)
+        blurredBackgroundView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        blurredBackgroundView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        blurredBackgroundView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
+        blurredBackgroundView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.5).isActive = true
+        
+        // Transparent Nav bar
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        
+            // blur effect
+        let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .systemMaterialDark))
+        blurView.frame = blurredBackgroundView.bounds
+        blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        // add blurView over blurredBackgroundView
+        blurredBackgroundView.addSubview(blurView)
         
         // Book Image View
-        scrollView.addSubview(bookCoverImageView)
-        bookCoverImageView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 30).isActive = true
-        bookCoverImageView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20).isActive = true
-        //bookCoverImageView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
-        bookCoverImageView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.3).isActive = true
+        contentView.addSubview(bookCoverImageView) // contentView.topAnchor, constant: 100
+        bookCoverImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 100).isActive = true
+        //bookCoverImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
+        bookCoverImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        bookCoverImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true
         bookCoverImageView.heightAnchor.constraint(equalTo: bookCoverImageView.widthAnchor, multiplier: 1.5).isActive = true
-        
+
         // Title Label
         // add labelOne to the scroll view
-        scrollView.addSubview(titleLabel)
+        contentView.addSubview(titleLabel)
         // constrain labelOne to left & top with 16-pts padding
         // this also defines the left & top of the scroll content
         //titleLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: bookCoverImageView.topAnchor).isActive = true
-        titleLabel.leadingAnchor.constraint(equalTo: bookCoverImageView.trailingAnchor, constant: 8).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: blurredBackgroundView.bottomAnchor, constant: 16).isActive = true
+        //titleLabel.leadingAnchor.constraint(equalTo: bookCoverImageView.trailingAnchor, constant: 8).isActive = true
+        titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         
         // Author Label
         // add authorLabel to the scroll view
-        scrollView.addSubview(authorLabel)
+        contentView.addSubview(authorLabel)
         authorLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8).isActive = true
-        authorLabel.leadingAnchor.constraint(equalTo: bookCoverImageView.trailingAnchor, constant: 8).isActive = true
-        //authorLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor, constant: 0).isActive = true
+        //authorLabel.leadingAnchor.constraint(equalTo: bookCoverImageView.trailingAnchor, constant: 8).isActive = true
+        authorLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor, constant: 0).isActive = true
         //authorLabel.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 0).isActive = true
-        
+
         // Rating View
-        scrollView.addSubview(ratingView)
+        contentView.addSubview(ratingView)
         ratingView.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 8).isActive = true
-        ratingView.leadingAnchor.constraint(equalTo: bookCoverImageView.trailingAnchor, constant: 8).isActive = true
+        ratingView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        //ratingView.leadingAnchor.constraint(equalTo: bookCoverImageView.trailingAnchor, constant: 8).isActive = true
         ratingView.widthAnchor.constraint(equalTo: authorLabel.widthAnchor).isActive = true
         ratingView.heightAnchor.constraint(equalTo: authorLabel.heightAnchor, multiplier: 1.2).isActive = true
-        
+
         // Stars in Rating View
         let starSize = Int(20) // FIXME: should be based on cell size?
 //        let starSize = Int(ratingView.frame.size.height * CGFloat(0.10)) // FIXME: should be based on cell size?
@@ -174,45 +249,46 @@ class BookDetailViewController: UIViewController {
             star.image = UIImage(named: "Stars_Chunky-Tundra")
         }
 
-        
+
         // Average Rating Label
-        
+
         // Add Book Button
-        scrollView.addSubview(addButton)
-//        addButton.topAnchor.constraint(equalTo: ratingView.bottomAnchor, constant: 8).isActive = true
-        addButton.bottomAnchor.constraint(equalTo: bookCoverImageView.bottomAnchor).isActive = true
-        addButton.leadingAnchor.constraint(equalTo: bookCoverImageView.trailingAnchor, constant: 8).isActive = true
-        addButton.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -20).isActive = true
-        //addButton.widthAnchor.constraint(equalTo: authorLabel.widthAnchor).isActive = true
-        addButton.heightAnchor.constraint(equalTo: authorLabel.heightAnchor, multiplier: 2).isActive = true
-        
+        contentView.addSubview(addButton)
+        addButton.topAnchor.constraint(equalTo: ratingView.bottomAnchor, constant: 8).isActive = true
+        addButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        //addButton.bottomAnchor.constraint(equalTo: bookCoverImageView.bottomAnchor).isActive = true
+        //addButton.leadingAnchor.constraint(equalTo: bookCoverImageView.trailingAnchor, constant: 8).isActive = true
+        //addButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
+        addButton.widthAnchor.constraint(equalTo: titleLabel.widthAnchor).isActive = true
+        addButton.heightAnchor.constraint(equalTo: titleLabel.heightAnchor, multiplier: 1.5).isActive = true
+
         // Line Break
-        scrollView.addSubview(lineBreak)
-        lineBreak.topAnchor.constraint(equalTo: bookCoverImageView.bottomAnchor, constant: 16).isActive = true
-        lineBreak.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20).isActive = true
-        lineBreak.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -20).isActive = true
+        contentView.addSubview(lineBreak)
+        lineBreak.topAnchor.constraint(equalTo: addButton.bottomAnchor, constant: 16).isActive = true
+        lineBreak.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
+        lineBreak.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
         lineBreak.heightAnchor.constraint(equalToConstant: 2).isActive = true
-        
+
         // Description Label
-        scrollView.addSubview(descriptionLabel)
+        contentView.addSubview(descriptionLabel)
         descriptionLabel.topAnchor.constraint(equalTo: lineBreak.bottomAnchor, constant: 16).isActive = true
         // this centerXAnchor is important (without it, the scrollView gets really wide)
-        descriptionLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
-        descriptionLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20).isActive = true
-        descriptionLabel.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -20).isActive = true
+        descriptionLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
+        descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
         //descriptionLabel.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.8).isActive = true
         //descriptionLabel.heightAnchor.constraint(equalToConstant: 1000).isActive = true
         //descriptionTextView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20).isActive = true
         //descriptionTextView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -20).isActive = true
         //descriptionTextView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20).isActive = true
-        
+
         // Bottom Thing (change to genre tags later?)
-        scrollView.addSubview(dummyView)
+        contentView.addSubview(dummyView)
         dummyView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 16).isActive = true
-        dummyView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20).isActive = true
+        dummyView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
         //dummyView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
         // this bottom anchor is important (makes scroll view scrollable basically)
-        dummyView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -16).isActive = true
+        dummyView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16).isActive = true
         dummyView.widthAnchor.constraint(equalToConstant: 60).isActive = true
         dummyView.heightAnchor.constraint(equalToConstant: 30).isActive = true
     }

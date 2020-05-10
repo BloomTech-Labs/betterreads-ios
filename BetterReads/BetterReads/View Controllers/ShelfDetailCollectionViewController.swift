@@ -22,7 +22,6 @@ class ShelfDetailCollectionViewController: UICollectionViewController {
         collectionView.reloadData()
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
