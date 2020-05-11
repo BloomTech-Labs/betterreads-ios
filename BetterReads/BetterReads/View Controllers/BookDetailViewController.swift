@@ -57,27 +57,16 @@ class BookDetailViewController: UIViewController {
         return label
     }()
     
-    let ratingStackView: UIStackView = {
-        let rv = UIStackView()
+    let ratingStackView: StarRatingStackView = {
+        let rv = StarRatingStackView()
         rv.axis = .horizontal
-        rv.distribution = .fill
+        //rv.distribution = .fillEqually
         rv.spacing = 4
+        rv.ratingValue = 5.0
         rv.translatesAutoresizingMaskIntoConstraints = false
         return rv
     }()
-    
-    // FIXME: make this like the star view in SearchResultsView (make this custom later?)
-    // FIXME: stars are in upper left corner. Change to UIStackView later with fill?
-    let ratingView: UIView = {
-        let tempView = UIView()
-        tempView.translatesAutoresizingMaskIntoConstraints = false
-//        tempView.backgroundColor = .black
-        return tempView
-    }()
-    
-    private var starsArray = [UIImageView]()
-    private var starSpacing: Int = 4 // change to double/float?
-    
+            
     // FIXME: Average Rating label (3.12 avg rating / or No ratings)
     // Average Rating Label
     let averageRatingLabel: UILabel = {
@@ -86,7 +75,6 @@ class BookDetailViewController: UIViewController {
         al.text = "4.7 average rating"
         al.font = UIFont(name: "SourceSansPro-Regular", size: 14)
         al.textAlignment = .center
-//        al.backgroundColor = .red
         return al
     }()
     
@@ -275,52 +263,21 @@ class BookDetailViewController: UIViewController {
         authorLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor, constant: 0).isActive = true
         //authorLabel.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 0).isActive = true
 
-        // Rating Stack View ?
-//        contentView.addSubview(ratingStackView)
-//        ratingStackView.addArrangedSubview(ratingView)
-//        ratingStackView.addArrangedSubview(averageRatingLabel)
-//        ratingStackView.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 8).isActive = true
-//        ratingStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-//        //ratingView.leadingAnchor.constraint(equalTo: bookCoverImageView.trailingAnchor, constant: 8).isActive = true
-//        ratingStackView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.4).isActive = true
-//        ratingStackView.heightAnchor.constraint(equalTo: authorLabel.heightAnchor, multiplier: 1.2).isActive = true
-        
-        // Rating View
-        contentView.addSubview(ratingView)
-        ratingView.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 8).isActive = true
-        ratingView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        //ratingView.leadingAnchor.constraint(equalTo: bookCoverImageView.trailingAnchor, constant: 8).isActive = true
-        ratingView.widthAnchor.constraint(equalTo: authorLabel.widthAnchor).isActive = true
-        ratingView.heightAnchor.constraint(equalTo: authorLabel.heightAnchor, multiplier: 1.2).isActive = true
+        // Rating Stack View
+        contentView.addSubview(ratingStackView)
+        ratingStackView.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 8).isActive = true
+        ratingStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        ratingStackView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true
+        ratingStackView.heightAnchor.constraint(equalTo: ratingStackView.widthAnchor, multiplier: 0.2).isActive = true
         
         // Average Rating Label
         contentView.addSubview(averageRatingLabel)
-        averageRatingLabel.topAnchor.constraint(equalTo: ratingView.bottomAnchor, constant: 4).isActive = true
+        averageRatingLabel.topAnchor.constraint(equalTo: ratingStackView.bottomAnchor, constant: 4).isActive = true
         averageRatingLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         //ratingView.leadingAnchor.constraint(equalTo: bookCoverImageView.trailingAnchor, constant: 8).isActive = true
         //averageRatingLabel.widthAnchor.constraint(equalTo: authorLabel.widthAnchor).isActive = true
         //averageRatingLabel.heightAnchor.constraint(equalTo: authorLabel.heightAnchor, multiplier: 1.2).isActive = true
-
-        // Stars in Rating View
-        let starSize = Int(20) // FIXME: should be based on cell size?
-//        let starSize = Int(ratingView.frame.size.height * CGFloat(0.10)) // FIXME: should be based on cell size?
-
-        for i in 1...5 {
-            let star = UIImageView()
-            ratingView.addSubview(star)
-            starsArray.append(star)
-            star.tag = i
-            star.frame = CGRect(x: ((starSize + starSpacing) * (i - 1)),
-                                y: 0,
-                                width: starSize,
-                                height: starSize)
-//            star.image = UIImage(named: "Stars_Chunky-AltoGray")
-            star.image = UIImage(named: "Stars_Chunky-Tundra")
-        }
-
-
-        // Average Rating Label?
-
+        
         // Add Book Button
         contentView.addSubview(addButton)
         addButton.topAnchor.constraint(equalTo: averageRatingLabel.bottomAnchor, constant: 8).isActive = true
@@ -382,4 +339,71 @@ class BookDetailViewController: UIViewController {
      }
      */
     
+}
+
+class StarRatingStackView: UIStackView {
+    
+    /// Holds 5 star images insied
+    var starsView: UIView!
+    
+    /// Array of star images
+    var starsArray = [UIImageView]()
+    
+    // FIXME: give this a didSet later that calls updateStarRating
+    /// How many stars should be filled in
+    var ratingValue: Double? {
+        didSet {
+            updateStarRating()
+        }
+    }
+    var starSize: Double = 20.0
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        print("init with frame")
+        setupSubviews()
+    }
+    
+    required init(coder: NSCoder) {
+        super.init(coder: coder)
+        print("init with coder")
+        setupSubviews()
+    }
+    
+    /// Sets up stackView and stars
+    private func setupSubviews() {
+        
+        distribution = .fillEqually
+        //let starSize = Int(20) // FIXME: should be based on view size?
+        for i in 1...5 {
+            let star = UIImageView()
+            star.translatesAutoresizingMaskIntoConstraints = false
+            addArrangedSubview(star)
+            starsArray.append(star)
+            star.tag = i
+            star.contentMode = .scaleToFill
+            star.frame = CGRect(x: 0,
+                                y: 0,
+                                width: starSize,
+                                height: starSize)
+            star.image = UIImage(named: "Stars_Chunky-AltoGray")
+        }
+        updateStarRating()
+    }
+    
+    private func updateStarRating() {
+        
+        let value = ratingValue ?? 0
+        var chunk = value
+        for star in starsArray {
+            if chunk >= 0.66 && chunk <= 5.0 {
+                star.image = UIImage(named: "Stars_Chunky-DoveGray")
+            } else if chunk >= 0.33 && chunk < 0.66 {
+                star.image = UIImage(named: "Stars_Chunky-AltoGray-LeftHalf")
+            } else {
+                star.image = UIImage(named: "Stars_Chunky-AltoGray")
+            }
+            chunk = value - Double(star.tag)
+        }
+    }
 }
