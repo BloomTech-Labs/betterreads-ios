@@ -36,6 +36,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
         } else {
             welcomeMessage.text = "Welcome back! Flip through the tailored recommendations below from a variety of authors and storytellers."
         }
+        
     }
     
     //MARK: - Methods
@@ -106,9 +107,14 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
         if collectionView == self.topCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TopCollectionCell", for: indexPath) as? RecommendationCollectionViewCell ?? RecommendationCollectionViewCell()
             guard let thumbnails = UserController.shared.bookThumbnails else { return cell }
+            print(thumbnails)
             let thumbnail = thumbnails[indexPath.item]
-            fetchImage(with: thumbnail) { (image) in
-                cell.bookCoverImageView.image = image
+            if thumbnail == "" {
+                cell.bookCoverImageView.image = UIImage(named: "BetterReads-DefaultBookImage")
+            } else {
+                fetchImage(with: thumbnail) { (image) in
+                    cell.bookCoverImageView.image = image
+                }
             }
             return cell
         } else if collectionView == self.middleCollectionView {
