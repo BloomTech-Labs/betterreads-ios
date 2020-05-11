@@ -27,6 +27,7 @@ class UserController {
     private var authToken: JWT?
     var user: User? = nil
     var isNewUser: Bool?
+    var bookThumbnails: [String]?
         
     static let shared = UserController()
         
@@ -127,27 +128,25 @@ class UserController {
     
     //MARK: - Recommendations
     func getRecommendations(completion: @escaping CompletionHandler = { _ in }) {
-        if user == nil {
-            completion(NetworkError.noUser)
-        }
+        guard let user = user,
+            let authToken = authToken else { return completion(NetworkError.otherError) }
         
-        guard let user = user else { return completion(NetworkError.otherError) }
-        
-        let getRecommendationsURL = baseURL.appendingPathComponent(":\(user.id)").appendingPathComponent("recommendations")
-        let parameters = ["id": user.id]
+        let getRecommendationsURL = baseURL.appendingPathComponent("\(user.id)").appendingPathComponent("recommendations")
         let headers: HTTPHeaders = [
-            "Accept": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": authToken
         ]
         
         AF.request(getRecommendationsURL,
                    method: .get,
-                   parameters: parameters,
-                   encoder: JSONParameterEncoder.default,
                    headers: headers).responseJSON { response in
                     switch (response.result) {
-                    case .success(_):
-                        //FIXME: Do something with data returned
-                        completion(nil)
+                    case .success(let value):
+                        let jsonData = JSON(value)
+                        guard let recommendationsObject = jsonData["recommendations"].dictionary,
+                            let recommendationsArray = recommendationsObject["recommendations"]?.array else { return completion(NetworkError.noDecode) }
+                        let bookThumbnails = recommendationsArray.map { $0["thumbnail"].stringValue }
+                        self.bookThumbnails = bookThumbnails
                     case .failure(let error):
                         print("Error: \(error)")
                         completion(NetworkError.otherError)

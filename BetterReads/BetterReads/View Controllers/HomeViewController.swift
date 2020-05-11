@@ -51,6 +51,49 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
         }
     }
     
+    func fetchImage(with urlString: String, completion: @escaping (UIImage?) -> Void = { _ in }) {
+        
+        let defaultImage = UIImage(systemName: "book.fill")
+        print("called fetchImage with url: \(urlString)")
+        guard let url = URL(string: urlString) else {
+            print("cant make url from passed in string")
+            completion(defaultImage)
+            return
+        }
+        
+        let http = url
+        let urlComponents = URLComponents(url: http, resolvingAgainstBaseURL: false)
+        guard let comps = urlComponents else {
+            print("cant make urlComponents")
+            completion(defaultImage)
+            return
+        }
+        var components = comps
+        components.scheme = "https"
+        guard let secureUrl = components.url else {
+            print("cant make secureUrl from http")
+            completion(defaultImage)
+            return
+        }
+        print("secureUrl now = \(secureUrl)")
+        
+        URLSession.shared.dataTask(with: secureUrl) { (data, _, error) in
+            if let error = error {
+                NSLog("Error fetching image: \(error)")
+                return
+            }
+            
+            guard let data = data else {
+                NSLog("No data returned from data task")
+                completion(defaultImage)
+                return
+            }
+            
+            let imageToReturn = UIImage(data: data)
+            completion(imageToReturn)
+        }.resume()
+    }
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -62,9 +105,11 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.topCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TopCollectionCell", for: indexPath) as? RecommendationCollectionViewCell ?? RecommendationCollectionViewCell()
-            
-            //cell.bookCoverImageView.image = UIImage(
-            
+            guard let thumbnails = UserController.shared.bookThumbnails else { return cell }
+            let thumbnail = thumbnails[indexPath.item]
+            fetchImage(with: thumbnail) { (image) in
+                cell.bookCoverImageView.image = image
+            }
             return cell
         } else if collectionView == self.middleCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MiddleCollectionCell", for: indexPath) as? RecommendationCollectionViewCell ?? RecommendationCollectionViewCell()
@@ -76,21 +121,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
         return RecommendationCollectionViewCell()
     }
 }
-
-//// MARK: UICollectionViewDataSource
-//extension UIViewController: UICollectionViewDataSource {
-//    public func numberOfSections(in collectionView: UICollectionView) -> Int {
-//        return 1
-//    }
-//
-//    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return 5
-//    }
-//
-//    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        if collectionView == self.top
-//    }
-//}
 
 // MARK: UICollectionViewDelegate
 extension UIViewController: UICollectionViewDelegate {
