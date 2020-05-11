@@ -123,7 +123,7 @@ class SearchController {
 
             do {
                 print("Data = \(data)")
-                let booksArray = try jsonDecoder.decode(FakeBook.self, from: data)
+                let booksArray = try jsonDecoder.decode(SearchResult.self, from: data)
 //                let listingRepresentations = Array(try jsonDecoder.decode([String: Book].self,
 //                                                                          from: data).values)
 //                /// Go through all listings and returns an array made up of only the user's listings (userId)
