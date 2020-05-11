@@ -43,8 +43,15 @@ struct TypeQuery: Codable {
 
 // TEMP, DELETE LATER!
 
+// This file was generated from JSON Schema using quicktype, do not modify it directly.
+// To parse the JSON, add this file to your project and do:
+//
+//   let recommendation = try? newJSONDecoder().decode(Recommendation.self, from: jsonData)
+
+import Foundation
+
 // MARK: - FakeBook
-struct FakeBook: Codable {
+struct SearchResult: Codable {
     let items: [Book]
     let totalItems: Int
 }
