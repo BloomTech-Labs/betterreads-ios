@@ -493,7 +493,7 @@
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="caN-6n-BWu">
                                                                             <rect key="frame" x="0.0" y="0.0" width="125" height="175"/>
                                                                             <subviews>
-                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BetterReads-DefaultBookImage" translatesAutoresizingMaskIntoConstraints="NO" id="1EK-77-Ugp">
+                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BetterReads-DefaultBookImage" translatesAutoresizingMaskIntoConstraints="NO" id="1EK-77-Ugp">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="125" height="175"/>
                                                                                 </imageView>
                                                                                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="ACi-J5-BUS">
