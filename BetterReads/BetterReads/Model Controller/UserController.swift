@@ -160,3 +160,19 @@ class UserController {
         }
     }
 }
+
+//FIXME: - Move this to Book model later
+struct RecommendationsResult: Codable {
+    let message: String
+    let recommendations: Recommendation
+}
+
+struct Recommendation: Codable {
+    let basedOn: String
+    let recommendations: [Book]
+    
+    enum CodingKeys: String, CodingKey {
+        case basedOn = "based_on"
+        case recommendations
+    }
+}
