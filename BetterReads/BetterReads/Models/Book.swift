@@ -8,67 +8,32 @@
 
 import Foundation
 
-/// Rough draft of our Book model
-//class Book: Codable {
-//
-//    let title: String
-//    /// array of authors
-//    let author: String
-//    let cover: String
-//    let rating: Double // should this be optional since some might have no rating?
-//
-//    enum CodingKeys: String, CodingKey {
-//        case title
-//        case author = "authors"
-//        case cover = "thumbnail"
-//        case rating = "averageRating"
-//    }
-//
-//    init(title: String, author: String, cover: String, rating: Double) {
-//        self.title = title
-//        self.author = author
-//        self.cover = cover
-//        self.rating = rating
-//    }
-//}
-
-//struct Items: Codable {
-//    var items: [Book]
-//}
-
-struct TypeQuery: Codable {
-    var type: String
-    var query: String
-}
-
-// TEMP, DELETE LATER!
-
-// This file was generated from JSON Schema using quicktype, do not modify it directly.
-// To parse the JSON, add this file to your project and do:
-//
-//   let recommendation = try? newJSONDecoder().decode(Recommendation.self, from: jsonData)
-
-// MARK: - FakeBook
+/// Holds the response you receive when searching for a book
 struct SearchResult: Codable {
     let items: [Book]
     let totalItems: Int
 }
 
-// MARK: - Item
+/// Used in the search POST method
+struct TypeQuery: Codable {
+    var type: String
+    var query: String
+}
+
 struct Book: Codable {
     let authors: [String]?
     let categories: [String]?
     let itemDescription: String?
-    let googleID: String? // wasn't optional
-    let isEbook: Bool? // wasn't optional
-    let language: String? // used to be Language and not optional
+    let googleID: String?
+    let isEbook: Bool?
+    let language: String?
     let pageCount: Int?
-    let publisher: String? // wasn't optional
-    let smallThumbnail: String? // wasn't optional
+    let publisher: String?
+    let smallThumbnail: String?
     let textSnippet: String?
-    let thumbnail: String? // wasn't optional
-    let title: String? // wasn't optional
-    let webReaderLink: String? // wasn't optional
+    let thumbnail: String?
+    let title: String?
+    let webReaderLink: String?
     let averageRating: Double?
     let isbn10, isbn13, publishedDate: String?
 
@@ -80,17 +45,7 @@ struct Book: Codable {
     }
 }
 
-//enum Author: String, Codable {
-//    case aMHeath = "A.M. Heath"
-//    case georgeOrwell = "George Orwell"
-//    case najoudEnsaff = "Najoud Ensaff"
-//}
-
-//enum Language: String, Codable {
-//    case en = "en"
-//}
-
-// from the docs
+// Book model from the docs
 /*
  {
    googleId: STRING,

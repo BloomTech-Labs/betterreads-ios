@@ -8,29 +8,6 @@
 
 import UIKit
 
-// Global Variables for test purposes
-
-//let fakeBooksArray: [Book] = [Book(title: "Harry Potter", author: "JK Rowling", cover: "book.fill", rating: 0.0),
-//                              Book(title: "Twilight", author: "Stephenie Meyer", cover: "book.fill", rating: 0.5),
-//                              Book(title: "Animal Farm", author: "George Orwell", cover: "book.fill", rating: 1.0),
-//                              Book(title: "1984", author: "George Orwell", cover: "book.fill", rating: 1.0),
-//                              Book(title: "Metamorphosis", author: "Franz Kafka", cover: "book.fill", rating: 1.3),
-//                              Book(title: "50 Shades of Gray", author: "E.L. James", cover: "book.fill", rating: 0.5),
-//                              Book(title: "Resident Evil", author: "Capcom", cover: "book.fill", rating: 1.6),
-//                              Book(title: "Jumanji", author: "Your mom", cover: "book.fill", rating: 3.4),
-//                              Book(title: "The Bible", author: "Jesus", cover: "book.fill", rating: 1.9),
-//                              Book(title: "The Maze Runner", author: "James Dashner", cover: "book.fill", rating: 2.1),
-//                              Book(title: "Fahrenheit 452", author: "Ray Bradbury", cover: "book.fill", rating: 2.5),
-//                              Book(title: "Fahrenheit 453", author: "Ray Bradbury", cover: "book.fill", rating: 3.0),
-//                              Book(title: "Fahrenheit 454", author: "Ray Bradbury", cover: "book.fill", rating: 3.3),
-//                              Book(title: "Fahrenheit 455", author: "Ray Bradbury", cover: "book.fill", rating: 3.5),
-//                              Book(title: "Fahrenheit 456", author: "Ray Bradbury", cover: "book.fill", rating: 3.9),
-//                              Book(title: "Fahrenheit 457", author: "Ray Bradbury", cover: "book.fill", rating: 4.2),
-//                              Book(title: "Fahrenheit 458", author: "Ray Bradbury", cover: "book.fill", rating: 4.5),
-//                              Book(title: "Fahrenheit 459", author: "Ray Bradbury", cover: "book.fill", rating: 4.7),
-//                              Book(title: "Fahrenheit 460", author: "Ray Bradbury", cover: "book.fill", rating: 4.5),
-//                              Book(title: "Harry Potter 2", author: "JK Rowling", cover: "book.fill", rating: 5.0)]
-
 
 var myBooksArray = [Book]()
 let searchController = SearchController()
@@ -50,6 +27,7 @@ class SearchTableViewController: UITableViewController {
         setupToolBar()
     }
     
+    // hi
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if searchBar.text == "" {
@@ -84,7 +62,6 @@ class SearchTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchController.searchResultBooks.count
-        //return myBooksArray.count
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -101,7 +78,7 @@ class SearchTableViewController: UITableViewController {
     
     // MARK: - Navigation
 
-    // FIXME: add segue that goes to BookDetailViewController
+    // FIXME: add segue that goes to BookDetailViewController?
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
@@ -138,18 +115,17 @@ class SearchTableViewController: UITableViewController {
 extension SearchTableViewController: UISearchBarDelegate {
 
     // FIXME: - Scroll dismisses keyboard (onScroll?)
-    // FIXME: - Should tableview clear when searchbar is empty???
     // Search when typing each letter
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 
         //searchBar.showsCancelButton = true
-        guard let searchTerm = searchBar.text else {
-            print("Empty searchbar")
-            return
-        }
-        print(searchTerm)
-        searchByTerm(searchTerm: searchTerm)
-        tableView.reloadData()
+//        guard let searchTerm = searchBar.text else {
+//            print("Empty searchbar")
+//            return
+//        }
+//        print(searchTerm)
+//        searchByTerm(searchTerm: searchTerm)
+//        tableView.reloadData()
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
@@ -158,8 +134,8 @@ extension SearchTableViewController: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
-        //myBooksArray = []; tableView.reloadData() // FIXME: clear table another way?
-        searchController.searchResultBooks = []; tableView.reloadData() // FIXME: clear table another way?
+        searchController.searchResultBooks = []
+        tableView.reloadData() // FIXME: clear table another way?
         hideKeyboardAndCancelButton()
     }
     
