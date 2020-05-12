@@ -27,7 +27,7 @@ class UserController {
     private var authToken: JWT?
     var user: User? = nil
     var isNewUser: Bool?
-    var bookThumbnails: [String]?
+    var recommendedBooks: [Book]?
         
     static let shared = UserController()
         
@@ -139,18 +139,40 @@ class UserController {
         
         AF.request(getRecommendationsURL,
                    method: .get,
-                   headers: headers).responseJSON { response in
+                   headers: headers).response { response in
                     switch (response.result) {
                     case .success(let value):
-                        let jsonData = JSON(value)
-                        guard let recommendationsObject = jsonData["recommendations"].dictionary,
-                            let recommendationsArray = recommendationsObject["recommendations"]?.array else { return completion(NetworkError.noDecode) }
-                        let bookThumbnails = recommendationsArray.map { $0["thumbnail"].stringValue }
-                        self.bookThumbnails = bookThumbnails
+                        guard let data = value else { return completion(NetworkError.badData) }
+                        let jsonDecoder = JSONDecoder()
+                        jsonDecoder.dateDecodingStrategy = .iso8601
+                        do {
+                            let recommendationsDecoded = try jsonDecoder.decode(RecommendationsResult.self, from: data)
+                            self.recommendedBooks = recommendationsDecoded.recommendations.recommendations
+                            completion(nil)
+                        } catch {
+                            print("Error decoding recommended books \(error)")
+                            completion(NetworkError.noDecode)
+                        }
                     case .failure(let error):
                         print("Error: \(error)")
                         completion(NetworkError.otherError)
                     }
         }
+    }
+}
+
+//FIXME: - Move this to Book model later
+struct RecommendationsResult: Codable {
+    let message: String
+    let recommendations: Recommendation
+}
+
+struct Recommendation: Codable {
+    let basedOn: String
+    let recommendations: [Book]
+    
+    enum CodingKeys: String, CodingKey {
+        case basedOn = "based_on"
+        case recommendations
     }
 }

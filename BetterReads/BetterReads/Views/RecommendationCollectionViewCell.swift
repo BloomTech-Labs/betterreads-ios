@@ -7,21 +7,35 @@
 //
 
 import UIKit
+import Nuke
 
 class RecommendationCollectionViewCell: UICollectionViewCell {
-    
     var book: Book? {
         didSet {
-            updateViews()
+            getBookThumbnail()
         }
     }
     
     @IBOutlet weak var bookCoverImageView: UIImageView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    private func getBookThumbnail() {
+        guard let book = book else {
+            activityIndicator.stopAnimating()
+            return
+        }
+        if let smallThumbnailUrl = URL(string: book.smallThumbnail ?? "") {
+            let options = ImageLoadingOptions(
+                placeholder: UIImage(named: "BetterReads-DefaultBookImage"),
+                transition: .fadeIn(duration: 0.33)
+            )
+            Nuke.loadImage(with: smallThumbnailUrl, options: options, into: bookCoverImageView)
+        }
+        updateViews()
+    }
     
     private func updateViews() {
-        guard let book = book,
-            let imageName = book.smallThumbnail else { return }
-        
-        bookCoverImageView.image = UIImage(named: imageName)
+        activityIndicator.stopAnimating()
+        self.setNeedsLayout()
     }
 }

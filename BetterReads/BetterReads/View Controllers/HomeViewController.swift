@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Nuke
 
 class HomeViewController: UIViewController, UICollectionViewDataSource {
     //MARK: - Outlets
@@ -18,12 +19,12 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
     @IBOutlet weak var middleCollectionView: UICollectionView!
     @IBOutlet weak var bottomRecommendationLabel: UILabel!
     @IBOutlet weak var bottomCollectionView: UICollectionView!
-    
+
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
-        setupUserContoller()
+        self.welcomeUser.text = "Hello, \(UserController.shared.user?.fullName ?? "there")!"
         topCollectionView.delegate = self
         topCollectionView.dataSource = self
         middleCollectionView.delegate = self
@@ -37,64 +38,18 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
             welcomeMessage.text = "Welcome back! Flip through the tailored recommendations below from a variety of authors and storytellers."
         }
         
+        UserController.shared.getRecommendations { (error) in
+            if let error = error {
+                let alert = UIAlertController(title: "Recommendations Error", message: "An error occurred while getting recommendations.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                NSLog("Error occured during Get Recommendations: \(error)")
+            }
+            self.topCollectionView.reloadData()
+        }
     }
     
     //MARK: - Methods
-    private func setupUserContoller() {
-        self.welcomeUser.text = "Hello, \(UserController.shared.user?.fullName ?? "there")!"
-        UserController.shared.getRecommendations { (error) in
-            if let error = error {
-            let alert = UIAlertController(title: "Recommendations Error", message: "An error occurred while getting recommendations.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-            NSLog("Error occured during Get Recommendations: \(error)")
-            }
-        }
-    }
-    
-    func fetchImage(with urlString: String, completion: @escaping (UIImage?) -> Void = { _ in }) {
-        
-        let defaultImage = UIImage(systemName: "book.fill")
-        print("called fetchImage with url: \(urlString)")
-        guard let url = URL(string: urlString) else {
-            print("cant make url from passed in string")
-            completion(defaultImage)
-            return
-        }
-        
-        let http = url
-        let urlComponents = URLComponents(url: http, resolvingAgainstBaseURL: false)
-        guard let comps = urlComponents else {
-            print("cant make urlComponents")
-            completion(defaultImage)
-            return
-        }
-        var components = comps
-        components.scheme = "https"
-        guard let secureUrl = components.url else {
-            print("cant make secureUrl from http")
-            completion(defaultImage)
-            return
-        }
-        print("secureUrl now = \(secureUrl)")
-        
-        URLSession.shared.dataTask(with: secureUrl) { (data, _, error) in
-            if let error = error {
-                NSLog("Error fetching image: \(error)")
-                return
-            }
-            
-            guard let data = data else {
-                NSLog("No data returned from data task")
-                completion(defaultImage)
-                return
-            }
-            
-            let imageToReturn = UIImage(data: data)
-            completion(imageToReturn)
-        }.resume()
-    }
-    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -106,16 +61,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.topCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TopCollectionCell", for: indexPath) as? RecommendationCollectionViewCell ?? RecommendationCollectionViewCell()
-            guard let thumbnails = UserController.shared.bookThumbnails else { return cell }
-            print(thumbnails)
-            let thumbnail = thumbnails[indexPath.item]
-            if thumbnail == "" {
-                cell.bookCoverImageView.image = UIImage(named: "BetterReads-DefaultBookImage")
-            } else {
-                fetchImage(with: thumbnail) { (image) in
-                    cell.bookCoverImageView.image = image
-                }
-            }
+            guard let books = UserController.shared.recommendedBooks else { return cell }
+            cell.book = books[indexPath.item]
             return cell
         } else if collectionView == self.middleCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MiddleCollectionCell", for: indexPath) as? RecommendationCollectionViewCell ?? RecommendationCollectionViewCell()
@@ -132,4 +79,3 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
 extension UIViewController: UICollectionViewDelegate {
     
 }
-

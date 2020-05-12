@@ -493,18 +493,31 @@
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="caN-6n-BWu">
                                                                             <rect key="frame" x="0.0" y="0.0" width="125" height="175"/>
                                                                             <subviews>
-                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BetterReads-DefaultBookImage" translatesAutoresizingMaskIntoConstraints="NO" id="1EK-77-Ugp">
+                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BetterReads-DefaultBookImage" translatesAutoresizingMaskIntoConstraints="NO" id="1EK-77-Ugp">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="125" height="175"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" constant="175" id="0Lz-dW-gEI"/>
                                                                                         <constraint firstAttribute="width" constant="125" id="bIF-bO-bw1"/>
                                                                                     </constraints>
                                                                                 </imageView>
+                                                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="ACi-J5-BUS">
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="125" height="175"/>
+                                                                                    <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="width" constant="125" id="XJa-V1-gWc"/>
+                                                                                        <constraint firstAttribute="height" constant="175" id="vWs-PB-GeH"/>
+                                                                                    </constraints>
+                                                                                    <color key="color" red="0.83137254900000002" green="0.28235294119999998" blue="0.031372549020000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                                                </activityIndicatorView>
                                                                             </subviews>
                                                                             <constraints>
                                                                                 <constraint firstItem="1EK-77-Ugp" firstAttribute="centerX" secondItem="caN-6n-BWu" secondAttribute="centerX" id="8o2-0R-JPi"/>
                                                                                 <constraint firstAttribute="width" constant="125" id="Erq-f8-gv8"/>
                                                                                 <constraint firstAttribute="height" constant="175" id="Pzk-MZ-VAr"/>
+                                                                                <constraint firstItem="ACi-J5-BUS" firstAttribute="leading" secondItem="caN-6n-BWu" secondAttribute="leading" id="akZ-WG-TbK"/>
+                                                                                <constraint firstAttribute="trailing" secondItem="ACi-J5-BUS" secondAttribute="trailing" id="hwC-FH-i06"/>
+                                                                                <constraint firstAttribute="bottom" secondItem="ACi-J5-BUS" secondAttribute="bottom" id="kiZ-cs-vI6"/>
+                                                                                <constraint firstItem="ACi-J5-BUS" firstAttribute="top" secondItem="caN-6n-BWu" secondAttribute="top" id="oi6-z5-UDx"/>
                                                                                 <constraint firstItem="1EK-77-Ugp" firstAttribute="centerY" secondItem="caN-6n-BWu" secondAttribute="centerY" id="xWV-YO-Mkv"/>
                                                                             </constraints>
                                                                         </view>
@@ -515,6 +528,7 @@
                                                                     </constraints>
                                                                 </collectionViewCellContentView>
                                                                 <connections>
+                                                                    <outlet property="activityIndicator" destination="ACi-J5-BUS" id="aii-yS-v78"/>
                                                                     <outlet property="bookCoverImageView" destination="1EK-77-Ugp" id="Nbm-gq-euH"/>
                                                                 </connections>
                                                             </collectionViewCell>
@@ -563,19 +577,32 @@
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wQm-fW-Lna">
                                                                             <rect key="frame" x="0.0" y="0.0" width="125" height="175"/>
                                                                             <subviews>
-                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BetterReads-DefaultBookImage" translatesAutoresizingMaskIntoConstraints="NO" id="TIO-IA-ihl">
+                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BetterReads-DefaultBookImage" translatesAutoresizingMaskIntoConstraints="NO" id="TIO-IA-ihl">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="125" height="175"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" constant="175" id="JPW-rY-Ylv"/>
                                                                                         <constraint firstAttribute="width" constant="125" id="xBV-KT-i3c"/>
                                                                                     </constraints>
                                                                                 </imageView>
+                                                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="pR4-rx-DRe">
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="125" height="175"/>
+                                                                                    <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="width" constant="125" id="Nu4-Id-ceH"/>
+                                                                                        <constraint firstAttribute="height" constant="175" id="O83-5R-Igy"/>
+                                                                                    </constraints>
+                                                                                    <color key="color" red="0.83137254900000002" green="0.28235294119999998" blue="0.031372549020000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                                                </activityIndicatorView>
                                                                             </subviews>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="175" id="676-uL-EUc"/>
+                                                                                <constraint firstAttribute="bottom" secondItem="pR4-rx-DRe" secondAttribute="bottom" id="c12-dv-SoA"/>
+                                                                                <constraint firstItem="pR4-rx-DRe" firstAttribute="leading" secondItem="wQm-fW-Lna" secondAttribute="leading" id="i4S-jR-vmQ"/>
                                                                                 <constraint firstItem="TIO-IA-ihl" firstAttribute="centerY" secondItem="wQm-fW-Lna" secondAttribute="centerY" id="ml3-NR-9CE"/>
+                                                                                <constraint firstItem="pR4-rx-DRe" firstAttribute="top" secondItem="wQm-fW-Lna" secondAttribute="top" id="oSS-3r-SvZ"/>
                                                                                 <constraint firstAttribute="width" constant="125" id="pnp-4J-tRD"/>
                                                                                 <constraint firstItem="TIO-IA-ihl" firstAttribute="centerX" secondItem="wQm-fW-Lna" secondAttribute="centerX" id="puT-8D-tMA"/>
+                                                                                <constraint firstAttribute="trailing" secondItem="pR4-rx-DRe" secondAttribute="trailing" id="rHe-GK-ljz"/>
                                                                             </constraints>
                                                                         </view>
                                                                     </subviews>
@@ -633,18 +660,31 @@
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gtM-ak-uZv">
                                                                             <rect key="frame" x="0.0" y="0.0" width="125" height="175"/>
                                                                             <subviews>
-                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BetterReads-DefaultBookImage" translatesAutoresizingMaskIntoConstraints="NO" id="m1W-2k-kFT">
+                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BetterReads-DefaultBookImage" translatesAutoresizingMaskIntoConstraints="NO" id="m1W-2k-kFT">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="125" height="175"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="width" constant="125" id="NE7-VE-3de"/>
                                                                                         <constraint firstAttribute="height" constant="175" id="lgH-WL-U3o"/>
                                                                                     </constraints>
                                                                                 </imageView>
+                                                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="bXc-6c-yAe">
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="125" height="175"/>
+                                                                                    <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="width" constant="125" id="QDB-nS-0NT"/>
+                                                                                        <constraint firstAttribute="height" constant="175" id="eED-V1-2mc"/>
+                                                                                    </constraints>
+                                                                                    <color key="color" red="0.83137254900000002" green="0.28235294119999998" blue="0.031372549020000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                                                </activityIndicatorView>
                                                                             </subviews>
                                                                             <constraints>
+                                                                                <constraint firstItem="bXc-6c-yAe" firstAttribute="top" secondItem="gtM-ak-uZv" secondAttribute="top" id="7Il-Hw-iUT"/>
                                                                                 <constraint firstItem="m1W-2k-kFT" firstAttribute="centerY" secondItem="gtM-ak-uZv" secondAttribute="centerY" id="GVA-v4-p7V"/>
+                                                                                <constraint firstAttribute="trailing" secondItem="bXc-6c-yAe" secondAttribute="trailing" id="Uc8-pE-760"/>
                                                                                 <constraint firstItem="m1W-2k-kFT" firstAttribute="centerX" secondItem="gtM-ak-uZv" secondAttribute="centerX" id="bHU-hF-4LP"/>
+                                                                                <constraint firstItem="bXc-6c-yAe" firstAttribute="leading" secondItem="gtM-ak-uZv" secondAttribute="leading" id="cJx-A7-TJP"/>
                                                                                 <constraint firstAttribute="height" constant="175" id="l5N-pE-OO7"/>
+                                                                                <constraint firstAttribute="bottom" secondItem="bXc-6c-yAe" secondAttribute="bottom" id="wRu-mR-YbZ"/>
                                                                                 <constraint firstAttribute="width" constant="125" id="ydY-ao-pdv"/>
                                                                             </constraints>
                                                                         </view>
