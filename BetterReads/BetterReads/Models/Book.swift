@@ -48,8 +48,6 @@ struct TypeQuery: Codable {
 //
 //   let recommendation = try? newJSONDecoder().decode(Recommendation.self, from: jsonData)
 
-import Foundation
-
 // MARK: - FakeBook
 struct SearchResult: Codable {
     let items: [Book]
