@@ -144,6 +144,7 @@ class SignInViewController: UIViewController {
         submitButton.setTitle("Sign In", for: .normal)
         fullNameLabel.isHidden = true
         fullNameTextField.isHidden = true
+        passwordTextField.placeholder = "Your password"
         confirmPasswordLabel.isHidden = true
         confirmPasswordTextField.isHidden = true
         segmentedControl.setTitleTextAttributes(normalTextAttributes as [NSAttributedString.Key : Any], for: .normal)
