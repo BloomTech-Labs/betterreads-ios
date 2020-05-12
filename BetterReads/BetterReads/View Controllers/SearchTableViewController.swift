@@ -27,6 +27,7 @@ class SearchTableViewController: UITableViewController {
         setupToolBar()
     }
     
+    // hi
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if searchBar.text == "" {
