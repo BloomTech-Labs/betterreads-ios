@@ -40,6 +40,8 @@
 		7732DD0C244FAD0000C82B7F /* SourceSansPro-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7732DCFB244FACE200C82B7F /* SourceSansPro-SemiBold.ttf */; };
 		7732DD0D244FAD0200C82B7F /* SourceSansPro-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7732DCFE244FACE200C82B7F /* SourceSansPro-SemiBoldItalic.ttf */; };
 		773F109E245390030012B8DA /* Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773F109D245390030012B8DA /* Validators.swift */; };
+		77538BE7246B056C007FD8E6 /* Recommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77538BE6246B056C007FD8E6 /* Recommendation.swift */; };
+		77538BE9246B0738007FD8E6 /* AccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77538BE8246B0738007FD8E6 /* AccountSettingsViewController.swift */; };
 		777073E02469D5DC00D7FB99 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 777073DF2469D5DC00D7FB99 /* Nuke */; };
 		777B65A52450EC86007D01E8 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777B65A42450EC86007D01E8 /* Helpers.swift */; };
 		778C4DB22460A5C400FBC573 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C4DB12460A5C400FBC573 /* HomeViewController.swift */; };
@@ -89,6 +91,8 @@
 		7732DD00244FACE200C82B7F /* SourceSansPro-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-BoldItalic.ttf"; sourceTree = "<group>"; };
 		7732DD01244FACE200C82B7F /* SourceSansPro-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-BlackItalic.ttf"; sourceTree = "<group>"; };
 		773F109D245390030012B8DA /* Validators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validators.swift; sourceTree = "<group>"; };
+		77538BE6246B056C007FD8E6 /* Recommendation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recommendation.swift; sourceTree = "<group>"; };
+		77538BE8246B0738007FD8E6 /* AccountSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsViewController.swift; sourceTree = "<group>"; };
 		777B65A42450EC86007D01E8 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		778C4DB12460A5C400FBC573 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		778C4DB32460ABBA00FBC573 /* RecommendationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -120,13 +124,14 @@
 		1B102AC9244E17490095733B /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				1B102ACC244E2F600095733B /* SignInViewController.swift */,
-				1B102ACA244E17790095733B /* SearchTableViewController.swift */,
 				77ECC9E6245BAF01007509D5 /* ForgotPasswordViewController.swift */,
+				1B102ACC244E2F600095733B /* SignInViewController.swift */,
+				77538BE8246B0738007FD8E6 /* AccountSettingsViewController.swift */,
 				778C4DB12460A5C400FBC573 /* HomeViewController.swift */,
 				1B102B092463635B0095733B /* MyLibraryCollectionViewController.swift */,
 				1B102B0F246366870095733B /* ShelfDetailCollectionViewController.swift */,
 				1B102B1124636D640095733B /* BookDetailViewController.swift */,
+				1B102ACA244E17790095733B /* SearchTableViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -147,6 +152,7 @@
 		1B102AD3244E41680095733B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				77538BE6246B056C007FD8E6 /* Recommendation.swift */,
 				1B102AD4244E41D00095733B /* Book.swift */,
 				7732DCE1244F7DF400C82B7F /* User.swift */,
 			);
@@ -366,7 +372,9 @@
 				77B6A3992448F5A400FF604B /* AppDelegate.swift in Sources */,
 				778C4DB22460A5C400FBC573 /* HomeViewController.swift in Sources */,
 				7732DCE2244F7DF400C82B7F /* User.swift in Sources */,
+				77538BE9246B0738007FD8E6 /* AccountSettingsViewController.swift in Sources */,
 				1B102AD824524D3F0095733B /* SearchController.swift in Sources */,
+				77538BE7246B056C007FD8E6 /* Recommendation.swift in Sources */,
 				1B102B0A2463635B0095733B /* MyLibraryCollectionViewController.swift in Sources */,
 				77B6A39B2448F5A400FF604B /* SceneDelegate.swift in Sources */,
 				1B59892E2469AFB900EB8F0E /* StarRatingStackView.swift in Sources */,

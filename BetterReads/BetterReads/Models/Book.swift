@@ -20,7 +20,6 @@ struct TypeQuery: Codable {
     var query: String
 }
 
-/// Book model used in search results and recommendations
 struct Book: Codable {
     let authors: [String]?
     let categories: [String]?
