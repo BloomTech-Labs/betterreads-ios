@@ -20,6 +20,7 @@ class RecommendationCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     private func getBookThumbnail() {
+        bookCoverImageView.layer.cornerRadius = 5
         guard let book = book else {
             activityIndicator.stopAnimating()
             return
