@@ -9,7 +9,8 @@
 import UIKit
 
 class BookDetailViewController: UIViewController {
-    
+    // FIXME: make back arrow white with no text
+    // FIXME: give intrinsicContentSize a value so it's not -1,-1
     // FIXME: make these properties with an ! at the end???
     let scrollView: UIScrollView = {
         let v = UIScrollView()

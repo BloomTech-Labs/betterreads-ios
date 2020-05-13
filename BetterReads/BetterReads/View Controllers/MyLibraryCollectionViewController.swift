@@ -58,15 +58,16 @@ class MyLibraryCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
     }
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "LibraryToShelf" {
+            print("LibraryToShelf")
+        }
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
     }
-    */
 
     // MARK: UICollectionViewDataSource
 
@@ -78,7 +79,7 @@ class MyLibraryCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return libraryController.myBooksArray.count//tempShelfCount
+        return 1//libraryController.myBooksArray.count//tempShelfCount
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
