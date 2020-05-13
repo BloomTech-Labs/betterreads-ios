@@ -10,10 +10,23 @@ import Foundation
 
 class LibraryController {
     
-    /// Holds all the user's books
+    /// Holds all of the user's shelves
+    var allShelvesArray = [[UserBook]]()
+    
+    /// Holds all of the user's books
     var myBooksArray = [UserBook]()
-    // FIXME: change the userID to not be hard coded later
-    let baseUrl = URL(string: "https://api.readrr.app/api/131/library")!
+    
+    /// Holds user books that are "In progress"
+    var inProgressBooksArray = [UserBook]()
+    
+    /// Holds user books that are "To be read"
+    var toBeReadBooksArray = [UserBook]()
+    
+    /// Holds user books that are "Finished"
+    var finishedBooksArray = [UserBook]()
+    
+    /// https://api.readrr.app/api
+    let baseUrl = URL(string: "https://api.readrr.app/api")!
 
     init() {
         fetchUserLibrary(with: "token goes here")
@@ -21,21 +34,25 @@ class LibraryController {
     /// Returns all books in user's library
     func fetchUserLibrary(with token: String, completion: @escaping (Error?) -> Void = { _ in }) {
         
-        var request = URLRequest(url: baseUrl)
+        guard let userId = UserController.shared.user?.id else {
+            print("no user id")
+            completion(nil)
+            return
+        }
+        
+        var requestUrl = baseUrl.appendingPathComponent("\(userId)")
+        requestUrl = requestUrl.appendingPathComponent("library")
+        print("requestUrl = \(requestUrl)")
+        var request = URLRequest(url: requestUrl)
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        if let userId = UserController.shared.user?.id {
-            print("userId is \(userId)")
-        } else { print("no user id") }
-        
-        //guard let userId = UserController.shared.authToken else { print("no userId"); return }
         guard let unwrappedToken = UserController.shared.authToken else {
             print("No token")
             completion(nil)
             return
         }
-//        let authorizationTokenTemp = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoxMzEsInJvbGUiOiJ1c2VyIiwiZnVsbE5hbWUiOiJKb3JnZTEyMzQiLCJlbWFpbEFkZHJlc3MiOiJqb3JnZUBnbS5jb20iLCJpbWFnZSI6bnVsbCwiZ29vZ2xlSUQiOm51bGwsImZhY2Vib29rSUQiOm51bGwsImlhdCI6MTU4OTM4MzYyMiwiZXhwIjoxNTg5NDcwMDIyfQ.Z2rjvCt6q9i9G6yneTZ23WPjPkmAI7Fz8_UTxJn7GfY"
+
         request.addValue(unwrappedToken, forHTTPHeaderField: "Authorization")
         
         //request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -75,6 +92,8 @@ class LibraryController {
                 // NEW
                 //print("locationsArray: \(booksArray)")
                 self.myBooksArray = booksArray
+                // FIXME: implement array of arrays later
+                //self.allShelvesArray[0] = booksArray
                 print("myBooksArray (\(self.myBooksArray.count) = \(self.myBooksArray)")
                 // OLD
                 //self.searchResultsArray = listingRepresentations
