@@ -24,7 +24,7 @@ enum NetworkError: Error {
 class UserController {
     typealias JWT = String
     private var baseURL = URL(string: "https://api.readrr.app/api")!
-    private var authToken: JWT?
+    var authToken: JWT?
     var user: User? = nil
     var isNewUser: Bool?
     var recommendedBooks: [Book]?

@@ -16,6 +16,12 @@ class LibraryCollectionViewCell: UICollectionViewCell {
     var thirdImageView: UIImageView!
     var shelfNameLabel: UILabel!
     
+    var userBook: UserBook? {
+        didSet {
+            updateViews()
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         print("init with frame")
@@ -26,6 +32,11 @@ class LibraryCollectionViewCell: UICollectionViewCell {
         super.init(coder: coder)
         print("init with coder")
         setUpSubviews()
+    }
+    
+    private func updateViews() {
+        guard let userBook = userBook else { return }
+        shelfNameLabel.text = "My Books"
     }
     
     private func setUpSubviews() {
