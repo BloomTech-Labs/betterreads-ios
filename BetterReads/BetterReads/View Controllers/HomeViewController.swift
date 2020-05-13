@@ -22,6 +22,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
     @IBOutlet weak var bottomCollectionView: UICollectionView!
 
     //MARK: - Lifecycle
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = true
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
@@ -82,6 +86,19 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
             return cell
         }
         return RecommendationCollectionViewCell()
+    }
+
+    //MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowBookDetailSegue" {
+            guard let barViewControllers = segue.destination as? UITabBarController,
+                let nav = barViewControllers.viewControllers?[0] as? UINavigationController,
+                let _ = nav.topViewController as? BookDetailViewController else {
+                //FIXME: - Better error handling and alert
+                //FIXME: - Give book to destinationVC when BookDetails is built
+                return
+            }
+        }
     }
 }
 

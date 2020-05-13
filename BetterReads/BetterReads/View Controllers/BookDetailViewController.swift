@@ -170,6 +170,7 @@ class BookDetailViewController: UIViewController {
         super.viewDidLoad()
         title = ""
         print("intrinsicContentSize = \(self.view.intrinsicContentSize)")
+        navigationController?.navigationBar.isHidden = false
         setupSubviews()
     }
     
