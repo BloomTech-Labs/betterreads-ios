@@ -78,11 +78,13 @@ class MyLibraryCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return tempShelfCount
+        return libraryController.myBooksArray.count//tempShelfCount
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? LibraryCollectionViewCell else { return UICollectionViewCell() }
+        let userBook = libraryController.myBooksArray[indexPath.item]
+        cell.userBook = userBook
         // FIXME: downcast as LibraryCollectionViewCell
         // Configure the cell
         return cell

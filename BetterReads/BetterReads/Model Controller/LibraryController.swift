@@ -25,8 +25,12 @@ class LibraryController {
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
+        if let userId = UserController.shared.user?.id {
+            print("userId is \(userId)")
+        } else { print("no user id") }
+        
         //guard let userId = UserController.shared.authToken else { print("no userId"); return }
-        let authorizationTokenTemp = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoxMzEsInJvbGUiOiJ1c2VyIiwiZnVsbE5hbWUiOiJKb3JnZTEyMzQiLCJlbWFpbEFkZHJlc3MiOiJqb3JnZUBnbS5jb20iLCJpbWFnZSI6bnVsbCwiZ29vZ2xlSUQiOm51bGwsImZhY2Vib29rSUQiOm51bGwsImlhdCI6MTU4OTIxNTAzNSwiZXhwIjoxNTg5MzAxNDM1fQ.5irRjidzqEG9SEQS3HZbI5CWnvQ4C5J62yXFZShwT8I"
+        let authorizationTokenTemp = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoxMzEsInJvbGUiOiJ1c2VyIiwiZnVsbE5hbWUiOiJKb3JnZTEyMzQiLCJlbWFpbEFkZHJlc3MiOiJqb3JnZUBnbS5jb20iLCJpbWFnZSI6bnVsbCwiZ29vZ2xlSUQiOm51bGwsImZhY2Vib29rSUQiOm51bGwsImlhdCI6MTU4OTM4MzYyMiwiZXhwIjoxNTg5NDcwMDIyfQ.Z2rjvCt6q9i9G6yneTZ23WPjPkmAI7Fz8_UTxJn7GfY"
         request.addValue(authorizationTokenTemp, forHTTPHeaderField: "Authorization")
         
         //request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -66,7 +70,7 @@ class LibraryController {
                 // NEW
                 //print("locationsArray: \(booksArray)")
                 self.myBooksArray = booksArray
-                print("myBooksArray = \(self.myBooksArray)")
+                print("myBooksArray (\(self.myBooksArray.count) = \(self.myBooksArray)")
                 // OLD
                 //self.searchResultsArray = listingRepresentations
                 //try self.updateListings(with: listingRepresentations)
