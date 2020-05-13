@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pRd-tq-Kku">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -126,7 +126,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="guE-28-28E">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="999.99999999999989"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UwA-YK-r6A" userLabel="ContentView">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1065.3333333333333"/>
@@ -809,7 +809,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </collectionViewCellContentView>
                                 <connections>
-                                    <segue destination="KfY-WO-sJ9" kind="show" id="13q-cF-JSj"/>
+                                    <segue destination="KfY-WO-sJ9" kind="show" identifier="ShelfToDetail" id="13q-cF-JSj"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -831,7 +831,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pah-8L-GHs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1013" y="2260"/>
+            <point key="canvasLocation" x="1012" y="2411"/>
         </scene>
         <!--Book Details-->
         <scene sceneID="aeV-sS-U0h">
@@ -847,7 +847,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8rX-fA-r9P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1706" y="2260"/>
+            <point key="canvasLocation" x="2096" y="2260"/>
         </scene>
         <!--My Library-->
         <scene sceneID="zcO-xC-gwK">
@@ -872,7 +872,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </collectionViewCellContentView>
                                 <connections>
-                                    <segue destination="7Ac-R4-NMw" kind="show" id="hg3-I5-mNb"/>
+                                    <segue destination="7Ac-R4-NMw" kind="show" identifier="LibraryToShelf" id="hg3-I5-mNb"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -930,6 +930,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="mainView" destination="VtS-wH-uqW" id="PT6-cs-dKV"/>
+                                    <segue destination="KfY-WO-sJ9" kind="show" identifier="SearchToDetail" id="F34-NN-b5M"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1033,7 +1034,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="rTd-to-6nz"/>
+        <segue reference="WQ3-sy-enq"/>
         <segue reference="Q4w-Qa-WfN"/>
     </inferredMetricsTieBreakers>
     <resources>
