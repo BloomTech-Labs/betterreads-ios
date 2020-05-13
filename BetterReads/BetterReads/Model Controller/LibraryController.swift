@@ -30,8 +30,13 @@ class LibraryController {
         } else { print("no user id") }
         
         //guard let userId = UserController.shared.authToken else { print("no userId"); return }
-        let authorizationTokenTemp = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoxMzEsInJvbGUiOiJ1c2VyIiwiZnVsbE5hbWUiOiJKb3JnZTEyMzQiLCJlbWFpbEFkZHJlc3MiOiJqb3JnZUBnbS5jb20iLCJpbWFnZSI6bnVsbCwiZ29vZ2xlSUQiOm51bGwsImZhY2Vib29rSUQiOm51bGwsImlhdCI6MTU4OTM4MzYyMiwiZXhwIjoxNTg5NDcwMDIyfQ.Z2rjvCt6q9i9G6yneTZ23WPjPkmAI7Fz8_UTxJn7GfY"
-        request.addValue(authorizationTokenTemp, forHTTPHeaderField: "Authorization")
+        guard let unwrappedToken = UserController.shared.authToken else {
+            print("No token")
+            completion(nil)
+            return
+        }
+//        let authorizationTokenTemp = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoxMzEsInJvbGUiOiJ1c2VyIiwiZnVsbE5hbWUiOiJKb3JnZTEyMzQiLCJlbWFpbEFkZHJlc3MiOiJqb3JnZUBnbS5jb20iLCJpbWFnZSI6bnVsbCwiZ29vZ2xlSUQiOm51bGwsImZhY2Vib29rSUQiOm51bGwsImlhdCI6MTU4OTM4MzYyMiwiZXhwIjoxNTg5NDcwMDIyfQ.Z2rjvCt6q9i9G6yneTZ23WPjPkmAI7Fz8_UTxJn7GfY"
+        request.addValue(unwrappedToken, forHTTPHeaderField: "Authorization")
         
         //request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         //request.addValue("\(toke)", forHTTPHeaderField: "Authorization")
