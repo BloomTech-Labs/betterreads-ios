@@ -28,19 +28,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forgot your password?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1zX-eX-IL3">
-                                <rect key="frame" x="20" y="40" width="374" height="30.5"/>
+                                <rect key="frame" x="20" y="40" width="374" height="28"/>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="24"/>
                                 <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No worries! Enter the email address associated with your account, and we will help you reset your password." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LoE-zJ-L00">
-                                <rect key="frame" x="40" y="110.5" width="334" height="68"/>
+                                <rect key="frame" x="40" y="108" width="334" height="63"/>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
                                 <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="janesmith@email.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rgm-bZ-Ks6">
-                                <rect key="frame" x="20" y="218.5" width="374" height="40"/>
+                                <rect key="frame" x="20" y="211" width="374" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="XyH-cU-sVk"/>
                                 </constraints>
@@ -48,10 +48,10 @@
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="done" textContentType="email"/>
                             </textField>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="BetterReads-Graphics_Man" translatesAutoresizingMaskIntoConstraints="NO" id="AlX-hN-YS8">
-                                <rect key="frame" x="20" y="402" width="374" height="386"/>
+                                <rect key="frame" x="20" y="392" width="374" height="396"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aOZ-94-Io4">
-                                <rect key="frame" x="20" y="305.5" width="374" height="40"/>
+                                <rect key="frame" x="20" y="296.5" width="374" height="40"/>
                                 <color key="backgroundColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="LuV-Ir-Ioz"/>
@@ -67,13 +67,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Success or Failure Message" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eAz-Wf-Ror">
-                                <rect key="frame" x="20" y="365.5" width="374" height="16.5"/>
+                                <rect key="frame" x="20" y="356.5" width="374" height="15.5"/>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="13"/>
                                 <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Error Message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SoY-Zq-who">
-                                <rect key="frame" x="20" y="262.5" width="374" height="18"/>
+                                <rect key="frame" x="20" y="255" width="374" height="16.5"/>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
                                 <color key="textColor" red="0.89019607840000003" green="0.20392156859999999" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -132,25 +132,29 @@
                                     <constraint firstAttribute="width" constant="597" id="Trg-US-dBd"/>
                                 </constraints>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BetterReads-Graphics_CircleBook" translatesAutoresizingMaskIntoConstraints="NO" id="RKz-PH-ZAQ">
-                                <rect key="frame" x="40" y="148" width="334" height="600"/>
-                            </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BetterReads-Graphics_DashedCircle" translatesAutoresizingMaskIntoConstraints="NO" id="dNA-xg-m90" userLabel="Dashed Circle Image">
-                                <rect key="frame" x="30" y="148" width="354" height="600"/>
+                                <rect key="frame" x="28.5" y="269.5" width="357" height="357"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="357" id="60p-Wu-oAn"/>
+                                    <constraint firstAttribute="width" constant="357" id="ECt-CO-CIv"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BetterReads-Graphics_CircleBook" translatesAutoresizingMaskIntoConstraints="NO" id="RKz-PH-ZAQ">
+                                <rect key="frame" x="28.5" y="269.5" width="357" height="357"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="357" id="Kgd-7c-epF"/>
+                                    <constraint firstAttribute="width" constant="357" id="uS8-2Q-qys"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="mgH-Ar-tRv" firstAttribute="centerX" secondItem="sJe-V7-MKN" secondAttribute="centerX" id="AOp-js-5my"/>
-                            <constraint firstAttribute="trailing" secondItem="dNA-xg-m90" secondAttribute="trailing" constant="30" id="H48-4o-ZhK"/>
                             <constraint firstItem="dNA-xg-m90" firstAttribute="centerX" secondItem="sJe-V7-MKN" secondAttribute="centerX" id="K8b-kA-9jw"/>
                             <constraint firstItem="dNA-xg-m90" firstAttribute="centerY" secondItem="sJe-V7-MKN" secondAttribute="centerY" id="UAk-89-1zQ"/>
-                            <constraint firstItem="RKz-PH-ZAQ" firstAttribute="leading" secondItem="sJe-V7-MKN" secondAttribute="leading" constant="40" id="YSJ-CA-SOB"/>
                             <constraint firstItem="RKz-PH-ZAQ" firstAttribute="centerX" secondItem="sJe-V7-MKN" secondAttribute="centerX" id="a9h-EQ-iUf"/>
-                            <constraint firstItem="dNA-xg-m90" firstAttribute="leading" secondItem="sJe-V7-MKN" secondAttribute="leading" constant="30" id="nu1-Wy-NtY"/>
                             <constraint firstItem="RKz-PH-ZAQ" firstAttribute="centerY" secondItem="sJe-V7-MKN" secondAttribute="centerY" id="r56-QQ-x8T"/>
                             <constraint firstItem="mgH-Ar-tRv" firstAttribute="centerY" secondItem="sJe-V7-MKN" secondAttribute="centerY" id="rZ7-AL-rnq"/>
-                            <constraint firstAttribute="trailing" secondItem="RKz-PH-ZAQ" secondAttribute="trailing" constant="40" id="znk-18-xvF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="HEj-jI-JeC"/>
                     </view>
