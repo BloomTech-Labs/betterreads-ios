@@ -176,6 +176,7 @@ class BookDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = ""
+        navigationController?.navigationBar.tintColor = .white
         print("intrinsicContentSize = \(self.view.intrinsicContentSize)")
         navigationController?.navigationBar.isHidden = false
         setupSubviews()
@@ -191,6 +192,7 @@ class BookDetailViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.navigationBar.barStyle = .default
+        navigationController?.navigationBar.tintColor = .black
         //navigationController?.navigationBar.isTranslucent = false
     }
     
@@ -299,6 +301,7 @@ class BookDetailViewController: UIViewController {
         //averageRatingLabel.widthAnchor.constraint(equalTo: authorLabel.widthAnchor).isActive = true
         //averageRatingLabel.heightAnchor.constraint(equalTo: authorLabel.heightAnchor, multiplier: 1.2).isActive = true
         
+        // FIXME: change button width so its always maybe 0.4 of content view width? might cause bugs
         // Add Book Button
         contentView.addSubview(addButton)
         addButton.topAnchor.constraint(equalTo: averageRatingLabel.bottomAnchor, constant: 8).isActive = true

@@ -91,6 +91,11 @@ class SearchTableViewController: UITableViewController {
                 let cell = tableView.cellForRow(at: indexPath) as? SearchResultTableViewCell
                 detailVC.bookCoverImageView.image = cell?.mainView.imageView.image
                 detailVC.blurredBackgroundView.image = cell?.mainView.imageView.image
+                
+                // Back button title for next screen
+                let backItem = UIBarButtonItem()
+                backItem.title = "" // now only the arrow is showing
+                navigationItem.backBarButtonItem = backItem
             }
         }
     }
