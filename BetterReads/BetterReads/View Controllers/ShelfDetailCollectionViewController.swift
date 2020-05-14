@@ -12,6 +12,8 @@ private let reuseIdentifier = "ShelfDetailCell"
 
 class ShelfDetailCollectionViewController: UICollectionViewController {
     
+    var libraryController: LibraryController?
+    
     var tempShelfDetailCount: Int = 1
     // FIXME: change system color to trinidadOrange?
     @IBOutlet var addBookToShelfButtonLabel: UIBarButtonItem!
@@ -50,13 +52,14 @@ class ShelfDetailCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return tempShelfDetailCount
+        return libraryController?.myBooksArray.count ?? 0//tempShelfDetailCount
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? ShelfDetailCollectionViewCell else { return UICollectionViewCell() }
         // FIXME: downcast as ShelfDetailCollectionViewCell
         // Configure the cell
+        cell.userBook = libraryController?.myBooksArray[indexPath.item]
     
         return cell
     }

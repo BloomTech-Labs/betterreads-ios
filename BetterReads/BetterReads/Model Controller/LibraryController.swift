@@ -92,6 +92,7 @@ class LibraryController {
                 // NEW
                 //print("locationsArray: \(booksArray)")
                 self.myBooksArray = booksArray
+                self.allShelvesArray.append(booksArray)
                 // FIXME: implement array of arrays later
                 //self.allShelvesArray[0] = booksArray
                 print("myBooksArray (\(self.myBooksArray.count) = \(self.myBooksArray)")
