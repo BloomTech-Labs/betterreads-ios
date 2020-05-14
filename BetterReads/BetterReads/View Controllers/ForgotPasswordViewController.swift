@@ -58,6 +58,8 @@ class ForgotPasswordViewController: UIViewController {
                     NSLog("Error occured during Forgot Password: \(error)")
                 } else {
                     print("Forgot password reset in progress...")
+                    self.doneButton.isEnabled = false
+                    self.doneButton.backgroundColor = .tundra
                     self.successOrFailureMessage.text = "Thank you! A reset password email has been sent."
                 }
             }
