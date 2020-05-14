@@ -11,7 +11,6 @@ import Nuke
 
 class HomeViewController: UIViewController, UICollectionViewDataSource {
     //MARK: - Outlets
-    @IBOutlet weak var accountSettingsIcon: UIImageView!
     @IBOutlet weak var welcomeUser: UILabel!
     @IBOutlet weak var welcomeMessage: UILabel!
     @IBOutlet weak var topRecommendationLabel: UILabel!
@@ -22,16 +21,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
     @IBOutlet weak var bottomCollectionView: UICollectionView!
 
     //MARK: - Lifecycle
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.isHidden = true
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.isHidden = true
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
-        accountSettingsIcon.isUserInteractionEnabled = true
-        accountSettingsIcon.addGestureRecognizer(tapGestureRecognizer)
         self.welcomeUser.text = "Hello, \(UserController.shared.user?.fullName ?? "there")!"
         topCollectionView.delegate = self
         topCollectionView.dataSource = self
@@ -58,12 +49,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
     }
     
     //MARK: - Methods
-    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
-    {
-        _ = tapGestureRecognizer.view as! UIImageView
-        performSegue(withIdentifier: "ModalAccountSettingsSegue", sender: nil)
-    }
-    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }

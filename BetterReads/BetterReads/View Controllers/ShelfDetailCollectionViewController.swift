@@ -24,7 +24,7 @@ class ShelfDetailCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.navigationController?.navigationBar.tintColor = .trinidadOrange
     }
 
     // MARK: - Navigation
