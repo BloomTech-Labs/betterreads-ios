@@ -27,12 +27,12 @@ class LaunchViewController: UIViewController {
             self.blobBackgroundImage.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
             self.dashedCircleImage.transform = CGAffineTransform(rotationAngle: -20.0)
         })
-        UIView.animate(withDuration: 2.0, delay: 1.0, options: .curveEaseIn, animations: {
+        UIView.animate(withDuration: 2.0, delay: 0.5, options: .curveEaseIn, animations: {
             self.blobBackgroundImage.alpha = 0.0;
             self.circleBookImage.alpha = 0.0
             self.dashedCircleImage.alpha = 0.0
         })
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.5, execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.25, execute: {
             self.performSegue(withIdentifier: "ShowMainScreen", sender: nil)
         })
     }
