@@ -64,6 +64,12 @@ class MyLibraryCollectionViewController: UICollectionViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "LibraryToShelf" {
             print("LibraryToShelf")
+            if let shelfDetailVC = segue.destination as? ShelfDetailCollectionViewController, let indexPath = collectionView.indexPathsForSelectedItems?.first {
+                // FIXME: pass in controller so user can add book to my books or other shelf
+                shelfDetailVC.libraryController = libraryController
+                //let cell = collectionView.itemForRow(at: indexPath) as? SearchResultTableViewCell
+                
+            }
         }
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
@@ -84,8 +90,8 @@ class MyLibraryCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? LibraryCollectionViewCell else { return UICollectionViewCell() }
-        let userBook = libraryController.myBooksArray[indexPath.item]
-        cell.userBook = userBook
+        let allUserBooks = libraryController.allShelvesArray[indexPath.item]
+        cell.allUserBooks = allUserBooks
         // FIXME: downcast as LibraryCollectionViewCell
         // Configure the cell
         return cell

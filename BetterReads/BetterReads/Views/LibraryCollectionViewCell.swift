@@ -16,11 +16,17 @@ class LibraryCollectionViewCell: UICollectionViewCell {
     var thirdImageView: UIImageView!
     var shelfNameLabel: UILabel!
     
-    var userBook: UserBook? {
+    var allUserBooks: [UserBook]? {
         didSet {
             updateViews()
         }
     }
+    
+//    var userBook: UserBook? {
+//        didSet {
+//            updateViews()
+//        }
+//    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -35,8 +41,33 @@ class LibraryCollectionViewCell: UICollectionViewCell {
     }
     
     private func updateViews() {
-        guard let userBook = userBook else { return }
-        shelfNameLabel.text = "My Books"
+        guard let allUserBooks = allUserBooks else { return }
+        shelfNameLabel.text = allUserBooks.first?.title//"My Books"
+        
+        guard let firstThumbnail = allUserBooks[0].thumbnail else { return }
+        SearchController.fetchImage(with: firstThumbnail) { (image) in
+            DispatchQueue.main.async {
+                // Add quick fade-in animation (alpha)
+                self.shelfImageView.image = image 
+            }
+        }
+        
+        guard let secondThumbnail = allUserBooks[1].thumbnail else { return }
+        SearchController.fetchImage(with: secondThumbnail) { (image) in
+            DispatchQueue.main.async {
+                // Add quick fade-in animation (alpha)
+                self.secondImageView.image = image
+            }
+        }
+        
+        guard let thirdThumbnail = allUserBooks[2].thumbnail else { return }
+        SearchController.fetchImage(with: thirdThumbnail) { (image) in
+            DispatchQueue.main.async {
+                // Add quick fade-in animation (alpha)
+                self.thirdImageView.image = image
+            }
+        }
+        
     }
     
     private func setUpSubviews() {
