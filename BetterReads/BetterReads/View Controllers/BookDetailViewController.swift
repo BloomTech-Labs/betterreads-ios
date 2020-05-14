@@ -165,6 +165,12 @@ class BookDetailViewController: UIViewController {
         addButton.performFlare()
     }
     
+    var book: Book? {
+        didSet {
+            updateViews()
+        }
+    }
+    var passedInImage: UIImage?
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
@@ -185,6 +191,7 @@ class BookDetailViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.navigationBar.barStyle = .default
+        //navigationController?.navigationBar.isTranslucent = false
     }
     
     // FIXME: button might be weird because contentSize is -1, -1
@@ -193,13 +200,18 @@ class BookDetailViewController: UIViewController {
 //        return CGSize(width: view.bounds.width, height: view.bounds.height)
 //    }
     
-    // FIXME: THIS NEEDS TO RUN BEFORE THIS VIEW LOADS. USE NOTIFICATION TO PASS TOP BAR HEIGTH BEFOREHAND
-    private func statusAndNavigationBarHeight() -> CGFloat {
-        let navHeight = self.navigationController?.navigationBar.frame.height ?? 0.0
-        let statusHeight = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0.0
-        print("nav height = \(navHeight)")
-        print("status height = \(statusHeight)")
-        return navHeight + statusHeight
+    private func updateViews() {
+        //guard isViewLoaded else { print("view not loaded yet"); return }
+        guard let book = book else { print("no book in guard let"); return }
+        titleLabel.text = book.title
+        //bookCoverImageView.image = UIImage()book.thumbnail
+        authorLabel.text = "by \(book.authors?[0] ?? "Unknown")"
+        ratingStackView.ratingValue = book.averageRating
+        averageRatingLabel.text = "\(book.averageRating ?? 0) average rating"
+        descriptionLabel.text = book.textSnippet
+        publisherLabel.text = "Publisher: \(book.publisher ?? "No publisher")"
+        isbnLabel.text = "ISBN: \(book.isbn13 ?? "")"
+        lengthLabel.text = "Length: \(book.pageCount ?? 0) pages"
     }
     
     private func setupSubviews() {
