@@ -52,6 +52,7 @@
 		77B6A3A22448F5A600FF604B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77B6A3A12448F5A600FF604B /* Assets.xcassets */; };
 		77B6A3A52448F5A600FF604B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77B6A3A32448F5A600FF604B /* LaunchScreen.storyboard */; };
 		77ECC9E7245BAF01007509D5 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ECC9E6245BAF01007509D5 /* ForgotPasswordViewController.swift */; };
+		77F93607246CA8C9007C6236 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F93606246CA8C9007C6236 /* LaunchViewController.swift */; };
 		77FD28AE2459E5890008C3E4 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 77FD28AD2459E5890008C3E4 /* Alamofire */; };
 		77FD28B6245A31CC0008C3E4 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 77FD28B5245A31CC0008C3E4 /* SwiftyJSON */; };
 		77FD28B9245A35A60008C3E4 /* JWTDecode in Frameworks */ = {isa = PBXBuildFile; productRef = 77FD28B8245A35A60008C3E4 /* JWTDecode */; };
@@ -104,6 +105,7 @@
 		77B6A3A42448F5A600FF604B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		77B6A3A62448F5A600FF604B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		77ECC9E6245BAF01007509D5 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		77F93606246CA8C9007C6236 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 		1B102AC9244E17490095733B /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				77F93606246CA8C9007C6236 /* LaunchViewController.swift */,
 				77ECC9E6245BAF01007509D5 /* ForgotPasswordViewController.swift */,
 				1B102ACC244E2F600095733B /* SignInViewController.swift */,
 				77538BE8246B0738007FD8E6 /* AccountSettingsViewController.swift */,
@@ -377,6 +380,7 @@
 				77538BE7246B056C007FD8E6 /* Recommendation.swift in Sources */,
 				1B102B0A2463635B0095733B /* MyLibraryCollectionViewController.swift in Sources */,
 				77B6A39B2448F5A400FF604B /* SceneDelegate.swift in Sources */,
+				77F93607246CA8C9007C6236 /* LaunchViewController.swift in Sources */,
 				1B59892E2469AFB900EB8F0E /* StarRatingStackView.swift in Sources */,
 				1B102ACD244E2F600095733B /* SignInViewController.swift in Sources */,
 				1B102B1224636D640095733B /* BookDetailViewController.swift in Sources */,
