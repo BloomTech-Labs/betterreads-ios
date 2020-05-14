@@ -10,7 +10,7 @@ import UIKit
 
 
 var myBooksArray = [Book]()
-let searchController = SearchController()
+
 
 class SearchTableViewController: UITableViewController {
 
@@ -19,6 +19,8 @@ class SearchTableViewController: UITableViewController {
     
     // FIXME: change so cancel/x button act like they do in Goodreads/Apple Books?
     // FIXME: add swipe gesture to dismiss keyboard instead of having "Hide" button?
+    
+    let searchController = SearchController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,9 +85,19 @@ class SearchTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SearchToDetail" {
             print("SearchToDetail")
+            if let detailVC = segue.destination as? BookDetailViewController, let indexPath = tableView.indexPathForSelectedRow {
+                // FIXME: pass in controller so user can add book to my books or other shelf
+                detailVC.book = searchController.searchResultBooks[indexPath.row]
+                let cell = tableView.cellForRow(at: indexPath) as? SearchResultTableViewCell
+                detailVC.bookCoverImageView.image = cell?.mainView.imageView.image
+                detailVC.blurredBackgroundView.image = cell?.mainView.imageView.image
+                
+                // Back button title for next screen
+                let backItem = UIBarButtonItem()
+                backItem.title = "" // now only the arrow is showing
+                navigationItem.backBarButtonItem = backItem
+            }
         }
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
     }
 
     // MARK: - Helpers
@@ -154,7 +166,7 @@ extension SearchTableViewController: UISearchBarDelegate {
         searchController.searchBook(with: searchTerm) { (error) in
             DispatchQueue.main.async {
                 print("searchBook called in searchBarSearchButtonClicked")
-                print("array count now: \(searchController.searchResultBooks.count)")
+                print("array count now: \(self.searchController.searchResultBooks.count)")
                 self.tableView.reloadData()
             }
         }
