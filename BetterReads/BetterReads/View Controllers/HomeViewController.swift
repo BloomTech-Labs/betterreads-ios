@@ -11,7 +11,6 @@ import Nuke
 
 class HomeViewController: UIViewController, UICollectionViewDataSource {
     //MARK: - Outlets
-    @IBOutlet weak var accountSettingsIcon: UIImageView!
     @IBOutlet weak var welcomeUser: UILabel!
     @IBOutlet weak var welcomeMessage: UILabel!
     @IBOutlet weak var topRecommendationLabel: UILabel!
@@ -22,16 +21,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
     @IBOutlet weak var bottomCollectionView: UICollectionView!
 
     //MARK: - Lifecycle
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.isHidden = true
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.isHidden = true
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
-        accountSettingsIcon.isUserInteractionEnabled = true
-        accountSettingsIcon.addGestureRecognizer(tapGestureRecognizer)
+        addNavBarImage()
         self.welcomeUser.text = "Hello, \(UserController.shared.user?.fullName ?? "there")!"
         topCollectionView.delegate = self
         topCollectionView.dataSource = self
@@ -58,10 +50,17 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
     }
     
     //MARK: - Methods
-    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
-    {
-        _ = tapGestureRecognizer.view as! UIImageView
-        performSegue(withIdentifier: "ModalAccountSettingsSegue", sender: nil)
+    private func addNavBarImage() {
+        let navController = navigationController!
+        let image = UIImage(named: "BetterReads-Logo_NavBarTitle")
+        let imageView = UIImageView(image: image)
+        let bannerWidth = navController.navigationBar.frame.size.width
+        let bannerHeight = navController.navigationBar.frame.size.height
+        let bannerX = bannerWidth / 2 - (image?.size.width)! / 2
+        let bannerY = bannerHeight / 2 - (image?.size.height)! / 2
+        imageView.frame = CGRect(x: bannerX, y: bannerY, width: bannerWidth, height: bannerHeight)
+        imageView.contentMode = .scaleAspectFit
+        navigationItem.titleView = imageView
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
