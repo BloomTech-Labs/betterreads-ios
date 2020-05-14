@@ -473,7 +473,7 @@
             </objects>
             <point key="canvasLocation" x="1013" y="127"/>
         </scene>
-        <!--BetterReads-->
+        <!--Better Reads-->
         <scene sceneID="AOt-BX-vD7">
             <objects>
                 <viewController id="Rzg-aC-Wux" customClass="HomeViewController" customModule="BetterReads" customModuleProvider="target" sceneMemberID="viewController">
@@ -799,7 +799,17 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Il2-zb-RAW"/>
                     </view>
-                    <navigationItem key="navigationItem" title="BetterReads" id="HkD-6o-ShA"/>
+                    <navigationItem key="navigationItem" title="Better Reads" id="HkD-6o-ShA">
+                        <barButtonItem key="leftBarButtonItem" image="person.circle" catalog="system" id="cNM-aY-d36">
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="person.circle" catalog="system" id="jkh-ba-DcG">
+                            <color key="tintColor" red="0.83137254900000002" green="0.28235294119999998" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="qDX-7S-9rZ" kind="presentation" identifier="ModalAccountSettingsSegue" id="tnf-ut-UFh"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <size key="freeformSize" width="414" height="1100"/>
                     <connections>
                         <outlet property="bottomCollectionView" destination="sPu-l3-I1e" id="k6A-yd-Pcu"/>
@@ -810,7 +820,6 @@
                         <outlet property="topRecommendationLabel" destination="TvC-EH-p2C" id="tHD-OL-5EM"/>
                         <outlet property="welcomeMessage" destination="XrN-eJ-L2C" id="vnC-v6-ewf"/>
                         <outlet property="welcomeUser" destination="3xZ-Rv-Ed4" id="Kgp-q0-GRa"/>
-                        <segue destination="qDX-7S-9rZ" kind="presentation" identifier="ModalAccountSettingsSegue" id="S3M-g8-dJC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tDj-d5-t0P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1079,5 +1088,6 @@
         <image name="chevron.down" catalog="system" width="128" height="72"/>
         <image name="house" catalog="system" width="128" height="110"/>
         <image name="info.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="person.circle" catalog="system" width="128" height="121"/>
     </resources>
 </document>

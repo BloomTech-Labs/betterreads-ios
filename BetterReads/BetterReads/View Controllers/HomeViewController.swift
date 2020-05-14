@@ -52,7 +52,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
     //MARK: - Methods
     private func addNavBarImage() {
         let navController = navigationController!
-        let image = UIImage(named: "BetterReads-Logo_NavBarTitle")
+        let image = UIImage(named: "BetterReads-Logo_Orange")
         let imageView = UIImageView(image: image)
         let bannerWidth = navController.navigationBar.frame.size.width
         let bannerHeight = navController.navigationBar.frame.size.height
