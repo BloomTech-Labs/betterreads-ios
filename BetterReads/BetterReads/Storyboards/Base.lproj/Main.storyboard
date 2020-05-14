@@ -449,7 +449,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Za0-7F-Pg2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="50.724637681159422" y="18.75"/>
+            <point key="canvasLocation" x="88" y="-108"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="2yq-w1-wcm">
@@ -471,9 +471,9 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o8d-ce-JcD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1013" y="127"/>
+            <point key="canvasLocation" x="1012" y="21"/>
         </scene>
-        <!--Better Reads-->
+        <!--BetterReads-->
         <scene sceneID="AOt-BX-vD7">
             <objects>
                 <viewController id="Rzg-aC-Wux" customClass="HomeViewController" customModule="BetterReads" customModuleProvider="target" sceneMemberID="viewController">
@@ -799,7 +799,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Il2-zb-RAW"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Better Reads" id="HkD-6o-ShA">
+                    <navigationItem key="navigationItem" title="BetterReads" id="HkD-6o-ShA">
                         <barButtonItem key="leftBarButtonItem" image="person.circle" catalog="system" id="cNM-aY-d36">
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
@@ -824,11 +824,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tDj-d5-t0P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="320" y="1750"/>
+            <point key="canvasLocation" x="320" y="1745"/>
         </scene>
         <!--New Shelf-->
         <scene sceneID="gjP-lF-ATg">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pah-8L-GHs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <collectionViewController id="7Ac-R4-NMw" customClass="ShelfDetailCollectionViewController" customModule="BetterReads" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="AfK-WT-yPL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -860,6 +861,7 @@
                     </collectionView>
                     <navigationItem key="navigationItem" title="New Shelf" id="z3M-PE-MiS">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="syc-O0-QAV">
+                            <color key="tintColor" red="0.83137254900000002" green="0.28235294119999998" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="addBookToShelfTapped:" destination="7Ac-R4-NMw" id="jE4-To-B5y"/>
                             </connections>
@@ -869,7 +871,6 @@
                         <outlet property="addBookToShelfButtonLabel" destination="syc-O0-QAV" id="bHT-fv-9fH"/>
                     </connections>
                 </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Pah-8L-GHs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1012" y="2411"/>
         </scene>
@@ -923,6 +924,7 @@
                     </collectionView>
                     <navigationItem key="navigationItem" title="My Library" id="zVS-CP-SNd">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="GGL-vn-laG">
+                            <color key="tintColor" red="0.83137254900000002" green="0.28235294119999998" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="addShelfButtonTapped:" destination="ZiB-AS-eCM" id="9bf-QN-Kfe"/>
                             </connections>
@@ -934,7 +936,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="buO-pk-Swc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1016" y="1555"/>
+            <point key="canvasLocation" x="1012" y="1555"/>
         </scene>
         <!--Search Books-->
         <scene sceneID="8E8-uY-CE6">
@@ -986,7 +988,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KW8-DK-1v7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1706" y="1555"/>
+            <point key="canvasLocation" x="1705" y="1555"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="l1u-02-j9p">
@@ -994,19 +996,25 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bIc-hZ-hBf" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="search" id="yq8-aY-V8V"/>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="Mhv-bi-APM"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="39s-my-Te0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="20"/>
+                            <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="20"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="ybL-9d-0ke" kind="relationship" relationship="rootViewController" id="Oal-hZ-rK9"/>
+                        <segue destination="ybL-9d-0ke" kind="relationship" relationship="rootViewController" id="KDL-Rb-jB8"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="um6-fX-c1B" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1707" y="867"/>
+            <point key="canvasLocation" x="1706" y="795"/>
         </scene>
         <!--My Library-->
         <scene sceneID="rD7-J0-bsb">
@@ -1017,6 +1025,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="MRx-W5-1UV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="20"/>
+                            <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1025,7 +1037,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="28d-fF-4uo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1012" y="867"/>
+            <point key="canvasLocation" x="1015" y="795"/>
         </scene>
         <!--Home-->
         <scene sceneID="Jmf-S3-ESh">
@@ -1036,6 +1048,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="08q-wx-DKz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="20"/>
+                            <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1044,7 +1060,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cg2-jY-Bz6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="322" y="867"/>
+            <point key="canvasLocation" x="321" y="795"/>
         </scene>
         <!--Account Settings View Controller-->
         <scene sceneID="jbv-d2-zSi">
@@ -1074,7 +1090,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="WQ3-sy-enq"/>
+        <segue reference="13q-cF-JSj"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="BetterReads-DefaultBookImage" width="267" height="400"/>

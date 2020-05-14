@@ -192,7 +192,7 @@ class BookDetailViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.navigationBar.barStyle = .default
-        navigationController?.navigationBar.tintColor = .black
+        navigationController?.navigationBar.tintColor = .trinidadOrange
         //navigationController?.navigationBar.isTranslucent = false
     }
     
