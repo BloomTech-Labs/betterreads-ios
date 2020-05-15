@@ -1,7 +1,5 @@
-# 📱BetterReads
+# 📱 BetterReads
 [![Swift Version](https://img.shields.io/badge/Swift-5.0-orange.svg?style=flat-square&logo=Swift&logoColor=white)](https://swift.org) [![Licence Type](https://img.shields.io/badge/Licence-MIT-blue.svg?style=flat-square)](https://github.com/Lambda-School-Labs/betterreads-ios/blob/master/LICENSE) [![Platform Type](https://img.shields.io/badge/Platform-iOS-blue.svg?style=flat-square&logo=Apple&logoColor=white)](https://www.apple.com/ios/ios-…) [![PRs Type](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![Maintainability](https://api.codeclimate.com/v1/badges/475ccef59e573e11c796/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/betterreads-ios/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/475ccef59e573e11c796/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/betterreads-ios/test_coverage)
-
-You can find the deployed project at [🚫URL NAME GOES HERE]).
 
 ---
 
@@ -18,13 +16,9 @@ You can find the deployed project at [🚫URL NAME GOES HERE]).
 
 ## 🛠 Project Overview
 
-You can find the deployed project at [🚫URL NAME GOES HERE].
-
 [Trello Board](https://trello.com/b/pfNUGgG3/betterreads)
 
 [Product Canvas](https://www.notion.so/3e2d0c3a092c492eb83fdcd101538d2a?v=42b68a41eea7494ea2aedaa7f32ada56)
-
-[UX Design files](https://www.figma.com/file/lowMNFiywxfBHZI2bFYhe9/Better-Reads%2C-Lynn?node-id=177%3A0)
 
 BetterReads allows you to have a centralized location to organize and track the books that you've read, are currently reading, and/or books that you would like to read in the future. BetterReads is also a great way to easily discover new books with recommendations based on your personal library collection. 
 
@@ -40,17 +34,6 @@ Since BetterReads allows you to track your reading progress on the go, you can a
 -    Search Books
 -    "My Books" (personal library collection)
 -    Book Suggestions/Recommendations
--    🚫Add more features if necessary. 
-
----
-
-### 🚫 Replace Authentication API Title here
-
-🚫 Replace text below with a description of the API. 
-
-### 🚫 Replace Misc API Title here
-
-🚫 Replace text below with a description of the API.
 
 ---
 
@@ -58,7 +41,35 @@ Since BetterReads allows you to track your reading progress on the go, you can a
 
 -   iOS 13.0+
 -   Xcode 11.4
--   🚫 Add more requirements if neccessary
+-   Swift Package Manager Dependencies:
+     * [SwiftLint](https://github.com/realm/SwiftLint)
+     * [AlamoFire](https://github.com/Alamofire/Alamofire)
+     * [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON)
+     * [JWTDecode](https://github.com/auth0/JWTDecode.swift)
+     * [Nuke](https://github.com/kean/Nuke)
+
+---
+
+## 🧩 Getting Started
+
+1. Clone repository and change directory into project.
+
+```bash
+git clone https://github.com/Lambda-School-Labs/betterreads-ios.git
+cd betterreads-ios
+cd BetterReads
+```
+
+2. Open the Xcode project. Let Swift Package Manager run the dependencies.
+```bash
+open BetterReads.xcodeproj
+```
+
+3. Build and run the project. 
+
+```bash
+Hooray! You did it!
+```
 
 ---
 
