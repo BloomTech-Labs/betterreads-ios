@@ -24,7 +24,10 @@ class ForgotPasswordViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)
         // Register View Controller as Observer
-        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange(_:)), name: UITextField.textDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(textDidChange(_:)),
+                                               name: UITextField.textDidChangeNotification,
+                                               object: nil)
     }
     @objc private func textDidChange(_ notification: Notification) {
         doneButton.backgroundColor = .trinidadOrange
@@ -45,7 +48,9 @@ class ForgotPasswordViewController: UIViewController {
             guard let emailAddress = emailTextField.text else { return }
             UserController.shared.forgotPasswordEmail(emailAddress: emailAddress) { (networkError) in
                 if let error = networkError {
-                    let alert = UIAlertController(title: "Forgot Password Error", message: "An error occurred when processing your request.", preferredStyle: .alert)
+                    let alert = UIAlertController(title: "Forgot Password Error",
+                                                  message: "An error occurred when processing your request.",
+                                                  preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "Try again", style: .default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
                     NSLog("Error occured during Forgot Password: \(error)")
@@ -63,8 +68,8 @@ class ForgotPasswordViewController: UIViewController {
             let _ = try emailTextField.validatedText(validationType: .email(field: "email"))
             return (true, nil)
         } catch (let error) {
-            let convertedError = (error as! ValidationError)
-            return (false, convertedError.message)
+            let convertedError = (error as? ValidationError)
+            return (false, convertedError?.message)
         }
     }
 }

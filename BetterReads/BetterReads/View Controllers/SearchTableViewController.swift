@@ -55,8 +55,9 @@ class SearchTableViewController: UITableViewController {
         return 150 // was 175 when we started
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell", for: indexPath) as? SearchResultTableViewCell else { return UITableViewCell() }
-
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell",
+                                                       for: indexPath) as? SearchResultTableViewCell
+            else { return UITableViewCell() }
         let book = searchController.searchResultBooks[indexPath.row]
         cell.book = book
         return cell
@@ -67,7 +68,8 @@ class SearchTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SearchToDetail" {
             print("SearchToDetail")
-            if let detailVC = segue.destination as? BookDetailViewController, let indexPath = tableView.indexPathForSelectedRow {
+            if let detailVC = segue.destination as? BookDetailViewController,
+                let indexPath = tableView.indexPathForSelectedRow {
                 // FIXME: pass in controller so user can add book to my books or other shelf
                 detailVC.book = searchController.searchResultBooks[indexPath.row]
                 let cell = tableView.cellForRow(at: indexPath) as? SearchResultTableViewCell
@@ -94,7 +96,8 @@ class SearchTableViewController: UITableViewController {
 //                }
 //            }
 //            let booksWithSearchTerm = fakeBooksArray.filter {
-//                $0.title.lowercased().contains(searchTerm.lowercased()) || $0.author.lowercased().contains(searchTerm.lowercased())
+//                $0.title.lowercased().contains(searchTerm.lowercased()) ||
+        // $0.author.lowercased().contains(searchTerm.lowercased())
 //            }
 //            myBooksArray = booksWithSearchTerm
         }

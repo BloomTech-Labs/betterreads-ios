@@ -91,9 +91,13 @@ class SignInViewController: UIViewController {
     private func setupCustomSegmentedControl() {
         // Change font on the segmented control, add a default font to dismiss warning
         segmentedControl.setTitleTextAttributes([NSAttributedString.Key.font: semiBoldFont ?? UIFont()], for: .selected)
-        // Change the background and divider image on the segmented control to a transparent (clear) image in the extension at the bottom of this file
+        // Change the background and divider image on the segmented control
+        // to a transparent (clear) image in the extension at the bottom of this file
         segmentedControl.setBackgroundImage(segControlBackgroundImage, for: .normal, barMetrics: .default)
-        segmentedControl.setDividerImage(segControlDividerImage, forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
+        segmentedControl.setDividerImage(segControlDividerImage,
+                                         forLeftSegmentState: .normal,
+                                         rightSegmentState: .normal,
+                                         barMetrics: .default)
         // Change the text color on the segmented control for selected and normal states
         segmentedControl.setTitleTextAttributes(selectedTextAttributes as [NSAttributedString.Key: Any], for: .selected)
         segmentedControl.setTitleTextAttributes(normalTextAttributes as [NSAttributedString.Key: Any], for: .normal)
@@ -156,7 +160,8 @@ class SignInViewController: UIViewController {
         confirmPasswordEyeballButton.tintColor = .doveGray
         confirmPasswordEyeballButton.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
         confirmPasswordEyeballButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: -20.0, bottom: 0, right: 5.0)
-        confirmPasswordEyeballButton.addTarget(self, action: #selector(tappedConfirmPasswordEyeballButton), for: .touchUpInside)
+        confirmPasswordEyeballButton.addTarget(self, action: #selector(
+            tappedConfirmPasswordEyeballButton), for: .touchUpInside)
         confirmPasswordEyeballButton.isHidden = true
     }
     @objc private func tappedPasswordEyeballButton(field: UITextField) {
@@ -214,7 +219,8 @@ class SignInViewController: UIViewController {
                 if segmentedControl.selectedSegmentIndex == 1 {
                     return (true, nil)
                 }
-                let confirmPassword = try confirmPasswordTextField.validatedText(validationType: .password(field: "confirmPassword"))
+                let confirmPassword = try confirmPasswordTextField.validatedText(
+                    validationType: .password(field: "confirmPassword"))
                 guard let password = passwordTextField.text else { return (false, "Passwords do not match.")}
                 if confirmPassword != password {
                     print("\(password) \n \(confirmPassword)")
@@ -231,7 +237,8 @@ class SignInViewController: UIViewController {
                 let password = try passwordTextField.validatedText(validationType: .password(field: "password"))
                 // unless you're on sign in, then don't validate confirmPassword textfield
                 if segmentedControl.selectedSegmentIndex == 0 {
-                    let confirmPassword = try confirmPasswordTextField.validatedText(validationType: .password(field: "confirmPassword"))
+                    let confirmPassword = try confirmPasswordTextField.validatedText(
+                        validationType: .password(field: "confirmPassword"))
                     if confirmPassword != password {
                         print("\(password) \n \(confirmPassword)")
                         return (false, "Passwords do not match.")
@@ -240,15 +247,17 @@ class SignInViewController: UIViewController {
                 return (true, nil)
             }
         } catch (let error) {
-            let convertedError = (error as! ValidationError)
-            return (false, convertedError.message)
+            let convertedError = (error as? ValidationError)
+            return (false, convertedError?.message)
         }
     }
     private func signUpUser() {
         guard let fullName = fullNameTextField.text,
             let emailAddress = emailTextField.text,
             let password = passwordTextField.text else { return }
-        UserController.shared.signUp(fullName: fullName, emailAddress: emailAddress, password: password) { (networkError) in
+        UserController.shared.signUp(fullName: fullName,
+                                     emailAddress: emailAddress,
+                                     password: password) { (networkError) in
             if let error = networkError {
                 self.presentSignUpErrorAlert()
                 NSLog("Error occured during Sign Up: \(error)")

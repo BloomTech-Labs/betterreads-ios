@@ -129,12 +129,12 @@ class SearchResultView: UIView {
         // Stars Array (goes inside starsView)
         // FIXME: change Int to double/float ?
         let starSize = Int(self.frame.size.height * CGFloat(0.10)) // FIXME: should be based on cell size?
-        for interger in 1...5 {
+        for integer in 1...5 {
             let star = UIImageView()
             starsView.addSubview(star)
             starsArray.append(star)
-            star.tag = interger
-            star.frame = CGRect(x: ((starSize + starSpacing) * (interger - 1)),
+            star.tag = integer
+            star.frame = CGRect(x: ((starSize + starSpacing) * (integer - 1)),
                                 y: 0,
                                 width: starSize,
                                 height: starSize)
