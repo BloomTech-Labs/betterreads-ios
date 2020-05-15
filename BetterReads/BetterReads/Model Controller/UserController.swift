@@ -32,7 +32,10 @@ class UserController {
     private init() { }
     typealias CompletionHandler = (Error?) -> Void
     // MARK: - Sign Up
-    func signUp(fullName: String, emailAddress: String, password: String, completion: @escaping CompletionHandler = { _ in }) {
+    func signUp(fullName: String,
+                emailAddress: String,
+                password: String,
+                completion: @escaping CompletionHandler = { _ in }) {
         let signUpURL = baseURL.appendingPathComponent("auth")
         .appendingPathComponent("signup")
         let parameters = ["fullName": fullName, "emailAddress": emailAddress, "password": password]
@@ -120,7 +123,8 @@ class UserController {
     func getRecommendations(completion: @escaping CompletionHandler = { _ in }) {
         guard let user = user,
             let authToken = authToken else { return completion(NetworkError.otherError) }
-        let getRecommendationsURL = baseURL.appendingPathComponent("\(user.id)").appendingPathComponent("recommendations")
+        let getRecommendationsURL = baseURL.appendingPathComponent("\(user.id)")
+            .appendingPathComponent("recommendations")
         let headers: HTTPHeaders = [
             "Content-Type": "application/json",
             "Authorization": authToken

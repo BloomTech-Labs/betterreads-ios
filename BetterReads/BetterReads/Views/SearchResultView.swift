@@ -22,7 +22,7 @@ class SearchResultView: UIView {
     var starSpacing: Int = 4 // change to double/float?
     private let titleFont = UIFont(name: "FrankRuhlLibre-Regular", size: 18)
     private let authorFont = UIFont(name: "SourceSansPro-Light", size: 12)
-    private let authorTextColor = UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 1.0) // Tundra #404040
+    private let authorTextColor = UIColor.tundra
     private var lastThumbnailImage: String?
     // MARK: - View LifeCycle
     var book: Book? {

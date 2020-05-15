@@ -64,10 +64,8 @@ struct EmailFieldValidator: ValidatorConvertible {
         }
         do {
             if try NSRegularExpression(pattern: pattern,
-                                       options: .caseInsensitive).firstMatch(in: value!,
-                                                                             options: [],
-                                                                             range: NSRange(location: 0,
-                                                                                            length: value!.count)) == nil {
+                                       options: .caseInsensitive)
+                .firstMatch(in: value!, options: [], range: NSRange(location: 0, length: value!.count)) == nil {
                 throw ValidationError(message: "Invalid email address", fieldName: fieldName)
             }
         } catch {

@@ -35,15 +35,16 @@ class ShelfDetailCollectionViewController: UICollectionViewController {
     }
     // MARK: UICollectionViewDataSource
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
         return libraryController?.myBooksArray.count ?? 0//tempShelfDetailCount
     }
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? ShelfDetailCollectionViewCell else { return UICollectionViewCell() }
+    override func collectionView(_ collectionView: UICollectionView,
+                                 cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier,
+                                                            for: indexPath) as? ShelfDetailCollectionViewCell
+            else { return UICollectionViewCell() }
         // FIXME: downcast as ShelfDetailCollectionViewCell
         // Configure the cell
         cell.userBook = libraryController?.myBooksArray[indexPath.item]
@@ -52,18 +53,28 @@ class ShelfDetailCollectionViewController: UICollectionViewController {
 }
 
 extension ShelfDetailCollectionViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 10
     }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 20, left: 10, bottom: 20, right: 10)
     }
     // MARK: Flow Layout
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
         let itemsPerRow: CGFloat = 2
-        let insets = self.collectionView(collectionView, layout: collectionViewLayout, insetForSectionAt: 0)
+        let insets = self.collectionView(collectionView,
+                                         layout: collectionViewLayout,
+                                         insetForSectionAt: 0)
         let horizontalInsets = insets.left + insets.right
-        let itemSpacing = (self.collectionView(collectionView, layout: collectionViewLayout, minimumInteritemSpacingForSectionAt: 0)) * (itemsPerRow - 1)
+        let itemSpacing = (self.collectionView(collectionView,
+                                               layout: collectionViewLayout,
+                                               minimumInteritemSpacingForSectionAt: 0)) * (itemsPerRow - 1)
         let width = (collectionView.frame.width - horizontalInsets - itemSpacing) / itemsPerRow
         print("sizeForItemAt = \(CGSize(width: width, height: width * 1.3))")
         print("safeAreaLayoutGuide = \(self.view.safeAreaLayoutGuide)")

@@ -18,8 +18,10 @@ class SignInViewController: UIViewController {
     let segControlDividerImage = UIImage(color: .clear, size: CGSize(width: 1, height: 32))
     let regularFont = UIFont(name: "SourceSansPro-Regular", size: 16)
     let semiBoldFont = UIFont(name: "SourceSansPro-SemiBold", size: 20)
-    let selectedTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.tundra, NSAttributedString.Key.font: UIFont(name: "SourceSansPro-SemiBold", size: 20)]
-    let normalTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.tundra, NSAttributedString.Key.font: UIFont(name: "SourceSansPro-Regular", size: 16)]
+    let selectedTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.tundra,
+                                  NSAttributedString.Key.font: UIFont(name: "SourceSansPro-SemiBold", size: 20)]
+    let normalTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.tundra,
+                                NSAttributedString.Key.font: UIFont(name: "SourceSansPro-Regular", size: 16)]
     var passwordEyeballButton = UIButton()
     var confirmPasswordEyeballButton = UIButton()
     // MARK: - Outlets
@@ -59,7 +61,10 @@ class SignInViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)
         // Register View Controller as Observer
-        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange(_:)), name: UITextField.textDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(textDidChange(_:)),
+                                               name: UITextField.textDidChangeNotification,
+                                               object: nil)
     }
     @objc private func textDidChange(_ notification: Notification) {
         var formIsValid = true
@@ -294,23 +299,34 @@ class SignInViewController: UIViewController {
         }
     }
     private func presentSignUpErrorAlert() {
-        let alert = UIAlertController(title: "Sign Up Error", message: "An error occured during Sign Up,\nplease try again later.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Sign Up Error",
+                                      message: "An error occured during Sign Up,\nplease try again later.",
+                                      preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }
     private func presentSignInErrorAlert() {
-        let alert = UIAlertController(title: "Sign In Error", message: "An error occured during Sign In,\nplease try again later.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Sign In Error",
+                                      message: "An error occured during Sign In,\nplease try again later.",
+                                      preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }
     // MARK: - Password Information Circles
     @IBAction func passwordInfoCircleTapped(_ sender: UIButton) {
-        let alert = UIAlertController(title: "Password Required", message: "Must be at least 6 characters, with at least 1 number.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Password Required",
+                                      message: "Must be at least 6 characters, with at least 1 number.",
+                                      preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }
     @IBAction func confirmPasswordInfoCircleTapped(_ sender: UIButton) {
-        let alert = UIAlertController(title: "Confirm Password Required", message: "Must be at least 6 characters, with at least 1 number, and must match your password.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Confirm Password Required",
+                                      message: """
+                                        Must be at least 6 characters, with at least 1 number,
+                                        and must match your password.
+                                        """,
+                                      preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }

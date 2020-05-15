@@ -223,7 +223,8 @@ class BookDetailViewController: UIViewController {
         blurredBackgroundView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         blurredBackgroundView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
         blurredBackgroundView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
-        blurredBackgroundView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.5).isActive = true
+        blurredBackgroundView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor,
+                                                      multiplier: 0.5).isActive = true
         // FIXME: Change tint/text color to white and remove back button text
         // Transparent Nav bar
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -241,7 +242,8 @@ class BookDetailViewController: UIViewController {
         //bookCoverImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
         bookCoverImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         bookCoverImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true
-        bookCoverImageView.heightAnchor.constraint(equalTo: bookCoverImageView.widthAnchor, multiplier: 1.5).isActive = true
+        bookCoverImageView.heightAnchor.constraint(equalTo: bookCoverImageView.widthAnchor,
+                                                   multiplier: 1.5).isActive = true
         // Title Label
         // add labelOne to the scroll view
         contentView.addSubview(titleLabel)
@@ -297,7 +299,8 @@ class BookDetailViewController: UIViewController {
         //descriptionLabel.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.8).isActive = true
         //descriptionLabel.heightAnchor.constraint(equalToConstant: 1000).isActive = true
         //descriptionTextView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20).isActive = true
-        //descriptionTextView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -20).isActive = true
+        //descriptionTextView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor,
+        // constant: -20).isActive = true
         //descriptionTextView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20).isActive = true
         // Bottom Stack View (holds publisher, isbn, and length labels)
         contentView.addSubview(bottomStackView)
