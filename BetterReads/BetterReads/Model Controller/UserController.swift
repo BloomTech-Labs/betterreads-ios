@@ -52,7 +52,7 @@ class UserController {
                         let jsonData = JSON(value)
                         let authToken = jsonData["token"].stringValue
                         self.authToken = authToken
-                        self.user = User(id: Int(), fullName: fullName, emailAddress: emailAddress)
+                        self.user = User(userID: Int(), fullName: fullName, emailAddress: emailAddress)
                         completion(nil)
                     case .failure(let error):
                         print("Error: \(error)")
@@ -86,7 +86,7 @@ class UserController {
                             guard let fullName = fullNameClaim.string,
                                 let userID = idClaim.integer else {
                                     return completion(NetworkError.otherError) }
-                            self.user = User(id: userID, fullName: fullName, emailAddress: emailAddress)
+                            self.user = User(userID: userID, fullName: fullName, emailAddress: emailAddress)
                             completion(nil)
                         } catch {
                             completion(NetworkError.otherError)
@@ -123,7 +123,7 @@ class UserController {
     func getRecommendations(completion: @escaping CompletionHandler = { _ in }) {
         guard let user = user,
             let authToken = authToken else { return completion(NetworkError.otherError) }
-        let getRecommendationsURL = baseURL.appendingPathComponent("\(user.id)")
+        let getRecommendationsURL = baseURL.appendingPathComponent("\(user.userID)")
             .appendingPathComponent("recommendations")
         let headers: HTTPHeaders = [
             "Content-Type": "application/json",

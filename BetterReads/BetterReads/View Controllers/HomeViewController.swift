@@ -67,18 +67,24 @@ Flip through the tailored recommendations below from a variety of authors and st
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.topCollectionView {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TopCollectionCell",
-                                                          for: indexPath) as? RecommendationCollectionViewCell ?? RecommendationCollectionViewCell()
+            let cell = collectionView
+                .dequeueReusableCell(withReuseIdentifier: "TopCollectionCell",
+                                     for: indexPath
+                ) as? RecommendationCollectionViewCell ?? RecommendationCollectionViewCell()
             guard let books = UserController.shared.recommendedBooks else { return cell }
             cell.book = books[indexPath.item]
             return cell
         } else if collectionView == self.middleCollectionView {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MiddleCollectionCell",
-                                                          for: indexPath) as? RecommendationCollectionViewCell ?? RecommendationCollectionViewCell()
+            let cell = collectionView
+                .dequeueReusableCell(withReuseIdentifier: "MiddleCollectionCell",
+                                     for: indexPath
+                ) as? RecommendationCollectionViewCell ?? RecommendationCollectionViewCell()
             return cell
         } else if collectionView == self.bottomCollectionView {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BottomCollectionCell",
-                                                          for: indexPath) as? RecommendationCollectionViewCell ?? RecommendationCollectionViewCell()
+            let cell = collectionView
+                .dequeueReusableCell(withReuseIdentifier: "BottomCollectionCell",
+                                     for: indexPath
+                ) as? RecommendationCollectionViewCell ?? RecommendationCollectionViewCell()
             return cell
         }
         return RecommendationCollectionViewCell()

@@ -27,7 +27,7 @@ class LibraryController {
     }
     /// Returns all books in user's library
     func fetchUserLibrary(with token: String, completion: @escaping (Error?) -> Void = { _ in }) {
-        guard let userId = UserController.shared.user?.id else {
+        guard let userId = UserController.shared.user?.userID else {
             print("no user id")
             completion(nil)
             return
