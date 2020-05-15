@@ -829,7 +829,6 @@
         <!--New Shelf-->
         <scene sceneID="gjP-lF-ATg">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Pah-8L-GHs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <collectionViewController id="7Ac-R4-NMw" customClass="ShelfDetailCollectionViewController" customModule="BetterReads" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="AfK-WT-yPL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -871,6 +870,7 @@
                         <outlet property="addBookToShelfButtonLabel" destination="syc-O0-QAV" id="bHT-fv-9fH"/>
                     </connections>
                 </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pah-8L-GHs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1012" y="2411"/>
         </scene>

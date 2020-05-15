@@ -10,16 +10,12 @@ import Foundation
 import UIKit
 
 class SearchController {
-    
     let baseUrl = URL(string: "https://readrr-heroku-test.herokuapp.com/search")!
-    
     /// Holds books that are returned from search
     var searchResultBooks: [Book] = []
-    
     // FIXME: default image should be a custom image for no book cover
     /// Fetches image at url passed in and returns a uimage (place holder image if none exists)
     static func fetchImage(with urlString: String, completion: @escaping (UIImage?) -> Void = { _ in }) {
-        
         let defaultImage = UIImage(systemName: "book.fill")
         print("called fetchImage with url: \(urlString)")
         guard let url = URL(string: urlString) else {
@@ -27,7 +23,6 @@ class SearchController {
             completion(defaultImage)
             return
         }
-        
         let http = url
         let urlComponents = URLComponents(url: http, resolvingAgainstBaseURL: false)
         guard let comps = urlComponents else {
@@ -43,19 +38,16 @@ class SearchController {
             return
         }
         print("secureUrl now = \(secureUrl)")
-        
         URLSession.shared.dataTask(with: secureUrl) { (data, _, error) in
             if let error = error {
                 NSLog("Error fetching image: \(error)")
                 return
             }
-            
             guard let data = data else {
                 NSLog("No data returned from data task")
                 completion(defaultImage)
                 return
             }
-            
             let imageToReturn = UIImage(data: data)
             completion(imageToReturn)
         }.resume()
@@ -80,14 +72,11 @@ class SearchController {
          }.resume()
      }
      */
-    
     /// Gets ALL Listings from the server. Sets searchResultsArray to listings that contain term
     func searchBook(with term: String, completion: @escaping (Error?) -> Void = { _ in }) {
-        
         var request = URLRequest(url: baseUrl)
         let body = TypeQuery(type: "search", query: term)
         request.httpMethod = "POST"
-        
         do {
             let jsonEncoder = JSONEncoder()
             jsonEncoder.dateEncodingStrategy = .iso8601
@@ -99,7 +88,6 @@ class SearchController {
             }
             return
         }
-        
         URLSession.shared.dataTask(with: request) { (data, _, error) in
 
             if let error = error {
@@ -117,7 +105,6 @@ class SearchController {
                 }
                 return
             }
-            
             let jsonDecoder = JSONDecoder()
             jsonDecoder.dateDecodingStrategy = .iso8601
 

@@ -10,7 +10,16 @@ import UIKit
 import Nuke
 
 class HomeViewController: UIViewController, UICollectionViewDataSource {
-    //MARK: - Outlets
+    // MARK: - Properties
+    let welcomeNewUserMessageText = """
+It’s great to have you! Discover interesting stories and unique perspectives from the suggestions below.
+Already a book nerd? Add your favorites to your library collection.
+"""
+    let welcomeReturningUserMessageText = """
+Welcome back!
+Flip through the tailored recommendations below from a variety of authors and storytellers.
+"""
+    // MARK: - Outlets
     @IBOutlet weak var welcomeUser: UILabel!
     @IBOutlet weak var welcomeMessage: UILabel!
     @IBOutlet weak var topRecommendationLabel: UILabel!
@@ -20,7 +29,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
     @IBOutlet weak var bottomRecommendationLabel: UILabel!
     @IBOutlet weak var bottomCollectionView: UICollectionView!
 
-    //MARK: - Lifecycle
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.welcomeUser.text = "Hello, \(UserController.shared.user?.fullName ?? "there")!"
@@ -32,11 +41,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
         bottomCollectionView.dataSource = self
 
         if (UserController.shared.isNewUser ?? false) {
-            welcomeMessage.text = "It’s great to have you! Discover interesting stories and unique perspectives from the suggestions below. Already a book nerd? Add your favorites to your library collection."
+            welcomeMessage.text = welcomeNewUserMessageText
         } else {
-            welcomeMessage.text = "Welcome back! Flip through the tailored recommendations below from a variety of authors and storytellers."
+            welcomeMessage.text = welcomeReturningUserMessageText
         }
-        
         UserController.shared.getRecommendations { (error) in
             if let error = error {
                 let alert = UIAlertController(title: "Recommendations Error", message: "An error occurred while getting recommendations.", preferredStyle: .alert)
@@ -47,16 +55,13 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
             self.topCollectionView.reloadData()
         }
     }
-    
-    //MARK: - Methods
+    // MARK: - Methods
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 5
     }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.topCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TopCollectionCell", for: indexPath) as? RecommendationCollectionViewCell ?? RecommendationCollectionViewCell()
@@ -72,8 +77,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
         }
         return RecommendationCollectionViewCell()
     }
-
-    //MARK: - Navigation
+    // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowBookDetailSegue" {
             guard let barViewControllers = segue.destination as? UITabBarController,
@@ -89,5 +93,4 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
 
 // MARK: UICollectionViewDelegate
 extension UIViewController: UICollectionViewDelegate {
-    
 }

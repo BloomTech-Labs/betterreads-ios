@@ -9,15 +9,12 @@
 import UIKit
 
 class SearchResultTableViewCell: UITableViewCell {
-
-    @IBOutlet var mainView: SearchResultView!
-    
     var book: Book? {
         didSet {
             updateViews()
         }
     }
-    
+    @IBOutlet var mainView: SearchResultView!
     private func updateViews() {
         guard let book = book else { return }
         mainView.book = book
@@ -32,6 +29,4 @@ class SearchResultTableViewCell: UITableViewCell {
 //
 //        // Configure the view for the selected state
 //    }
-        
-
 }

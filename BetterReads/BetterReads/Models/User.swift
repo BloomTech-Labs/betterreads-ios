@@ -12,7 +12,6 @@ class User: Codable {
     let id: Int
     let fullName: String
     var emailAddress: String
-    
     init(id: Int, fullName: String, emailAddress: String) {
         self.id = id
         self.fullName = fullName

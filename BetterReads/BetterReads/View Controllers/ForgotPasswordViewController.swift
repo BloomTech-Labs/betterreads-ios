@@ -13,7 +13,6 @@ class ForgotPasswordViewController: UIViewController {
     @IBOutlet weak var emailErrorMessage: UILabel!
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var successOrFailureMessage: UILabel!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         emailTextField.delegate = self
@@ -21,18 +20,14 @@ class ForgotPasswordViewController: UIViewController {
         successOrFailureMessage.text = " "
         doneButton.layer.cornerRadius = 5
         doneButton.isEnabled = false
-        
         // Dismiss the keyboard on tap
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)
-        
         // Register View Controller as Observer
         NotificationCenter.default.addObserver(self, selector: #selector(textDidChange(_:)), name: UITextField.textDidChangeNotification, object: nil)
     }
-    
     @objc private func textDidChange(_ notification: Notification) {
         doneButton.backgroundColor = .trinidadOrange
-
         let (valid, _) = validate(emailTextField)
         guard valid else {
             doneButton.backgroundColor = .tundra
@@ -43,13 +38,11 @@ class ForgotPasswordViewController: UIViewController {
         doneButton.backgroundColor = .trinidadOrange
         doneButton.isEnabled = true
     }
-    
     @IBAction func doneButtonTapped(_ sender: UIButton) {
         view.endEditing(true)
         let (valid, _) = validate()
         if valid {
             guard let emailAddress = emailTextField.text else { return }
-            
             UserController.shared.forgotPasswordEmail(emailAddress: emailAddress) { (networkError) in
                 if let error = networkError {
                     let alert = UIAlertController(title: "Forgot Password Error", message: "An error occurred when processing your request.", preferredStyle: .alert)
@@ -65,12 +58,11 @@ class ForgotPasswordViewController: UIViewController {
             }
         }
     }
-    
     private func validate(_ field: UITextField? = nil) -> (Bool, String?) {
         do {
             let _ = try emailTextField.validatedText(validationType: .email(field: "email"))
             return (true, nil)
-        } catch(let error) {
+        } catch (let error) {
             let convertedError = (error as! ValidationError)
             return (false, convertedError.message)
         }

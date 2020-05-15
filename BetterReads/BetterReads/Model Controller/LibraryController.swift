@@ -9,22 +9,16 @@
 import Foundation
 
 class LibraryController {
-    
     /// Holds all of the user's shelves
     var allShelvesArray = [[UserBook]]()
-    
     /// Holds all of the user's books
     var myBooksArray = [UserBook]()
-    
     /// Holds user books that are "In progress"
     var inProgressBooksArray = [UserBook]()
-    
     /// Holds user books that are "To be read"
     var toBeReadBooksArray = [UserBook]()
-    
     /// Holds user books that are "Finished"
     var finishedBooksArray = [UserBook]()
-    
     /// https://api.readrr.app/api
     let baseUrl = URL(string: "https://api.readrr.app/api")!
 
@@ -33,33 +27,26 @@ class LibraryController {
     }
     /// Returns all books in user's library
     func fetchUserLibrary(with token: String, completion: @escaping (Error?) -> Void = { _ in }) {
-        
         guard let userId = UserController.shared.user?.id else {
             print("no user id")
             completion(nil)
             return
         }
-        
         var requestUrl = baseUrl.appendingPathComponent("\(userId)")
         requestUrl = requestUrl.appendingPathComponent("library")
         print("requestUrl = \(requestUrl)")
         var request = URLRequest(url: requestUrl)
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
         guard let unwrappedToken = UserController.shared.authToken else {
             print("No token")
             completion(nil)
             return
         }
-
         request.addValue(unwrappedToken, forHTTPHeaderField: "Authorization")
-        
         //request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         //request.addValue("\(toke)", forHTTPHeaderField: "Authorization")
-        
         URLSession.shared.dataTask(with: request) { (data, _, error) in
-            
             if let error = error {
                 print("Error fetching searched books: \(error)")
                 DispatchQueue.main.async {
@@ -67,7 +54,6 @@ class LibraryController {
                 }
                 return
             }
-            
             guard let data = data else {
                 print("No data return by data task")
                 DispatchQueue.main.async {
@@ -75,10 +61,8 @@ class LibraryController {
                 }
                 return
             }
-            
             let jsonDecoder = JSONDecoder()
             jsonDecoder.dateDecodingStrategy = .iso8601
-            
             do {
                 print("Data = \(data)")
                 let booksArray = try jsonDecoder.decode([UserBook].self, from: data)
@@ -108,7 +92,6 @@ class LibraryController {
                     completion(error)
                 }
             }
-            
         }.resume()
     }
 }
@@ -165,7 +148,7 @@ struct UserBook: Codable {
 //      "readingStatus": 1,
 //      "favorite": false,
 //      "categories": "Fiction / Classics,Fiction / Science Fiction / General,Fiction / Media Tie-In",
-//      "thumbnail": "https://books.google.com/books/content?id=OYtkbGl2j0sC&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE71iCzhiNqn9VPT0nlziwmbvWOIa9EVNjEh_O5K95HrEBzKUMvYcL4I7bXYlsZxPM12VP8Fk8et1EZQ7JS5SSGgeMAo9gVChhbT3UuDsHjorVFI286_DiPjFrRQKcw7n5Fjns1AR&source=gbs_api",
+//      "thumbnail": "https://books.google.com/books/content?id=_api",
 //      "pageCount": 208,
 //      "dateStarted": null,
 //      "dateEnded": null,

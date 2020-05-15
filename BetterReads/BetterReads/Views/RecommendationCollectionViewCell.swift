@@ -15,10 +15,8 @@ class RecommendationCollectionViewCell: UICollectionViewCell {
             getBookThumbnail()
         }
     }
-    
     @IBOutlet weak var bookCoverImageView: UIImageView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
     private func getBookThumbnail() {
         bookCoverImageView.layer.cornerRadius = 5
         guard let book = book else {
@@ -34,7 +32,6 @@ class RecommendationCollectionViewCell: UICollectionViewCell {
         }
         updateViews()
     }
-    
     private func updateViews() {
         activityIndicator.stopAnimating()
         self.setNeedsLayout()
