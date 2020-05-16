@@ -41,7 +41,8 @@ struct Book: Codable {
         case authors, categories
         case itemDescription = "description"
         case googleID = "googleId"
-        case isEbook, language, pageCount, publisher, smallThumbnail, textSnippet, thumbnail, title, webReaderLink, averageRating, isbn10, isbn13, publishedDate
+        case isEbook, language, pageCount, publisher, smallThumbnail,
+        textSnippet, thumbnail, title, webReaderLink, averageRating, isbn10, isbn13, publishedDate
     }
 }
 

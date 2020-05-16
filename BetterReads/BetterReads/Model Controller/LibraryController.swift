@@ -9,22 +9,16 @@
 import Foundation
 
 class LibraryController {
-    
     /// Holds all of the user's shelves
     var allShelvesArray = [[UserBook]]()
-    
     /// Holds all of the user's books
     var myBooksArray = [UserBook]()
-    
     /// Holds user books that are "In progress"
     var inProgressBooksArray = [UserBook]()
-    
     /// Holds user books that are "To be read"
     var toBeReadBooksArray = [UserBook]()
-    
     /// Holds user books that are "Finished"
     var finishedBooksArray = [UserBook]()
-    
     /// https://api.readrr.app/api
     let baseUrl = URL(string: "https://api.readrr.app/api")!
 
@@ -33,33 +27,26 @@ class LibraryController {
     }
     /// Returns all books in user's library
     func fetchUserLibrary(with token: String, completion: @escaping (Error?) -> Void = { _ in }) {
-        
-        guard let userId = UserController.shared.user?.id else {
+        guard let userId = UserController.shared.user?.userID else {
             print("no user id")
             completion(nil)
             return
         }
-        
         var requestUrl = baseUrl.appendingPathComponent("\(userId)")
         requestUrl = requestUrl.appendingPathComponent("library")
         print("requestUrl = \(requestUrl)")
         var request = URLRequest(url: requestUrl)
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
         guard let unwrappedToken = UserController.shared.authToken else {
             print("No token")
             completion(nil)
             return
         }
-
         request.addValue(unwrappedToken, forHTTPHeaderField: "Authorization")
-        
         //request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         //request.addValue("\(toke)", forHTTPHeaderField: "Authorization")
-        
         URLSession.shared.dataTask(with: request) { (data, _, error) in
-            
             if let error = error {
                 print("Error fetching searched books: \(error)")
                 DispatchQueue.main.async {
@@ -67,7 +54,6 @@ class LibraryController {
                 }
                 return
             }
-            
             guard let data = data else {
                 print("No data return by data task")
                 DispatchQueue.main.async {
@@ -75,16 +61,15 @@ class LibraryController {
                 }
                 return
             }
-            
             let jsonDecoder = JSONDecoder()
             jsonDecoder.dateDecodingStrategy = .iso8601
-            
             do {
                 print("Data = \(data)")
                 let booksArray = try jsonDecoder.decode([UserBook].self, from: data)
                 //                let listingRepresentations = Array(try jsonDecoder.decode([String: Book].self,
                 //                                                                          from: data).values)
-                //                /// Go through all listings and returns an array made up of only the user's listings (userId)
+                //                /// Go through all listings and returns an array
+                // made up of only the user's listings (userId)
                 //                /// convert to lowercase first so case doesn't matter
                 //                let booksArray = listingRepresentations.filter {
                 //                    $0.title.lowercased().contains(term.lowercased())
@@ -108,7 +93,6 @@ class LibraryController {
                     completion(error)
                 }
             }
-            
         }.resume()
     }
 }
@@ -135,7 +119,9 @@ class LibraryController {
          case authors, categories
          case itemDescription = "description"
          case googleID = "googleId"
-         case isEbook, language, pageCount, publisher, smallThumbnail, textSnippet, thumbnail, title, webReaderLink, averageRating, isbn10, isbn13, publishedDate
+         case isEbook, language, pageCount, publisher, smallThumbnail,
+                textSnippet, thumbnail, title, webReaderLink,
+                averageRating, isbn10, isbn13, publishedDate
      }
  }
  */
@@ -165,7 +151,7 @@ struct UserBook: Codable {
 //      "readingStatus": 1,
 //      "favorite": false,
 //      "categories": "Fiction / Classics,Fiction / Science Fiction / General,Fiction / Media Tie-In",
-//      "thumbnail": "https://books.google.com/books/content?id=OYtkbGl2j0sC&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE71iCzhiNqn9VPT0nlziwmbvWOIa9EVNjEh_O5K95HrEBzKUMvYcL4I7bXYlsZxPM12VP8Fk8et1EZQ7JS5SSGgeMAo9gVChhbT3UuDsHjorVFI286_DiPjFrRQKcw7n5Fjns1AR&source=gbs_api",
+//      "thumbnail": "https://books.google.com/books/content?id=_api",
 //      "pageCount": 208,
 //      "dateStarted": null,
 //      "dateEnded": null,
@@ -186,7 +172,7 @@ struct UserBook: Codable {
      "readingStatus": 1,
      "favorite": false,
      "categories": "Fiction / Classics,Fiction / Science Fiction / General,Fiction / Media Tie-In",
-     "thumbnail": "https://books.google.com/books/content?id=OYtkbGl2j0sC&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE71iCzhiNqn9VPT0nlziwmbvWOIa9EVNjEh_O5K95HrEBzKUMvYcL4I7bXYlsZxPM12VP8Fk8et1EZQ7JS5SSGgeMAo9gVChhbT3UuDsHjorVFI286_DiPjFrRQKcw7n5Fjns1AR&source=gbs_api",
+     "thumbnail": "https://books.google.com/books/content?id=OY1AR&source=gbs_api",
      "pageCount": 208,
      "dateStarted": null,
      "dateEnded": null,
@@ -202,7 +188,7 @@ struct UserBook: Codable {
      "readingStatus": 3,
      "favorite": false,
      "categories": "{\"Fiction\"}",
-     "thumbnail": "https://books.google.com/books/content?id=kotPYEqx7kMC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+     "thumbnail": "https://books.google.com/books/content?id=kocurl&source=gbs_api",
      "pageCount": 648,
      "dateStarted": null,
      "dateEnded": null,
@@ -218,7 +204,7 @@ struct UserBook: Codable {
      "readingStatus": 3,
      "favorite": false,
      "categories": "{\"Biography & Autobiography\"}",
-     "thumbnail": "https://books.google.com/books/content?id=CCiZnVG1j4cC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+     "thumbnail": "https://books.google.com/books/content?id=CC=curl&source=gbs_api",
      "pageCount": 128,
      "dateStarted": null,
      "dateEnded": null,
@@ -234,7 +220,7 @@ struct UserBook: Codable {
      "readingStatus": 2,
      "favorite": false,
      "categories": "{\"Fiction\"}",
-     "thumbnail": "https://books.google.com/books/content?id=SGAZdjNfruYC&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+     "thumbnail": "https://books.google.com/books/content?id=SG&zoom=1&source=gbs_api",
      "pageCount": 140,
      "dateStarted": null,
      "dateEnded": null,
@@ -250,7 +236,7 @@ struct UserBook: Codable {
      "readingStatus": 1,
      "favorite": false,
      "categories": "{\"Young Adult Fiction\"}",
-     "thumbnail": "https://books.google.com/books/content?id=kcsqGna7fBIC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+     "thumbnail": "https://books.google.com/books/content?id=kc=curl&source=gbs_api",
      "pageCount": 768,
      "dateStarted": null,
      "dateEnded": null,

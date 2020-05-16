@@ -28,33 +28,31 @@ class UserController {
     var user: User? = nil
     var isNewUser: Bool?
     var recommendedBooks: [Book]?
-        
     static let shared = UserController()
-        
     private init() { }
-    
     typealias CompletionHandler = (Error?) -> Void
-    
-    //MARK: - Sign Up
-    func signUp(fullName: String, emailAddress: String, password: String, completion: @escaping CompletionHandler = { _ in }) {
+    // MARK: - Sign Up
+    func signUp(fullName: String,
+                emailAddress: String,
+                password: String,
+                completion: @escaping CompletionHandler = { _ in }) {
         let signUpURL = baseURL.appendingPathComponent("auth")
         .appendingPathComponent("signup")
         let parameters = ["fullName": fullName, "emailAddress": emailAddress, "password": password]
         let headers: HTTPHeaders = [
             "Accept": "application/json"
         ]
-        
         AF.request(signUpURL,
                    method: .post,
                    parameters: parameters,
                    encoder: JSONParameterEncoder.default,
                    headers: headers).responseJSON { response in
-                    switch (response.result) {
+                    switch response.result {
                     case .success(let value):
                         let jsonData = JSON(value)
                         let authToken = jsonData["token"].stringValue
                         self.authToken = authToken
-                        self.user = User(id: Int(), fullName: fullName, emailAddress: emailAddress)
+                        self.user = User(userID: Int(), fullName: fullName, emailAddress: emailAddress)
                         completion(nil)
                     case .failure(let error):
                         print("Error: \(error)")
@@ -62,8 +60,7 @@ class UserController {
                     }
         }
     }
-    
-    //MARK: - Sign In
+    // MARK: - Sign In
     func signIn(emailAddress: String, password: String, completion: @escaping CompletionHandler = { _ in }) {
         let signInURL = baseURL.appendingPathComponent("auth")
         .appendingPathComponent("signin")
@@ -71,13 +68,12 @@ class UserController {
         let headers: HTTPHeaders = [
             "Accept": "application/json"
         ]
-        
         AF.request(signInURL,
                    method: .post,
                    parameters: parameters,
                    encoder: JSONParameterEncoder.default,
                    headers: headers).responseJSON { response in
-                    switch (response.result) {
+                    switch response.result {
                     case .success(let value):
                         let jsonData = JSON(value)
                         guard let authToken = jsonData["token"].string else { return completion(NetworkError.noDecode) }
@@ -88,9 +84,9 @@ class UserController {
                             // get the id from the token NOT the user
                             let idClaim = jwt.claim(name: "subject")
                             guard let fullName = fullNameClaim.string,
-                                let id = idClaim.integer else {
+                                let userID = idClaim.integer else {
                                     return completion(NetworkError.otherError) }
-                            self.user = User(id: id, fullName: fullName, emailAddress: emailAddress)
+                            self.user = User(userID: userID, fullName: fullName, emailAddress: emailAddress)
                             completion(nil)
                         } catch {
                             completion(NetworkError.otherError)
@@ -101,8 +97,7 @@ class UserController {
                     }
         }
     }
-    
-    //MARK: - Forgot Password Email
+    // MARK: - Forgot Password Email
     func forgotPasswordEmail(emailAddress: String, completion: @escaping CompletionHandler = { _ in }) {
         let forgotPasswordEmailURL = baseURL.appendingPathComponent("auth")
         .appendingPathComponent("reset").appendingPathComponent("requestreset")
@@ -110,13 +105,12 @@ class UserController {
         let headers: HTTPHeaders = [
             "Accept": "application/json"
         ]
-        
         AF.request(forgotPasswordEmailURL,
                    method: .post,
                    parameters: parameters,
                    encoder: JSONParameterEncoder.default,
                    headers: headers).responseJSON { response in
-                    switch (response.result) {
+                    switch response.result {
                     case .success(_):
                         completion(nil)
                     case .failure(let error):
@@ -125,22 +119,20 @@ class UserController {
                     }
         }
     }
-    
-    //MARK: - Recommendations
+    // MARK: - Recommendations
     func getRecommendations(completion: @escaping CompletionHandler = { _ in }) {
         guard let user = user,
             let authToken = authToken else { return completion(NetworkError.otherError) }
-        
-        let getRecommendationsURL = baseURL.appendingPathComponent("\(user.id)").appendingPathComponent("recommendations")
+        let getRecommendationsURL = baseURL.appendingPathComponent("\(user.userID)")
+            .appendingPathComponent("recommendations")
         let headers: HTTPHeaders = [
             "Content-Type": "application/json",
             "Authorization": authToken
         ]
-        
         AF.request(getRecommendationsURL,
                    method: .get,
                    headers: headers).response { response in
-                    switch (response.result) {
+                    switch response.result {
                     case .success(let value):
                         guard let data = value else { return completion(NetworkError.badData) }
                         let jsonDecoder = JSONDecoder()

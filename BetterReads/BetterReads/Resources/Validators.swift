@@ -31,7 +31,6 @@ enum VaildatorFactory {
 struct ValidationError: Error {
     var message: String
     var fieldName: String
-    
     init(message: String, fieldName: String) {
         self.message = message
         self.fieldName = fieldName
@@ -43,7 +42,6 @@ struct RequiredFieldValidator: ValidatorConvertible {
     init(_ field: String) {
         fieldName = field
     }
-    
     func validated(_ value: String?) throws -> String {
         guard let unwrappedValue = value,
             !unwrappedValue.isEmpty else {
@@ -55,18 +53,19 @@ struct RequiredFieldValidator: ValidatorConvertible {
 
 struct EmailFieldValidator: ValidatorConvertible {
     private let fieldName: String
+    private let pattern = "^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$"
     init(_ field: String) {
         fieldName = field
     }
-    
     func validated(_ value: String?) throws -> String {
         guard let unwrappedValue = value,
             !unwrappedValue.isEmpty else {
             throw ValidationError(message: "Required field", fieldName: fieldName)
         }
-        
         do {
-            if try NSRegularExpression(pattern: "^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$", options: .caseInsensitive).firstMatch(in: value!, options: [], range: NSRange(location: 0, length: value!.count)) == nil {
+            if try NSRegularExpression(pattern: pattern,
+                                       options: .caseInsensitive)
+                .firstMatch(in: value!, options: [], range: NSRange(location: 0, length: value!.count)) == nil {
                 throw ValidationError(message: "Invalid email address", fieldName: fieldName)
             }
         } catch {
@@ -81,17 +80,24 @@ struct PasswordFieldValidator: ValidatorConvertible {
     init(_ field: String) {
         fieldName = field
     }
-    
     func validated(_ value: String?) throws -> String {
-        guard let unwrappedValue = value, unwrappedValue != "" else { throw ValidationError(message: "Required field", fieldName: fieldName) }
-        guard unwrappedValue.count >= 6 else { throw ValidationError(message: "Must be at least 6 characters", fieldName: fieldName) }
-        
+        guard let unwrappedValue = value, unwrappedValue != ""
+            else { throw ValidationError(message: "Required field", fieldName: fieldName) }
+        guard unwrappedValue.count >= 6
+            else { throw ValidationError(message: "Must be at least 6 characters", fieldName: fieldName) }
         do {
-            if try NSRegularExpression(pattern: "^(?=.*?[A-Za-z])(?=.*?[0-9]).{6,}$",  options: .caseInsensitive).firstMatch(in: unwrappedValue, options: [], range: NSRange(location: 0, length: unwrappedValue.count)) == nil {
-                throw ValidationError(message: "Must be at least 6 characters, with at least 1 number", fieldName: fieldName)
+            if try NSRegularExpression(pattern: "^(?=.*?[A-Za-z])(?=.*?[0-9]).{6,}$",
+                                       options: .caseInsensitive).firstMatch(in: unwrappedValue,
+                                                                             options: [],
+                                                                             range: NSRange(
+                                                                                location: 0,
+                                                                                length: unwrappedValue.count)) == nil {
+                throw ValidationError(message: "Must be at least 6 characters, with at least 1 number",
+                                      fieldName: fieldName)
             }
         } catch {
-            throw ValidationError(message: "Must be at least 6 characters, with at least 1 number", fieldName: fieldName)
+            throw ValidationError(message: "Must be at least 6 characters, with at least 1 number",
+                                  fieldName: fieldName)
         }
         return unwrappedValue
     }

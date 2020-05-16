@@ -9,15 +9,12 @@
 import UIKit
 
 class LaunchViewController: UIViewController {
-    
     @IBOutlet weak var blobBackgroundImage: UIImageView!
     @IBOutlet weak var circleBookImage: UIImageView!
     @IBOutlet weak var dashedCircleImage: UIImageView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
     override func viewDidAppear(_ animated: Bool) {
         UIView.animate(withDuration: 1.5, delay: 0.3, options: .curveEaseIn, animations: {
             self.blobBackgroundImage.transform = CGAffineTransform(scaleX: 2.5, y: 2.5)
@@ -28,7 +25,7 @@ class LaunchViewController: UIViewController {
             self.dashedCircleImage.transform = CGAffineTransform(rotationAngle: -20.0)
         })
         UIView.animate(withDuration: 2.0, delay: 0.5, options: .curveEaseIn, animations: {
-            self.blobBackgroundImage.alpha = 0.0;
+            self.blobBackgroundImage.alpha = 0.0
             self.circleBookImage.alpha = 0.0
             self.dashedCircleImage.alpha = 0.0
         })

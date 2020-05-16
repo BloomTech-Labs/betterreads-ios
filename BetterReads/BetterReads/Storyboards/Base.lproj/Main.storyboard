@@ -504,13 +504,13 @@
                                                 <rect key="frame" x="0.0" y="134" width="414" height="225"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recommended for you" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TvC-EH-p2C">
-                                                        <rect key="frame" x="20" y="8" width="374" height="21"/>
+                                                        <rect key="frame" x="20" y="8" width="374" height="20.5"/>
                                                         <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="16"/>
                                                         <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GSU-Jq-gQb">
-                                                        <rect key="frame" x="20" y="29" width="394" height="184"/>
+                                                        <rect key="frame" x="20" y="28.5" width="394" height="184.5"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="G7t-wB-vVk">
                                                             <size key="itemSize" width="125" height="175"/>
@@ -521,7 +521,7 @@
                                                         </collectionViewFlowLayout>
                                                         <cells>
                                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TopCollectionCell" id="5HD-8Q-ctc" customClass="RecommendationCollectionViewCell" customModule="BetterReads" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="4.5" width="125" height="175"/>
+                                                                <rect key="frame" x="0.0" y="5" width="125" height="175"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="b1d-OL-Fzs">
                                                                     <rect key="frame" x="0.0" y="0.0" width="125" height="175"/>
@@ -591,13 +591,13 @@
                                                 <rect key="frame" x="0.0" y="363" width="414" height="225"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trending" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aif-ry-1pR">
-                                                        <rect key="frame" x="20" y="8" width="374" height="21"/>
+                                                        <rect key="frame" x="20" y="8" width="374" height="20.5"/>
                                                         <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="16"/>
                                                         <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QLh-VK-V1n">
-                                                        <rect key="frame" x="20" y="29" width="394" height="188"/>
+                                                        <rect key="frame" x="20" y="28.5" width="394" height="188.5"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Zj6-aE-eF0">
                                                             <size key="itemSize" width="125" height="175"/>
@@ -608,7 +608,7 @@
                                                         </collectionViewFlowLayout>
                                                         <cells>
                                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MiddleCollectionCell" id="o4x-Rc-aSR" userLabel="MiddleCollectionCell" customClass="RecommendationCollectionViewCell" customModule="BetterReads" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="6.5" width="125" height="175"/>
+                                                                <rect key="frame" x="0.0" y="7" width="125" height="175"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="prt-3g-oPg">
                                                                     <rect key="frame" x="0.0" y="0.0" width="125" height="175"/>
@@ -675,13 +675,13 @@
                                                 <rect key="frame" x="0.0" y="600" width="414" height="225"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Popular" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IcG-TF-rzq">
-                                                        <rect key="frame" x="20" y="8" width="374" height="21"/>
+                                                        <rect key="frame" x="20" y="8" width="374" height="20.5"/>
                                                         <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="16"/>
                                                         <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sPu-l3-I1e">
-                                                        <rect key="frame" x="20" y="29" width="394" height="184"/>
+                                                        <rect key="frame" x="20" y="28.5" width="394" height="184.5"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Mq5-rX-a8w">
                                                             <size key="itemSize" width="125" height="175"/>
@@ -692,7 +692,7 @@
                                                         </collectionViewFlowLayout>
                                                         <cells>
                                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BottomCollectionCell" id="cwn-v6-NyQ" userLabel="BottomCollectionCell" customClass="RecommendationCollectionViewCell" customModule="BetterReads" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="4.5" width="125" height="175"/>
+                                                                <rect key="frame" x="0.0" y="5" width="125" height="175"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="bbB-Mf-ktA">
                                                                     <rect key="frame" x="0.0" y="0.0" width="125" height="175"/>
@@ -829,7 +829,6 @@
         <!--New Shelf-->
         <scene sceneID="gjP-lF-ATg">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Pah-8L-GHs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <collectionViewController id="7Ac-R4-NMw" customClass="ShelfDetailCollectionViewController" customModule="BetterReads" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="AfK-WT-yPL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -871,6 +870,7 @@
                         <outlet property="addBookToShelfButtonLabel" destination="syc-O0-QAV" id="bHT-fv-9fH"/>
                     </connections>
                 </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pah-8L-GHs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1012" y="2411"/>
         </scene>

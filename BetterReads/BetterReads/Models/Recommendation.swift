@@ -16,7 +16,6 @@ struct RecommendationsResult: Codable {
 struct Recommendation: Codable {
     let basedOn: String
     let recommendations: [Book]
-    
     enum CodingKeys: String, CodingKey {
         case basedOn = "based_on"
         case recommendations
