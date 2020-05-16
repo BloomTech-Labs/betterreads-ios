@@ -9,24 +9,30 @@
 import Foundation
 
 class LibraryController {
+
     /// Holds all of the user's shelves
     var allShelvesArray = [[UserBook]]()
+
     /// Holds all of the user's books
     var myBooksArray = [UserBook]()
+
     /// Holds user books that are "In progress"
     var inProgressBooksArray = [UserBook]()
+
     /// Holds user books that are "To be read"
     var toBeReadBooksArray = [UserBook]()
+
     /// Holds user books that are "Finished"
     var finishedBooksArray = [UserBook]()
+
     /// https://api.readrr.app/api
     let baseUrl = URL(string: "https://api.readrr.app/api")!
 
     init() {
-        fetchUserLibrary(with: "token goes here")
+        fetchUserLibrary()
     }
     /// Returns all books in user's library
-    func fetchUserLibrary(with token: String, completion: @escaping (Error?) -> Void = { _ in }) {
+    func fetchUserLibrary(completion: @escaping (Error?) -> Void = { _ in }) {
         guard let userId = UserController.shared.user?.userID else {
             print("no user id")
             completion(nil)
@@ -66,24 +72,30 @@ class LibraryController {
             do {
                 print("Data = \(data)")
                 let booksArray = try jsonDecoder.decode([UserBook].self, from: data)
-                //                let listingRepresentations = Array(try jsonDecoder.decode([String: Book].self,
-                //                                                                          from: data).values)
-                //                /// Go through all listings and returns an array
-                // made up of only the user's listings (userId)
-                //                /// convert to lowercase first so case doesn't matter
-                //                let booksArray = listingRepresentations.filter {
-                //                    $0.title.lowercased().contains(term.lowercased())
-                //                }
-                // NEW
-                //print("locationsArray: \(booksArray)")
+
                 self.myBooksArray = booksArray
                 self.allShelvesArray.append(booksArray)
-                // FIXME: implement array of arrays later
-                //self.allShelvesArray[0] = booksArray
+
+                self.toBeReadBooksArray = booksArray.filter {
+                    $0.readingStatus == 1
+                }
+                self.allShelvesArray.append(self.toBeReadBooksArray)
+
+                self.inProgressBooksArray = booksArray.filter {
+                    $0.readingStatus == 2
+                }
+                self.allShelvesArray.append(self.inProgressBooksArray)
+
+                self.finishedBooksArray = booksArray.filter {
+                    $0.readingStatus == 3
+                }
+                self.allShelvesArray.append(self.finishedBooksArray)
+
+                print("toBeRead (\(self.toBeReadBooksArray.count))")
+                print("inProgress (\(self.inProgressBooksArray.count))")
+                print("finished (\(self.finishedBooksArray.count))")
                 print("myBooksArray (\(self.myBooksArray.count) = \(self.myBooksArray)")
-                // OLD
-                //self.searchResultsArray = listingRepresentations
-                //try self.updateListings(with: listingRepresentations)
+                print("allShelvesArray (\(self.allShelvesArray.count)")
                 DispatchQueue.main.async {
                     completion(nil)
                 }
