@@ -15,6 +15,7 @@ class LibraryCollectionViewCell: UICollectionViewCell {
     var secondImageView: UIImageView!
     var thirdImageView: UIImageView!
     var shelfNameLabel: UILabel!
+    var coversArray = [UIImageView]()
 
     var allUserBooks: [UserBook]? {
         didSet {
@@ -38,14 +39,52 @@ class LibraryCollectionViewCell: UICollectionViewCell {
         setUpSubviews()
     }
 
-    private func updateViews() {
+    private func fillUpCoverImages() {
         guard let allUserBooks = allUserBooks else { return }
 
-        //shelfNameLabel.text = allUserBooks.first?.title//"My Books"
+        // 3 or more books
+        if allUserBooks.count >= 3 {
+            for index in 0..<3 {
+                guard let thumbnail = allUserBooks[index].thumbnail else { return }
+                SearchController.fetchImage(with: thumbnail) { (image) in
+                    DispatchQueue.main.async {
+                        self.coversArray[index].image = image
+                    }
+                }
+            }
+        }
+
+        // 2 books only
+        if allUserBooks.count == 2 {
+            for index in 0..<2 {
+                guard let thumbnail = allUserBooks[index].thumbnail else { return }
+                SearchController.fetchImage(with: thumbnail) { (image) in
+                    DispatchQueue.main.async {
+                        self.coversArray[index].image = image
+                    }
+                }
+            }
+        }
+        
+        // 1 book only
+        if allUserBooks.count == 1 {
+            guard let thumbnail = allUserBooks.first?.thumbnail else { return }
+            SearchController.fetchImage(with: thumbnail) { (image) in
+                DispatchQueue.main.async {
+                    self.coversArray.first?.image = image
+                }
+            }
+        }
+    }
+    
+    private func updateViews() {
+        guard let allUserBooks = allUserBooks else { return }
+        fillUpCoverImages()
+        
+        // Check the first? 3 books in array and set the book covers to their covers
         guard let firstThumbnail = allUserBooks[0].thumbnail else { return }
         SearchController.fetchImage(with: firstThumbnail) { (image) in
             DispatchQueue.main.async {
-                // Add quick fade-in animation (alpha)
                 self.shelfImageView.image = image
             }
         }
@@ -139,5 +178,9 @@ class LibraryCollectionViewCell: UICollectionViewCell {
         shelfNameLabel.textAlignment = .center
         shelfNameLabel.numberOfLines = 0
         shelfNameLabel.backgroundColor = .white
+        
+        coversArray.append(shelfImageView)
+        coversArray.append(secondImageView)
+        coversArray.append(thirdImageView)
     }
 }
