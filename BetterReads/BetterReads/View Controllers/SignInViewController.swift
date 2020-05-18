@@ -200,8 +200,6 @@ class SignInViewController: UIViewController {
         let (valid, _) = validate()
         if valid {
             if loginType == .signup {
-                activityIndicatorSubmit.isHidden = false
-                activityIndicatorSubmit.startAnimating()
                 signUpUser()
             } else {
                 activityIndicatorSubmit.isHidden = false
