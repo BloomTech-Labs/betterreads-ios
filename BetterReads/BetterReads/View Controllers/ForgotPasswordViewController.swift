@@ -12,6 +12,7 @@ class ForgotPasswordViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var emailErrorMessage: UILabel!
     @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var doneActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var successOrFailureMessage: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +20,9 @@ class ForgotPasswordViewController: UIViewController {
         emailErrorMessage.text = " "
         successOrFailureMessage.text = " "
         doneButton.layer.cornerRadius = 5
+        doneActivityIndicator.layer.cornerRadius = 5
         doneButton.isEnabled = false
+        doneActivityIndicator.isHidden = true
         // Dismiss the keyboard on tap
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)
@@ -33,7 +36,7 @@ class ForgotPasswordViewController: UIViewController {
         doneButton.backgroundColor = .trinidadOrange
         let (valid, _) = validate(emailTextField)
         guard valid else {
-            doneButton.backgroundColor = .tundra
+            doneButton.backgroundColor = .altoGray
             doneButton.isEnabled = false
             return
         }
@@ -41,8 +44,13 @@ class ForgotPasswordViewController: UIViewController {
         doneButton.backgroundColor = .trinidadOrange
         doneButton.isEnabled = true
     }
+    @IBAction func downArrowButtonTapped(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     @IBAction func doneButtonTapped(_ sender: UIButton) {
         view.endEditing(true)
+        doneActivityIndicator.isHidden = false
+        doneActivityIndicator.startAnimating()
         let (valid, _) = validate()
         if valid {
             guard let emailAddress = emailTextField.text else { return }
@@ -54,10 +62,14 @@ class ForgotPasswordViewController: UIViewController {
                     alert.addAction(UIAlertAction(title: "Try again", style: .default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
                     NSLog("Error occured during Forgot Password: \(error)")
+                    self.doneActivityIndicator.stopAnimating()
+                    self.doneActivityIndicator.isHidden = true
                 } else {
                     print("Forgot password reset in progress...")
+                    self.doneActivityIndicator.stopAnimating()
+                    self.doneActivityIndicator.isHidden = true
                     self.doneButton.isEnabled = false
-                    self.doneButton.backgroundColor = .tundra
+                    self.doneButton.backgroundColor = .altoGray
                     self.successOrFailureMessage.text = "Thank you! A reset password email has been sent."
                 }
             }
