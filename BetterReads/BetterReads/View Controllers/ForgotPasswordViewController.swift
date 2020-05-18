@@ -44,6 +44,9 @@ class ForgotPasswordViewController: UIViewController {
         doneButton.backgroundColor = .trinidadOrange
         doneButton.isEnabled = true
     }
+    @IBAction func downArrowButtonTapped(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     @IBAction func doneButtonTapped(_ sender: UIButton) {
         view.endEditing(true)
         doneActivityIndicator.isHidden = false
