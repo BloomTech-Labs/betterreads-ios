@@ -203,10 +203,12 @@ class SignInViewController: UIViewController {
                 activityIndicatorSubmit.isHidden = false
                 activityIndicatorSubmit.startAnimating()
                 signUpUser()
+                activityIndicatorSubmit.stopAnimating()
             } else {
                 activityIndicatorSubmit.isHidden = false
                 activityIndicatorSubmit.startAnimating()
                 signInUser()
+                activityIndicatorSubmit.stopAnimating()
             }
         }
     }
