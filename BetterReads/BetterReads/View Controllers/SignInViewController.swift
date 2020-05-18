@@ -82,7 +82,7 @@ class SignInViewController: UIViewController {
             }
         }
         // Update Save Button
-        submitButton.backgroundColor = formIsValid ? .trinidadOrange : .tundra
+        submitButton.backgroundColor = formIsValid ? .trinidadOrange : .altoGray
         submitButton.isEnabled = formIsValid
         if formIsValid {
             submitButton.performFlare()
