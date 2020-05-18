@@ -23,12 +23,24 @@ class ShelfDetailCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.tintColor = .trinidadOrange
+        // Back button title for next screen
+        let backItem = UIBarButtonItem()
+        backItem.title = "" // now only the arrow is showing
+        navigationItem.backBarButtonItem = backItem
     }
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //ShelfToDetail
         if segue.identifier == "ShelfToDetail" {
             print("ShelfToDetail")
+            if let detailVC = segue.destination as? BookDetailViewController,
+                let indexPath = collectionView.indexPathsForSelectedItems?.first {
+                //detailVC.book = libraryController?.myBooksArray[indexPath.row]
+                let cell = collectionView.cellForItem(at: indexPath) as? ShelfDetailCollectionViewCell
+                detailVC.bookCoverImageView.image = cell?.shelfImageView.image
+                detailVC.blurredBackgroundView.image = cell?.shelfImageView.image
+                // FIXME: pass in controller that has CRUD methods to add books
+            }
         }
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
@@ -45,8 +57,6 @@ class ShelfDetailCollectionViewController: UICollectionViewController {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier,
                                                             for: indexPath) as? ShelfDetailCollectionViewCell
             else { return UICollectionViewCell() }
-        // FIXME: downcast as ShelfDetailCollectionViewCell
-        // Configure the cell
         cell.userBook = libraryController?.myBooksArray[indexPath.item]
         return cell
     }

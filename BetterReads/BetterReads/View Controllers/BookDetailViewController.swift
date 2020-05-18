@@ -40,6 +40,7 @@ class BookDetailViewController: UIViewController {
         let label = UILabel()
         label.text = "Twilight Breaking Dawn"
         label.font = UIFont(name: "FrankRuhlLibre-Regular", size: 24)
+        label.textAlignment = .center
 //        label.backgroundColor = .red
         label.translatesAutoresizingMaskIntoConstraints = false
         return label

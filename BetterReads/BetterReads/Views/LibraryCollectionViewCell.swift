@@ -65,7 +65,7 @@ class LibraryCollectionViewCell: UICollectionViewCell {
                 }
             }
         }
-        
+
         // 1 book only
         if allUserBooks.count == 1 {
             guard let thumbnail = allUserBooks.first?.thumbnail else { return }
@@ -76,11 +76,11 @@ class LibraryCollectionViewCell: UICollectionViewCell {
             }
         }
     }
-    
+
     private func updateViews() {
         guard let allUserBooks = allUserBooks else { return }
         fillUpCoverImages()
-        
+
         // Check the first? 3 books in array and set the book covers to their covers
         guard let firstThumbnail = allUserBooks[0].thumbnail else { return }
         SearchController.fetchImage(with: firstThumbnail) { (image) in
@@ -88,20 +88,6 @@ class LibraryCollectionViewCell: UICollectionViewCell {
                 self.shelfImageView.image = image
             }
         }
-//        guard let secondThumbnail = allUserBooks[1].thumbnail else { return }
-//        SearchController.fetchImage(with: secondThumbnail) { (image) in
-//            DispatchQueue.main.async {
-//                // Add quick fade-in animation (alpha)
-//                self.secondImageView.image = image
-//            }
-//        }
-//        guard let thirdThumbnail = allUserBooks[2].thumbnail else { return }
-//        SearchController.fetchImage(with: thirdThumbnail) { (image) in
-//            DispatchQueue.main.async {
-//                // Add quick fade-in animation (alpha)
-//                self.thirdImageView.image = image
-//            }
-//        }
     }
 
     private func setUpSubviews() {
