@@ -52,7 +52,7 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aOZ-94-Io4">
                                 <rect key="frame" x="20" y="331.5" width="335" height="40"/>
-                                <color key="backgroundColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="LuV-Ir-Ioz"/>
                                 </constraints>
@@ -86,6 +86,11 @@
                                     <constraint firstAttribute="width" constant="30" id="KNq-ll-W4f"/>
                                 </constraints>
                             </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="AMJ-2J-Yyb">
+                                <rect key="frame" x="20" y="331.5" width="335" height="40"/>
+                                <color key="backgroundColor" red="0.83137254900000002" green="0.28235294119999998" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="color" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -94,10 +99,12 @@
                             <constraint firstItem="1zX-eX-IL3" firstAttribute="top" secondItem="oou-QI-Vb4" secondAttribute="bottom" constant="20" id="2Zp-V4-5sQ"/>
                             <constraint firstItem="oou-QI-Vb4" firstAttribute="centerX" secondItem="bgp-uT-hom" secondAttribute="centerX" id="APg-tr-go8"/>
                             <constraint firstItem="LHQ-VR-oYC" firstAttribute="trailing" secondItem="AlX-hN-YS8" secondAttribute="trailing" constant="20" id="BMP-lO-s3m"/>
+                            <constraint firstItem="AMJ-2J-Yyb" firstAttribute="centerY" secondItem="aOZ-94-Io4" secondAttribute="centerY" id="Bsd-aw-GIq"/>
                             <constraint firstItem="AlX-hN-YS8" firstAttribute="top" secondItem="eAz-Wf-Ror" secondAttribute="bottom" constant="20" id="L3p-du-raq"/>
                             <constraint firstItem="rgm-bZ-Ks6" firstAttribute="top" secondItem="LoE-zJ-L00" secondAttribute="bottom" constant="40" id="Qzf-2l-ueb"/>
                             <constraint firstItem="eAz-Wf-Ror" firstAttribute="top" secondItem="aOZ-94-Io4" secondAttribute="bottom" constant="20" id="R4z-g6-UvO"/>
                             <constraint firstItem="LHQ-VR-oYC" firstAttribute="trailing" secondItem="rgm-bZ-Ks6" secondAttribute="trailing" constant="20" id="RjH-h7-ICk"/>
+                            <constraint firstItem="AMJ-2J-Yyb" firstAttribute="height" secondItem="aOZ-94-Io4" secondAttribute="height" id="XT0-tl-whR"/>
                             <constraint firstItem="LHQ-VR-oYC" firstAttribute="trailing" secondItem="eAz-Wf-Ror" secondAttribute="trailing" constant="20" id="bO5-XA-vhn"/>
                             <constraint firstItem="LHQ-VR-oYC" firstAttribute="bottom" secondItem="AlX-hN-YS8" secondAttribute="bottom" constant="20" id="dEy-8S-7y1"/>
                             <constraint firstItem="aOZ-94-Io4" firstAttribute="leading" secondItem="LHQ-VR-oYC" secondAttribute="leading" constant="20" id="dy5-d3-hTP"/>
@@ -112,11 +119,14 @@
                             <constraint firstItem="SoY-Zq-who" firstAttribute="top" secondItem="rgm-bZ-Ks6" secondAttribute="bottom" constant="4" id="pBl-dD-KME"/>
                             <constraint firstItem="oou-QI-Vb4" firstAttribute="top" secondItem="LHQ-VR-oYC" secondAttribute="top" constant="4" id="qvf-Ct-dfp"/>
                             <constraint firstItem="LoE-zJ-L00" firstAttribute="leading" secondItem="bgp-uT-hom" secondAttribute="leading" constant="20" id="sxQ-7O-8fM"/>
+                            <constraint firstItem="AMJ-2J-Yyb" firstAttribute="centerX" secondItem="aOZ-94-Io4" secondAttribute="centerX" id="uNT-95-CdD"/>
+                            <constraint firstItem="AMJ-2J-Yyb" firstAttribute="width" secondItem="aOZ-94-Io4" secondAttribute="width" id="uiY-1X-CcM"/>
                             <constraint firstItem="LHQ-VR-oYC" firstAttribute="trailing" secondItem="SoY-Zq-who" secondAttribute="trailing" constant="20" id="wbL-GU-6X1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LHQ-VR-oYC"/>
                     </view>
                     <connections>
+                        <outlet property="doneActivityIndicator" destination="AMJ-2J-Yyb" id="KKM-1e-hen"/>
                         <outlet property="doneButton" destination="aOZ-94-Io4" id="Qtq-r3-lPs"/>
                         <outlet property="emailErrorMessage" destination="SoY-Zq-who" id="NAv-Dt-iuN"/>
                         <outlet property="emailTextField" destination="rgm-bZ-Ks6" id="3YD-0M-P94"/>
@@ -125,7 +135,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tRp-Nw-G5Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-742.02898550724649" y="429.91071428571428"/>
+            <point key="canvasLocation" x="-743.20000000000005" y="429.53523238380814"/>
         </scene>
         <!--Launch View Controller-->
         <scene sceneID="oxF-Rr-QTf">
