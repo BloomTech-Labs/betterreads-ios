@@ -28,19 +28,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forgot your password?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1zX-eX-IL3">
-                                <rect key="frame" x="20" y="54" width="335" height="30.5"/>
+                                <rect key="frame" x="20" y="54" width="335" height="28"/>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="24"/>
                                 <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No worries! Enter the email address associated with your account, and we will send you and email to reset your password." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LoE-zJ-L00">
-                                <rect key="frame" x="20" y="124.5" width="335" height="68"/>
+                                <rect key="frame" x="20" y="122" width="335" height="84"/>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
                                 <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="janesmith@email.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rgm-bZ-Ks6">
-                                <rect key="frame" x="20" y="232.5" width="335" height="40"/>
+                                <rect key="frame" x="20" y="246" width="335" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="XyH-cU-sVk"/>
                                 </constraints>
@@ -48,10 +48,10 @@
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="done" textContentType="email"/>
                             </textField>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="BetterReads-Graphics_Man" translatesAutoresizingMaskIntoConstraints="NO" id="AlX-hN-YS8">
-                                <rect key="frame" x="20" y="416" width="335" height="211"/>
+                                <rect key="frame" x="20" y="427" width="335" height="200"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aOZ-94-Io4">
-                                <rect key="frame" x="20" y="319.5" width="335" height="40"/>
+                                <rect key="frame" x="20" y="331.5" width="335" height="40"/>
                                 <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="LuV-Ir-Ioz"/>
@@ -67,30 +67,17 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Success or Failure Message" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eAz-Wf-Ror">
-                                <rect key="frame" x="20" y="379.5" width="335" height="16.5"/>
+                                <rect key="frame" x="20" y="391.5" width="335" height="15.5"/>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="13"/>
                                 <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Error Message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SoY-Zq-who">
-                                <rect key="frame" x="20" y="276.5" width="335" height="18"/>
+                                <rect key="frame" x="20" y="290" width="335" height="16.5"/>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
                                 <color key="textColor" red="0.89019607840000003" green="0.20392156859999999" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.down" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="oou-QI-Vb4">
-                                <rect key="frame" x="172.5" y="9" width="30" height="20.5"/>
-                                <color key="tintColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="9oE-fb-QOX"/>
-                                    <constraint firstAttribute="width" constant="30" id="KNq-ll-W4f"/>
-                                </constraints>
-                            </imageView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="AMJ-2J-Yyb">
-                                <rect key="frame" x="20" y="319.5" width="335" height="40"/>
-                                <color key="backgroundColor" red="0.83137254900000002" green="0.28235294119999998" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="color" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kNc-E5-IkQ" userLabel="Down Arrow Button">
                                 <rect key="frame" x="4" y="4" width="367" height="30"/>
                                 <state key="normal" title="Down Arrow Button">
@@ -100,6 +87,19 @@
                                     <action selector="downArrowButtonTapped:" destination="p8v-6O-0X8" eventType="touchUpInside" id="6KY-LJ-aKk"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.down" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="oou-QI-Vb4">
+                                <rect key="frame" x="172.5" y="9" width="30" height="20.5"/>
+                                <color key="tintColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="9oE-fb-QOX"/>
+                                    <constraint firstAttribute="width" constant="30" id="KNq-ll-W4f"/>
+                                </constraints>
+                            </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="AMJ-2J-Yyb">
+                                <rect key="frame" x="20" y="331.5" width="335" height="40"/>
+                                <color key="backgroundColor" red="0.83137254900000002" green="0.28235294119999998" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="color" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -1108,13 +1108,36 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="BetterReads-Graphics_Man" translatesAutoresizingMaskIntoConstraints="NO" id="mK3-m5-z38">
                                 <rect key="frame" x="20" y="136" width="335" height="491"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jqb-w1-bSm" userLabel="Down Arrow Button">
+                                <rect key="frame" x="4" y="4" width="367" height="30"/>
+                                <state key="normal" title="Down Arrow Button">
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="downArrowButtonTapped:" destination="p8v-6O-0X8" eventType="touchUpInside" id="6bH-GO-GFz"/>
+                                    <action selector="downArrowButtonTapped:" destination="qDX-7S-9rZ" eventType="touchUpInside" id="gul-K1-Fcg"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.down" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Kuq-dL-8Ea">
+                                <rect key="frame" x="172.5" y="9" width="30" height="20.5"/>
+                                <color key="tintColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="YeO-5d-u4u"/>
+                                    <constraint firstAttribute="width" constant="30" id="ang-4z-51s"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="2cI-aM-CHr" firstAttribute="trailing" secondItem="mK3-m5-z38" secondAttribute="trailing" constant="20" id="45Y-Nj-hI7"/>
+                            <constraint firstItem="Kuq-dL-8Ea" firstAttribute="centerX" secondItem="K75-Jh-Tcf" secondAttribute="centerX" id="7wC-gD-8He"/>
+                            <constraint firstItem="Kuq-dL-8Ea" firstAttribute="top" secondItem="2cI-aM-CHr" secondAttribute="top" constant="4" id="EZT-sh-FPf"/>
+                            <constraint firstItem="Jqb-w1-bSm" firstAttribute="top" secondItem="2cI-aM-CHr" secondAttribute="top" constant="4" id="FRy-GV-haH"/>
                             <constraint firstItem="mK3-m5-z38" firstAttribute="top" secondItem="K75-Jh-Tcf" secondAttribute="top" constant="136" id="Qd6-Ta-YjT"/>
                             <constraint firstItem="mK3-m5-z38" firstAttribute="leading" secondItem="2cI-aM-CHr" secondAttribute="leading" constant="20" id="ZJJ-pL-Bsh"/>
+                            <constraint firstItem="2cI-aM-CHr" firstAttribute="trailing" secondItem="Jqb-w1-bSm" secondAttribute="trailing" constant="4" id="cCf-fS-oI8"/>
                             <constraint firstItem="2cI-aM-CHr" firstAttribute="bottom" secondItem="mK3-m5-z38" secondAttribute="bottom" constant="20" id="p8R-aT-dRS"/>
+                            <constraint firstItem="Jqb-w1-bSm" firstAttribute="leading" secondItem="2cI-aM-CHr" secondAttribute="leading" constant="4" id="tfa-0H-EMp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2cI-aM-CHr"/>
                     </view>
