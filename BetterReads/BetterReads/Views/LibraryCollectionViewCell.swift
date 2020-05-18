@@ -9,11 +9,14 @@
 import UIKit
 
 class LibraryCollectionViewCell: UICollectionViewCell {
+
     var customView: UIView!
     var shelfImageView: UIImageView!
     var secondImageView: UIImageView!
     var thirdImageView: UIImageView!
     var shelfNameLabel: UILabel!
+    var coversArray = [UIImageView]()
+
     var allUserBooks: [UserBook]? {
         didSet {
             updateViews()
@@ -29,36 +32,64 @@ class LibraryCollectionViewCell: UICollectionViewCell {
         print("init with frame")
         setUpSubviews()
     }
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         print("init with coder")
         setUpSubviews()
     }
-    private func updateViews() {
+
+    private func fillUpCoverImages() {
         guard let allUserBooks = allUserBooks else { return }
-        shelfNameLabel.text = allUserBooks.first?.title//"My Books"
-        guard let firstThumbnail = allUserBooks[0].thumbnail else { return }
-        SearchController.fetchImage(with: firstThumbnail) { (image) in
-            DispatchQueue.main.async {
-                // Add quick fade-in animation (alpha)
-                self.shelfImageView.image = image
+
+        // 3 or more books
+        if allUserBooks.count >= 3 {
+            for index in 0..<3 {
+                guard let thumbnail = allUserBooks[index].thumbnail else { return }
+                SearchController.fetchImage(with: thumbnail) { (image) in
+                    DispatchQueue.main.async {
+                        self.coversArray[index].image = image
+                    }
+                }
             }
         }
-        guard let secondThumbnail = allUserBooks[1].thumbnail else { return }
-        SearchController.fetchImage(with: secondThumbnail) { (image) in
-            DispatchQueue.main.async {
-                // Add quick fade-in animation (alpha)
-                self.secondImageView.image = image
+
+        // 2 books only
+        if allUserBooks.count == 2 {
+            for index in 0..<2 {
+                guard let thumbnail = allUserBooks[index].thumbnail else { return }
+                SearchController.fetchImage(with: thumbnail) { (image) in
+                    DispatchQueue.main.async {
+                        self.coversArray[index].image = image
+                    }
+                }
             }
         }
-        guard let thirdThumbnail = allUserBooks[2].thumbnail else { return }
-        SearchController.fetchImage(with: thirdThumbnail) { (image) in
-            DispatchQueue.main.async {
-                // Add quick fade-in animation (alpha)
-                self.thirdImageView.image = image
+
+        // 1 book only
+        if allUserBooks.count == 1 {
+            guard let thumbnail = allUserBooks.first?.thumbnail else { return }
+            SearchController.fetchImage(with: thumbnail) { (image) in
+                DispatchQueue.main.async {
+                    self.coversArray.first?.image = image
+                }
             }
         }
     }
+
+    private func updateViews() {
+        guard let allUserBooks = allUserBooks else { return }
+        fillUpCoverImages()
+
+        // Check the first? 3 books in array and set the book covers to their covers
+        guard let firstThumbnail = allUserBooks[0].thumbnail else { return }
+        SearchController.fetchImage(with: firstThumbnail) { (image) in
+            DispatchQueue.main.async {
+                self.shelfImageView.image = image
+            }
+        }
+    }
+
     private func setUpSubviews() {
         print("setupSubviews")
         // cell size is 192, 249.6 methinks
@@ -75,6 +106,7 @@ class LibraryCollectionViewCell: UICollectionViewCell {
         //customView.backgroundColor = .orange
         customView.layer.cornerRadius = 5
         //customView.clipsToBounds = true
+
         // Third Image View (Back)
         let tempImageView3 = UIImageView()
         addSubview(tempImageView3)
@@ -87,8 +119,9 @@ class LibraryCollectionViewCell: UICollectionViewCell {
         thirdImageView.layer.cornerRadius = 5
         thirdImageView.contentMode = .scaleToFill
         thirdImageView.clipsToBounds = true
-        thirdImageView.image = UIImage(named: "twilightEclipseCover")
+        thirdImageView.image = UIImage(named: "BetterReads-DefaultBookImage")
         thirdImageView.alpha = 1
+
         // Second Image View (Middle)
         let tempImageView2 = UIImageView()
         addSubview(tempImageView2)
@@ -101,8 +134,9 @@ class LibraryCollectionViewCell: UICollectionViewCell {
         secondImageView.layer.cornerRadius = 5
         secondImageView.contentMode = .scaleToFill
         secondImageView.clipsToBounds = true
-        secondImageView.image = UIImage(named: "twilightNewMoonCover")
+        secondImageView.image = UIImage(named: "BetterReads-DefaultBookImage")
         secondImageView.alpha = 1
+
         // Image View (front)
         let tempImageView = UIImageView()
         addSubview(tempImageView)
@@ -115,7 +149,8 @@ class LibraryCollectionViewCell: UICollectionViewCell {
         shelfImageView.layer.cornerRadius = 5
         shelfImageView.contentMode = .scaleToFill
         shelfImageView.clipsToBounds = true
-        shelfImageView.image = UIImage(named: "twilightBookCover")
+        shelfImageView.image = UIImage(named: "BetterReads-DefaultBookImage")
+
         // Label
         let tempLabel = UILabel()
         addSubview(tempLabel)
@@ -125,9 +160,13 @@ class LibraryCollectionViewCell: UICollectionViewCell {
         shelfNameLabel.leadingAnchor.constraint(equalTo: shelfImageView.leadingAnchor).isActive = true
         shelfNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
         shelfNameLabel.bottomAnchor.constraint(equalTo: customView.bottomAnchor, constant: -8).isActive = true
-        shelfNameLabel.text = "Young Adult Novels"
+        shelfNameLabel.text = "Shelf Name"
         shelfNameLabel.textAlignment = .center
         shelfNameLabel.numberOfLines = 0
         shelfNameLabel.backgroundColor = .white
+        
+        coversArray.append(shelfImageView)
+        coversArray.append(secondImageView)
+        coversArray.append(thirdImageView)
     }
 }

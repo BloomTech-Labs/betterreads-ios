@@ -92,13 +92,27 @@ Flip through the tailored recommendations below from a variety of authors and st
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowBookDetailSegue" {
-            guard let barViewControllers = segue.destination as? UITabBarController,
-                let nav = barViewControllers.viewControllers?[0] as? UINavigationController,
-                let _ = nav.topViewController as? BookDetailViewController else {
-                //FIXME: - Better error handling and alert
-                //FIXME: - Give book to destinationVC when BookDetails is built
-                return
+            if let detailVC = segue.destination as? BookDetailViewController {
+                guard let books = UserController.shared.recommendedBooks,
+                    let indexPath = topCollectionView.indexPathsForSelectedItems?.first else { return }
+                let book = books[indexPath.row]
+                detailVC.book = book
+                let cell = topCollectionView.cellForItem(at: indexPath) as? RecommendationCollectionViewCell
+                detailVC.bookCoverImageView.image = cell?.bookCoverImageView.image
+                detailVC.blurredBackgroundView.image = cell?.bookCoverImageView.image
+                // FIXME: pass in controller that has CRUD methods to add books
+                // Back button title for next screen
+                let backItem = UIBarButtonItem()
+                backItem.title = "" // now only the arrow is showing
+                navigationItem.backBarButtonItem = backItem
             }
+//            guard let barViewControllers = segue.destination as? UITabBarController,
+//                let nav = barViewControllers.viewControllers?[0] as? UINavigationController,
+//                let _ = nav.topViewController as? BookDetailViewController else {
+//                //FIXME: - Better error handling and alert
+//                //FIXME: - Give book to destinationVC when BookDetails is built
+//                return
+//            }
         }
     }
 }
