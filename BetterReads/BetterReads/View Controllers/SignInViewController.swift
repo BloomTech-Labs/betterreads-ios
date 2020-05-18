@@ -39,6 +39,7 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     @IBOutlet weak var confirmPasswordErrorMessage: UILabel!
     @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet weak var activityIndicatorSubmit: UIActivityIndicatorView!
     @IBOutlet weak var forgotPassword: UIButton!
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -52,6 +53,8 @@ class SignInViewController: UIViewController {
         configurePasswordTextField()
         configureConfirmTextField()
         forgotPassword.isHidden = true
+        activityIndicatorSubmit.isHidden = true
+        activityIndicatorSubmit.layer.cornerRadius = 5
         submitButton.layer.cornerRadius = 5
         //Show sign in form first, so returning users can sign in quickly
         loginType = .signin
@@ -79,7 +82,7 @@ class SignInViewController: UIViewController {
             }
         }
         // Update Save Button
-        submitButton.backgroundColor = formIsValid ? .trinidadOrange : .tundra
+        submitButton.backgroundColor = formIsValid ? .trinidadOrange : .altoGray
         submitButton.isEnabled = formIsValid
         if formIsValid {
             submitButton.performFlare()
@@ -197,8 +200,12 @@ class SignInViewController: UIViewController {
         let (valid, _) = validate()
         if valid {
             if loginType == .signup {
+                activityIndicatorSubmit.isHidden = false
+                activityIndicatorSubmit.startAnimating()
                 signUpUser()
             } else {
+                activityIndicatorSubmit.isHidden = false
+                activityIndicatorSubmit.startAnimating()
                 signInUser()
             }
         }

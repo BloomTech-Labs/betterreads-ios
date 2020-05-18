@@ -343,7 +343,7 @@
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R5i-h0-MfM">
                                                 <rect key="frame" x="20" y="593" width="374" height="40"/>
-                                                <color key="backgroundColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="hVY-uQ-9ni"/>
                                                 </constraints>
@@ -378,18 +378,28 @@
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BetterReads-Logo_Orange" translatesAutoresizingMaskIntoConstraints="NO" id="KfD-Ub-2Cw">
                                                 <rect key="frame" x="20" y="40" width="374" height="50"/>
                                             </imageView>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="HCV-Bp-ZBb">
+                                                <rect key="frame" x="20" y="593" width="374" height="40"/>
+                                                <color key="backgroundColor" red="0.83137254900000002" green="0.28235294119999998" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="color" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </activityIndicatorView>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstItem="HCV-Bp-ZBb" firstAttribute="leading" secondItem="R5i-h0-MfM" secondAttribute="leading" id="0FZ-sM-xnc"/>
                                             <constraint firstItem="J5E-Ve-Vix" firstAttribute="width" secondItem="Owr-0V-qP7" secondAttribute="width" id="0Ve-pK-Apx"/>
                                             <constraint firstItem="R5i-h0-MfM" firstAttribute="top" secondItem="BR6-EK-6gl" secondAttribute="bottom" constant="25" id="3Cc-fP-Sdd"/>
+                                            <constraint firstItem="HCV-Bp-ZBb" firstAttribute="top" secondItem="R5i-h0-MfM" secondAttribute="top" id="3KF-Wz-9YD"/>
                                             <constraint firstItem="mKe-xP-9Fu" firstAttribute="leading" secondItem="UwA-YK-r6A" secondAttribute="leading" constant="20" id="5Jk-hC-K98"/>
                                             <constraint firstAttribute="trailing" secondItem="Owr-0V-qP7" secondAttribute="trailing" constant="20" id="5jR-ep-hJi"/>
                                             <constraint firstItem="BR6-EK-6gl" firstAttribute="top" secondItem="Owr-0V-qP7" secondAttribute="bottom" constant="40" id="7KX-fG-GaS"/>
                                             <constraint firstAttribute="trailing" secondItem="R5i-h0-MfM" secondAttribute="trailing" constant="20" id="848-zC-cTl"/>
                                             <constraint firstAttribute="trailing" secondItem="J5E-Ve-Vix" secondAttribute="trailing" constant="20" id="88U-xt-is5"/>
+                                            <constraint firstItem="HCV-Bp-ZBb" firstAttribute="width" secondItem="R5i-h0-MfM" secondAttribute="width" id="Aqa-8W-2Bs"/>
                                             <constraint firstItem="MMk-Qt-2zY" firstAttribute="top" secondItem="mKe-xP-9Fu" secondAttribute="bottom" constant="5" id="D4e-iZ-hbT"/>
                                             <constraint firstItem="KfD-Ub-2Cw" firstAttribute="leading" secondItem="UwA-YK-r6A" secondAttribute="leading" constant="20" id="EEC-nT-yZd"/>
                                             <constraint firstItem="mKe-xP-9Fu" firstAttribute="top" secondItem="R5i-h0-MfM" secondAttribute="bottom" constant="10" id="Eab-7G-JXG"/>
+                                            <constraint firstItem="HCV-Bp-ZBb" firstAttribute="trailing" secondItem="R5i-h0-MfM" secondAttribute="trailing" id="KGw-Es-wBO"/>
+                                            <constraint firstItem="HCV-Bp-ZBb" firstAttribute="height" secondItem="R5i-h0-MfM" secondAttribute="height" id="MIM-Gp-gle"/>
                                             <constraint firstItem="J5E-Ve-Vix" firstAttribute="centerX" secondItem="UwA-YK-r6A" secondAttribute="centerX" id="R3R-LH-CIX"/>
                                             <constraint firstItem="J5E-Ve-Vix" firstAttribute="top" secondItem="Owr-0V-qP7" secondAttribute="bottom" constant="1" id="RKR-pc-Sgs"/>
                                             <constraint firstItem="J5E-Ve-Vix" firstAttribute="leading" secondItem="UwA-YK-r6A" secondAttribute="leading" constant="20" id="S7m-wu-lqQ"/>
@@ -399,6 +409,7 @@
                                             <constraint firstItem="KfD-Ub-2Cw" firstAttribute="top" secondItem="UwA-YK-r6A" secondAttribute="top" constant="40" id="i8Y-Fw-OcH"/>
                                             <constraint firstItem="Owr-0V-qP7" firstAttribute="leading" secondItem="UwA-YK-r6A" secondAttribute="leading" constant="20" id="jjW-DW-YBy"/>
                                             <constraint firstItem="BR6-EK-6gl" firstAttribute="leading" secondItem="UwA-YK-r6A" secondAttribute="leading" constant="20" id="jjW-Ij-AdW"/>
+                                            <constraint firstItem="HCV-Bp-ZBb" firstAttribute="bottom" secondItem="R5i-h0-MfM" secondAttribute="bottom" id="jq5-HM-fjG"/>
                                             <constraint firstAttribute="trailing" secondItem="BR6-EK-6gl" secondAttribute="trailing" constant="20" id="kfF-Vk-yXA"/>
                                             <constraint firstItem="R5i-h0-MfM" firstAttribute="leading" secondItem="UwA-YK-r6A" secondAttribute="leading" constant="20" id="kfG-si-kvX"/>
                                             <constraint firstAttribute="bottom" secondItem="MMk-Qt-2zY" secondAttribute="bottom" constant="117.66666666666663" id="l7p-Kq-QAL"/>
@@ -429,6 +440,7 @@
                     <navigationItem key="navigationItem" id="yqW-fd-873"/>
                     <size key="freeformSize" width="414" height="1000"/>
                     <connections>
+                        <outlet property="activityIndicatorSubmit" destination="HCV-Bp-ZBb" id="YhL-K1-G2j"/>
                         <outlet property="confirmPasswordErrorMessage" destination="ve3-It-MEw" id="JY8-B1-dib"/>
                         <outlet property="confirmPasswordInfoCircle" destination="9hS-a4-rJR" id="UB3-C9-SeV"/>
                         <outlet property="confirmPasswordLabel" destination="098-Ld-TdH" id="k85-gB-3eh"/>
@@ -449,7 +461,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Za0-7F-Pg2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="88" y="-108"/>
+            <point key="canvasLocation" x="88" y="-108.84557721139431"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="2yq-w1-wcm">
@@ -1090,7 +1102,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="13q-cF-JSj"/>
+        <segue reference="rTd-to-6nz"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="BetterReads-DefaultBookImage" width="267" height="400"/>
