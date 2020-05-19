@@ -29,6 +29,7 @@ class UserController {
     var isNewUser: Bool?
     var recommendedBooks: [Book]?
     static let shared = UserController()
+    static let sharedLibraryController = LibraryController()
     private init() { }
     typealias CompletionHandler = (Error?) -> Void
     // MARK: - Sign Up

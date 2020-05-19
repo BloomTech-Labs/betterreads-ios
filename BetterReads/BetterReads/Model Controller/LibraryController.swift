@@ -49,7 +49,7 @@ class LibraryController {
         fetchUserLibrary()
     }
 
-    private func fetchCustomShelves(completion: @escaping (Error?) -> Void = { _ in }) {
+    func fetchCustomShelves(completion: @escaping (Error?) -> Void = { _ in }) {
         guard let userId = userId,
             let token = token else { return }
         //https://api.readrr.app/api/shelves/user/131

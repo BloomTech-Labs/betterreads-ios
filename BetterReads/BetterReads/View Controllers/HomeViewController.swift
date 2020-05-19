@@ -54,16 +54,31 @@ Flip through the tailored recommendations below from a variety of authors and st
                 self.present(alert, animated: true, completion: nil)
                 NSLog("Error occured during Get Recommendations: \(error)")
             }
-            self.topCollectionView.reloadData()
+            DispatchQueue.main.async {
+                self.topCollectionView.reloadData()
+            }
+        }
+
+        UserController.sharedLibraryController.fetchCustomShelves { (error) in
+            if let error = error {
+                print("Error fetching shelves in HomeVC \(error)")
+            } else {
+                DispatchQueue.main.async {
+                    print("shelves count: \(UserController.sharedLibraryController.userShelves.count)")
+                }
+            }
         }
     }
+
     // MARK: - Methods
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 5
     }
+
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.topCollectionView {
