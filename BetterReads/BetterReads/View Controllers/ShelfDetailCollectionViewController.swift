@@ -43,6 +43,8 @@ class ShelfDetailCollectionViewController: UICollectionViewController {
                 let cell = collectionView.cellForItem(at: indexPath) as? ShelfDetailCollectionViewCell
                 detailVC.bookCoverImageView.image = cell?.shelfImageView.image
                 detailVC.blurredBackgroundView.image = cell?.shelfImageView.image
+                detailVC.libraryController = libraryController
+                detailVC.userBook = libraryController?.allShelvesArray[allBooksIndex ?? 0][indexPath.item]
                 // FIXME: pass in controller that has CRUD methods to add books
             }
         }

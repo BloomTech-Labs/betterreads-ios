@@ -154,12 +154,44 @@ class BookDetailViewController: UIViewController {
         print("add button tapped")
         addButton.performFlare()
     }
+
+    var libraryController: LibraryController?
+
+    /// UserBook that comes from ShelfDetail used to fetch UserBookDetail
+    var userBook: UserBook? {
+        didSet {
+            fetchBookById()
+        }
+    }
+
+    /// Book that comes from Home or Search screen
     var book: Book? {
         didSet {
             updateViews()
         }
     }
-    var passedInImage: UIImage?
+
+    /// Uses the userBook's bookId to search for a Book version
+    private func fetchBookById() {
+        print("called fetchBookById in DetailVC")
+        guard let bookId = userBook?.bookId else { return }
+        libraryController?.fetchBookById(bookId: bookId, completion: { (userBookDetail) in
+            DispatchQueue.main.async {
+                self.titleLabel.text = userBookDetail?.title
+                self.authorLabel.text = "by \(userBookDetail?.authors ?? "Unknown")"
+                if let averageRating = userBookDetail?.averageRating {
+                    self.ratingStackView.ratingValue = Double(averageRating)
+                } else {
+                    self.ratingStackView.ratingValue = 0.0
+                }
+                self.averageRatingLabel.text = "\(userBookDetail?.averageRating ?? "0") average rating"
+                self.descriptionLabel.text = userBookDetail?.textSnippet
+                self.publisherLabel.text = "Publisher: \(userBookDetail?.publisher ?? "No publisher")"
+                self.isbnLabel.text = "ISBN: \(userBookDetail?.isbn13 ?? "")"
+                self.lengthLabel.text = "Length: \(userBookDetail?.pageCount ?? 0) pages"
+            }
+        })
+    }
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
