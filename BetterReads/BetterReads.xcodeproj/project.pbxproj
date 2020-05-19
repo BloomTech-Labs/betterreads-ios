@@ -23,6 +23,7 @@
 		1BA843912474326C000C4367 /* UserBookDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA843902474326C000C4367 /* UserBookDetail.swift */; };
 		1BA8439324749424000C4367 /* UserBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA8439224749424000C4367 /* UserBook.swift */; };
 		1BA843952474944A000C4367 /* UserShelf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA843942474944A000C4367 /* UserShelf.swift */; };
+		1BA8439724749CFD000C4367 /* UserBookOnShelf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA8439624749CFD000C4367 /* UserBookOnShelf.swift */; };
 		7732DCE2244F7DF400C82B7F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7732DCE1244F7DF400C82B7F /* User.swift */; };
 		7732DCE5244F7F6900C82B7F /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7732DCE4244F7F6900C82B7F /* UserController.swift */; };
 		7732DCEE244FA93800C82B7F /* FrankRuhlLibre-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7732DCED244FA8F000C82B7F /* FrankRuhlLibre-Black.ttf */; };
@@ -79,6 +80,7 @@
 		1BA843902474326C000C4367 /* UserBookDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBookDetail.swift; sourceTree = "<group>"; };
 		1BA8439224749424000C4367 /* UserBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBook.swift; sourceTree = "<group>"; };
 		1BA843942474944A000C4367 /* UserShelf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserShelf.swift; sourceTree = "<group>"; };
+		1BA8439624749CFD000C4367 /* UserBookOnShelf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBookOnShelf.swift; sourceTree = "<group>"; };
 		7732DCE1244F7DF400C82B7F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7732DCE4244F7F6900C82B7F /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		7732DCE9244FA8EF00C82B7F /* FrankRuhlLibre-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FrankRuhlLibre-Bold.ttf"; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				1BA843902474326C000C4367 /* UserBookDetail.swift */,
 				1BA8439224749424000C4367 /* UserBook.swift */,
 				1BA843942474944A000C4367 /* UserShelf.swift */,
+				1BA8439624749CFD000C4367 /* UserBookOnShelf.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -177,9 +180,9 @@
 		7732DCE3244F7F2E00C82B7F /* Model Controller */ = {
 			isa = PBXGroup;
 			children = (
-				7732DCE4244F7F6900C82B7F /* UserController.swift */,
-				1B102AD724524D3E0095733B /* SearchController.swift */,
 				1B59892F2469EADE00EB8F0E /* LibraryController.swift */,
+				1B102AD724524D3E0095733B /* SearchController.swift */,
+				7732DCE4244F7F6900C82B7F /* UserController.swift */,
 			);
 			path = "Model Controller";
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 				77538BE7246B056C007FD8E6 /* Recommendation.swift in Sources */,
 				1B102B0A2463635B0095733B /* MyLibraryCollectionViewController.swift in Sources */,
 				77B6A39B2448F5A400FF604B /* SceneDelegate.swift in Sources */,
+				1BA8439724749CFD000C4367 /* UserBookOnShelf.swift in Sources */,
 				77F93607246CA8C9007C6236 /* LaunchViewController.swift in Sources */,
 				1B59892E2469AFB900EB8F0E /* StarRatingStackView.swift in Sources */,
 				1BA843952474944A000C4367 /* UserShelf.swift in Sources */,

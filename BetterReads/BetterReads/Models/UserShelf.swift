@@ -10,7 +10,8 @@ import Foundation
 
 struct UserShelf: Codable {
     let shelfId: Int?
-    let userId: Int?
     let shelfName: String?
+    let book: [UserBookOnShelf]?
+    let userId: Int?
     let isPrivate: Bool?
 }

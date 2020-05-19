@@ -9,9 +9,14 @@
 import Foundation
 
 class LibraryController {
+    
+    // MARK: - Properties
 
     /// Holds all of the user's shelves
     var allShelvesArray = [[UserBook]]()
+
+    /// An array made up of each custom shelf
+    var allCustomShelvesArray = [[UserBook]]()
 
     /// Holds all of the user's books
     var myBooksArray = [UserBook]()
@@ -24,20 +29,22 @@ class LibraryController {
 
     /// Holds user books that are "Finished"
     var finishedBooksArray = [UserBook]()
-    
+
     /// Holds an array of all the user's custom shelves
     var userShelves = [UserShelf]()
 
     /// https://api.readrr.app/api
     let baseUrl = URL(string: "https://api.readrr.app/api")!
-    
+
+    /// Returns unwrapped user token from shared UserController
     var token: String? {
         guard let unwrappedToken = UserController.shared.authToken else {
             return nil
         }
         return unwrappedToken
     }
-    
+
+    /// Returns unwrapped user id from shared UserController
     var userId: Int? {
         guard let unwrappedUserId = UserController.shared.user?.userID else {
             return nil
@@ -49,11 +56,14 @@ class LibraryController {
         fetchUserLibrary()
     }
 
+    // MARK: - Networking
+
+    /// Fetches all custom shelves, and all the books in each
     func fetchCustomShelves(completion: @escaping (Error?) -> Void = { _ in }) {
         guard let userId = userId,
             let token = token else { return }
-        //https://api.readrr.app/api/shelves/user/131
-        let requestUrl = baseUrl.appendingPathComponent("shelves/user/\(userId)")
+        ///https://api.readrr.app/api/booksonshelf/user/131/shelves/allbooks
+        let requestUrl = baseUrl.appendingPathComponent("booksonshelf/user/\(userId)/shelves/allbooks")
         var request = URLRequest(url: requestUrl)
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
