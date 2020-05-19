@@ -11,15 +11,18 @@ import UIKit
 var myBooksArray = [Book]()
 
 class SearchTableViewController: UITableViewController {
+    let searchController = SearchController()
+    let spinner = UIActivityIndicatorView(style: .large)
     @IBOutlet var searchBar: UISearchBar!
     // FIXME: change so cancel/x button act like they do in Goodreads/Apple Books?
     // FIXME: add swipe gesture to dismiss keyboard instead of having "Hide" button?
-    let searchController = SearchController()
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
         searchBar.tintColor = .trinidadOrange
         setupToolBar()
+        tableView.backgroundView?.isHidden = true
+        tableView.backgroundView = spinner
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -52,7 +55,7 @@ class SearchTableViewController: UITableViewController {
         return searchController.searchResultBooks.count
     }
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150 // was 175 when we started
+        return 150
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell",
@@ -64,7 +67,6 @@ class SearchTableViewController: UITableViewController {
     }
     // MARK: - Navigation
     // FIXME: add segue that goes to BookDetailViewController?
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SearchToDetail" {
             print("SearchToDetail")
@@ -82,42 +84,10 @@ class SearchTableViewController: UITableViewController {
             }
         }
     }
-    // MARK: - Helpers
-    private func searchByTerm(searchTerm: String) {
-            // searchFuntion() then DispatchQueue.main.async {self.tableView.reloadData()}
-//            SearchController.searchByTitle(title: searchTerm) { (response) in
-//
-//                switch response.result {
-//
-//                case .success(let data):
-//                    print(data)
-//                case .failure(let error):
-//                    print(error)
-//                }
-//            }
-//            let booksWithSearchTerm = fakeBooksArray.filter {
-//                $0.title.lowercased().contains(searchTerm.lowercased()) ||
-        // $0.author.lowercased().contains(searchTerm.lowercased())
-//            }
-//            myBooksArray = booksWithSearchTerm
-        }
 }
-
 // MARK: - Extensions
-
 extension SearchTableViewController: UISearchBarDelegate {
     // FIXME: - Scroll dismisses keyboard (onScroll?)
-    // Search when typing each letter
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        //searchBar.showsCancelButton = true
-//        guard let searchTerm = searchBar.text else {
-//            print("Empty searchbar")
-//            return
-//        }
-//        print(searchTerm)
-//        searchByTerm(searchTerm: searchTerm)
-//        tableView.reloadData()
-    }
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = true
     }
@@ -129,6 +99,9 @@ extension SearchTableViewController: UISearchBarDelegate {
     }
     // dismiss keyboard so user can view all results
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        spinner.backgroundColor = .altoGray
+        spinner.color = .tundra
+        spinner.startAnimating()
         guard let searchTerm = searchBar.text, !searchTerm.isEmpty else {
             print("Empty searchbar")
             return
@@ -140,6 +113,7 @@ extension SearchTableViewController: UISearchBarDelegate {
                 print("searchBook called in searchBarSearchButtonClicked")
                 print("array count now: \(self.searchController.searchResultBooks.count)")
                 self.tableView.reloadData()
+                self.spinner.stopAnimating()
             }
         }
         hideKeyboardAndCancelButton()
