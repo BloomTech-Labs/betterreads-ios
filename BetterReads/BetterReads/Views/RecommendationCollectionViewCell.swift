@@ -15,12 +15,18 @@ class RecommendationCollectionViewCell: UICollectionViewCell {
             getBookThumbnail()
         }
     }
+    @IBOutlet weak var defaultBookImageTitle: UILabel!
+    @IBOutlet weak var defaultBookImageAuthor: UILabel!
     @IBOutlet weak var bookCoverImageView: UIImageView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     private func getBookThumbnail() {
+        defaultBookImageTitle.isHidden = true
+        defaultBookImageAuthor.isHidden = true
         bookCoverImageView.layer.cornerRadius = 5
         guard let book = book else {
             activityIndicator.stopAnimating()
+            defaultBookImageTitle.isHidden = true
+            defaultBookImageAuthor.isHidden = true
             return
         }
         if let smallThumbnailUrl = URL(string: book.smallThumbnail ?? "") {
@@ -33,6 +39,14 @@ class RecommendationCollectionViewCell: UICollectionViewCell {
         updateViews()
     }
     private func updateViews() {
+        if bookCoverImageView.image == UIImage(named: "BetterReads-DefaultBookImage") {
+            defaultBookImageTitle.isHidden = false
+            defaultBookImageAuthor.isHidden = false
+            defaultBookImageTitle.text = book?.title
+            defaultBookImageAuthor.text = book?.authors?.first
+        }
+        defaultBookImageTitle.isHidden = true
+        defaultBookImageAuthor.isHidden = true
         activityIndicator.stopAnimating()
         self.setNeedsLayout()
     }
