@@ -66,10 +66,9 @@ class MyLibraryCollectionViewController: UICollectionViewController {
         if segue.identifier == "LibraryToShelf" {
             print("LibraryToShelf")
             if let shelfDetailVC = segue.destination as? ShelfDetailCollectionViewController,
-                let _ = collectionView.indexPathsForSelectedItems?.first {
-                // FIXME: pass in controller so user can add book to my books or other shelf
+                let indexPath = collectionView.indexPathsForSelectedItems?.first {
                 shelfDetailVC.libraryController = libraryController
-                //let cell = collectionView.itemForRow(at: indexPath) as? SearchResultTableViewCell
+                shelfDetailVC.allBooksIndex = indexPath.row
             }
         }
         // Get the new view controller using [segue destinationViewController].
