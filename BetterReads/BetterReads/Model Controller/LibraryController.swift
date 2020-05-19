@@ -168,6 +168,49 @@ class LibraryController {
             }
         }.resume()
     }
+
+    /// Takes in a bookId (from a UserBook) and return a corresponding UserBookDetail object
+    func fetchBookById(bookId: Int, completion: @escaping (UserBookDetail?) -> Void = { _ in }) {
+        print("called fetchBookById with \(bookId)")
+        guard let userId = userId,
+            let token = token else { return }
+        //https://api.readrr.app/api/131/library/314
+        let requestUrl = baseUrl.appendingPathComponent("\(userId)/library/\(bookId)")
+        var request = URLRequest(url: requestUrl)
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue(token, forHTTPHeaderField: "Authorization")
+
+        URLSession.shared.dataTask(with: request) { (data, _, error) in
+            if let error = error {
+                print("Error fetching Book from bookId: \(error)")
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+                return
+            }
+            guard let data = data else {
+                print("No data return by data task in fetchBookById")
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+                return
+            }
+            let jsonDecoder = JSONDecoder()
+            jsonDecoder.dateDecodingStrategy = .iso8601
+            do {
+                let userBookDetail = try jsonDecoder.decode(UserBookDetail.self, from: data)
+                DispatchQueue.main.async {
+                    completion(userBookDetail)
+                }
+            } catch {
+                print("Error decoding Book from bookId \(error)")
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+            }
+        }.resume()
+    }
 }
 
 struct UserShelf: Codable {

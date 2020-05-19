@@ -9,14 +9,17 @@
 import UIKit
 
 class ShelfDetailCollectionViewCell: UICollectionViewCell {
+
     var customView: UIView!
     var shelfImageView: UIImageView!
     var shelfNameLabel: UILabel!
+
     var userBook: UserBook? {
         didSet {
             updateViews()
         }
     }
+
     private func updateViews() {
         guard let userBook = userBook else { return }
         shelfNameLabel.text = userBook.title
@@ -28,16 +31,19 @@ class ShelfDetailCollectionViewCell: UICollectionViewCell {
             }
         }
     }
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         print("init with frame")
         setUpSubviews()
     }
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         print("init with coder")
         setUpSubviews()
     }
+
     private func setUpSubviews() {
         print("setupSubviews")
         // cell size is 192, 249.6 methinks
@@ -68,7 +74,7 @@ class ShelfDetailCollectionViewCell: UICollectionViewCell {
         shelfImageView.widthAnchor.constraint(equalTo: widthAnchor,
                                          multiplier: 0.60).isActive = true
         shelfImageView.heightAnchor.constraint(equalTo: heightAnchor,
-                                          multiplier: 0.75).isActive = true
+                                          multiplier: 0.60).isActive = true
         shelfImageView.bottomAnchor.constraint(equalTo: customView.bottomAnchor, constant: -50).isActive = true
         shelfImageView.layer.cornerRadius = 5
         shelfImageView.contentMode = .scaleToFill //fill

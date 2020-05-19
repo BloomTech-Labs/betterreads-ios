@@ -11,15 +11,18 @@ import UIKit
 private let reuseIdentifier = "ShelfDetailCell"
 
 class ShelfDetailCollectionViewController: UICollectionViewController {
+
     var libraryController: LibraryController?
     var tempShelfDetailCount: Int = 1
-    // FIXME: change system color to trinidadOrange?
+    var allBooksIndex: Int?
+
     @IBOutlet var addBookToShelfButtonLabel: UIBarButtonItem!
     @IBAction func addBookToShelfTapped(_ sender: UIBarButtonItem) {
         print("addBookToShelfTapped")
         tempShelfDetailCount += 1
         collectionView.reloadData()
     }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.tintColor = .trinidadOrange
@@ -28,6 +31,7 @@ class ShelfDetailCollectionViewController: UICollectionViewController {
         backItem.title = "" // now only the arrow is showing
         navigationItem.backBarButtonItem = backItem
     }
+
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //ShelfToDetail
@@ -39,6 +43,8 @@ class ShelfDetailCollectionViewController: UICollectionViewController {
                 let cell = collectionView.cellForItem(at: indexPath) as? ShelfDetailCollectionViewCell
                 detailVC.bookCoverImageView.image = cell?.shelfImageView.image
                 detailVC.blurredBackgroundView.image = cell?.shelfImageView.image
+                detailVC.libraryController = libraryController
+                detailVC.userBook = libraryController?.allShelvesArray[allBooksIndex ?? 0][indexPath.item]
                 // FIXME: pass in controller that has CRUD methods to add books
             }
         }
@@ -50,14 +56,15 @@ class ShelfDetailCollectionViewController: UICollectionViewController {
         return 1
     }
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return libraryController?.myBooksArray.count ?? 0//tempShelfDetailCount
+        return libraryController?.allShelvesArray[allBooksIndex ?? 0].count ?? 0
     }
     override func collectionView(_ collectionView: UICollectionView,
                                  cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier,
                                                             for: indexPath) as? ShelfDetailCollectionViewCell
             else { return UICollectionViewCell() }
-        cell.userBook = libraryController?.myBooksArray[indexPath.item]
+        guard let allBooksIndex = allBooksIndex else { return cell }
+        cell.userBook = libraryController?.allShelvesArray[allBooksIndex][indexPath.item]
         return cell
     }
 }
