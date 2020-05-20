@@ -69,7 +69,7 @@ Flip through the tailored recommendations below from a variety of authors and st
                         DispatchQueue.main.async {
                             print("finished recs for middle")
                             print(UserController.sharedLibraryController.recommendationsForRandomShelf)
-                            //self.middleCollectionView.reloadData()
+                            self.middleCollectionView.reloadData()
                         }
                     }
                 }
@@ -103,8 +103,8 @@ Flip through the tailored recommendations below from a variety of authors and st
                 .dequeueReusableCell(withReuseIdentifier: "MiddleCollectionCell",
                                      for: indexPath
                 ) as? RecommendationCollectionViewCell ?? RecommendationCollectionViewCell()
-//            guard let books = UserController.sharedLibraryController.recommendationsForRandomShelf else { return cell }
-//            cell.book = books[indexPath.item]
+            guard let books = UserController.sharedLibraryController.recommendationsForRandomShelf else { return cell }
+            cell.book = books[indexPath.item]
             return cell
         }
 
