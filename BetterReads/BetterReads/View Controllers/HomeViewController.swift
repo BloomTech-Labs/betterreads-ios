@@ -98,15 +98,17 @@ Flip through the tailored recommendations below from a variety of authors and st
             return cell
         }
 
-        if collectionView == self.middleCollectionView {
+        else if collectionView == self.middleCollectionView {
             let cell = collectionView
                 .dequeueReusableCell(withReuseIdentifier: "MiddleCollectionCell",
                                      for: indexPath
                 ) as? RecommendationCollectionViewCell ?? RecommendationCollectionViewCell()
+//            guard let books = UserController.sharedLibraryController.recommendationsForRandomShelf else { return cell }
+//            cell.book = books[indexPath.item]
             return cell
         }
 
-        if collectionView == self.bottomCollectionView {
+        else if collectionView == self.bottomCollectionView {
             let cell = collectionView
                 .dequeueReusableCell(withReuseIdentifier: "BottomCollectionCell",
                                      for: indexPath

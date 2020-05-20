@@ -55,6 +55,7 @@ class LibraryController {
     }
 
     init() {
+        print("new init")
         fetchUserLibrary()
     }
 

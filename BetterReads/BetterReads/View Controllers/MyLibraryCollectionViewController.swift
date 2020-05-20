@@ -13,7 +13,7 @@ private let reuseIdentifier = "LibraryCell"
 class MyLibraryCollectionViewController: UICollectionViewController {
 
     var tempShelfCount: Int = 1
-    let libraryController = LibraryController()
+    //let libraryController = LibraryController()
 
     // FIXME: change system color to trinidadOrange?
     // FIXME: add either an alert controller pop up to
@@ -67,7 +67,7 @@ class MyLibraryCollectionViewController: UICollectionViewController {
             print("LibraryToShelf")
             if let shelfDetailVC = segue.destination as? ShelfDetailCollectionViewController,
                 let indexPath = collectionView.indexPathsForSelectedItems?.first {
-                shelfDetailVC.libraryController = libraryController
+                //shelfDetailVC.libraryController = libraryController
                 shelfDetailVC.allBooksIndex = indexPath.row
             }
         }
@@ -82,7 +82,7 @@ class MyLibraryCollectionViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return libraryController.allShelvesArray.count
+        return UserController.sharedLibraryController.allShelvesArray.count//libraryController.allShelvesArray.count
     }
 
     override func collectionView(_ collectionView: UICollectionView,
@@ -92,7 +92,7 @@ class MyLibraryCollectionViewController: UICollectionViewController {
                                                             for: indexPath) as? LibraryCollectionViewCell
             else { return UICollectionViewCell() }
 
-        let allUserBooks = libraryController.allShelvesArray[indexPath.item]
+        let allUserBooks = UserController.sharedLibraryController.allShelvesArray[indexPath.item]
         switch indexPath.item {
         case 0:
             cell.shelfNameLabel.text = "My Books"
