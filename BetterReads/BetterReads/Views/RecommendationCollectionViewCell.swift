@@ -15,6 +15,8 @@ class RecommendationCollectionViewCell: UICollectionViewCell {
             getBookThumbnail()
         }
     }
+    @IBOutlet weak var defaultBookImageTitle: UILabel!
+    @IBOutlet weak var defaultBookImageAuthor: UILabel!
     @IBOutlet weak var bookCoverImageView: UIImageView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     private func getBookThumbnail() {
@@ -23,14 +25,22 @@ class RecommendationCollectionViewCell: UICollectionViewCell {
             activityIndicator.stopAnimating()
             return
         }
-        if let smallThumbnailUrl = URL(string: book.smallThumbnail ?? "") {
+        if let smallThumbnail = book.smallThumbnail, let smallThumbnailUrl = URL(string: smallThumbnail) {
             let options = ImageLoadingOptions(
                 placeholder: UIImage(named: "BetterReads-DefaultBookImage"),
                 transition: .fadeIn(duration: 0.33)
             )
             Nuke.loadImage(with: smallThumbnailUrl, options: options, into: bookCoverImageView)
+            return updateViews()
+        } else {
+            defaultBookImageTitle.text = """
+                                        \u{201C}\(book.title ?? "Title not available")\u{201D}
+                                        """
+            defaultBookImageAuthor.text = "by \(book.authors?.first ?? "Unknown")"
+            defaultBookImageTitle.isHidden = false
+            defaultBookImageAuthor.isHidden = false
+            return updateViews()
         }
-        updateViews()
     }
     private func updateViews() {
         activityIndicator.stopAnimating()

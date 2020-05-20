@@ -28,7 +28,7 @@ Flip through the tailored recommendations below from a variety of authors and st
     @IBOutlet weak var middleCollectionView: UICollectionView!
     @IBOutlet weak var bottomRecommendationLabel: UILabel!
     @IBOutlet weak var bottomCollectionView: UICollectionView!
-
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +39,7 @@ Flip through the tailored recommendations below from a variety of authors and st
         middleCollectionView.dataSource = self
         bottomCollectionView.delegate = self
         bottomCollectionView.dataSource = self
-
+        
         if (UserController.shared.isNewUser ?? false) {
             welcomeMessage.text = welcomeNewUserMessageText
         } else {

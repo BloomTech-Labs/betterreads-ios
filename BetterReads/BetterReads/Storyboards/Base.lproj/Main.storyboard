@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MA5-oK-UWx">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,6 +16,9 @@
         </array>
         <array key="SourceSansPro-Regular.ttf">
             <string>SourceSansPro-Regular</string>
+        </array>
+        <array key="SourceSansPro-SemiBold.ttf">
+            <string>SourceSansPro-SemiBold</string>
         </array>
     </customFonts>
     <scenes>
@@ -577,19 +580,37 @@
                                                                                     </constraints>
                                                                                     <color key="color" red="0.83137254900000002" green="0.28235294119999998" blue="0.031372549020000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                                                 </activityIndicatorView>
+                                                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L1b-FP-USc">
+                                                                                    <rect key="frame" x="4" y="4" width="117" height="15.5"/>
+                                                                                    <fontDescription key="fontDescription" name="SourceSansPro-SemiBold" family="Source Sans Pro" pointSize="12"/>
+                                                                                    <color key="textColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                    <nil key="highlightedColor"/>
+                                                                                </label>
+                                                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Authors" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6zi-Lf-yMa">
+                                                                                    <rect key="frame" x="4" y="155.5" width="117" height="15.5"/>
+                                                                                    <fontDescription key="fontDescription" name="SourceSansPro-SemiBold" family="Source Sans Pro" pointSize="12"/>
+                                                                                    <color key="textColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                    <nil key="highlightedColor"/>
+                                                                                </label>
                                                                             </subviews>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="trailing" secondItem="1EK-77-Ugp" secondAttribute="trailing" id="1oJ-FL-05l"/>
+                                                                                <constraint firstItem="L1b-FP-USc" firstAttribute="leading" secondItem="caN-6n-BWu" secondAttribute="leading" constant="4" id="5Iz-KW-FoN"/>
                                                                                 <constraint firstItem="1EK-77-Ugp" firstAttribute="top" secondItem="caN-6n-BWu" secondAttribute="top" id="99W-1k-EC6"/>
                                                                                 <constraint firstItem="1EK-77-Ugp" firstAttribute="centerY" secondItem="caN-6n-BWu" secondAttribute="centerY" id="Aby-Yn-jos"/>
                                                                                 <constraint firstItem="1EK-77-Ugp" firstAttribute="width" secondItem="caN-6n-BWu" secondAttribute="width" id="CGG-Ia-JBT"/>
+                                                                                <constraint firstAttribute="bottom" secondItem="6zi-Lf-yMa" secondAttribute="bottom" constant="4" id="I29-yw-e8Q"/>
                                                                                 <constraint firstAttribute="bottom" secondItem="1EK-77-Ugp" secondAttribute="bottom" id="VW2-y3-yTC"/>
+                                                                                <constraint firstAttribute="trailing" secondItem="6zi-Lf-yMa" secondAttribute="trailing" constant="4" id="XsG-Wq-959"/>
+                                                                                <constraint firstAttribute="trailing" secondItem="L1b-FP-USc" secondAttribute="trailing" constant="4" id="Xuv-Qh-TrT"/>
                                                                                 <constraint firstItem="ACi-J5-BUS" firstAttribute="leading" secondItem="caN-6n-BWu" secondAttribute="leading" id="akZ-WG-TbK"/>
+                                                                                <constraint firstItem="6zi-Lf-yMa" firstAttribute="leading" secondItem="caN-6n-BWu" secondAttribute="leading" constant="4" id="el3-Gk-dJI"/>
                                                                                 <constraint firstAttribute="trailing" secondItem="ACi-J5-BUS" secondAttribute="trailing" id="hwC-FH-i06"/>
                                                                                 <constraint firstItem="1EK-77-Ugp" firstAttribute="leading" secondItem="caN-6n-BWu" secondAttribute="leading" id="iGc-FP-J6k"/>
                                                                                 <constraint firstAttribute="bottom" secondItem="ACi-J5-BUS" secondAttribute="bottom" id="kiZ-cs-vI6"/>
                                                                                 <constraint firstItem="1EK-77-Ugp" firstAttribute="centerX" secondItem="caN-6n-BWu" secondAttribute="centerX" id="lnz-Bz-MBX"/>
                                                                                 <constraint firstItem="ACi-J5-BUS" firstAttribute="top" secondItem="caN-6n-BWu" secondAttribute="top" id="oi6-z5-UDx"/>
+                                                                                <constraint firstItem="L1b-FP-USc" firstAttribute="top" secondItem="caN-6n-BWu" secondAttribute="top" constant="4" id="vs3-jT-Ycc"/>
                                                                                 <constraint firstAttribute="width" secondItem="1EK-77-Ugp" secondAttribute="height" multiplier="5:7" id="zAW-mZ-Pfk"/>
                                                                             </constraints>
                                                                         </view>
@@ -604,6 +625,8 @@
                                                                 <connections>
                                                                     <outlet property="activityIndicator" destination="ACi-J5-BUS" id="aii-yS-v78"/>
                                                                     <outlet property="bookCoverImageView" destination="1EK-77-Ugp" id="Nbm-gq-euH"/>
+                                                                    <outlet property="defaultBookImageAuthor" destination="6zi-Lf-yMa" id="wlU-QX-W2X"/>
+                                                                    <outlet property="defaultBookImageTitle" destination="L1b-FP-USc" id="F1z-rN-90u"/>
                                                                     <segue destination="KfY-WO-sJ9" kind="show" identifier="ShowBookDetailSegue" id="rTd-to-6nz"/>
                                                                 </connections>
                                                             </collectionViewCell>
