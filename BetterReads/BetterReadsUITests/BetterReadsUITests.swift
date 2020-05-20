@@ -16,8 +16,6 @@ class BetterReadsUITests: XCTestCase {
         continueAfterFailure = false
         app.launch()
     }
-    override func tearDownWithError() throws {
-    }
     func testSignInScreenShowing() {
         let signInSegBtn = app.firstMatch.scrollViews.segmentedControls.buttons["Sign in"]
         let firstLabel = app.staticTexts["Email"]
@@ -33,25 +31,27 @@ class BetterReadsUITests: XCTestCase {
             XCTAssertTrue(firstLabel.exists)
         }
     }
-//    func testPasswordsMatch() {
-//        let signUpSegBtn = app.firstMatch.scrollViews.segmentedControls.buttons["Sign up"]
-//        signUpSegBtn.tap()
-//        let passwordTF = app.secureTextFields.firstMatch
-//        let confirmTF = app.secureTextFields.element(boundBy: 1)
-//        passwordTF.tap()
-//        passwordTF.typeText("abcde123")
-//        passwordTF.typeText("\n")
-//        confirmTF.tap()
-//        confirmTF.typeText("abcde123")
-//        confirmTF.typeText("\n")
-//    }
+    func testPasswordsMatch() {
+        let signUpSegBtn = app.firstMatch.scrollViews.segmentedControls.buttons["Sign up"]
+        signUpSegBtn.tap()
+        let passwordTF = app.secureTextFields.firstMatch
+        let confirmTF = app.secureTextFields.element(boundBy: 1)
+        passwordTF.tap()
+        passwordTF.typeText("abcde123")
+        app.keyboards.firstMatch.buttons["done"].tap()
+        confirmTF.typeText("abcde123")
+        app.keyboards.firstMatch.buttons["done"].tap()
+        let submitButton = app.buttons["Sign Up"]
+        XCTAssertTrue(submitButton.exists)
+        //submitButton.tap()
+    }
     func testLaunchPerformance() throws {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
             measure(metrics: [XCTOSSignpostMetric.applicationLaunch]) {
                 XCUIApplication().launch()
+                // Tested on May 20, 2020 at 6:21pm EDT
+                // Average launch = 1.003 secs
             }
-            // Tested on May 20, 2020 at 6:21pm EDT
-            // Average launch = 1.003 secs
         }
     }
 }
