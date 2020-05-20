@@ -116,6 +116,7 @@ class MyLibraryCollectionViewController: UICollectionViewController {
             return cell
         } else if indexPath.section == 1 {
             let customShelf = UserController.sharedLibraryController.userShelves[indexPath.item]
+            cell.customShelf = customShelf
             cell.shelfNameLabel.text = customShelf.shelfName
             return cell
         }

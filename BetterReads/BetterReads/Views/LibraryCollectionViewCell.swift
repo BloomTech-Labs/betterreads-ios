@@ -15,18 +15,24 @@ class LibraryCollectionViewCell: UICollectionViewCell {
     var secondImageView: UIImageView!
     var thirdImageView: UIImageView!
     var shelfNameLabel: UILabel!
+
+    /// Array of ImageViews that represent of 3 cover images of the shelf it displays
     var coversArray = [UIImageView]()
 
+    /// Array of UserBooks to fill in the 3 cover images (if displaying a default shelf)
     var allUserBooks: [UserBook]? {
         didSet {
             updateViews()
         }
     }
-//    var userBook: UserBook? {
-//        didSet {
-//            updateViews()
-//        }
-//    }
+    
+    /// A UserShelf that contains an array of UserBookOnShelf (if displaying a custom shelf)
+    var customShelf: UserShelf? {
+        didSet {
+            fillCoversForCustomShelf()
+        }
+    }
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         print("init with frame")
@@ -39,6 +45,7 @@ class LibraryCollectionViewCell: UICollectionViewCell {
         setUpSubviews()
     }
 
+    /// Fills in the 3 cover images of the cell if it's passed in an array of UserBooks
     private func fillUpCoverImages() {
         guard let allUserBooks = allUserBooks else { return }
 
@@ -77,17 +84,48 @@ class LibraryCollectionViewCell: UICollectionViewCell {
         }
     }
 
-    private func updateViews() {
-        guard let allUserBooks = allUserBooks else { return }
-        fillUpCoverImages()
+    /// Used if a UserShelf is passed in instead of an array of UserBook
+    private func fillCoversForCustomShelf() {
+        guard let customShelf = customShelf,
+            let customShelfBooks = customShelf.books else { return }
 
-        // Check the first? 3 books in array and set the book covers to their covers
-        guard let firstThumbnail = allUserBooks[0].thumbnail else { return }
-        SearchController.fetchImage(with: firstThumbnail) { (image) in
-            DispatchQueue.main.async {
-                self.shelfImageView.image = image
+        // 3 or more books
+        if customShelfBooks.count >= 3 {
+            for index in 0..<3 {
+                guard let thumbnail = customShelfBooks[index].thumbnail else { return }
+                SearchController.fetchImage(with: thumbnail) { (image) in
+                    DispatchQueue.main.async {
+                        self.coversArray[index].image = image
+                    }
+                }
             }
         }
+
+        // 2 books only
+        if customShelfBooks.count == 2 {
+            for index in 0..<2 {
+                guard let thumbnail = customShelfBooks[index].thumbnail else { return }
+                SearchController.fetchImage(with: thumbnail) { (image) in
+                    DispatchQueue.main.async {
+                        self.coversArray[index].image = image
+                    }
+                }
+            }
+        }
+
+        // 1 book only
+        if customShelfBooks.count == 1 {
+            guard let thumbnail = customShelfBooks.first?.thumbnail else { return }
+            SearchController.fetchImage(with: thumbnail) { (image) in
+                DispatchQueue.main.async {
+                    self.coversArray.first?.image = image
+                }
+            }
+        }
+    }
+    
+    private func updateViews() {
+        fillUpCoverImages()
     }
 
     private func setUpSubviews() {
