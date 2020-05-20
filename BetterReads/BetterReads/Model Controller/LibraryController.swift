@@ -68,11 +68,12 @@ class LibraryController {
         ///https://api.readrr.app/api/131/recommendations
         let requestUrl = baseUrl.appendingPathComponent("\(userId)/recommendations")
         var request = URLRequest(url: requestUrl)
-        request.httpMethod = "POST"
+        request.httpMethod = "POST" 
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue(token, forHTTPHeaderField: "Authorization")
-        // POST array of UserBookOnShelf
-        let body = userShelves.first?.books
+        // FIXME: pick random index between 0 and total user shelves count
+        let body = BooksForRecommendations(books: userShelves[0].books ?? []) // pick a random index
+        print("body = \(body)")
         do {
             let jsonEncoder = JSONEncoder()
             jsonEncoder.dateEncodingStrategy = .iso8601
@@ -102,22 +103,22 @@ class LibraryController {
             let jsonDecoder = JSONDecoder()
             jsonDecoder.dateDecodingStrategy = .iso8601
             do {
-                print("Data = \(data)")
+                print("Data! = \(data)")
                 let recommendationResult = try jsonDecoder.decode(RecommendationsResult.self, from: data)
+                print(recommendationResult.recommendations.recommendations.count)
                 self.recommendationsForRandomShelf = recommendationResult.recommendations.recommendations
                 DispatchQueue.main.async {
-                    print("\(self.recommendationsForRandomShelf?.count) recs")
                     completion(nil)
                 }
             } catch {
-                print("Error decoding or storing recs for random shelf \(error)")
+                print("Error decoding or storing recs for random shelf! \(error)")
                 DispatchQueue.main.async {
                     completion(error)
                 }
             }
         }.resume()
     }
-    
+
     /// Fetches all custom shelves, and all the books in each
     func fetchCustomShelves(completion: @escaping (Error?) -> Void = { _ in }) {
         guard let userId = userId,

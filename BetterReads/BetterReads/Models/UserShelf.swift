@@ -16,3 +16,7 @@ struct UserShelf: Codable {
     let userId: Int?
     let isPrivate: Bool?
 }
+
+struct BooksForRecommendations: Encodable {
+    let books: [UserBookOnShelf]
+}
