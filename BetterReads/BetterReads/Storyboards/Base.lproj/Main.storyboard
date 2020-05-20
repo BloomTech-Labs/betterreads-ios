@@ -31,19 +31,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forgot your password?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1zX-eX-IL3">
-                                <rect key="frame" x="20" y="54" width="335" height="28"/>
+                                <rect key="frame" x="20" y="54" width="335" height="30.5"/>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="24"/>
                                 <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No worries! Enter the email address associated with your account, and we will send you and email to reset your password." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LoE-zJ-L00">
-                                <rect key="frame" x="20" y="122" width="335" height="84"/>
+                                <rect key="frame" x="20" y="124.5" width="335" height="68"/>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
                                 <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="janesmith@email.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rgm-bZ-Ks6">
-                                <rect key="frame" x="20" y="246" width="335" height="40"/>
+                                <rect key="frame" x="20" y="232.5" width="335" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="XyH-cU-sVk"/>
                                 </constraints>
@@ -51,10 +51,10 @@
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="done" textContentType="email"/>
                             </textField>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="BetterReads-Graphics_Man" translatesAutoresizingMaskIntoConstraints="NO" id="AlX-hN-YS8">
-                                <rect key="frame" x="20" y="427" width="335" height="200"/>
+                                <rect key="frame" x="20" y="416" width="335" height="211"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aOZ-94-Io4">
-                                <rect key="frame" x="20" y="331.5" width="335" height="40"/>
+                                <rect key="frame" x="20" y="319.5" width="335" height="40"/>
                                 <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="LuV-Ir-Ioz"/>
@@ -70,13 +70,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Success or Failure Message" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eAz-Wf-Ror">
-                                <rect key="frame" x="20" y="391.5" width="335" height="15.5"/>
+                                <rect key="frame" x="20" y="379.5" width="335" height="16.5"/>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="13"/>
                                 <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Error Message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SoY-Zq-who">
-                                <rect key="frame" x="20" y="290" width="335" height="16.5"/>
+                                <rect key="frame" x="20" y="276.5" width="335" height="18"/>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
                                 <color key="textColor" red="0.89019607840000003" green="0.20392156859999999" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -99,7 +99,7 @@
                                 </constraints>
                             </imageView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="AMJ-2J-Yyb">
-                                <rect key="frame" x="20" y="331.5" width="335" height="40"/>
+                                <rect key="frame" x="20" y="319.5" width="335" height="40"/>
                                 <color key="backgroundColor" red="0.83137254900000002" green="0.28235294119999998" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="color" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
@@ -558,7 +558,7 @@
                                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         </collectionViewFlowLayout>
                                                         <cells>
-                                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TopCollectionCell" id="5HD-8Q-ctc" customClass="RecommendationCollectionViewCell" customModule="BetterReads" customModuleProvider="target">
+                                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TopCollectionCell" id="5HD-8Q-ctc" userLabel="TopCollectionCell" customClass="RecommendationCollectionViewCell" customModule="BetterReads" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="5" width="125" height="175"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="b1d-OL-Fzs">
@@ -571,7 +571,7 @@
                                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BetterReads-DefaultBookImage" translatesAutoresizingMaskIntoConstraints="NO" id="1EK-77-Ugp">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="125" height="175"/>
                                                                                 </imageView>
-                                                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="ACi-J5-BUS">
+                                                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="ACi-J5-BUS" userLabel="Top Activity Indicator">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="125" height="175"/>
                                                                                     <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                                                     <constraints>
@@ -675,14 +675,14 @@
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wQm-fW-Lna">
                                                                             <rect key="frame" x="0.0" y="0.0" width="125" height="175"/>
                                                                             <subviews>
-                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BetterReads-DefaultBookImage" translatesAutoresizingMaskIntoConstraints="NO" id="TIO-IA-ihl">
+                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BetterReads-DefaultBookImage" translatesAutoresizingMaskIntoConstraints="NO" id="TIO-IA-ihl">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="125" height="175"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" constant="175" id="JPW-rY-Ylv"/>
                                                                                         <constraint firstAttribute="width" constant="125" id="xBV-KT-i3c"/>
                                                                                     </constraints>
                                                                                 </imageView>
-                                                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="pR4-rx-DRe">
+                                                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="pR4-rx-DRe" userLabel="Middle Activity Indicator">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="125" height="175"/>
                                                                                     <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                                                     <constraints>
@@ -691,16 +691,34 @@
                                                                                     </constraints>
                                                                                     <color key="color" red="0.83137254900000002" green="0.28235294119999998" blue="0.031372549020000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                                                 </activityIndicatorView>
+                                                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z6e-d9-SgY">
+                                                                                    <rect key="frame" x="4" y="4" width="117" height="15.5"/>
+                                                                                    <fontDescription key="fontDescription" name="SourceSansPro-SemiBold" family="Source Sans Pro" pointSize="12"/>
+                                                                                    <color key="textColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                    <nil key="highlightedColor"/>
+                                                                                </label>
+                                                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Authors" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8qy-Qj-O7a">
+                                                                                    <rect key="frame" x="4" y="155.5" width="117" height="15.5"/>
+                                                                                    <fontDescription key="fontDescription" name="SourceSansPro-SemiBold" family="Source Sans Pro" pointSize="12"/>
+                                                                                    <color key="textColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                    <nil key="highlightedColor"/>
+                                                                                </label>
                                                                             </subviews>
                                                                             <constraints>
+                                                                                <constraint firstItem="8qy-Qj-O7a" firstAttribute="leading" secondItem="wQm-fW-Lna" secondAttribute="leading" constant="4" id="5QQ-YG-H7t"/>
                                                                                 <constraint firstAttribute="height" constant="175" id="676-uL-EUc"/>
+                                                                                <constraint firstAttribute="trailing" secondItem="8qy-Qj-O7a" secondAttribute="trailing" constant="4" id="J9S-h6-Zkw"/>
+                                                                                <constraint firstAttribute="bottom" secondItem="8qy-Qj-O7a" secondAttribute="bottom" constant="4" id="MEA-6d-AYd"/>
+                                                                                <constraint firstAttribute="trailing" secondItem="z6e-d9-SgY" secondAttribute="trailing" constant="4" id="NGK-NX-2T6"/>
                                                                                 <constraint firstAttribute="bottom" secondItem="pR4-rx-DRe" secondAttribute="bottom" id="c12-dv-SoA"/>
                                                                                 <constraint firstItem="pR4-rx-DRe" firstAttribute="leading" secondItem="wQm-fW-Lna" secondAttribute="leading" id="i4S-jR-vmQ"/>
                                                                                 <constraint firstItem="TIO-IA-ihl" firstAttribute="centerY" secondItem="wQm-fW-Lna" secondAttribute="centerY" id="ml3-NR-9CE"/>
+                                                                                <constraint firstItem="z6e-d9-SgY" firstAttribute="leading" secondItem="wQm-fW-Lna" secondAttribute="leading" constant="4" id="nbq-ke-Xh0"/>
                                                                                 <constraint firstItem="pR4-rx-DRe" firstAttribute="top" secondItem="wQm-fW-Lna" secondAttribute="top" id="oSS-3r-SvZ"/>
                                                                                 <constraint firstAttribute="width" constant="125" id="pnp-4J-tRD"/>
                                                                                 <constraint firstItem="TIO-IA-ihl" firstAttribute="centerX" secondItem="wQm-fW-Lna" secondAttribute="centerX" id="puT-8D-tMA"/>
                                                                                 <constraint firstAttribute="trailing" secondItem="pR4-rx-DRe" secondAttribute="trailing" id="rHe-GK-ljz"/>
+                                                                                <constraint firstItem="z6e-d9-SgY" firstAttribute="top" secondItem="wQm-fW-Lna" secondAttribute="top" constant="4" id="yxR-mb-GjP"/>
                                                                             </constraints>
                                                                         </view>
                                                                     </subviews>
@@ -710,7 +728,10 @@
                                                                     </constraints>
                                                                 </collectionViewCellContentView>
                                                                 <connections>
+                                                                    <outlet property="activityIndicator" destination="pR4-rx-DRe" id="Mse-YG-Bhp"/>
                                                                     <outlet property="bookCoverImageView" destination="TIO-IA-ihl" id="nXR-hz-QaH"/>
+                                                                    <outlet property="defaultBookImageAuthor" destination="8qy-Qj-O7a" id="2IV-BW-Aoq"/>
+                                                                    <outlet property="defaultBookImageTitle" destination="z6e-d9-SgY" id="Ryv-a4-IcP"/>
                                                                     <segue destination="KfY-WO-sJ9" kind="show" identifier="ShowBookDetailSegue" id="Anw-HX-Ft2"/>
                                                                 </connections>
                                                             </collectionViewCell>
@@ -759,14 +780,14 @@
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gtM-ak-uZv">
                                                                             <rect key="frame" x="0.0" y="0.0" width="125" height="175"/>
                                                                             <subviews>
-                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BetterReads-DefaultBookImage" translatesAutoresizingMaskIntoConstraints="NO" id="m1W-2k-kFT">
+                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BetterReads-DefaultBookImage" translatesAutoresizingMaskIntoConstraints="NO" id="m1W-2k-kFT">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="125" height="175"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="width" constant="125" id="NE7-VE-3de"/>
                                                                                         <constraint firstAttribute="height" constant="175" id="lgH-WL-U3o"/>
                                                                                     </constraints>
                                                                                 </imageView>
-                                                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="bXc-6c-yAe">
+                                                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="bXc-6c-yAe" userLabel="Bottom Activity Indicator">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="125" height="175"/>
                                                                                     <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                                                     <constraints>
@@ -1174,7 +1195,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uY4-Iu-gWo">
-                                                    <rect key="frame" x="63" y="20.5" width="277" height="19"/>
+                                                    <rect key="frame" x="63" y="20" width="277" height="20.5"/>
                                                     <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="16"/>
                                                     <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
