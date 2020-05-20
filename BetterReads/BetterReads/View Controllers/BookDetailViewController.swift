@@ -155,7 +155,7 @@ class BookDetailViewController: UIViewController {
         addButton.performFlare()
     }
 
-    var libraryController: LibraryController?
+    //var libraryController: LibraryController?
 
     /// UserBook that comes from ShelfDetail used to fetch UserBookDetail
     var userBook: UserBook? {
@@ -175,7 +175,7 @@ class BookDetailViewController: UIViewController {
     private func fetchBookById() {
         print("called fetchBookById in DetailVC")
         guard let bookId = userBook?.bookId else { return }
-        libraryController?.fetchBookById(bookId: bookId, completion: { (userBookDetail) in
+        UserController.sharedLibraryController.fetchBookById(bookId: bookId, completion: { (userBookDetail) in
             DispatchQueue.main.async {
                 self.titleLabel.text = userBookDetail?.title
                 self.authorLabel.text = "by \(userBookDetail?.authors ?? "Unknown")"

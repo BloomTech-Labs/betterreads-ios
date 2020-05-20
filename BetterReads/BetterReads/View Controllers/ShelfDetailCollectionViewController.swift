@@ -12,7 +12,7 @@ private let reuseIdentifier = "ShelfDetailCell"
 
 class ShelfDetailCollectionViewController: UICollectionViewController {
 
-    var libraryController: LibraryController?
+    //var libraryController: LibraryController?
     var tempShelfDetailCount: Int = 1
     var allBooksIndex: Int?
 
@@ -43,8 +43,8 @@ class ShelfDetailCollectionViewController: UICollectionViewController {
                 let cell = collectionView.cellForItem(at: indexPath) as? ShelfDetailCollectionViewCell
                 detailVC.bookCoverImageView.image = cell?.shelfImageView.image
                 detailVC.blurredBackgroundView.image = cell?.shelfImageView.image
-                detailVC.libraryController = libraryController
-                detailVC.userBook = libraryController?.allShelvesArray[allBooksIndex ?? 0][indexPath.item]
+                //detailVC.libraryController = libraryController
+                detailVC.userBook = UserController.sharedLibraryController.allShelvesArray[allBooksIndex ?? 0][indexPath.item]
                 // FIXME: pass in controller that has CRUD methods to add books
             }
         }
@@ -56,7 +56,7 @@ class ShelfDetailCollectionViewController: UICollectionViewController {
         return 1
     }
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return libraryController?.allShelvesArray[allBooksIndex ?? 0].count ?? 0
+        return UserController.sharedLibraryController.allShelvesArray[allBooksIndex ?? 0].count ?? 0
     }
     override func collectionView(_ collectionView: UICollectionView,
                                  cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -64,7 +64,7 @@ class ShelfDetailCollectionViewController: UICollectionViewController {
                                                             for: indexPath) as? ShelfDetailCollectionViewCell
             else { return UICollectionViewCell() }
         guard let allBooksIndex = allBooksIndex else { return cell }
-        cell.userBook = libraryController?.allShelvesArray[allBooksIndex][indexPath.item]
+        cell.userBook = UserController.sharedLibraryController.allShelvesArray[allBooksIndex][indexPath.item]
         return cell
     }
 }

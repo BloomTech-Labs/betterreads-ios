@@ -20,6 +20,7 @@ struct TypeQuery: Codable {
     var query: String
 }
 
+/// Books are returned in Recommendations and Search Results
 struct Book: Codable {
     let authors: [String]?
     let categories: [String]?
@@ -45,26 +46,3 @@ struct Book: Codable {
         textSnippet, thumbnail, title, webReaderLink, averageRating, isbn10, isbn13, publishedDate
     }
 }
-
-// Book model from the docs
-/*
- {
-   googleId: STRING,
-   title: STRING,
-   authors: STRING,
-   publisher: STRING,
-   publishedDate: STRING,
-   description: STRING,
-   isbn10: STRING,
-   isbn13: STRING,
-   pageCount: INTEGER,
-   categories: STRING,
-   thumbnail: STRING,
-   smallThumbnail: STRING,
-   language: STRING,
-   webReaderLink: STRING,
-   textSnippet: STRING,
-   isEbook: BOOLEAN,
-   averageRating: DECIMAL
- }
- */

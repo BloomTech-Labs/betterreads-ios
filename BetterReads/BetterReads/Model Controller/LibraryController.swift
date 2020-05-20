@@ -10,9 +10,16 @@ import Foundation
 
 class LibraryController {
 
+    // MARK: - Properties
+
     /// Holds all of the user's shelves
     var allShelvesArray = [[UserBook]]()
 
+    /// An array made up of each custom shelf
+    //var allCustomShelvesArray = [[UserBook]]()
+    
+    /// Array of Books based on recommendations from a random user shelf
+    var recommendationsForRandomShelf: [Book]?
     /// Holds all of the user's books
     var myBooksArray = [UserBook]()
 
@@ -24,20 +31,22 @@ class LibraryController {
 
     /// Holds user books that are "Finished"
     var finishedBooksArray = [UserBook]()
-    
+
     /// Holds an array of all the user's custom shelves
     var userShelves = [UserShelf]()
 
     /// https://api.readrr.app/api
     let baseUrl = URL(string: "https://api.readrr.app/api")!
-    
+
+    /// Returns unwrapped user token from shared UserController
     var token: String? {
         guard let unwrappedToken = UserController.shared.authToken else {
             return nil
         }
         return unwrappedToken
     }
-    
+
+    /// Returns unwrapped user id from shared UserController
     var userId: Int? {
         guard let unwrappedUserId = UserController.shared.user?.userID else {
             return nil
@@ -46,14 +55,77 @@ class LibraryController {
     }
 
     init() {
+        print("new init")
         fetchUserLibrary()
     }
 
+    // MARK: - Networking
+
+    /// Returns an array of Books based on books posted to database
+    func fetchRecommendedBooks(completion: @escaping (Error?) -> Void = { _ in }) {
+        print("called fetchRecBooks")
+        guard let userId = userId,
+            let token = token else { print("no token/id"); return }
+        ///https://api.readrr.app/api/131/recommendations
+        let requestUrl = baseUrl.appendingPathComponent("\(userId)/recommendations")
+        var request = URLRequest(url: requestUrl)
+        request.httpMethod = "POST" 
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue(token, forHTTPHeaderField: "Authorization")
+        // FIXME: pick random index between 0 and total user shelves count
+        let body = BooksForRecommendations(books: userShelves[0].books ?? []) // pick a random index
+        print("body = \(body)")
+        do {
+            let jsonEncoder = JSONEncoder()
+            jsonEncoder.dateEncodingStrategy = .iso8601
+            request.httpBody = try jsonEncoder.encode(body)
+        } catch {
+            print("Error encoding json body: \(error)")
+            DispatchQueue.main.async {
+                completion(error)
+            }
+            return
+        }
+        URLSession.shared.dataTask(with: request) { (data, _, error) in
+            if let error = error {
+                print("Error fetching recommendations for shelf: \(error)")
+                DispatchQueue.main.async {
+                    completion(error)
+                }
+                return
+            }
+            guard let data = data else {
+                print("No data return by data task in fetchRecs")
+                DispatchQueue.main.async {
+                    completion(NSError())
+                }
+                return
+            }
+            let jsonDecoder = JSONDecoder()
+            jsonDecoder.dateDecodingStrategy = .iso8601
+            do {
+                print("Data! = \(data)")
+                let recommendationResult = try jsonDecoder.decode(RecommendationsResult.self, from: data)
+                print(recommendationResult.recommendations.recommendations.count)
+                self.recommendationsForRandomShelf = recommendationResult.recommendations.recommendations
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+            } catch {
+                print("Error decoding or storing recs for random shelf! \(error)")
+                DispatchQueue.main.async {
+                    completion(error)
+                }
+            }
+        }.resume()
+    }
+
+    /// Fetches all custom shelves, and all the books in each
     func fetchCustomShelves(completion: @escaping (Error?) -> Void = { _ in }) {
         guard let userId = userId,
             let token = token else { return }
-        //https://api.readrr.app/api/shelves/user/131
-        let requestUrl = baseUrl.appendingPathComponent("shelves/user/\(userId)")
+        ///https://api.readrr.app/api/booksonshelf/user/131/shelves/allbooks
+        let requestUrl = baseUrl.appendingPathComponent("booksonshelf/user/\(userId)/shelves/allbooks")
         var request = URLRequest(url: requestUrl)
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -78,8 +150,8 @@ class LibraryController {
             jsonDecoder.dateDecodingStrategy = .iso8601
             do {
                 print("Data = \(data)")
-                let booksArray = try jsonDecoder.decode([UserShelf].self, from: data)
-                self.userShelves = booksArray
+                let allCustomShelvesWithBooks = try jsonDecoder.decode([UserShelf].self, from: data)
+                self.userShelves = allCustomShelvesWithBooks
                 DispatchQueue.main.async {
                     completion(nil)
                 }
@@ -212,181 +284,3 @@ class LibraryController {
         }.resume()
     }
 }
-
-struct UserShelf: Codable {
-    let shelfId: Int?
-    let userId: Int?
-    let shelfName: String?
-    let isPrivate: Bool?
-}
-/*
- [
-   {
-     "shelfId": 76,
-     "userId": 131,
-     "shelfName": "Philosophy",
-     "isPrivate": null
-   },
-   {
-     "shelfId": 77,
-     "userId": 131,
-     "shelfName": "Fire Stuff",
-     "isPrivate": null
-   },
-   {
-     "shelfId": 81,
-     "userId": 131,
-     "shelfName": "Sci-fi",
-     "isPrivate": null
-   }
- ]
- */
-
-/*
- struct Book: Codable {
-     let authors: [String]?
-     let categories: [String]?
-     let itemDescription: String?
-     let googleID: String? // wasn't optional
-     let isEbook: Bool? // wasn't optional
-     let language: String? // used to be Language and not optional
-     let pageCount: Int?
-     let publisher: String? // wasn't optional
-     let smallThumbnail: String? // wasn't optional
-     let textSnippet: String?
-     let thumbnail: String? // wasn't optional
-     let title: String? // wasn't optional
-     let webReaderLink: String? // wasn't optional
-     let averageRating: Double?
-     let isbn10, isbn13, publishedDate: String?
-
-     enum CodingKeys: String, CodingKey {
-         case authors, categories
-         case itemDescription = "description"
-         case googleID = "googleId"
-         case isEbook, language, pageCount, publisher, smallThumbnail,
-                textSnippet, thumbnail, title, webReaderLink,
-                averageRating, isbn10, isbn13, publishedDate
-     }
- }
- */
-
-struct UserBook: Codable {
-    let userBooksId: Int?
-    let bookId: Int?
-    let googleId: String?
-    let title: String?
-    let authors: String? // could this be an array?
-    let readingStatus: Int?
-    let favorite: Bool?
-    let categories: String?
-    let thumbnail: String?
-    let pageCount: Int?
-    let dateStarted: String? // DATETIME
-    let dateEnded: String? // DATETIME
-    let dateAdded: String? // DATETIME
-    let userRating: Double? // DECIMAL
-    // example response
-//    {
-//      "userBooksId": 365,
-//      "bookId": 315,
-//      "googleId": "OYtkbGl2j0sC",
-//      "title": "Fahrenheit 451",
-//      "authors": "Ray Bradbury",
-//      "readingStatus": 1,
-//      "favorite": false,
-//      "categories": "Fiction / Classics,Fiction / Science Fiction / General,Fiction / Media Tie-In",
-//      "thumbnail": "https://books.google.com/books/content?id=_api",
-//      "pageCount": 208,
-//      "dateStarted": null,
-//      "dateEnded": null,
-//      "dateAdded": "2020-05-11T18:50:21.337Z",
-//      "userRating": null
-//    }
-}
-
-// Example library response
-/*
- [
-   {
-     "userBooksId": 365,
-     "bookId": 315,
-     "googleId": "OYtkbGl2j0sC",
-     "title": "Fahrenheit 451",
-     "authors": "Ray Bradbury",
-     "readingStatus": 1,
-     "favorite": false,
-     "categories": "Fiction / Classics,Fiction / Science Fiction / General,Fiction / Media Tie-In",
-     "thumbnail": "https://books.google.com/books/content?id=OY1AR&source=gbs_api",
-     "pageCount": 208,
-     "dateStarted": null,
-     "dateEnded": null,
-     "dateAdded": "2020-05-11T18:50:21.337Z",
-     "userRating": null
-   },
-   {
-     "userBooksId": 364,
-     "bookId": 314,
-     "googleId": "kotPYEqx7kMC",
-     "title": "1984",
-     "authors": "George Orwell",
-     "readingStatus": 3,
-     "favorite": false,
-     "categories": "{\"Fiction\"}",
-     "thumbnail": "https://books.google.com/books/content?id=kocurl&source=gbs_api",
-     "pageCount": 648,
-     "dateStarted": null,
-     "dateEnded": null,
-     "dateAdded": "2020-05-11T18:44:50.051Z",
-     "userRating": null
-   },
-   {
-     "userBooksId": 363,
-     "bookId": 313,
-     "googleId": "CCiZnVG1j4cC",
-     "title": "Mortality",
-     "authors": "Christopher Hitchens",
-     "readingStatus": 3,
-     "favorite": false,
-     "categories": "{\"Biography & Autobiography\"}",
-     "thumbnail": "https://books.google.com/books/content?id=CC=curl&source=gbs_api",
-     "pageCount": 128,
-     "dateStarted": null,
-     "dateEnded": null,
-     "dateAdded": "2020-05-11T18:43:03.441Z",
-     "userRating": null
-   },
-   {
-     "userBooksId": 362,
-     "bookId": 312,
-     "googleId": "SGAZdjNfruYC",
-     "title": "Animal Farm",
-     "authors": "George Orwell",
-     "readingStatus": 2,
-     "favorite": false,
-     "categories": "{\"Fiction\"}",
-     "thumbnail": "https://books.google.com/books/content?id=SG&zoom=1&source=gbs_api",
-     "pageCount": 140,
-     "dateStarted": null,
-     "dateEnded": null,
-     "dateAdded": "2020-05-11T17:17:20.813Z",
-     "userRating": null
-   },
-   {
-     "userBooksId": 361,
-     "bookId": 311,
-     "googleId": "kcsqGna7fBIC",
-     "title": "Breaking Dawn",
-     "authors": "Stephenie Meyer",
-     "readingStatus": 1,
-     "favorite": false,
-     "categories": "{\"Young Adult Fiction\"}",
-     "thumbnail": "https://books.google.com/books/content?id=kc=curl&source=gbs_api",
-     "pageCount": 768,
-     "dateStarted": null,
-     "dateEnded": null,
-     "dateAdded": "2020-05-11T16:49:46.817Z",
-     "userRating": null
-   }
- ]
- */
