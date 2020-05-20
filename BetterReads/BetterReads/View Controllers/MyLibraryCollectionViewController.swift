@@ -78,11 +78,17 @@ class MyLibraryCollectionViewController: UICollectionViewController {
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return 2
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return UserController.sharedLibraryController.allShelvesArray.count//libraryController.allShelvesArray.count
+        switch section {
+        case 0:
+            return UserController.sharedLibraryController.allShelvesArray.count
+        default:
+            return 3
+        }
+        //return UserController.sharedLibraryController.allShelvesArray.count//libraryController.allShelvesArray.count
     }
 
     override func collectionView(_ collectionView: UICollectionView,
@@ -92,21 +98,43 @@ class MyLibraryCollectionViewController: UICollectionViewController {
                                                             for: indexPath) as? LibraryCollectionViewCell
             else { return UICollectionViewCell() }
 
-        let allUserBooks = UserController.sharedLibraryController.allShelvesArray[indexPath.item]
-        switch indexPath.item {
-        case 0:
-            cell.shelfNameLabel.text = "My Books"
-        case 1:
-            cell.shelfNameLabel.text = "To be read"
-        case 2:
-            cell.shelfNameLabel.text = "In progress"
-        case 3:
-            cell.shelfNameLabel.text = "Finished"
-        default:
-            cell.shelfNameLabel.text = "Empty Shelf"
+        if indexPath.section == 0 {
+            let allUserBooks = UserController.sharedLibraryController.allShelvesArray[indexPath.item]
+            switch indexPath.item {
+            case 0:
+                cell.shelfNameLabel.text = "My Books"
+            case 1:
+                cell.shelfNameLabel.text = "To be read"
+            case 2:
+                cell.shelfNameLabel.text = "In progress"
+            case 3:
+                cell.shelfNameLabel.text = "Finished"
+            default:
+                cell.shelfNameLabel.text = "Empty Shelf"
+            }
+            cell.allUserBooks = allUserBooks
+            return cell
+        } else if indexPath.section == 1 {
+            let customShelf = UserController.sharedLibraryController.userShelves[indexPath.item]
+            cell.shelfNameLabel.text = customShelf.shelfName
+            return cell
         }
-        cell.allUserBooks = allUserBooks
         return cell
+//        let allUserBooks = UserController.sharedLibraryController.allShelvesArray[indexPath.item]
+//        switch indexPath.item {
+//        case 0:
+//            cell.shelfNameLabel.text = "My Books"
+//        case 1:
+//            cell.shelfNameLabel.text = "To be read"
+//        case 2:
+//            cell.shelfNameLabel.text = "In progress"
+//        case 3:
+//            cell.shelfNameLabel.text = "Finished"
+//        default:
+//            cell.shelfNameLabel.text = "Empty Shelf"
+//        }
+//        cell.allUserBooks = allUserBooks
+//        return cell
     }
 }
 
