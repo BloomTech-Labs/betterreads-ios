@@ -9,15 +9,17 @@
 import Foundation
 
 class LibraryController {
-    
+
     // MARK: - Properties
 
     /// Holds all of the user's shelves
     var allShelvesArray = [[UserBook]]()
 
     /// An array made up of each custom shelf
-    var allCustomShelvesArray = [[UserBook]]()
-
+    //var allCustomShelvesArray = [[UserBook]]()
+    
+    /// Array of Books based on recommendations from a random user shelf
+    var recommendationsForRandomShelf: [Book]?
     /// Holds all of the user's books
     var myBooksArray = [UserBook]()
 
@@ -58,6 +60,64 @@ class LibraryController {
 
     // MARK: - Networking
 
+    /// Returns an array of Books based on books posted to database
+    func fetchRecommendedBooks(completion: @escaping (Error?) -> Void = { _ in }) {
+        print("called fetchRecBooks")
+        guard let userId = userId,
+            let token = token else { print("no token/id"); return }
+        ///https://api.readrr.app/api/131/recommendations
+        let requestUrl = baseUrl.appendingPathComponent("\(userId)/recommendations")
+        var request = URLRequest(url: requestUrl)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue(token, forHTTPHeaderField: "Authorization")
+        // POST array of UserBookOnShelf
+        let body = userShelves.first?.books
+        do {
+            let jsonEncoder = JSONEncoder()
+            jsonEncoder.dateEncodingStrategy = .iso8601
+            request.httpBody = try jsonEncoder.encode(body)
+        } catch {
+            print("Error encoding json body: \(error)")
+            DispatchQueue.main.async {
+                completion(error)
+            }
+            return
+        }
+        URLSession.shared.dataTask(with: request) { (data, _, error) in
+            if let error = error {
+                print("Error fetching recommendations for shelf: \(error)")
+                DispatchQueue.main.async {
+                    completion(error)
+                }
+                return
+            }
+            guard let data = data else {
+                print("No data return by data task in fetchRecs")
+                DispatchQueue.main.async {
+                    completion(NSError())
+                }
+                return
+            }
+            let jsonDecoder = JSONDecoder()
+            jsonDecoder.dateDecodingStrategy = .iso8601
+            do {
+                print("Data = \(data)")
+                let recommendationResult = try jsonDecoder.decode(RecommendationsResult.self, from: data)
+                self.recommendationsForRandomShelf = recommendationResult.recommendations.recommendations
+                DispatchQueue.main.async {
+                    print("\(self.recommendationsForRandomShelf?.count) recs")
+                    completion(nil)
+                }
+            } catch {
+                print("Error decoding or storing recs for random shelf \(error)")
+                DispatchQueue.main.async {
+                    completion(error)
+                }
+            }
+        }.resume()
+    }
+    
     /// Fetches all custom shelves, and all the books in each
     func fetchCustomShelves(completion: @escaping (Error?) -> Void = { _ in }) {
         guard let userId = userId,
@@ -88,8 +148,8 @@ class LibraryController {
             jsonDecoder.dateDecodingStrategy = .iso8601
             do {
                 print("Data = \(data)")
-                let booksArray = try jsonDecoder.decode([UserShelf].self, from: data)
-                self.userShelves = booksArray
+                let allCustomShelvesWithBooks = try jsonDecoder.decode([UserShelf].self, from: data)
+                self.userShelves = allCustomShelvesWithBooks
                 DispatchQueue.main.async {
                     completion(nil)
                 }

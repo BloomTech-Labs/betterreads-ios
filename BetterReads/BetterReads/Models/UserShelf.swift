@@ -8,10 +8,11 @@
 
 import Foundation
 
+/// Has books property that has all UserBookOnShelf in that UserShelf
 struct UserShelf: Codable {
     let shelfId: Int?
     let shelfName: String?
-    let book: [UserBookOnShelf]?
+    let books: [UserBookOnShelf]?
     let userId: Int?
     let isPrivate: Bool?
 }
