@@ -53,3 +53,16 @@ extension UIImage {
         self.init(data: image.pngData()!)!
     }
 }
+// Break down User's full name into first and last
+extension Name {
+    init(fullName: String) {
+        var names = fullName.components(separatedBy: " ")
+        let first = names.removeFirst()
+        let last = names.joined(separator: " ")
+        self.init(first: first, last: last)
+    }
+}
+
+extension Name: CustomStringConvertible {
+    var description: String { return "\(first) \(last)" }
+}
