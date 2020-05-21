@@ -5,7 +5,6 @@
 //  Created by Jorge Alvarez on 5/6/20.
 //  Copyright © 2020 Labs23. All rights reserved.
 //
-
 import UIKit
 
 class ShelfDetailCollectionViewCell: UICollectionViewCell {
