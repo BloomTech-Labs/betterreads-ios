@@ -44,7 +44,15 @@ class ShelfDetailCollectionViewController: UICollectionViewController {
                 let cell = collectionView.cellForItem(at: indexPath) as? ShelfDetailCollectionViewCell
                 detailVC.bookCoverImageView.image = cell?.shelfImageView.image
                 detailVC.blurredBackgroundView.image = cell?.shelfImageView.image
-                detailVC.userBook = UserController.sharedLibraryController.allShelvesArray[allBooksIndex ?? 0][indexPath.item]
+                if let possibleAllBooksIndex = allBooksIndex {
+                    print("section 1, index \(possibleAllBooksIndex)")
+                    detailVC.userBook = UserController.sharedLibraryController.allShelvesArray[possibleAllBooksIndex][indexPath.item]
+                }
+
+                if let possibleUserShelvesIndex = userShelvesIndex {
+                    print("section 2, index \(possibleUserShelvesIndex)")
+                }
+                //detailVC.userBook = UserController.sharedLibraryController.allShelvesArray[allBooksIndex ?? 0][indexPath.item]
                 // FIXME: pass in controller that has CRUD methods to add books
             }
         }
