@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AccountSettingsViewController: UIViewController,  UITableViewDataSource {
+class AccountSettingsViewController: UIViewController, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +21,8 @@ class AccountSettingsViewController: UIViewController,  UITableViewDataSource {
         return 3
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "settingsCell") as? SettingsTableViewCell ?? SettingsTableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "settingsCell")
+            as? SettingsTableViewCell ?? SettingsTableViewCell()
         if indexPath.row == 0 {
             cell.settingsTitleLabel.text = "Password"
             cell.settingIconImageView.image = UIImage(systemName: "lock.circle.fill")
