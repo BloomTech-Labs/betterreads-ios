@@ -32,18 +32,32 @@ class BetterReadsUITests: XCTestCase {
         }
     }
     func testPasswordsMatch() {
-        let signUpSegBtn = app.firstMatch.scrollViews.segmentedControls.buttons["Sign up"]
-        signUpSegBtn.tap()
-        let passwordTF = app.secureTextFields.firstMatch
-        let confirmTF = app.secureTextFields.element(boundBy: 1)
-        passwordTF.tap()
-        passwordTF.typeText("abcde123")
-        app.keyboards.firstMatch.buttons["done"].tap()
-        confirmTF.typeText("abcde123")
-        app.keyboards.firstMatch.buttons["done"].tap()
-        let submitButton = app.buttons["Sign Up"]
-        XCTAssertTrue(submitButton.exists)
-        //submitButton.tap()
+        let scrollViewsQuery = app.scrollViews
+        let elementsQuery = scrollViewsQuery.otherElements
+        elementsQuery.buttons["Sign up"].tap()
+        let fullNameTF = elementsQuery.textFields["Jane Smith"]
+        fullNameTF.tap()
+        fullNameTF.typeText("Test User")
+        let nextButton = app.buttons["Next:"]
+        nextButton.tap()
+        app.typeText("aa@aa.com")
+        nextButton.tap()
+        app.typeText("aabbcc1")
+        let betterreadsLogoOrangeElement = scrollViewsQuery.otherElements
+            .containing(.image, identifier: "BetterReads-Logo_Orange").element
+        betterreadsLogoOrangeElement.swipeUp()
+        let confirmPasswordSecureTextField = elementsQuery.secureTextFields["Confirm password"]
+        confirmPasswordSecureTextField.tap()
+        confirmPasswordSecureTextField.typeText("aabbcc2")
+        app.buttons["Done"].tap()
+        let errorStateMessage = elementsQuery
+            .staticTexts["Passwords do not match."]
+        XCTAssertTrue(errorStateMessage.exists)
+    }
+    func testForgotPasswordModalShows() {
+        app.scrollViews.otherElements.buttons["Forgot your password?"].tap()
+        let downArrow = app.buttons["Down Arrow Button"]
+        XCTAssertTrue(downArrow.exists)
     }
     func testLaunchPerformance() throws {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
