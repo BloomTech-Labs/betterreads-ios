@@ -89,7 +89,7 @@ class MyLibraryCollectionViewController: UICollectionViewController {
         case 0:
             return UserController.sharedLibraryController.allShelvesArray.count
         default:
-            return 3
+            return UserController.sharedLibraryController.userShelves.count
         }
     }
 
