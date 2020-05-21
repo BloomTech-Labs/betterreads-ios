@@ -56,15 +56,12 @@ class SignInViewController: UIViewController {
         activityIndicatorSubmit.isHidden = true
         activityIndicatorSubmit.layer.cornerRadius = 5
         submitButton.layer.cornerRadius = 5
-        //Show sign in form first, so returning users can sign in quickly
-        loginType = .signin
+        loginType = .signin //Show sign in form first, so returning users can sign in quickly
         segmentedControl.selectedSegmentIndex = 1
         setUpSignInForm()
-        // Dismiss the keyboard on tap
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)
-        // Register View Controller as Observer
-        NotificationCenter.default.addObserver(self,
+        NotificationCenter.default.addObserver(self, // Register View Controller as Observer
                                                selector: #selector(textDidChange(_:)),
                                                name: UITextField.textDidChangeNotification,
                                                object: nil)
@@ -74,15 +71,13 @@ class SignInViewController: UIViewController {
         submitButton.backgroundColor = .trinidadOrange
         let textFields: [UITextField] = [fullNameTextField, emailTextField, passwordTextField, confirmPasswordTextField]
         for textField in textFields {
-            // Validate Text Field
             let (valid, _) = validate(textField)
             guard valid else {
                 formIsValid = false
                 break
             }
         }
-        // Update Save Button
-        submitButton.backgroundColor = formIsValid ? .trinidadOrange : .altoGray
+        submitButton.backgroundColor = formIsValid ? .trinidadOrange : .altoGray // Update Save Button
         submitButton.isEnabled = formIsValid
         if formIsValid {
             submitButton.performFlare()
@@ -99,14 +94,12 @@ class SignInViewController: UIViewController {
     private func setupCustomSegmentedControl() {
         // Change font on the segmented control, add a default font to dismiss warning
         segmentedControl.setTitleTextAttributes([NSAttributedString.Key.font: semiBoldFont ?? UIFont()], for: .selected)
-        // Change the background and divider image on the segmented control
-        // to a transparent (clear) image in the extension at the bottom of this file
+        // Change the background and divider image on the segmented control to a transparent (clear) image
         segmentedControl.setBackgroundImage(segControlBackgroundImage, for: .normal, barMetrics: .default)
         segmentedControl.setDividerImage(segControlDividerImage,
                                          forLeftSegmentState: .normal,
                                          rightSegmentState: .normal,
                                          barMetrics: .default)
-        // Change the text color on the segmented control for selected and normal states
         segmentedControl.setTitleTextAttributes(selectedTextAttributes as [NSAttributedString.Key: Any], for: .selected)
         segmentedControl.setTitleTextAttributes(normalTextAttributes as [NSAttributedString.Key: Any], for: .normal)
     }
@@ -150,7 +143,6 @@ class SignInViewController: UIViewController {
         emailTextField.textContentType = .emailAddress
     }
     // MARK: - Configure Text Fields for show/hide Password
-    // FIXME: text should always be secured when clicking outside of textfield (on tap gesture)
     private func configurePasswordTextField() {
         passwordTextField.isSecureTextEntry = true
         passwordTextField.rightView = passwordEyeballButton
@@ -174,22 +166,18 @@ class SignInViewController: UIViewController {
     }
     @objc private func tappedPasswordEyeballButton(field: UITextField) {
         if passwordTextField.isSecureTextEntry == true {
-            // Show
             passwordEyeballButton.setImage(UIImage(systemName: "eye.fill"), for: .normal)
             passwordTextField.isSecureTextEntry = false
         } else {
-            // Hide
             passwordEyeballButton.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
             passwordTextField.isSecureTextEntry = true
         }
     }
     @objc private func tappedConfirmPasswordEyeballButton() {
         if confirmPasswordTextField.isSecureTextEntry == true {
-            // Show
             confirmPasswordEyeballButton.setImage(UIImage(systemName: "eye.fill"), for: .normal)
             confirmPasswordTextField.isSecureTextEntry = false
         } else {
-            // Hide
             confirmPasswordEyeballButton.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
             confirmPasswordTextField.isSecureTextEntry = true
         }
@@ -215,21 +203,19 @@ class SignInViewController: UIViewController {
     private func validate(_ field: UITextField? = nil) -> (Bool, String?) {
         do {
             switch field {
-            case fullNameTextField:
-                // if signIn, don't validate fullName textfield
+            case fullNameTextField: // if signIn, don't validate fullName textfield
                 if segmentedControl.selectedSegmentIndex == 1 {
                     return (true, nil)
                 }
-                let _ = try fullNameTextField.validatedText(validationType: .required(field: "fullName"))
+                _ = try fullNameTextField.validatedText(validationType: .required(field: "fullName"))
                 return (true, nil)
             case emailTextField:
-                let _ = try emailTextField.validatedText(validationType: .email(field: "email"))
+                _ = try emailTextField.validatedText(validationType: .email(field: "email"))
                 return (true, nil)
             case passwordTextField:
-                let _ = try passwordTextField.validatedText(validationType: .password(field: "password"))
+                _ = try passwordTextField.validatedText(validationType: .password(field: "password"))
                 return (true, nil)
-            case confirmPasswordTextField:
-                // if signIn, don't validate confirmPassword textfield
+            case confirmPasswordTextField: // if signIn, don't validate confirmPassword textfield
                 if segmentedControl.selectedSegmentIndex == 1 {
                     return (true, nil)
                 }
@@ -237,30 +223,27 @@ class SignInViewController: UIViewController {
                     validationType: .password(field: "confirmPassword"))
                 guard let password = passwordTextField.text else { return (false, "Passwords do not match.")}
                 if confirmPassword != password {
-                    print("\(password) \n \(confirmPassword)")
                     return (false, "Passwords do not match.")
                 }
                 return (true, nil)
-            default:
-                // default: validate all textfields one last time and call completion
+            default: // default: validate all textfields one last time and call completion
                 // unless you're on sign in, then don't validate fullName textfield
                 if segmentedControl.selectedSegmentIndex == 0 {
-                    let _ = try fullNameTextField.validatedText(validationType: .required(field: "fullName"))
+                    _ = try fullNameTextField.validatedText(validationType: .required(field: "fullName"))
                 }
-                let _ = try emailTextField.validatedText(validationType: .email(field: "email"))
+                _ = try emailTextField.validatedText(validationType: .email(field: "email"))
                 let password = try passwordTextField.validatedText(validationType: .password(field: "password"))
                 // unless you're on sign in, then don't validate confirmPassword textfield
                 if segmentedControl.selectedSegmentIndex == 0 {
                     let confirmPassword = try confirmPasswordTextField.validatedText(
                         validationType: .password(field: "confirmPassword"))
                     if confirmPassword != password {
-                        print("\(password) \n \(confirmPassword)")
                         return (false, "Passwords do not match.")
                     }
                 }
                 return (true, nil)
             }
-        } catch (let error) {
+        } catch let error {
             let convertedError = (error as? ValidationError)
             return (false, convertedError?.message)
         }
@@ -273,7 +256,8 @@ class SignInViewController: UIViewController {
                                      emailAddress: emailAddress,
                                      password: password) { (networkError) in
             if let error = networkError {
-                self.presentSignUpErrorAlert()
+                self.showBasicAlert(alertText: "Sign Up Error",
+                                    alertMessage: "An error occured during Sign Up,\nplease try again later.")
                 NSLog("Error occured during Sign Up: \(error)")
             } else {
                 print("Sign up successful...now signing in...")
@@ -281,7 +265,8 @@ class SignInViewController: UIViewController {
                 UserController.shared.signIn(emailAddress: emailAddress, password: password) { (networkError) in
                     if let error = networkError {
                         self.setUpSignInForm()
-                        self.presentSignInErrorAlert()
+                        self.showBasicAlert(alertText: "Sign In Error",
+                                            alertMessage: "An error occured during Sign In,\nplease try again later.")
                         NSLog("Error occured during Sign In: \(error)")
                     } else {
                         DispatchQueue.main.async {
@@ -297,7 +282,8 @@ class SignInViewController: UIViewController {
             let password = passwordTextField.text else { return }
         UserController.shared.signIn(emailAddress: emailAddress, password: password) { (networkError) in
             if let error = networkError {
-                self.presentSignInErrorAlert()
+                self.showBasicAlert(alertText: "Sign In Error",
+                                    alertMessage: "An error occured during Sign In,\nplease try again later.")
                 NSLog("Error occured during Sign In: \(error)")
             } else {
                 print("Sign in successful...")
@@ -306,20 +292,6 @@ class SignInViewController: UIViewController {
                 }
             }
         }
-    }
-    private func presentSignUpErrorAlert() {
-        let alert = UIAlertController(title: "Sign Up Error",
-                                      message: "An error occured during Sign Up,\nplease try again later.",
-                                      preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
-        present(alert, animated: true, completion: nil)
-    }
-    private func presentSignInErrorAlert() {
-        let alert = UIAlertController(title: "Sign In Error",
-                                      message: "An error occured during Sign In,\nplease try again later.",
-                                      preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
-        present(alert, animated: true, completion: nil)
     }
     // MARK: - Password Information Circles
     @IBAction func passwordInfoCircleTapped(_ sender: UIButton) {
@@ -345,22 +317,14 @@ class SignInViewController: UIViewController {
             guard let barViewControllers = segue.destination as? UITabBarController,
                 let nav = barViewControllers.viewControllers?[0] as? UINavigationController,
                 let _ = nav.topViewController as? HomeViewController else {
-                //FIXME: - Better error handling and alert
+                let alert = UIAlertController(title: "Ouch, papercut!",
+                                              message: "Sorry, we are unable to turn the page. Please try again later.",
+                                              preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+                present(alert, animated: true, completion: nil)
                 return
             }
         }
-    }
-}
-// MARK: - Segmented Control Background & Divider Image
-extension UIImage {
-    convenience init(color: UIColor, size: CGSize) {
-        UIGraphicsBeginImageContextWithOptions(size, false, 1)
-        color.set()
-        let ctx = UIGraphicsGetCurrentContext()!
-        ctx.fill(CGRect(origin: .zero, size: size))
-        let image = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        self.init(data: image.pngData()!)!
     }
 }
 // MARK: - Text Field Delegate

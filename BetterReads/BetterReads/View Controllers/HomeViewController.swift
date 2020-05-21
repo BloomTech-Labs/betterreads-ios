@@ -28,7 +28,6 @@ Flip through the tailored recommendations below from a variety of authors and st
     @IBOutlet weak var middleCollectionView: UICollectionView!
     @IBOutlet weak var bottomRecommendationLabel: UILabel!
     @IBOutlet weak var bottomCollectionView: UICollectionView!
-    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,8 +38,7 @@ Flip through the tailored recommendations below from a variety of authors and st
         middleCollectionView.dataSource = self
         bottomCollectionView.delegate = self
         bottomCollectionView.dataSource = self
-        
-        if (UserController.shared.isNewUser ?? false) {
+        if UserController.shared.isNewUser ?? false {
             welcomeMessage.text = welcomeNewUserMessageText
         } else {
             welcomeMessage.text = welcomeReturningUserMessageText
@@ -68,7 +66,6 @@ Flip through the tailored recommendations below from a variety of authors and st
                     UserController.sharedLibraryController.fetchRecommendedBooks { (_) in
                         DispatchQueue.main.async {
                             print("finished recs for middle")
-                            print(UserController.sharedLibraryController.recommendationsForRandomShelf)
                             self.middleCollectionView.reloadData()
                         }
                     }
@@ -96,9 +93,7 @@ Flip through the tailored recommendations below from a variety of authors and st
             guard let books = UserController.shared.recommendedBooks else { return cell }
             cell.book = books[indexPath.item]
             return cell
-        }
-
-        else if collectionView == self.middleCollectionView {
+        } else if collectionView == self.middleCollectionView {
             let cell = collectionView
                 .dequeueReusableCell(withReuseIdentifier: "MiddleCollectionCell",
                                      for: indexPath
@@ -106,9 +101,7 @@ Flip through the tailored recommendations below from a variety of authors and st
             guard let books = UserController.sharedLibraryController.recommendationsForRandomShelf else { return cell }
             cell.book = books[indexPath.item]
             return cell
-        }
-
-        else if collectionView == self.bottomCollectionView {
+        } else if collectionView == self.bottomCollectionView {
             let cell = collectionView
                 .dequeueReusableCell(withReuseIdentifier: "BottomCollectionCell",
                                      for: indexPath

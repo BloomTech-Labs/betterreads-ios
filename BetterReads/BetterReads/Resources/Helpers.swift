@@ -18,7 +18,7 @@ extension UIView {
                    completion: { _ in UIView.animate(withDuration: 0.7) { unflare() }})
   }
 }
-
+// Color Palette
 extension UIColor {
     /// Trinidad Orange #D44808
     static let trinidadOrange = UIColor(red: 212.0/255.0, green: 72.0/255.0, blue: 8.0/255.0, alpha: 1.0)
@@ -31,17 +31,25 @@ extension UIColor {
     /// Cinnabar Red #E33434
     static let cinnabarRed = UIColor(red: 208.0/255.0, green: 68.0/255.0, blue: 61.0/255.0, alpha: 1.0)
 }
+// Alerts
+extension UIViewController {
+    func showBasicAlert(alertText: String, alertMessage: String) {
+        let alert = UIAlertController(title: alertText,
+                                      message: alertMessage, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+}
 
-extension UIImageView {
-    func load(url: URL) {
-        DispatchQueue.global().async { [weak self] in
-            if let data = try? Data(contentsOf: url) {
-                if let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self?.image = image
-                    }
-                }
-            }
-        }
+// Segmented Control Background & Divider Image on Sign Up/Sign In Screen
+extension UIImage {
+    convenience init(color: UIColor, size: CGSize) {
+        UIGraphicsBeginImageContextWithOptions(size, false, 1)
+        color.set()
+        let ctx = UIGraphicsGetCurrentContext()!
+        ctx.fill(CGRect(origin: .zero, size: size))
+        let image = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        self.init(data: image.pngData()!)!
     }
 }
