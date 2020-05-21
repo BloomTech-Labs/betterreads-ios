@@ -10,11 +10,21 @@ class ShelfDetailCollectionViewCell: UICollectionViewCell {
     var customView: UIView!
     var shelfImageView: UIImageView!
     var shelfNameLabel: UILabel!
+
+    /// A UserBook passed in from the user's Default shelves
     var userBook: UserBook? {
         didSet {
             updateViews()
         }
     }
+
+    /// A UserBookOnShelf passed in from the user's Custom shelves
+    var userBookOnShelf: UserBookOnShelf? {
+        didSet {
+            updateViewsForCustomShelf()
+        }
+    }
+
     private func updateViews() {
         guard let userBook = userBook else { return }
         shelfNameLabel.text = userBook.title
@@ -25,14 +35,28 @@ class ShelfDetailCollectionViewCell: UICollectionViewCell {
             }
         }
     }
+
+    private func updateViewsForCustomShelf() {
+        guard let userBookOnShelf = userBookOnShelf else { return }
+        shelfNameLabel.text = userBookOnShelf.title
+        guard let thumbnail = userBookOnShelf.thumbnail else { return }
+        SearchController.fetchImage(with: thumbnail) { (image) in
+            DispatchQueue.main.async {
+                self.shelfImageView.image = image
+            }
+        }
+    }
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpSubviews()
     }
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setUpSubviews()
     }
+
     private func setUpSubviews() {
         // cell size is 192, 249.6 methinks
         // FIXME: change "magic numbers" to be based on cell size instead?
