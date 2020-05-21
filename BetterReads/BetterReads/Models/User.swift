@@ -10,11 +10,20 @@ import Foundation
 
 class User: Codable {
     let userID: Int
-    let fullName: String
+    let fullName: Name
     var emailAddress: String
-    init(userID: Int, fullName: String, emailAddress: String) {
+    init(userID: Int, fullName: Name, emailAddress: String) {
         self.userID = userID
         self.fullName = fullName
         self.emailAddress = emailAddress
+    }
+}
+
+struct Name: Codable {
+    let first: String
+    let last: String
+    init(first: String, last: String) {
+        self.first = first
+        self.last = last
     }
 }

@@ -31,7 +31,7 @@ Flip through the tailored recommendations below from a variety of authors and st
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.welcomeUser.text = "Hello, \(UserController.shared.user?.fullName ?? "there")!"
+        self.welcomeUser.text = "Hello, \(UserController.shared.user?.fullName.first ?? "there")!"
         topCollectionView.delegate = self
         topCollectionView.dataSource = self
         middleCollectionView.delegate = self

@@ -53,7 +53,7 @@ class UserController {
                         let jsonData = JSON(value)
                         let authToken = jsonData["token"].stringValue
                         self.authToken = authToken
-                        self.user = User(userID: Int(), fullName: fullName, emailAddress: emailAddress)
+                        self.user = User(userID: Int(), fullName: Name(fullName: fullName), emailAddress: emailAddress)
                         completion(nil)
                     case .failure(let error):
                         print("Error: \(error)")
@@ -87,7 +87,7 @@ class UserController {
                             guard let fullName = fullNameClaim.string,
                                 let userID = idClaim.integer else {
                                     return completion(NetworkError.otherError) }
-                            self.user = User(userID: userID, fullName: fullName, emailAddress: emailAddress)
+                            self.user = User(userID: userID, fullName: Name(fullName: fullName), emailAddress: emailAddress)
                             completion(nil)
                         } catch {
                             completion(NetworkError.otherError)
