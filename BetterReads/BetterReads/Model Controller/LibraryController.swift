@@ -69,16 +69,21 @@ class LibraryController {
         ///https://api.readrr.app/api/131/recommendations
         let requestUrl = baseUrl.appendingPathComponent("\(userId)/recommendations")
         var request = URLRequest(url: requestUrl)
-        request.httpMethod = "POST" 
+        request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue(token, forHTTPHeaderField: "Authorization")
         // FIXME: pick random index between 0 and total user shelves count
-        let body = BooksForRecommendations(books: userShelves[0].books ?? []) // pick a random index
+        // FIXME: what if shelf exists but is empty?
+        let body = BooksForRecommendations(books: userShelves[0].books ?? [])
         print("body = \(body)")
         do {
             let jsonEncoder = JSONEncoder()
             jsonEncoder.dateEncodingStrategy = .iso8601
             request.httpBody = try jsonEncoder.encode(body)
+//            if let possibleJsonSent = request.httpBody {
+//                let jsonSent = try JSONSerialization.jsonObject(with: possibleJsonSent, options: .allowFragments)
+//                print("JSON SENT = \(jsonSent)")
+//            }
         } catch {
             print("Error encoding json body: \(error)")
             DispatchQueue.main.async {
@@ -105,6 +110,8 @@ class LibraryController {
             jsonDecoder.dateDecodingStrategy = .iso8601
             do {
                 print("Data! = \(data)")
+//                let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+//                print("JSON response = \(json)")
                 let recommendationResult = try jsonDecoder.decode(RecommendationsResult.self, from: data)
                 print(recommendationResult.recommendations.recommendations.count)
                 self.recommendationsForRandomShelf = recommendationResult.recommendations.recommendations
