@@ -31,19 +31,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forgot your password?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1zX-eX-IL3">
-                                <rect key="frame" x="20" y="54" width="335" height="30.5"/>
+                                <rect key="frame" x="20" y="54" width="335" height="28"/>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="24"/>
                                 <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No worries! Enter the email address associated with your account, and we will send you and email to reset your password." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LoE-zJ-L00">
-                                <rect key="frame" x="20" y="124.5" width="335" height="68"/>
+                                <rect key="frame" x="20" y="122" width="335" height="84"/>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
                                 <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="janesmith@email.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rgm-bZ-Ks6">
-                                <rect key="frame" x="20" y="232.5" width="335" height="40"/>
+                                <rect key="frame" x="20" y="246" width="335" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="XyH-cU-sVk"/>
                                 </constraints>
@@ -51,10 +51,10 @@
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="done" textContentType="email"/>
                             </textField>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="BetterReads-Graphics_Man" translatesAutoresizingMaskIntoConstraints="NO" id="AlX-hN-YS8">
-                                <rect key="frame" x="20" y="416" width="335" height="211"/>
+                                <rect key="frame" x="20" y="427" width="335" height="200"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aOZ-94-Io4">
-                                <rect key="frame" x="20" y="319.5" width="335" height="40"/>
+                                <rect key="frame" x="20" y="331.5" width="335" height="40"/>
                                 <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="LuV-Ir-Ioz"/>
@@ -70,13 +70,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Success or Failure Message" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eAz-Wf-Ror">
-                                <rect key="frame" x="20" y="379.5" width="335" height="16.5"/>
+                                <rect key="frame" x="20" y="391.5" width="335" height="15.5"/>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="13"/>
                                 <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Error Message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SoY-Zq-who">
-                                <rect key="frame" x="20" y="276.5" width="335" height="18"/>
+                                <rect key="frame" x="20" y="290" width="335" height="16.5"/>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
                                 <color key="textColor" red="0.89019607840000003" green="0.20392156859999999" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -99,7 +99,7 @@
                                 </constraints>
                             </imageView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="AMJ-2J-Yyb">
-                                <rect key="frame" x="20" y="319.5" width="335" height="40"/>
+                                <rect key="frame" x="20" y="331.5" width="335" height="40"/>
                                 <color key="backgroundColor" red="0.83137254900000002" green="0.28235294119999998" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="color" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
@@ -217,7 +217,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UwA-YK-r6A" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1066.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1054.5"/>
                                         <subviews>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Owr-0V-qP7">
                                                 <rect key="frame" x="20" y="130" width="374" height="32"/>
@@ -237,19 +237,19 @@
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="BR6-EK-6gl" userLabel="UserStackView">
-                                                <rect key="frame" x="20" y="201" width="374" height="367"/>
+                                                <rect key="frame" x="20" y="201" width="374" height="357"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="rF4-p1-s7U" userLabel="FullName Stack View">
-                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="88"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="84.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEY-vW-qu1">
-                                                                <rect key="frame" x="0.0" y="0.0" width="374" height="22"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="374" height="20"/>
                                                                 <fontDescription key="fontDescription" name="FrankRuhlLibre-Regular" family="Frank Ruhl Libre" pointSize="17"/>
                                                                 <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Jane Smith" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="10h-Nb-0XN">
-                                                                <rect key="frame" x="0.0" y="26" width="374" height="40"/>
+                                                                <rect key="frame" x="0.0" y="24" width="374" height="40"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="aMQ-GQ-dit"/>
                                                                 </constraints>
@@ -257,7 +257,7 @@
                                                                 <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="name"/>
                                                             </textField>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Name Error Message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9kO-uI-Mvx">
-                                                                <rect key="frame" x="0.0" y="70" width="374" height="18"/>
+                                                                <rect key="frame" x="0.0" y="68" width="374" height="16.5"/>
                                                                 <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
                                                                 <color key="textColor" red="0.89019607840000003" green="0.20392156859999999" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -265,16 +265,16 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="PKy-5F-0Oz" userLabel="Email Stack View">
-                                                        <rect key="frame" x="0.0" y="93" width="374" height="88"/>
+                                                        <rect key="frame" x="0.0" y="89.5" width="374" height="84.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ux6-u6-N28">
-                                                                <rect key="frame" x="0.0" y="0.0" width="374" height="22"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="374" height="20"/>
                                                                 <fontDescription key="fontDescription" name="FrankRuhlLibre-Regular" family="Frank Ruhl Libre" pointSize="17"/>
                                                                 <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="janesmith@email.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9aL-Hg-XuH">
-                                                                <rect key="frame" x="0.0" y="26" width="374" height="40"/>
+                                                                <rect key="frame" x="0.0" y="24" width="374" height="40"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="5dY-KK-C5O"/>
                                                                 </constraints>
@@ -282,7 +282,7 @@
                                                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
                                                             </textField>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Error Message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ctn-5m-dTW">
-                                                                <rect key="frame" x="0.0" y="70" width="374" height="18"/>
+                                                                <rect key="frame" x="0.0" y="68" width="374" height="16.5"/>
                                                                 <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
                                                                 <color key="textColor" red="0.89019607840000003" green="0.20392156859999999" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -290,19 +290,19 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Hqd-w1-CRK" userLabel="Password Stack View">
-                                                        <rect key="frame" x="0.0" y="186" width="374" height="88"/>
+                                                        <rect key="frame" x="0.0" y="179" width="374" height="86.5"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="34N-aL-wKz" userLabel="Horizontal Stack View">
                                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="22"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NX5-9s-JnK">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="69.5" height="22"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="75.5" height="22"/>
                                                                         <fontDescription key="fontDescription" name="FrankRuhlLibre-Regular" family="Frank Ruhl Libre" pointSize="17"/>
                                                                         <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQ3-Y9-XlB" userLabel="Info Button">
-                                                                        <rect key="frame" x="73.5" y="0.0" width="300.5" height="22"/>
+                                                                        <rect key="frame" x="79.5" y="0.0" width="294.5" height="22"/>
                                                                         <color key="tintColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <state key="normal" image="info.circle.fill" catalog="system"/>
                                                                         <connections>
@@ -320,7 +320,7 @@
                                                                 <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="new-password"/>
                                                             </textField>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password Error Message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RKl-3e-6Ai">
-                                                                <rect key="frame" x="0.0" y="70" width="374" height="18"/>
+                                                                <rect key="frame" x="0.0" y="70" width="374" height="16.5"/>
                                                                 <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
                                                                 <color key="textColor" red="0.89019607840000003" green="0.20392156859999999" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -328,19 +328,19 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="eZ2-Zr-6zK" userLabel="ConfirmPassword Stack View">
-                                                        <rect key="frame" x="0.0" y="279" width="374" height="88"/>
+                                                        <rect key="frame" x="0.0" y="270.5" width="374" height="86.5"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="oDS-Tv-q3M" userLabel="Horizontal Stack View">
                                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="22"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="098-Ld-TdH">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="133" height="22"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="139.5" height="22"/>
                                                                         <fontDescription key="fontDescription" name="FrankRuhlLibre-Regular" family="Frank Ruhl Libre" pointSize="17"/>
                                                                         <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9hS-a4-rJR" userLabel="Info Button">
-                                                                        <rect key="frame" x="137" y="0.0" width="237" height="22"/>
+                                                                        <rect key="frame" x="143.5" y="0.0" width="230.5" height="22"/>
                                                                         <color key="tintColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <state key="normal" image="info.circle.fill" catalog="system"/>
                                                                         <connections>
@@ -358,7 +358,7 @@
                                                                 <textInputTraits key="textInputTraits" returnKeyType="done" textContentType="new-password"/>
                                                             </textField>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm Password Error Message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ve3-It-MEw">
-                                                                <rect key="frame" x="0.0" y="70" width="374" height="18"/>
+                                                                <rect key="frame" x="0.0" y="70" width="374" height="16.5"/>
                                                                 <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
                                                                 <color key="textColor" red="0.89019607840000003" green="0.20392156859999999" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -368,7 +368,7 @@
                                                 </subviews>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R5i-h0-MfM">
-                                                <rect key="frame" x="20" y="593" width="374" height="40"/>
+                                                <rect key="frame" x="20" y="583" width="374" height="40"/>
                                                 <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="hVY-uQ-9ni"/>
@@ -383,7 +383,7 @@
                                                 </connections>
                                             </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BetterReads-Graphics_Sitting" translatesAutoresizingMaskIntoConstraints="NO" id="MMk-Qt-2zY">
-                                                <rect key="frame" x="20" y="679" width="374" height="270"/>
+                                                <rect key="frame" x="20" y="667" width="374" height="270"/>
                                                 <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="MMk-Qt-2zY" secondAttribute="height" multiplier="187:135" id="WTd-Yt-2Iz"/>
@@ -392,7 +392,7 @@
                                                 </constraints>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mKe-xP-9Fu">
-                                                <rect key="frame" x="20" y="643" width="374" height="31"/>
+                                                <rect key="frame" x="20" y="633" width="374" height="29"/>
                                                 <fontDescription key="fontDescription" name="FrankRuhlLibre-Regular" family="Frank Ruhl Libre" pointSize="14"/>
                                                 <state key="normal" title="Forgot your password?">
                                                     <color key="titleColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -405,7 +405,7 @@
                                                 <rect key="frame" x="20" y="40" width="374" height="50"/>
                                             </imageView>
                                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="HCV-Bp-ZBb">
-                                                <rect key="frame" x="20" y="593" width="374" height="40"/>
+                                                <rect key="frame" x="20" y="583" width="374" height="40"/>
                                                 <color key="backgroundColor" red="0.83137254900000002" green="0.28235294119999998" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="color" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </activityIndicatorView>
@@ -526,29 +526,29 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome, User!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3xZ-Rv-Ed4">
-                                                <rect key="frame" x="20" y="20" width="374" height="30.5"/>
+                                                <rect key="frame" x="20" y="20" width="374" height="28"/>
                                                 <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="24"/>
                                                 <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XrN-eJ-L2C">
-                                                <rect key="frame" x="20" y="54.5" width="374" height="67.5"/>
+                                                <rect key="frame" x="20" y="52" width="374" height="61"/>
                                                 <string key="text">Si ergo illa tantum fastidium compesce contra lem naturalem usum habili, quem habetis vestra potate, non aliud quam aversantur incurrere. Sed si ipses aversaris, ad languorem: et mors, paupertas et tu miseros fore.</string>
                                                 <fontDescription key="fontDescription" name="FrankRuhlLibre-Regular" family="Frank Ruhl Libre" pointSize="13"/>
                                                 <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1YI-ls-ORZ" userLabel="Top View for Recommendations">
-                                                <rect key="frame" x="0.0" y="134" width="414" height="225"/>
+                                                <rect key="frame" x="0.0" y="125" width="414" height="225"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recommended for you (library)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TvC-EH-p2C">
-                                                        <rect key="frame" x="20" y="8" width="374" height="21"/>
+                                                        <rect key="frame" x="20" y="8" width="374" height="19"/>
                                                         <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="16"/>
                                                         <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GSU-Jq-gQb">
-                                                        <rect key="frame" x="20" y="29" width="394" height="184"/>
+                                                        <rect key="frame" x="20" y="27" width="394" height="186"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="G7t-wB-vVk">
                                                             <size key="itemSize" width="125" height="175"/>
@@ -559,7 +559,7 @@
                                                         </collectionViewFlowLayout>
                                                         <cells>
                                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TopCollectionCell" id="5HD-8Q-ctc" userLabel="TopCollectionCell" customClass="RecommendationCollectionViewCell" customModule="BetterReads" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="4.5" width="125" height="175"/>
+                                                                <rect key="frame" x="0.0" y="5.5" width="125" height="175"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="b1d-OL-Fzs">
                                                                     <rect key="frame" x="0.0" y="0.0" width="125" height="175"/>
@@ -581,13 +581,13 @@
                                                                                     <color key="color" red="0.83137254900000002" green="0.28235294119999998" blue="0.031372549020000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                                                 </activityIndicatorView>
                                                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L1b-FP-USc">
-                                                                                    <rect key="frame" x="4" y="4" width="117" height="15.5"/>
+                                                                                    <rect key="frame" x="4" y="4" width="117" height="14"/>
                                                                                     <fontDescription key="fontDescription" name="SourceSansPro-SemiBold" family="Source Sans Pro" pointSize="12"/>
                                                                                     <color key="textColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
                                                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Authors" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6zi-Lf-yMa">
-                                                                                    <rect key="frame" x="4" y="155.5" width="117" height="15.5"/>
+                                                                                    <rect key="frame" x="4" y="157" width="117" height="14"/>
                                                                                     <fontDescription key="fontDescription" name="SourceSansPro-SemiBold" family="Source Sans Pro" pointSize="12"/>
                                                                                     <color key="textColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                                     <nil key="highlightedColor"/>
@@ -646,16 +646,16 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bAe-Oo-v1t" userLabel="Middle View for Recommendations">
-                                                <rect key="frame" x="0.0" y="363" width="414" height="225"/>
+                                                <rect key="frame" x="0.0" y="354" width="414" height="225"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Custom Shelf #1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aif-ry-1pR">
-                                                        <rect key="frame" x="20" y="8" width="374" height="21"/>
+                                                        <rect key="frame" x="20" y="8" width="374" height="19"/>
                                                         <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="16"/>
                                                         <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QLh-VK-V1n">
-                                                        <rect key="frame" x="20" y="29" width="394" height="188"/>
+                                                        <rect key="frame" x="20" y="27" width="394" height="190"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Zj6-aE-eF0">
                                                             <size key="itemSize" width="125" height="175"/>
@@ -666,7 +666,7 @@
                                                         </collectionViewFlowLayout>
                                                         <cells>
                                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MiddleCollectionCell" id="o4x-Rc-aSR" userLabel="MiddleCollectionCell" customClass="RecommendationCollectionViewCell" customModule="BetterReads" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="6.5" width="125" height="175"/>
+                                                                <rect key="frame" x="0.0" y="7.5" width="125" height="175"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="prt-3g-oPg">
                                                                     <rect key="frame" x="0.0" y="0.0" width="125" height="175"/>
@@ -692,13 +692,13 @@
                                                                                     <color key="color" red="0.83137254900000002" green="0.28235294119999998" blue="0.031372549020000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                                                 </activityIndicatorView>
                                                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z6e-d9-SgY">
-                                                                                    <rect key="frame" x="4" y="4" width="117" height="15.5"/>
+                                                                                    <rect key="frame" x="4" y="4" width="117" height="14"/>
                                                                                     <fontDescription key="fontDescription" name="SourceSansPro-SemiBold" family="Source Sans Pro" pointSize="12"/>
                                                                                     <color key="textColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
                                                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Authors" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8qy-Qj-O7a">
-                                                                                    <rect key="frame" x="4" y="155.5" width="117" height="15.5"/>
+                                                                                    <rect key="frame" x="4" y="157" width="117" height="14"/>
                                                                                     <fontDescription key="fontDescription" name="SourceSansPro-SemiBold" family="Source Sans Pro" pointSize="12"/>
                                                                                     <color key="textColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                                     <nil key="highlightedColor"/>
@@ -751,16 +751,16 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eGK-Su-d15" userLabel="Bottom View for Recommendations">
-                                                <rect key="frame" x="0.0" y="600" width="414" height="225"/>
+                                                <rect key="frame" x="0.0" y="591" width="414" height="225"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Custom Shelf #2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IcG-TF-rzq">
-                                                        <rect key="frame" x="20" y="8" width="374" height="21"/>
+                                                        <rect key="frame" x="20" y="8" width="374" height="19"/>
                                                         <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="16"/>
                                                         <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sPu-l3-I1e">
-                                                        <rect key="frame" x="20" y="29" width="394" height="184"/>
+                                                        <rect key="frame" x="20" y="27" width="394" height="186"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Mq5-rX-a8w">
                                                             <size key="itemSize" width="125" height="175"/>
@@ -771,7 +771,7 @@
                                                         </collectionViewFlowLayout>
                                                         <cells>
                                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BottomCollectionCell" id="cwn-v6-NyQ" userLabel="BottomCollectionCell" customClass="RecommendationCollectionViewCell" customModule="BetterReads" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="4.5" width="125" height="175"/>
+                                                                <rect key="frame" x="0.0" y="5.5" width="125" height="175"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="bbB-Mf-ktA">
                                                                     <rect key="frame" x="0.0" y="0.0" width="125" height="175"/>
@@ -797,13 +797,13 @@
                                                                                     <color key="color" red="0.83137254900000002" green="0.28235294119999998" blue="0.031372549020000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                                                 </activityIndicatorView>
                                                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s4u-01-xVe">
-                                                                                    <rect key="frame" x="4" y="4" width="117" height="15.5"/>
+                                                                                    <rect key="frame" x="4" y="4" width="117" height="14"/>
                                                                                     <fontDescription key="fontDescription" name="SourceSansPro-SemiBold" family="Source Sans Pro" pointSize="12"/>
                                                                                     <color key="textColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
                                                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Authors" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f8K-tt-ZJ0">
-                                                                                    <rect key="frame" x="4" y="155.5" width="117" height="15.5"/>
+                                                                                    <rect key="frame" x="4" y="157" width="117" height="14"/>
                                                                                     <fontDescription key="fontDescription" name="SourceSansPro-SemiBold" family="Source Sans Pro" pointSize="12"/>
                                                                                     <color key="textColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                                     <nil key="highlightedColor"/>
@@ -1216,7 +1216,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uY4-Iu-gWo">
-                                                    <rect key="frame" x="63" y="20" width="277" height="20.5"/>
+                                                    <rect key="frame" x="63" y="20.5" width="277" height="19"/>
                                                     <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="16"/>
                                                     <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1284,7 +1284,7 @@
         <image name="BetterReads-Graphics_Sitting" width="1000" height="720"/>
         <image name="BetterReads-Logo_Orange" width="400" height="50"/>
         <image name="book" catalog="system" width="128" height="101"/>
-        <image name="chevron.down" catalog="system" width="128" height="72"/>
+        <image name="chevron.down" catalog="system" width="32" height="32"/>
         <image name="house" catalog="system" width="128" height="110"/>
         <image name="info.circle.fill" catalog="system" width="128" height="121"/>
         <image name="lock.circle.fill" catalog="system" width="128" height="121"/>
