@@ -12,20 +12,20 @@ private let reuseIdentifier = "ShelfDetailCell"
 
 class ShelfDetailCollectionViewController: UICollectionViewController {
 
-    //var libraryController: LibraryController?
-    var tempShelfDetailCount: Int = 1
     var allBooksIndex: Int?
+    var userShelvesIndex: Int?
 
     @IBOutlet var addBookToShelfButtonLabel: UIBarButtonItem!
+
     @IBAction func addBookToShelfTapped(_ sender: UIBarButtonItem) {
         print("addBookToShelfTapped")
-        tempShelfDetailCount += 1
-        collectionView.reloadData()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.tintColor = .trinidadOrange
+        addBookToShelfButtonLabel.isEnabled = false
+        addBookToShelfButtonLabel.tintColor = .clear
         // Back button title for next screen
         let backItem = UIBarButtonItem()
         backItem.title = "" // now only the arrow is showing
@@ -48,16 +48,18 @@ class ShelfDetailCollectionViewController: UICollectionViewController {
                 // FIXME: pass in controller that has CRUD methods to add books
             }
         }
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
     }
+
     // MARK: UICollectionViewDataSource
+
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
+
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return UserController.sharedLibraryController.allShelvesArray[allBooksIndex ?? 0].count ?? 0
+        return UserController.sharedLibraryController.allShelvesArray[allBooksIndex ?? 0].count
     }
+
     override func collectionView(_ collectionView: UICollectionView,
                                  cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier,
@@ -70,16 +72,19 @@ class ShelfDetailCollectionViewController: UICollectionViewController {
 }
 
 extension ShelfDetailCollectionViewController: UICollectionViewDelegateFlowLayout {
+
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 10
     }
+
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 20, left: 10, bottom: 20, right: 10)
     }
+
     // MARK: Flow Layout
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
@@ -97,4 +102,5 @@ extension ShelfDetailCollectionViewController: UICollectionViewDelegateFlowLayou
         print("safeAreaLayoutGuide = \(self.view.safeAreaLayoutGuide)")
         return CGSize(width: width, height: width * 1.4)
     }
+
 }

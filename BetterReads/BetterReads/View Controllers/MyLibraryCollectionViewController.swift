@@ -64,14 +64,16 @@ class MyLibraryCollectionViewController: UICollectionViewController {
             if let shelfDetailVC = segue.destination as? ShelfDetailCollectionViewController,
                 let indexPath = collectionView.indexPathsForSelectedItems?.first {
                 if indexPath.section == 0 {
-                    print("DEFAULT SECTION")
+                    print("DEFAULT SECTION, index \(indexPath.row) of allBooks")
+                    shelfDetailVC.allBooksIndex = indexPath.row
                     // pass in the indexPath for allBooksInded
                 }
                 if indexPath.section == 1 {
-                    print("CUSTOM SHELF")
+                    print("CUSTOM SHELF, index \(indexPath.row) of userShelves")
+                    shelfDetailVC.userShelvesIndex = indexPath.row
                     // pass in the indexPath for customShelvesIndex (used with userShelves)
                 }
-                shelfDetailVC.allBooksIndex = indexPath.row
+                //shelfDetailVC.allBooksIndex = indexPath.row
             }
         }
     }
