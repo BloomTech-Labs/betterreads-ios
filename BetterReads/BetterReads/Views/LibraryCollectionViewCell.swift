@@ -25,7 +25,7 @@ class LibraryCollectionViewCell: UICollectionViewCell {
             updateViews()
         }
     }
-    
+
     /// A UserShelf that contains an array of UserBookOnShelf (if displaying a custom shelf)
     var customShelf: UserShelf? {
         didSet {
@@ -35,13 +35,11 @@ class LibraryCollectionViewCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        print("init with frame")
         setUpSubviews()
     }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        print("init with coder")
         setUpSubviews()
     }
 
@@ -129,7 +127,6 @@ class LibraryCollectionViewCell: UICollectionViewCell {
     }
 
     private func setUpSubviews() {
-        print("setupSubviews")
         // cell size is 192, 249.6 methinks
         // FIXME: change "magic numbers" to be based on cell size instead?
         // Custom View

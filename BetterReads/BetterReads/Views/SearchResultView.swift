@@ -9,7 +9,9 @@
 import UIKit
 
 class SearchResultView: UIView {
+
     // MARK: - Properties
+
     // FIXME: make sure image fills up imageView nicely (aspectFit vs Fill etc..)
     var imageView: UIImageView!
     var titleLabel: UILabel! // var title = uilabel()
@@ -17,6 +19,7 @@ class SearchResultView: UIView {
     var ratingView: UILabel! // FIXME: change back to uiview mayhaps?
     var starsView: UIView! // NEW holds 5 image views inside
     var starsArray: [UIImageView] = [] // NEW holds stars sf icons
+
     // FIXME: add audiobook icon in corner and ebook? icon (look at figma)
     var standardMargin: CGFloat = CGFloat(16.0)
     var starSpacing: Int = 4 // change to double/float?
@@ -24,20 +27,24 @@ class SearchResultView: UIView {
     private let authorFont = UIFont(name: "SourceSansPro-Light", size: 12)
     private let authorTextColor = UIColor.tundra
     private var lastThumbnailImage: String?
+
     // MARK: - View LifeCycle
     var book: Book? {
         didSet {
             updateViews()
         }
     }
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpSubviews()
     }
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setUpSubviews()
     }
+
     private func updateViews() {
         guard let book = book else { return }
         titleLabel.text = book.title
@@ -45,9 +52,9 @@ class SearchResultView: UIView {
         updateStarRating(value: book.averageRating ?? 0.0) // book.rating
         // FIXME: use cache to improve this?
         guard let thumbnail = book.thumbnail else { return }
-        print("updateViews, lastImage = \(lastThumbnailImage ?? "nil thumbnail")")
+        //print("updateViews, lastImage = \(lastThumbnailImage ?? "nil thumbnail")")
         if lastThumbnailImage != thumbnail {
-            print("no image in imageView, fetching an image")
+            //print("no image in imageView, fetching an image")
             SearchController.fetchImage(with: thumbnail) { (image) in
                 DispatchQueue.main.async {
                     // Add quick fade-in animation (alpha) 
@@ -57,6 +64,8 @@ class SearchResultView: UIView {
             }
         }
     }
+
+    /// Takes in double and fills up the stars in rating view
     private func updateStarRating(value: Double) {
         var chunk = value
         for star in starsArray {
@@ -70,6 +79,8 @@ class SearchResultView: UIView {
             chunk = value - Double(star.tag)
         }
     }
+
+    // FIXME: Split this up into smaller functions
     private func setUpSubviews() {
         // Image View
         let imageView = UIImageView()
@@ -90,6 +101,7 @@ class SearchResultView: UIView {
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 5
         imageView.tintColor = .trinidadOrange
+
         // Title Label
         let label = UILabel()
         addSubview(label)
@@ -102,6 +114,7 @@ class SearchResultView: UIView {
         titleLabel.font = titleFont
         titleLabel.textColor = .tundra
         titleLabel.numberOfLines = 0
+
         // Author Label
         let author = UILabel()
         addSubview(author)
@@ -113,6 +126,7 @@ class SearchResultView: UIView {
                                              constant: standardMargin).isActive = true
         authorLabel.textColor = .tundra
         authorLabel.font = authorFont
+
         // stars view (5 image view inside)
         let view = UIView()
         addSubview(view)
@@ -125,7 +139,7 @@ class SearchResultView: UIView {
                                            constant: standardMargin - 1.0).isActive = true
         starsView.heightAnchor.constraint(equalTo: titleLabel.heightAnchor).isActive = true
         starsView.widthAnchor.constraint(equalTo: imageView.heightAnchor).isActive = true
-        // FIXME: Add Button? (NOT DONE, this needs to be assigned to a property )
+
         // Stars Array (goes inside starsView)
         // FIXME: change Int to double/float ?
         let starSize = Int(self.frame.size.height * CGFloat(0.10)) // FIXME: should be based on cell size?

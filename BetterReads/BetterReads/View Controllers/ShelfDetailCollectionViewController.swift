@@ -12,20 +12,21 @@ private let reuseIdentifier = "ShelfDetailCell"
 
 class ShelfDetailCollectionViewController: UICollectionViewController {
 
-    //var libraryController: LibraryController?
-    var tempShelfDetailCount: Int = 1
     var allBooksIndex: Int?
+    var userShelvesIndex: Int?
 
+    // FIXME: delete add button on shelf detail screen later and these outlets
     @IBOutlet var addBookToShelfButtonLabel: UIBarButtonItem!
+
     @IBAction func addBookToShelfTapped(_ sender: UIBarButtonItem) {
         print("addBookToShelfTapped")
-        tempShelfDetailCount += 1
-        collectionView.reloadData()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.tintColor = .trinidadOrange
+        addBookToShelfButtonLabel.isEnabled = false
+        addBookToShelfButtonLabel.tintColor = .clear
         // Back button title for next screen
         let backItem = UIBarButtonItem()
         backItem.title = "" // now only the arrow is showing
@@ -34,52 +35,74 @@ class ShelfDetailCollectionViewController: UICollectionViewController {
 
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
         //ShelfToDetail
         if segue.identifier == "ShelfToDetail" {
             print("ShelfToDetail")
             if let detailVC = segue.destination as? BookDetailViewController,
                 let indexPath = collectionView.indexPathsForSelectedItems?.first {
-                //detailVC.book = libraryController?.myBooksArray[indexPath.row]
                 let cell = collectionView.cellForItem(at: indexPath) as? ShelfDetailCollectionViewCell
                 detailVC.bookCoverImageView.image = cell?.shelfImageView.image
                 detailVC.blurredBackgroundView.image = cell?.shelfImageView.image
-                //detailVC.libraryController = libraryController
-                detailVC.userBook = UserController.sharedLibraryController.allShelvesArray[allBooksIndex ?? 0][indexPath.item]
+                if let possibleAllBooksIndex = allBooksIndex {
+                    print("section 1, index \(possibleAllBooksIndex)")
+                    detailVC.userBook = UserController.sharedLibraryController.allShelvesArray[possibleAllBooksIndex][indexPath.item]
+                }
+
+                if let possibleUserShelvesIndex = userShelvesIndex {
+                    print("section 2, index \(possibleUserShelvesIndex)")
+                }
+                //detailVC.userBook = UserController.sharedLibraryController.allShelvesArray[allBooksIndex ?? 0][indexPath.item]
                 // FIXME: pass in controller that has CRUD methods to add books
             }
         }
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
     }
+
     // MARK: UICollectionViewDataSource
+
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
+
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return UserController.sharedLibraryController.allShelvesArray[allBooksIndex ?? 0].count ?? 0
+        return UserController.sharedLibraryController.allShelvesArray[allBooksIndex ?? 0].count
     }
+
     override func collectionView(_ collectionView: UICollectionView,
                                  cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier,
                                                             for: indexPath) as? ShelfDetailCollectionViewCell
             else { return UICollectionViewCell() }
-        guard let allBooksIndex = allBooksIndex else { return cell }
-        cell.userBook = UserController.sharedLibraryController.allShelvesArray[allBooksIndex][indexPath.item]
+
+        if let allBooksIndex = allBooksIndex {
+            print("Default Shelf - index \(allBooksIndex)")
+            cell.userBook = UserController.sharedLibraryController.allShelvesArray[allBooksIndex][indexPath.item]
+        }
+        
+        if let userShelvesIndex = userShelvesIndex {
+            print("Custom Shelf - index \(userShelvesIndex)")
+            // cell.userBookOnShelf = UserController.sharedLibraryController....
+        }
+//        guard let allBooksIndex = allBooksIndex else { return cell }
+//        cell.userBook = UserController.sharedLibraryController.allShelvesArray[allBooksIndex][indexPath.item]
         return cell
     }
 }
 
 extension ShelfDetailCollectionViewController: UICollectionViewDelegateFlowLayout {
+
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 10
     }
+
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 20, left: 10, bottom: 20, right: 10)
     }
+
     // MARK: Flow Layout
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
@@ -93,8 +116,7 @@ extension ShelfDetailCollectionViewController: UICollectionViewDelegateFlowLayou
                                                layout: collectionViewLayout,
                                                minimumInteritemSpacingForSectionAt: 0)) * (itemsPerRow - 1)
         let width = (collectionView.frame.width - horizontalInsets - itemSpacing) / itemsPerRow
-        print("sizeForItemAt = \(CGSize(width: width, height: width * 1.3))")
-        print("safeAreaLayoutGuide = \(self.view.safeAreaLayoutGuide)")
         return CGSize(width: width, height: width * 1.4)
     }
+
 }
