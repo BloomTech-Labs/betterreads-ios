@@ -77,9 +77,9 @@ class ForgotPasswordViewController: UIViewController {
     }
     private func validate(_ field: UITextField? = nil) -> (Bool, String?) {
         do {
-            let _ = try emailTextField.validatedText(validationType: .email(field: "email"))
+            _ = try emailTextField.validatedText(validationType: .email(field: "email"))
             return (true, nil)
-        } catch (let error) {
+        } catch let error {
             let convertedError = (error as? ValidationError)
             return (false, convertedError?.message)
         }
