@@ -102,22 +102,22 @@ class MyLibraryCollectionViewController: UICollectionViewController {
             let allUserBooks = UserController.sharedLibraryController.allShelvesArray[indexPath.item]
             switch indexPath.item {
             case 0:
-                cell.shelfNameLabel.text = "My Books"
+                cell.shelfNameLabel.text = "My Books (\(allUserBooks.count))"
             case 1:
-                cell.shelfNameLabel.text = "To be read"
+                cell.shelfNameLabel.text = "To be read (\(allUserBooks.count))"
             case 2:
-                cell.shelfNameLabel.text = "In progress"
+                cell.shelfNameLabel.text = "In progress (\(allUserBooks.count))"
             case 3:
-                cell.shelfNameLabel.text = "Finished"
+                cell.shelfNameLabel.text = "Finished (\(allUserBooks.count))"
             default:
-                cell.shelfNameLabel.text = "Empty Shelf"
+                cell.shelfNameLabel.text = "Empty Shelf (\(allUserBooks.count))"
             }
             cell.allUserBooks = allUserBooks
             return cell
         } else if indexPath.section == 1 {
             let customShelf = UserController.sharedLibraryController.userShelves[indexPath.item]
             cell.customShelf = customShelf
-            cell.shelfNameLabel.text = customShelf.shelfName
+            cell.shelfNameLabel.text = "\(customShelf.shelfName ?? "Empty Shelf") (\(customShelf.books?.count ?? 0))"
             return cell
         }
         return cell
