@@ -155,8 +155,6 @@ class BookDetailViewController: UIViewController {
         addButton.performFlare()
     }
 
-    //var libraryController: LibraryController?
-
     /// UserBook that comes from ShelfDetail used to fetch UserBookDetail
     var userBook: UserBook? {
         didSet {

@@ -65,7 +65,17 @@ class ShelfDetailCollectionViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return UserController.sharedLibraryController.allShelvesArray[allBooksIndex ?? 0].count
+        // if the shelf is from the default shelves
+        if let allBooksIndex = allBooksIndex {
+            return UserController.sharedLibraryController.allShelvesArray[allBooksIndex].count
+        }
+
+        // or if it's a custom shelf
+        if let userShelvesIndex = userShelvesIndex,
+            let booksInShelf = UserController.sharedLibraryController.userShelves[userShelvesIndex].books {
+            return booksInShelf.count
+        }
+        return 100 // This should never run
     }
 
     override func collectionView(_ collectionView: UICollectionView,
@@ -78,9 +88,10 @@ class ShelfDetailCollectionViewController: UICollectionViewController {
             print("Default Shelf - index \(allBooksIndex)")
             cell.userBook = UserController.sharedLibraryController.allShelvesArray[allBooksIndex][indexPath.item]
         }
-        
+
         if let userShelvesIndex = userShelvesIndex {
             print("Custom Shelf - index \(userShelvesIndex)")
+            cell.userBookOnShelf = UserController.sharedLibraryController.userShelves[userShelvesIndex].books?[indexPath.item]
             // cell.userBookOnShelf = UserController.sharedLibraryController....
         }
 //        guard let allBooksIndex = allBooksIndex else { return cell }
