@@ -26,7 +26,6 @@ class ShelfDetailCollectionViewCell: UICollectionViewCell {
         guard let thumbnail = userBook.thumbnail else { return }
         SearchController.fetchImage(with: thumbnail) { (image) in
             DispatchQueue.main.async {
-                // Add quick fade-in animation (alpha)
                 self.shelfImageView.image = image
             }
         }
@@ -34,18 +33,15 @@ class ShelfDetailCollectionViewCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        print("init with frame")
         setUpSubviews()
     }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        print("init with coder")
         setUpSubviews()
     }
 
     private func setUpSubviews() {
-        print("setupSubviews")
         // cell size is 192, 249.6 methinks
         // FIXME: change "magic numbers" to be based on cell size instead?
         // Custom View
@@ -60,6 +56,7 @@ class ShelfDetailCollectionViewCell: UICollectionViewCell {
         //customView.backgroundColor = .orange
         customView.layer.cornerRadius = 5
         //customView.clipsToBounds = true
+
         // Image View (front)
         let tempImageView = UIImageView()
         addSubview(tempImageView)
@@ -79,7 +76,8 @@ class ShelfDetailCollectionViewCell: UICollectionViewCell {
         shelfImageView.layer.cornerRadius = 5
         shelfImageView.contentMode = .scaleToFill //fill
         shelfImageView.clipsToBounds = true
-        shelfImageView.image = UIImage(named: "twilightBookCover")
+        shelfImageView.image = UIImage(named: "BetterReads-DefaultBookImage")
+
         // Label
         let tempLabel = UILabel()
         addSubview(tempLabel)
@@ -90,7 +88,7 @@ class ShelfDetailCollectionViewCell: UICollectionViewCell {
         shelfNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
         shelfNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
         shelfNameLabel.bottomAnchor.constraint(equalTo: customView.bottomAnchor, constant: -8).isActive = true
-        shelfNameLabel.text = "Twilight Breaking Dawn"
+        shelfNameLabel.text = "Book Name"
         shelfNameLabel.textAlignment = .center
         shelfNameLabel.numberOfLines = 0
         shelfNameLabel.backgroundColor = .white

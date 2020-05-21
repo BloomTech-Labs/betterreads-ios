@@ -75,7 +75,7 @@ class LibraryController {
         // FIXME: pick random index between 0 and total user shelves count
         // FIXME: what if shelf exists but is empty?
         let body = BooksForRecommendations(books: userShelves[0].books ?? [])
-        print("body = \(body)")
+        //print("body = \(body)")
         do {
             let jsonEncoder = JSONEncoder()
             jsonEncoder.dateEncodingStrategy = .iso8601
@@ -113,7 +113,6 @@ class LibraryController {
 //                let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
 //                print("JSON response = \(json)")
                 let recommendationResult = try jsonDecoder.decode(RecommendationsResult.self, from: data)
-                print(recommendationResult.recommendations.recommendations.count)
                 self.recommendationsForRandomShelf = recommendationResult.recommendations.recommendations
                 DispatchQueue.main.async {
                     completion(nil)
@@ -231,11 +230,6 @@ class LibraryController {
                 }
                 self.allShelvesArray.append(self.finishedBooksArray)
 
-                print("toBeRead (\(self.toBeReadBooksArray.count))")
-                print("inProgress (\(self.inProgressBooksArray.count))")
-                print("finished (\(self.finishedBooksArray.count))")
-                print("myBooksArray (\(self.myBooksArray.count) = \(self.myBooksArray)")
-                print("allShelvesArray (\(self.allShelvesArray.count)")
                 DispatchQueue.main.async {
                     completion(nil)
                 }

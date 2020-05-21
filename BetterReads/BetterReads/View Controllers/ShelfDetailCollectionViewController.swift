@@ -15,6 +15,7 @@ class ShelfDetailCollectionViewController: UICollectionViewController {
     var allBooksIndex: Int?
     var userShelvesIndex: Int?
 
+    // FIXME: delete add button on shelf detail screen later and these outlets
     @IBOutlet var addBookToShelfButtonLabel: UIBarButtonItem!
 
     @IBAction func addBookToShelfTapped(_ sender: UIBarButtonItem) {
@@ -34,16 +35,15 @@ class ShelfDetailCollectionViewController: UICollectionViewController {
 
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
         //ShelfToDetail
         if segue.identifier == "ShelfToDetail" {
             print("ShelfToDetail")
             if let detailVC = segue.destination as? BookDetailViewController,
                 let indexPath = collectionView.indexPathsForSelectedItems?.first {
-                //detailVC.book = libraryController?.myBooksArray[indexPath.row]
                 let cell = collectionView.cellForItem(at: indexPath) as? ShelfDetailCollectionViewCell
                 detailVC.bookCoverImageView.image = cell?.shelfImageView.image
                 detailVC.blurredBackgroundView.image = cell?.shelfImageView.image
-                //detailVC.libraryController = libraryController
                 detailVC.userBook = UserController.sharedLibraryController.allShelvesArray[allBooksIndex ?? 0][indexPath.item]
                 // FIXME: pass in controller that has CRUD methods to add books
             }
@@ -98,8 +98,6 @@ extension ShelfDetailCollectionViewController: UICollectionViewDelegateFlowLayou
                                                layout: collectionViewLayout,
                                                minimumInteritemSpacingForSectionAt: 0)) * (itemsPerRow - 1)
         let width = (collectionView.frame.width - horizontalInsets - itemSpacing) / itemsPerRow
-        print("sizeForItemAt = \(CGSize(width: width, height: width * 1.3))")
-        print("safeAreaLayoutGuide = \(self.view.safeAreaLayoutGuide)")
         return CGSize(width: width, height: width * 1.4)
     }
 
