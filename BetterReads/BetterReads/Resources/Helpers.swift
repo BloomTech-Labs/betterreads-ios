@@ -33,8 +33,9 @@ extension UIColor {
 }
 // Alerts
 extension UIViewController {
-    func showBasicAlert(alertText : String, alertMessage : String) {
-        let alert = UIAlertController(title: alertText, message: alertMessage, preferredStyle: UIAlertController.Style.alert)
+    func showBasicAlert(alertText: String, alertMessage: String) {
+        let alert = UIAlertController(title: alertText,
+                                      message: alertMessage, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
@@ -52,16 +53,3 @@ extension UIImage {
         self.init(data: image.pngData()!)!
     }
 }
-//extension UIImageView {
-//    func load(url: URL) {
-//        DispatchQueue.global().async { [weak self] in
-//            if let data = try? Data(contentsOf: url) {
-//                if let image = UIImage(data: data) {
-//                    DispatchQueue.main.async {
-//                        self?.image = image
-//                    }
-//                }
-//            }
-//        }
-//    }
-//}
