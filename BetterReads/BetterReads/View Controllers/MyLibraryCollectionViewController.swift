@@ -13,11 +13,7 @@ private let reuseIdentifier = "LibraryCell"
 class MyLibraryCollectionViewController: UICollectionViewController {
 
     var tempShelfCount: Int = 1
-    //let libraryController = LibraryController()
 
-    // FIXME: change system color to trinidadOrange?
-    // FIXME: add either an alert controller pop up to
-    // make a new shelf or use small(?) modal pop up instead?
     @IBOutlet var addShelfButtonLabel: UIBarButtonItem!
 
     @IBAction func addShelfButtonTapped(_ sender: UIBarButtonItem) {
@@ -67,12 +63,17 @@ class MyLibraryCollectionViewController: UICollectionViewController {
             print("LibraryToShelf")
             if let shelfDetailVC = segue.destination as? ShelfDetailCollectionViewController,
                 let indexPath = collectionView.indexPathsForSelectedItems?.first {
-                //shelfDetailVC.libraryController = libraryController
+                if indexPath.section == 0 {
+                    print("DEFAULT SECTION")
+                    // pass in the indexPath for allBooksInded
+                }
+                if indexPath.section == 1 {
+                    print("CUSTOM SHELF")
+                    // pass in the indexPath for customShelvesIndex (used with userShelves)
+                }
                 shelfDetailVC.allBooksIndex = indexPath.row
             }
         }
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
     }
 
     // MARK: UICollectionViewDataSource
@@ -88,7 +89,6 @@ class MyLibraryCollectionViewController: UICollectionViewController {
         default:
             return 3
         }
-        //return UserController.sharedLibraryController.allShelvesArray.count//libraryController.allShelvesArray.count
     }
 
     override func collectionView(_ collectionView: UICollectionView,
@@ -121,21 +121,6 @@ class MyLibraryCollectionViewController: UICollectionViewController {
             return cell
         }
         return cell
-//        let allUserBooks = UserController.sharedLibraryController.allShelvesArray[indexPath.item]
-//        switch indexPath.item {
-//        case 0:
-//            cell.shelfNameLabel.text = "My Books"
-//        case 1:
-//            cell.shelfNameLabel.text = "To be read"
-//        case 2:
-//            cell.shelfNameLabel.text = "In progress"
-//        case 3:
-//            cell.shelfNameLabel.text = "Finished"
-//        default:
-//            cell.shelfNameLabel.text = "Empty Shelf"
-//        }
-//        cell.allUserBooks = allUserBooks
-//        return cell
     }
 }
 
