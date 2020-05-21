@@ -73,8 +73,18 @@ class ShelfDetailCollectionViewController: UICollectionViewController {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier,
                                                             for: indexPath) as? ShelfDetailCollectionViewCell
             else { return UICollectionViewCell() }
-        guard let allBooksIndex = allBooksIndex else { return cell }
-        cell.userBook = UserController.sharedLibraryController.allShelvesArray[allBooksIndex][indexPath.item]
+
+        if let allBooksIndex = allBooksIndex {
+            print("Default Shelf - index \(allBooksIndex)")
+            cell.userBook = UserController.sharedLibraryController.allShelvesArray[allBooksIndex][indexPath.item]
+        }
+        
+        if let userShelvesIndex = userShelvesIndex {
+            print("Custom Shelf - index \(userShelvesIndex)")
+            // cell.userBookOnShelf = UserController.sharedLibraryController....
+        }
+//        guard let allBooksIndex = allBooksIndex else { return cell }
+//        cell.userBook = UserController.sharedLibraryController.allShelvesArray[allBooksIndex][indexPath.item]
         return cell
     }
 }

@@ -5,21 +5,16 @@
 //  Created by Jorge Alvarez on 5/6/20.
 //  Copyright © 2020 Labs23. All rights reserved.
 //
-
 import UIKit
-
 class ShelfDetailCollectionViewCell: UICollectionViewCell {
-
     var customView: UIView!
     var shelfImageView: UIImageView!
     var shelfNameLabel: UILabel!
-
     var userBook: UserBook? {
         didSet {
             updateViews()
         }
     }
-
     private func updateViews() {
         guard let userBook = userBook else { return }
         shelfNameLabel.text = userBook.title
@@ -30,17 +25,14 @@ class ShelfDetailCollectionViewCell: UICollectionViewCell {
             }
         }
     }
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpSubviews()
     }
-
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setUpSubviews()
     }
-
     private func setUpSubviews() {
         // cell size is 192, 249.6 methinks
         // FIXME: change "magic numbers" to be based on cell size instead?
@@ -56,7 +48,6 @@ class ShelfDetailCollectionViewCell: UICollectionViewCell {
         //customView.backgroundColor = .orange
         customView.layer.cornerRadius = 5
         //customView.clipsToBounds = true
-
         // Image View (front)
         let tempImageView = UIImageView()
         addSubview(tempImageView)
@@ -77,7 +68,6 @@ class ShelfDetailCollectionViewCell: UICollectionViewCell {
         shelfImageView.contentMode = .scaleToFill //fill
         shelfImageView.clipsToBounds = true
         shelfImageView.image = UIImage(named: "BetterReads-DefaultBookImage")
-
         // Label
         let tempLabel = UILabel()
         addSubview(tempLabel)
