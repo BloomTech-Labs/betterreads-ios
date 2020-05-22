@@ -550,12 +550,12 @@
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GSU-Jq-gQb">
                                                         <rect key="frame" x="20" y="29" width="394" height="184"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="G7t-wB-vVk">
+                                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="20" minimumInteritemSpacing="20" id="G7t-wB-vVk">
                                                             <size key="itemSize" width="125" height="175"/>
                                                             <size key="estimatedItemSize" width="125" height="175"/>
                                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="20" maxY="0.0"/>
                                                         </collectionViewFlowLayout>
                                                         <cells>
                                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TopCollectionCell" id="5HD-8Q-ctc" userLabel="TopCollectionCell" customClass="RecommendationCollectionViewCell" customModule="BetterReads" customModuleProvider="target">
@@ -657,12 +657,12 @@
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QLh-VK-V1n">
                                                         <rect key="frame" x="20" y="29" width="394" height="188"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Zj6-aE-eF0">
+                                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="20" minimumInteritemSpacing="20" id="Zj6-aE-eF0">
                                                             <size key="itemSize" width="125" height="175"/>
                                                             <size key="estimatedItemSize" width="125" height="175"/>
                                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="20" maxY="0.0"/>
                                                         </collectionViewFlowLayout>
                                                         <cells>
                                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MiddleCollectionCell" id="o4x-Rc-aSR" userLabel="MiddleCollectionCell" customClass="RecommendationCollectionViewCell" customModule="BetterReads" customModuleProvider="target">
@@ -762,12 +762,12 @@
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sPu-l3-I1e">
                                                         <rect key="frame" x="20" y="29" width="394" height="184"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Mq5-rX-a8w">
+                                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="20" minimumInteritemSpacing="20" id="Mq5-rX-a8w">
                                                             <size key="itemSize" width="125" height="175"/>
                                                             <size key="estimatedItemSize" width="125" height="175"/>
                                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="20" maxY="0.0"/>
                                                         </collectionViewFlowLayout>
                                                         <cells>
                                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BottomCollectionCell" id="cwn-v6-NyQ" userLabel="BottomCollectionCell" customClass="RecommendationCollectionViewCell" customModule="BetterReads" customModuleProvider="target">
@@ -1284,7 +1284,7 @@
         <image name="BetterReads-Graphics_Sitting" width="1000" height="720"/>
         <image name="BetterReads-Logo_Orange" width="400" height="50"/>
         <image name="book" catalog="system" width="128" height="101"/>
-        <image name="chevron.down" catalog="system" width="32" height="32"/>
+        <image name="chevron.down" catalog="system" width="128" height="72"/>
         <image name="house" catalog="system" width="128" height="110"/>
         <image name="info.circle.fill" catalog="system" width="128" height="121"/>
         <image name="lock.circle.fill" catalog="system" width="128" height="121"/>
