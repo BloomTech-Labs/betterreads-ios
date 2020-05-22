@@ -11,13 +11,17 @@ import UIKit
 class LibraryCollectionViewCell: UICollectionViewCell {
 
     var customView: UIView!
-    var shelfImageView: UIImageView!
+    var firstImageView: UIImageView!
     var secondImageView: UIImageView!
+    var secondBGView: UIView!
     var thirdImageView: UIImageView!
+    var thirdBGView: UIView!
     var shelfNameLabel: UILabel!
 
     /// Array of ImageViews that represent of 3 cover images of the shelf it displays
     var coversArray = [UIImageView]()
+    
+    var viewsArray = [UIView]()
 
     /// Array of UserBooks to fill in the 3 cover images (if displaying a default shelf)
     var allUserBooks: [UserBook]? {
@@ -142,6 +146,19 @@ class LibraryCollectionViewCell: UICollectionViewCell {
         customView.layer.cornerRadius = 5
         //customView.clipsToBounds = true
 
+        // Third Image Gray Underlay
+        let thirdBGView2 = UIView()
+        addSubview(thirdBGView2)
+        self.thirdBGView = thirdBGView2
+        thirdBGView.translatesAutoresizingMaskIntoConstraints = false
+        thirdBGView.topAnchor.constraint(equalTo: customView.topAnchor, constant: 30).isActive = true
+        thirdBGView.leadingAnchor.constraint(equalTo: customView.leadingAnchor, constant: 10).isActive = true
+        thirdBGView.trailingAnchor.constraint(equalTo: customView.trailingAnchor, constant: -10).isActive = true
+        thirdBGView.bottomAnchor.constraint(equalTo: customView.bottomAnchor, constant: -70).isActive = true
+        thirdBGView.backgroundColor = .doveGray
+        thirdBGView.alpha = 1
+        thirdBGView.layer.cornerRadius = 5
+        
         // Third Image View (Back)
         let tempImageView3 = UIImageView()
         addSubview(tempImageView3)
@@ -155,8 +172,21 @@ class LibraryCollectionViewCell: UICollectionViewCell {
         thirdImageView.contentMode = .scaleToFill
         thirdImageView.clipsToBounds = true
         thirdImageView.image = UIImage(named: "BetterReads-DefaultBookImage")
-        thirdImageView.alpha = 1
-
+        thirdImageView.alpha = 0.30
+        
+        // Second Image Gray Underlay
+        let secondBGView1 = UIView()
+        addSubview(secondBGView1)
+        self.secondBGView = secondBGView1
+        secondBGView.translatesAutoresizingMaskIntoConstraints = false
+        secondBGView.topAnchor.constraint(equalTo: customView.topAnchor, constant: 20).isActive = true
+        secondBGView.leadingAnchor.constraint(equalTo: customView.leadingAnchor, constant: 10).isActive = true
+        secondBGView.trailingAnchor.constraint(equalTo: customView.trailingAnchor, constant: -30).isActive = true
+        secondBGView.bottomAnchor.constraint(equalTo: customView.bottomAnchor, constant: -60).isActive = true
+        secondBGView.backgroundColor = .doveGray
+        secondBGView.alpha = 1
+        secondBGView.layer.cornerRadius = 5
+        
         // Second Image View (Middle)
         let tempImageView2 = UIImageView()
         addSubview(tempImageView2)
@@ -170,29 +200,29 @@ class LibraryCollectionViewCell: UICollectionViewCell {
         secondImageView.contentMode = .scaleToFill
         secondImageView.clipsToBounds = true
         secondImageView.image = UIImage(named: "BetterReads-DefaultBookImage")
-        secondImageView.alpha = 1
-
-        // Image View (front)
-        let tempImageView = UIImageView()
-        addSubview(tempImageView)
-        self.shelfImageView = tempImageView
-        shelfImageView.translatesAutoresizingMaskIntoConstraints = false
-        shelfImageView.topAnchor.constraint(equalTo: customView.topAnchor, constant: 10).isActive = true
-        shelfImageView.leadingAnchor.constraint(equalTo: customView.leadingAnchor, constant: 10).isActive = true
-        shelfImageView.trailingAnchor.constraint(equalTo: customView.trailingAnchor, constant: -50).isActive = true
-        shelfImageView.bottomAnchor.constraint(equalTo: customView.bottomAnchor, constant: -50).isActive = true
-        shelfImageView.layer.cornerRadius = 5
-        shelfImageView.contentMode = .scaleToFill
-        shelfImageView.clipsToBounds = true
-        shelfImageView.image = UIImage(named: "BetterReads-DefaultBookImage")
+        secondImageView.alpha = 0.60
+        
+        // First Image View (front)
+        let tempImageView1 = UIImageView()
+        addSubview(tempImageView1)
+        self.firstImageView = tempImageView1
+        firstImageView.translatesAutoresizingMaskIntoConstraints = false
+        firstImageView.topAnchor.constraint(equalTo: customView.topAnchor, constant: 10).isActive = true
+        firstImageView.leadingAnchor.constraint(equalTo: customView.leadingAnchor, constant: 10).isActive = true
+        firstImageView.trailingAnchor.constraint(equalTo: customView.trailingAnchor, constant: -50).isActive = true
+        firstImageView.bottomAnchor.constraint(equalTo: customView.bottomAnchor, constant: -50).isActive = true
+        firstImageView.layer.cornerRadius = 5
+        firstImageView.contentMode = .scaleToFill
+        firstImageView.clipsToBounds = true
+        firstImageView.image = UIImage(named: "BetterReads-DefaultBookImage")
 
         // Label
         let tempLabel = UILabel()
         addSubview(tempLabel)
         self.shelfNameLabel = tempLabel
         shelfNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        shelfNameLabel.topAnchor.constraint(equalTo: shelfImageView.bottomAnchor, constant: 0).isActive = true
-        shelfNameLabel.leadingAnchor.constraint(equalTo: shelfImageView.leadingAnchor).isActive = true
+        shelfNameLabel.topAnchor.constraint(equalTo: firstImageView.bottomAnchor, constant: 0).isActive = true
+        shelfNameLabel.leadingAnchor.constraint(equalTo: firstImageView.leadingAnchor).isActive = true
         shelfNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
         shelfNameLabel.bottomAnchor.constraint(equalTo: customView.bottomAnchor, constant: -8).isActive = true
         shelfNameLabel.text = "Shelf Name"
@@ -200,8 +230,12 @@ class LibraryCollectionViewCell: UICollectionViewCell {
         shelfNameLabel.numberOfLines = 0
         shelfNameLabel.backgroundColor = .white
         
-        coversArray.append(shelfImageView)
+        
+        
+        coversArray.append(firstImageView)
         coversArray.append(secondImageView)
         coversArray.append(thirdImageView)
+        
+        viewsArray.append(secondBGView)
     }
 }
