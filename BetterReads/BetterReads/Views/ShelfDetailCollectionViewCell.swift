@@ -106,5 +106,8 @@ class ShelfDetailCollectionViewCell: UICollectionViewCell {
         shelfNameLabel.textAlignment = .center
         shelfNameLabel.numberOfLines = 0
         shelfNameLabel.backgroundColor = .white
+        shelfNameLabel.font = UIFont(name: "SourceSansPro-Regular", size: 14)
+        shelfNameLabel.textColor = .doveGray
+        shelfNameLabel.numberOfLines = 0
     }
 }
