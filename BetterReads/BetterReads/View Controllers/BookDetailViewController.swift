@@ -155,7 +155,7 @@ class BookDetailViewController: UIViewController {
         addButton.performFlare()
     }
 
-    /// UserBook that comes from ShelfDetail used to fetch UserBookDetail
+    /// UserBook that comes from a Default shelf
     var userBook: UserBook? {
         didSet {
             fetchBookById()
@@ -168,6 +168,36 @@ class BookDetailViewController: UIViewController {
             updateViews()
         }
     }
+    
+    /// UserBookOnShelf that comes from a Custom Shelf
+    var userBookOnShelf: UserBookOnShelf? {
+        didSet {
+            fetchBookByIdWithShelfBook()
+        }
+    }
+    
+    /// Uses UserBookOnShelf's bookId to search for a Book version
+    private func fetchBookByIdWithShelfBook() {
+        print("called fetchBookByIdWithShelfBook")
+        guard let bookId = userBookOnShelf?.bookId else { return }
+        UserController.sharedLibraryController.fetchBookById(bookId: bookId, completion: { (userBookDetail) in
+            DispatchQueue.main.async {
+                self.titleLabel.text = userBookDetail?.title
+                self.authorLabel.text = "by \(userBookDetail?.authors ?? "Unknown")"
+                if let averageRating = userBookDetail?.averageRating {
+                    self.ratingStackView.ratingValue = Double(averageRating)
+                } else {
+                    self.ratingStackView.ratingValue = 0.0
+                }
+                self.averageRatingLabel.text = "\(userBookDetail?.averageRating ?? "0") average rating"
+                self.descriptionLabel.text = userBookDetail?.textSnippet
+                self.publisherLabel.text = "Publisher: \(userBookDetail?.publisher ?? "No publisher")"
+                self.isbnLabel.text = "ISBN: \(userBookDetail?.isbn13 ?? "")"
+                self.lengthLabel.text = "Length: \(userBookDetail?.pageCount ?? 0) pages"
+            }
+        })
+    }
+    
 
     /// Uses the userBook's bookId to search for a Book version
     private func fetchBookById() {
