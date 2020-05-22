@@ -51,9 +51,8 @@ class ShelfDetailCollectionViewController: UICollectionViewController {
 
                 if let possibleUserShelvesIndex = userShelvesIndex {
                     print("section 2, index \(possibleUserShelvesIndex)")
+                    detailVC.userBookOnShelf = UserController.sharedLibraryController.userShelves[possibleUserShelvesIndex].books?[indexPath.item]
                 }
-                //detailVC.userBook = UserController.sharedLibraryController.allShelvesArray[allBooksIndex ?? 0][indexPath.item]
-                // FIXME: pass in controller that has CRUD methods to add books
             }
         }
     }
