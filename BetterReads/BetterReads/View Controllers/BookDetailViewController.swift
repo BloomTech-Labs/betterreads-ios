@@ -233,13 +233,20 @@ class BookDetailViewController: UIViewController {
         super.viewWillAppear(animated)
         // To change status bar text to white
         navigationController?.navigationBar.barStyle = .black
+        // Transparent Nav bar
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
     }
     // To change status bar text back to black
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.navigationBar.barStyle = .default
         navigationController?.navigationBar.tintColor = .trinidadOrange
-        //navigationController?.navigationBar.isTranslucent = false
+        // FIXME: change nav bar back to normal but it flashes a little now
+        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+        navigationController?.navigationBar.shadowImage = nil
+        navigationController?.navigationBar.isTranslucent = false
     }
     // FIXME: button might be weird because contentSize is -1, -1
 //    override var intrinsicContentSize: CGSize {
@@ -286,11 +293,8 @@ class BookDetailViewController: UIViewController {
         blurredBackgroundView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
         blurredBackgroundView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor,
                                                       multiplier: 0.5).isActive = true
-        // FIXME: Change tint/text color to white and remove back button text
-        // Transparent Nav bar
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.isTranslucent = true
+
+        // Where i used to make nav bar transparent
             // blur effect
         let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .systemMaterialDark))
         blurView.frame = blurredBackgroundView.bounds
