@@ -55,29 +55,6 @@ class MyLibraryCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
     }
 
-    // MARK: - Navigation
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
-        if segue.identifier == "LibraryToShelf" {
-            print("LibraryToShelf")
-            if let shelfDetailVC = segue.destination as? ShelfDetailCollectionViewController,
-                let indexPath = collectionView.indexPathsForSelectedItems?.first {
-                if indexPath.section == 0 {
-                    print("DEFAULT SECTION, index \(indexPath.row) of allBooks")
-                    shelfDetailVC.allBooksIndex = indexPath.row
-                    // pass in the indexPath for allBooksInded
-                }
-                if indexPath.section == 1 {
-                    print("CUSTOM SHELF, index \(indexPath.row) of userShelves")
-                    shelfDetailVC.userShelvesIndex = indexPath.row
-                    // pass in the indexPath for customShelvesIndex (used with userShelves)
-                }
-                //shelfDetailVC.allBooksIndex = indexPath.row
-            }
-        }
-    }
-
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -112,7 +89,7 @@ class MyLibraryCollectionViewController: UICollectionViewController {
             case 3:
                 cell.shelfNameLabel.text = "Finished (\(allUserBooks.count))"
             default:
-                cell.shelfNameLabel.text = "Empty Shelf (\(allUserBooks.count))"
+                cell.shelfNameLabel.text = "Favorites (\(allUserBooks.count))" // Add later
             }
             cell.allUserBooks = allUserBooks
             return cell
@@ -123,6 +100,29 @@ class MyLibraryCollectionViewController: UICollectionViewController {
             return cell
         }
         return cell
+    }
+
+    // MARK: - Navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        if segue.identifier == "LibraryToShelf" {
+            print("LibraryToShelf")
+            if let shelfDetailVC = segue.destination as? ShelfDetailCollectionViewController,
+                let indexPath = collectionView.indexPathsForSelectedItems?.first {
+                if indexPath.section == 0 {
+                    print("DEFAULT SECTION, index \(indexPath.row) of allBooks")
+                    shelfDetailVC.allBooksIndex = indexPath.row
+                    // pass in the indexPath for allBooksInded
+                }
+                if indexPath.section == 1 {
+                    print("CUSTOM SHELF, index \(indexPath.row) of userShelves")
+                    shelfDetailVC.userShelvesIndex = indexPath.row
+                    // pass in the indexPath for customShelvesIndex (used with userShelves)
+                }
+                //shelfDetailVC.allBooksIndex = indexPath.row
+            }
+        }
     }
 }
 
@@ -137,7 +137,8 @@ extension MyLibraryCollectionViewController: UICollectionViewDelegateFlowLayout 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 20, left: 10, bottom: 20, right: 10)
+        // used to be 20, 10, 20, 10
+        return UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
     }
 
     // MARK: Flow Layout
