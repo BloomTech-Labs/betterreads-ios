@@ -20,8 +20,6 @@ class LibraryCollectionViewCell: UICollectionViewCell {
 
     /// Array of ImageViews that represent of 3 cover images of the shelf it displays
     var coversArray = [UIImageView]()
-    
-    var viewsArray = [UIView]()
 
     /// Array of UserBooks to fill in the 3 cover images (if displaying a default shelf)
     var allUserBooks: [UserBook]? {
@@ -226,16 +224,14 @@ class LibraryCollectionViewCell: UICollectionViewCell {
         shelfNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
         shelfNameLabel.bottomAnchor.constraint(equalTo: customView.bottomAnchor, constant: -8).isActive = true
         shelfNameLabel.text = "Shelf Name"
+        shelfNameLabel.font = UIFont(name: "SourceSansPro-Regular", size: 14)
+        shelfNameLabel.textColor = .doveGray
         shelfNameLabel.textAlignment = .center
         shelfNameLabel.numberOfLines = 0
         shelfNameLabel.backgroundColor = .white
         
-        
-        
         coversArray.append(firstImageView)
         coversArray.append(secondImageView)
         coversArray.append(thirdImageView)
-        
-        viewsArray.append(secondBGView)
     }
 }
