@@ -597,7 +597,6 @@
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                     </subviews>
-                                                                    <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <constraints>
                                                                         <constraint firstItem="L1b-FP-USc" firstAttribute="leading" secondItem="b1d-OL-Fzs" secondAttribute="leading" constant="4" id="0Vo-ht-oT4"/>
                                                                         <constraint firstItem="1EK-77-Ugp" firstAttribute="leading" secondItem="b1d-OL-Fzs" secondAttribute="leading" id="2Ur-bF-kDb"/>
@@ -619,7 +618,6 @@
                                                                         <constraint firstItem="1EK-77-Ugp" firstAttribute="centerY" secondItem="b1d-OL-Fzs" secondAttribute="centerY" id="w9E-VW-iTr"/>
                                                                     </constraints>
                                                                 </collectionViewCellContentView>
-                                                                <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <connections>
                                                                     <outlet property="activityIndicator" destination="ACi-J5-BUS" id="aii-yS-v78"/>
                                                                     <outlet property="bookCoverImageView" destination="1EK-77-Ugp" id="Nbm-gq-euH"/>
