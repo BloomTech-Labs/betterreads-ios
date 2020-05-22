@@ -568,6 +568,10 @@
                                                                     <rect key="frame" x="0.0" y="0.0" width="130" height="195"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
+                                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dHZ-IF-SPx">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="130" height="195"/>
+                                                                            <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        </view>
                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BetterReads-DefaultBookImage" translatesAutoresizingMaskIntoConstraints="NO" id="1EK-77-Ugp">
                                                                             <rect key="frame" x="0.0" y="0.0" width="130" height="195"/>
                                                                             <constraints>
@@ -605,8 +609,10 @@
                                                                         <constraint firstItem="6zi-Lf-yMa" firstAttribute="leading" secondItem="b1d-OL-Fzs" secondAttribute="leading" constant="4" id="8u5-sR-1ae"/>
                                                                         <constraint firstAttribute="bottom" secondItem="1EK-77-Ugp" secondAttribute="bottom" id="Arm-4q-yd9"/>
                                                                         <constraint firstAttribute="trailing" secondItem="6zi-Lf-yMa" secondAttribute="trailing" constant="4" id="CxW-Ju-Unm"/>
+                                                                        <constraint firstItem="dHZ-IF-SPx" firstAttribute="leading" secondItem="b1d-OL-Fzs" secondAttribute="leading" id="Dhp-Hk-Uxl"/>
                                                                         <constraint firstAttribute="trailing" secondItem="ACi-J5-BUS" secondAttribute="trailing" id="Exc-l2-3EB"/>
                                                                         <constraint firstItem="L1b-FP-USc" firstAttribute="top" secondItem="b1d-OL-Fzs" secondAttribute="top" constant="4" id="F65-EI-ZYi"/>
+                                                                        <constraint firstAttribute="bottom" secondItem="dHZ-IF-SPx" secondAttribute="bottom" id="FhW-Ny-SKT"/>
                                                                         <constraint firstAttribute="bottom" secondItem="ACi-J5-BUS" secondAttribute="bottom" id="Kdk-XV-mtz"/>
                                                                         <constraint firstAttribute="trailing" secondItem="1EK-77-Ugp" secondAttribute="trailing" id="Kfm-fG-gC1"/>
                                                                         <constraint firstItem="ACi-J5-BUS" firstAttribute="centerY" secondItem="b1d-OL-Fzs" secondAttribute="centerY" id="XOx-RW-y6l"/>
@@ -615,7 +621,9 @@
                                                                         <constraint firstAttribute="trailing" secondItem="L1b-FP-USc" secondAttribute="trailing" constant="4" id="heT-YX-ZpE"/>
                                                                         <constraint firstAttribute="bottom" secondItem="6zi-Lf-yMa" secondAttribute="bottom" constant="4" id="ns1-QJ-7pb"/>
                                                                         <constraint firstItem="1EK-77-Ugp" firstAttribute="top" secondItem="b1d-OL-Fzs" secondAttribute="top" id="rkj-4n-U0Y"/>
+                                                                        <constraint firstItem="dHZ-IF-SPx" firstAttribute="top" secondItem="b1d-OL-Fzs" secondAttribute="top" id="tvP-5I-oCk"/>
                                                                         <constraint firstItem="1EK-77-Ugp" firstAttribute="centerY" secondItem="b1d-OL-Fzs" secondAttribute="centerY" id="w9E-VW-iTr"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="dHZ-IF-SPx" secondAttribute="trailing" id="wyL-CX-JS1"/>
                                                                     </constraints>
                                                                 </collectionViewCellContentView>
                                                                 <connections>
