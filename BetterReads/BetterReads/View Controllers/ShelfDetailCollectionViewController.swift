@@ -24,7 +24,6 @@ class ShelfDetailCollectionViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = ""
         self.navigationController?.navigationBar.tintColor = .trinidadOrange
         addBookToShelfButtonLabel.isEnabled = false
         addBookToShelfButtonLabel.tintColor = .clear
@@ -78,8 +77,6 @@ class ShelfDetailCollectionViewController: UICollectionViewController {
         return 100 // This should never run
     }
 
-    // FIXME: make title change based on shelf name and even work for empty shelves
-    // set title should be in prepare for segue in previous VC
     override func collectionView(_ collectionView: UICollectionView,
                                  cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier,
@@ -94,11 +91,7 @@ class ShelfDetailCollectionViewController: UICollectionViewController {
         if let userShelvesIndex = userShelvesIndex {
             print("Custom Shelf - index \(userShelvesIndex)")
             cell.userBookOnShelf = UserController.sharedLibraryController.userShelves[userShelvesIndex].books?[indexPath.item]
-            title = UserController.sharedLibraryController.userShelves[userShelvesIndex].shelfName
-            // cell.userBookOnShelf = UserController.sharedLibraryController....
         }
-//        guard let allBooksIndex = allBooksIndex else { return cell }
-//        cell.userBook = UserController.sharedLibraryController.allShelvesArray[allBooksIndex][indexPath.item]
         return cell
     }
 }
