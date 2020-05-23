@@ -16,12 +16,11 @@ class SearchTableViewController: UITableViewController {
 
     @IBOutlet var searchBar: UISearchBar!
     // FIXME: change so cancel/x button act like they do in Goodreads/Apple Books?
-    // FIXME: add swipe gesture to dismiss keyboard instead of having "Hide" button?
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
         searchBar.tintColor = .trinidadOrange
-        setupToolBar()
+        tableView.keyboardDismissMode = .onDrag
         tableView.backgroundView?.isHidden = true
         tableView.backgroundView = spinner
         spinner.backgroundColor = .altoGray
@@ -38,19 +37,6 @@ class SearchTableViewController: UITableViewController {
         if searchBar.text == "" {
             searchBar.becomeFirstResponder()
         }
-    }
-
-    private func setupToolBar() {
-        let bar = UIToolbar()
-        let done = UIBarButtonItem(title: "Hide",
-                                   style: .plain,
-                                   target: self,
-                                   action: #selector(hideKeyboardAndCancelButton))
-        done.tintColor = .trinidadOrange
-        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        bar.items = [flexSpace, done]
-        bar.sizeToFit()
-        searchBar.inputAccessoryView = bar
     }
 
     @objc private func hideKeyboardAndCancelButton() {
