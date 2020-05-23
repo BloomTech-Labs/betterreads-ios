@@ -13,6 +13,7 @@ var myBooksArray = [Book]()
 class SearchTableViewController: UITableViewController {
     let searchController = SearchController()
     let spinner = UIActivityIndicatorView(style: .large)
+
     @IBOutlet var searchBar: UISearchBar!
     // FIXME: change so cancel/x button act like they do in Goodreads/Apple Books?
     // FIXME: add swipe gesture to dismiss keyboard instead of having "Hide" button?
@@ -23,13 +24,22 @@ class SearchTableViewController: UITableViewController {
         setupToolBar()
         tableView.backgroundView?.isHidden = true
         tableView.backgroundView = spinner
+        spinner.backgroundColor = .altoGray
+        spinner.color = .tundra
+        // Back button title for next screen
+        let backItem = UIBarButtonItem()
+        backItem.title = "" // now only the arrow is showing
+        navigationItem.backBarButtonItem = backItem
     }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        // if the view appears and there's no text, auto "click" into searchbar
         if searchBar.text == "" {
             searchBar.becomeFirstResponder()
         }
     }
+
     private func setupToolBar() {
         let bar = UIToolbar()
         let done = UIBarButtonItem(title: "Hide",
@@ -42,21 +52,25 @@ class SearchTableViewController: UITableViewController {
         bar.sizeToFit()
         searchBar.inputAccessoryView = bar
     }
-    // FIXME: this should also be called inside searchBarSearchButtonClicked and searchClicked
+
     @objc private func hideKeyboardAndCancelButton() {
         searchBar.resignFirstResponder()
         searchBar.showsCancelButton = false
     }
+
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchController.searchResultBooks.count
     }
+
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
     }
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell",
                                                        for: indexPath) as? SearchResultTableViewCell
@@ -65,6 +79,7 @@ class SearchTableViewController: UITableViewController {
         cell.book = book
         return cell
     }
+
     // MARK: - Navigation
     // FIXME: add segue that goes to BookDetailViewController?
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -77,30 +92,28 @@ class SearchTableViewController: UITableViewController {
                 let cell = tableView.cellForRow(at: indexPath) as? SearchResultTableViewCell
                 detailVC.bookCoverImageView.image = cell?.mainView.imageView.image
                 detailVC.blurredBackgroundView.image = cell?.mainView.imageView.image
-                // Back button title for next screen
-                let backItem = UIBarButtonItem()
-                backItem.title = "" // now only the arrow is showing
-                navigationItem.backBarButtonItem = backItem
             }
         }
     }
 }
+
 // MARK: - Extensions
+
 extension SearchTableViewController: UISearchBarDelegate {
     // FIXME: - Scroll dismisses keyboard (onScroll?)
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = true
     }
+
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
         searchController.searchResultBooks = []
         tableView.reloadData() // FIXME: clear table another way?
         hideKeyboardAndCancelButton()
     }
+
     // dismiss keyboard so user can view all results
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        spinner.backgroundColor = .altoGray
-        spinner.color = .tundra
         spinner.startAnimating()
         guard let searchTerm = searchBar.text, !searchTerm.isEmpty else {
             print("Empty searchbar")

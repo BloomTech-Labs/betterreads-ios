@@ -33,30 +33,6 @@ class ShelfDetailCollectionViewController: UICollectionViewController {
         navigationItem.backBarButtonItem = backItem
     }
 
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
-        //ShelfToDetail
-        if segue.identifier == "ShelfToDetail" {
-            print("ShelfToDetail")
-            if let detailVC = segue.destination as? BookDetailViewController,
-                let indexPath = collectionView.indexPathsForSelectedItems?.first {
-                let cell = collectionView.cellForItem(at: indexPath) as? ShelfDetailCollectionViewCell
-                detailVC.bookCoverImageView.image = cell?.shelfImageView.image
-                detailVC.blurredBackgroundView.image = cell?.shelfImageView.image
-                if let possibleAllBooksIndex = allBooksIndex {
-                    print("section 1, index \(possibleAllBooksIndex)")
-                    detailVC.userBook = UserController.sharedLibraryController.allShelvesArray[possibleAllBooksIndex][indexPath.item]
-                }
-
-                if let possibleUserShelvesIndex = userShelvesIndex {
-                    print("section 2, index \(possibleUserShelvesIndex)")
-                    detailVC.userBookOnShelf = UserController.sharedLibraryController.userShelves[possibleUserShelvesIndex].books?[indexPath.item]
-                }
-            }
-        }
-    }
-
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -93,6 +69,33 @@ class ShelfDetailCollectionViewController: UICollectionViewController {
             cell.userBookOnShelf = UserController.sharedLibraryController.userShelves[userShelvesIndex].books?[indexPath.item]
         }
         return cell
+    }
+
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        //ShelfToDetail
+        if segue.identifier == "ShelfToDetail" {
+            print("ShelfToDetail")
+            if let detailVC = segue.destination as? BookDetailViewController,
+                let indexPath = collectionView.indexPathsForSelectedItems?.first {
+                let cell = collectionView.cellForItem(at: indexPath) as? ShelfDetailCollectionViewCell
+                detailVC.bookCoverImageView.image = cell?.shelfImageView.image
+                detailVC.blurredBackgroundView.image = cell?.shelfImageView.image
+
+                // Book in Default shelf
+                if let possibleAllBooksIndex = allBooksIndex {
+                    print("section 1, index \(possibleAllBooksIndex)")
+                    detailVC.userBook = UserController.sharedLibraryController.allShelvesArray[possibleAllBooksIndex][indexPath.item]
+                }
+
+                // Book in Custom shelf
+                if let possibleUserShelvesIndex = userShelvesIndex {
+                    print("section 2, index \(possibleUserShelvesIndex)")
+                    detailVC.userBookOnShelf = UserController.sharedLibraryController.userShelves[possibleUserShelvesIndex].books?[indexPath.item]
+                }
+            }
+        }
     }
 }
 

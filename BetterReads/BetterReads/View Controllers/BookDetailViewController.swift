@@ -149,6 +149,16 @@ class BookDetailViewController: UIViewController {
         //cv.backgroundColor = .yellow
         return contentView
     }()
+
+    /// Just in case network is slow, have a loading indicator show until network call is done
+    let spinner: UIActivityIndicatorView = {
+        let tempActivityView = UIActivityIndicatorView(style: .medium)
+        tempActivityView.translatesAutoresizingMaskIntoConstraints = false
+        tempActivityView.color = .tundra
+        tempActivityView.backgroundColor = .white
+        return tempActivityView
+    }()
+
     // FIXME: add sound effect for add book to library? (similar to App store purchase success)?
     @objc func showAlert() {
         print("add button tapped")
@@ -168,17 +178,18 @@ class BookDetailViewController: UIViewController {
             updateViews()
         }
     }
-    
+
     /// UserBookOnShelf that comes from a Custom Shelf
     var userBookOnShelf: UserBookOnShelf? {
         didSet {
             fetchBookByIdWithShelfBook()
         }
     }
-    
+
     /// Uses UserBookOnShelf's bookId to search for a Book version
     private func fetchBookByIdWithShelfBook() {
         print("called fetchBookByIdWithShelfBook")
+        spinner.startAnimating()
         guard let bookId = userBookOnShelf?.bookId else { return }
         UserController.sharedLibraryController.fetchBookById(bookId: bookId, completion: { (userBookDetail) in
             DispatchQueue.main.async {
@@ -194,6 +205,7 @@ class BookDetailViewController: UIViewController {
                 self.publisherLabel.text = "Publisher: \(userBookDetail?.publisher ?? "No publisher")"
                 self.isbnLabel.text = "ISBN: \(userBookDetail?.isbn13 ?? "")"
                 self.lengthLabel.text = "Length: \(userBookDetail?.pageCount ?? 0) pages"
+                self.spinner.stopAnimating()
             }
         })
     }
@@ -202,6 +214,7 @@ class BookDetailViewController: UIViewController {
     /// Uses the userBook's bookId to search for a Book version
     private func fetchBookById() {
         print("called fetchBookById in DetailVC")
+        spinner.startAnimating()
         guard let bookId = userBook?.bookId else { return }
         UserController.sharedLibraryController.fetchBookById(bookId: bookId, completion: { (userBookDetail) in
             DispatchQueue.main.async {
@@ -217,6 +230,7 @@ class BookDetailViewController: UIViewController {
                 self.publisherLabel.text = "Publisher: \(userBookDetail?.publisher ?? "No publisher")"
                 self.isbnLabel.text = "ISBN: \(userBookDetail?.isbn13 ?? "")"
                 self.lengthLabel.text = "Length: \(userBookDetail?.pageCount ?? 0) pages"
+                self.spinner.stopAnimating()
             }
         })
     }
@@ -279,6 +293,7 @@ class BookDetailViewController: UIViewController {
         scrollView.contentInsetAdjustmentBehavior = .never
         // quick fix to keep from scrolling too high
         scrollView.bounces = false
+
         // Content View
         scrollView.addSubview(contentView)
         contentView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
@@ -286,6 +301,7 @@ class BookDetailViewController: UIViewController {
         contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
         contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
         contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
+
         // Blurred Background Image View
         contentView.addSubview(blurredBackgroundView)
         blurredBackgroundView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
@@ -294,13 +310,13 @@ class BookDetailViewController: UIViewController {
         blurredBackgroundView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor,
                                                       multiplier: 0.5).isActive = true
 
-        // Where i used to make nav bar transparent
-            // blur effect
+        // blur effect
         let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .systemMaterialDark))
         blurView.frame = blurredBackgroundView.bounds
         blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         // add blurView over blurredBackgroundView
         blurredBackgroundView.addSubview(blurView)
+
         // Book Image View
         contentView.addSubview(bookCoverImageView) // contentView.topAnchor, constant: 100
         bookCoverImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 100).isActive = true
@@ -385,5 +401,12 @@ class BookDetailViewController: UIViewController {
         dummyView.widthAnchor.constraint(equalToConstant: 60).isActive = true
         dummyView.heightAnchor.constraint(equalToConstant: 30).isActive = true
         print("intrinsicContentSize at end = \(self.view.intrinsicContentSize)")
+
+        // Spinner
+        self.view.addSubview(spinner)
+        spinner.topAnchor.constraint(equalTo: blurredBackgroundView.bottomAnchor).isActive = true
+        spinner.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 0).isActive = true
+        spinner.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: 0).isActive = true
+        spinner.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
     }
 }
