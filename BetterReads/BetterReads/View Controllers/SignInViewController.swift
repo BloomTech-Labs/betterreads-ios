@@ -187,16 +187,13 @@ class SignInViewController: UIViewController {
         view.endEditing(true)
         let (valid, _) = validate()
         if valid {
+            activityIndicatorSubmit.isHidden = false
+            submitButton.isHidden = true
+            activityIndicatorSubmit.startAnimating()
             if loginType == .signup {
-                activityIndicatorSubmit.isHidden = false
-                activityIndicatorSubmit.startAnimating()
                 signUpUser()
-                activityIndicatorSubmit.stopAnimating()
             } else {
-                activityIndicatorSubmit.isHidden = false
-                activityIndicatorSubmit.startAnimating()
                 signInUser()
-                activityIndicatorSubmit.stopAnimating()
             }
         }
     }
