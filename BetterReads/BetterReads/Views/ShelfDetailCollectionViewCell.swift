@@ -126,7 +126,7 @@ class ShelfDetailCollectionViewCell: UICollectionViewCell {
         addSubview(tempLabel)
         self.shelfNameLabel = tempLabel
         shelfNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        shelfNameLabel.topAnchor.constraint(equalTo: containerForImageView.bottomAnchor, constant: 0).isActive = true
+        shelfNameLabel.topAnchor.constraint(equalTo: containerForImageView.bottomAnchor, constant: 8).isActive = true
 //        shelfNameLabel.leadingAnchor.constraint(equalTo: shelfImageView.leadingAnchor).isActive = true
         shelfNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
         shelfNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
