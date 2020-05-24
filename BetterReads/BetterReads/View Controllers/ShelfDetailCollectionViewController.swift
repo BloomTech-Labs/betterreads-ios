@@ -24,7 +24,6 @@ class ShelfDetailCollectionViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = ""
         self.navigationController?.navigationBar.tintColor = .trinidadOrange
         addBookToShelfButtonLabel.isEnabled = false
         addBookToShelfButtonLabel.tintColor = .clear
@@ -32,30 +31,6 @@ class ShelfDetailCollectionViewController: UICollectionViewController {
         let backItem = UIBarButtonItem()
         backItem.title = "" // now only the arrow is showing
         navigationItem.backBarButtonItem = backItem
-    }
-
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
-        //ShelfToDetail
-        if segue.identifier == "ShelfToDetail" {
-            print("ShelfToDetail")
-            if let detailVC = segue.destination as? BookDetailViewController,
-                let indexPath = collectionView.indexPathsForSelectedItems?.first {
-                let cell = collectionView.cellForItem(at: indexPath) as? ShelfDetailCollectionViewCell
-                detailVC.bookCoverImageView.image = cell?.shelfImageView.image
-                detailVC.blurredBackgroundView.image = cell?.shelfImageView.image
-                if let possibleAllBooksIndex = allBooksIndex {
-                    print("section 1, index \(possibleAllBooksIndex)")
-                    detailVC.userBook = UserController.sharedLibraryController.allShelvesArray[possibleAllBooksIndex][indexPath.item]
-                }
-
-                if let possibleUserShelvesIndex = userShelvesIndex {
-                    print("section 2, index \(possibleUserShelvesIndex)")
-                    detailVC.userBookOnShelf = UserController.sharedLibraryController.userShelves[possibleUserShelvesIndex].books?[indexPath.item]
-                }
-            }
-        }
     }
 
     // MARK: UICollectionViewDataSource
@@ -78,8 +53,6 @@ class ShelfDetailCollectionViewController: UICollectionViewController {
         return 100 // This should never run
     }
 
-    // FIXME: make title change based on shelf name and even work for empty shelves
-    // set title should be in prepare for segue in previous VC
     override func collectionView(_ collectionView: UICollectionView,
                                  cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier,
@@ -94,12 +67,35 @@ class ShelfDetailCollectionViewController: UICollectionViewController {
         if let userShelvesIndex = userShelvesIndex {
             print("Custom Shelf - index \(userShelvesIndex)")
             cell.userBookOnShelf = UserController.sharedLibraryController.userShelves[userShelvesIndex].books?[indexPath.item]
-            title = UserController.sharedLibraryController.userShelves[userShelvesIndex].shelfName
-            // cell.userBookOnShelf = UserController.sharedLibraryController....
         }
-//        guard let allBooksIndex = allBooksIndex else { return cell }
-//        cell.userBook = UserController.sharedLibraryController.allShelvesArray[allBooksIndex][indexPath.item]
         return cell
+    }
+
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        //ShelfToDetail
+        if segue.identifier == "ShelfToDetail" {
+            print("ShelfToDetail")
+            if let detailVC = segue.destination as? BookDetailViewController,
+                let indexPath = collectionView.indexPathsForSelectedItems?.first {
+                let cell = collectionView.cellForItem(at: indexPath) as? ShelfDetailCollectionViewCell
+                detailVC.bookCoverImageView.image = cell?.shelfImageView.image
+                detailVC.blurredBackgroundView.image = cell?.shelfImageView.image
+
+                // Book in Default shelf
+                if let possibleAllBooksIndex = allBooksIndex {
+                    print("section 1, index \(possibleAllBooksIndex)")
+                    detailVC.userBook = UserController.sharedLibraryController.allShelvesArray[possibleAllBooksIndex][indexPath.item]
+                }
+
+                // Book in Custom shelf
+                if let possibleUserShelvesIndex = userShelvesIndex {
+                    print("section 2, index \(possibleUserShelvesIndex)")
+                    detailVC.userBookOnShelf = UserController.sharedLibraryController.userShelves[possibleUserShelvesIndex].books?[indexPath.item]
+                }
+            }
+        }
     }
 }
 

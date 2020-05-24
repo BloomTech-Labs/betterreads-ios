@@ -19,9 +19,13 @@ class SearchController {
 
     /// Fetches image at url passed in and returns a uimage (place holder image if none exists)
     static func fetchImage(with urlString: String, completion: @escaping (UIImage?) -> Void = { _ in }) {
+
         let defaultImage = UIImage(named: "BetterReads-DefaultBookImage")
-        //print("called fetchImage with url: \(urlString)")
-        guard let url = URL(string: urlString) else {
+
+        // This is to remove the curl on the bottom of some book images
+        let stringWithoutCurl = urlString.replacingOccurrences(of: "&edge=curl", with: "")
+
+        guard let url = URL(string: stringWithoutCurl) else {
             print("cant make url from passed in string")
             completion(defaultImage)
             return
