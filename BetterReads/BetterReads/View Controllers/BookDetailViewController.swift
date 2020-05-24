@@ -134,17 +134,28 @@ class BookDetailViewController: UIViewController {
     let descriptionLabel: UILabel = {
         let decriptionLabel = UILabel()
         decriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-//        tv.backgroundColor = .magenta
+//        decriptionLabel.backgroundColor = .magenta
         decriptionLabel.text = """
                         With 160 million copies of the Twilight Saga sold worldwide,
                         this addictive love story between a teenage girl and
                         a vampire redefined romance for a generation.
                         Here is the series finale.
                         """
-        decriptionLabel.numberOfLines = 0
+        decriptionLabel.numberOfLines = 4 // can change by pressing button?
         return decriptionLabel
     }()
 
+    /// Button that exands the rest of the description label
+    let readMoreButton: UIButton = {
+        let tempReadMoreButton = UIButton(type: .system)
+        tempReadMoreButton.translatesAutoresizingMaskIntoConstraints = false
+        tempReadMoreButton.backgroundColor = .clear
+//        tempReadMoreButton.setTitle("", for: .normal)
+        tempReadMoreButton.addTarget(self, action: #selector(expandDescriptionLabel), for: .touchUpInside)
+        return tempReadMoreButton
+    }()
+
+    /// Placeholder for where genre tags should go
     let dummyView: UILabel = {
         let dummyView = UILabel()
         dummyView.translatesAutoresizingMaskIntoConstraints = false
@@ -157,6 +168,7 @@ class BookDetailViewController: UIViewController {
         return dummyView
     }()
 
+    /// Pinned to Scroll View and holds all other elements to prevent issues with scroll view
     let contentView: UIView = {
         let contentView = UIView()
         contentView.translatesAutoresizingMaskIntoConstraints = false
@@ -164,7 +176,7 @@ class BookDetailViewController: UIViewController {
         return contentView
     }()
 
-    /// Just in case network is slow, have a loading indicator show until network call is done
+    /// Spinning wheel activity indicator for when network call takes too long
     let spinner: UIActivityIndicatorView = {
         let tempActivityView = UIActivityIndicatorView(style: .medium)
         tempActivityView.translatesAutoresizingMaskIntoConstraints = false
@@ -177,6 +189,12 @@ class BookDetailViewController: UIViewController {
     @objc func showAlert() {
         print("add button tapped")
         addButton.performFlare()
+    }
+
+    /// Expands or collapses description (change max number of lines here and in the descriptionLabel property)
+    @objc func expandDescriptionLabel() {
+        print("expandDescriptionLabel called")
+        descriptionLabel.numberOfLines = descriptionLabel.numberOfLines == 0 ? 4 : 0
     }
 
     /// UserBook that comes from a Default shelf
@@ -215,7 +233,7 @@ class BookDetailViewController: UIViewController {
                     self.ratingStackView.ratingValue = 0.0
                 }
                 self.averageRatingLabel.text = "\(userBookDetail?.averageRating ?? "0") average rating"
-                self.descriptionLabel.text = userBookDetail?.textSnippet
+                self.descriptionLabel.text = userBookDetail?.itemDescription//textSnippet
                 self.publisherLabel.text = "Publisher: \(userBookDetail?.publisher ?? "No publisher")"
                 self.isbnLabel.text = "ISBN: \(userBookDetail?.isbn13 ?? "")"
                 self.lengthLabel.text = "Length: \(userBookDetail?.pageCount ?? 0) pages"
@@ -239,7 +257,7 @@ class BookDetailViewController: UIViewController {
                     self.ratingStackView.ratingValue = 0.0
                 }
                 self.averageRatingLabel.text = "\(userBookDetail?.averageRating ?? "0") average rating"
-                self.descriptionLabel.text = userBookDetail?.textSnippet
+                self.descriptionLabel.text = userBookDetail?.itemDescription//textSnippet
                 self.publisherLabel.text = "Publisher: \(userBookDetail?.publisher ?? "No publisher")"
                 self.isbnLabel.text = "ISBN: \(userBookDetail?.isbn13 ?? "")"
                 self.lengthLabel.text = "Length: \(userBookDetail?.pageCount ?? 0) pages"
@@ -386,6 +404,7 @@ class BookDetailViewController: UIViewController {
         lineBreak.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
         lineBreak.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
         lineBreak.heightAnchor.constraint(equalToConstant: 2).isActive = true
+
         // Description Label
         contentView.addSubview(descriptionLabel)
         descriptionLabel.topAnchor.constraint(equalTo: lineBreak.bottomAnchor, constant: 16).isActive = true
@@ -399,6 +418,14 @@ class BookDetailViewController: UIViewController {
         //descriptionTextView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor,
         // constant: -20).isActive = true
         //descriptionTextView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20).isActive = true
+
+        // Read More Button
+        contentView.addSubview(readMoreButton)
+        readMoreButton.trailingAnchor.constraint(equalTo: descriptionLabel.trailingAnchor).isActive = true
+        readMoreButton.centerYAnchor.constraint(equalTo: descriptionLabel.centerYAnchor).isActive = true
+        readMoreButton.heightAnchor.constraint(equalTo: descriptionLabel.heightAnchor, multiplier: 0.9).isActive = true
+        readMoreButton.widthAnchor.constraint(equalTo: descriptionLabel.widthAnchor).isActive = true
+
         // Bottom Stack View (holds publisher, isbn, and length labels)
         contentView.addSubview(bottomStackView)
         bottomStackView.addArrangedSubview(publisherLabel)
