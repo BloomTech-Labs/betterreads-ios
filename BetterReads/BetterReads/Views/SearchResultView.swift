@@ -14,17 +14,17 @@ class SearchResultView: UIView {
 
     // FIXME: make sure image fills up imageView nicely (aspectFit vs Fill etc..)
     var imageView: UIImageView!
-    var titleLabel: UILabel! // var title = uilabel()
+    var titleLabel: UILabel!
     var authorLabel: UILabel!
-    var ratingView: UILabel! // FIXME: change back to uiview mayhaps?
+    var ratingView: UILabel!
     var starsView: UIView! // NEW holds 5 image views inside
     var starsArray: [UIImageView] = [] // NEW holds stars sf icons
 
     // FIXME: add audiobook icon in corner and ebook? icon (look at figma)
     var standardMargin: CGFloat = CGFloat(16.0)
     var starSpacing: Int = 4 // change to double/float?
-    private let titleFont = UIFont(name: "FrankRuhlLibre-Regular", size: 18)
-    private let authorFont = UIFont(name: "SourceSansPro-Light", size: 12)
+    private let titleFont = UIFont(name: "FrankRuhlLibre-Regular", size: 20)
+    private let authorFont = UIFont(name: "SourceSansPro-Light", size: 16)
     private let authorTextColor = UIColor.tundra
     private var lastThumbnailImage: String?
 
@@ -113,7 +113,7 @@ class SearchResultView: UIView {
         titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -standardMargin).isActive = true
         titleLabel.font = titleFont
         titleLabel.textColor = .tundra
-        titleLabel.numberOfLines = 0
+        titleLabel.numberOfLines = 2
 
         // Author Label
         let author = UILabel()
@@ -124,6 +124,8 @@ class SearchResultView: UIView {
                                          constant: standardMargin * 0).isActive = true
         authorLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor,
                                              constant: standardMargin).isActive = true
+        authorLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -standardMargin).isActive = true
+        authorLabel.numberOfLines = 2
         authorLabel.textColor = .tundra
         authorLabel.font = authorFont
 
