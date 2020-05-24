@@ -9,15 +9,15 @@
 import UIKit
 
 class BookDetailViewController: UIViewController {
-    // FIXME: make back arrow white with no text
+
     // FIXME: give intrinsicContentSize a value so it's not -1,-1
-    // FIXME: make these properties with an ! at the end???
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         //v.backgroundColor = .cyan
         return scrollView
     }()
+
     let blurredBackgroundView: UIImageView = {
         let backgroundView = UIImageView()
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
@@ -25,6 +25,7 @@ class BookDetailViewController: UIViewController {
         backgroundView.contentMode = .scaleToFill
         return backgroundView
     }()
+
     let bookCoverImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -35,6 +36,7 @@ class BookDetailViewController: UIViewController {
         imageView.clipsToBounds = true
         return imageView
     }()
+
     // FIXME: make this numberOfLines = 0 for long titles?
     let titleLabel: UILabel = {
         let label = UILabel()
@@ -45,6 +47,7 @@ class BookDetailViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+
     // FIXME: make this numberOfLines = 0 for long authors?
     let authorLabel: UILabel = {
         let label = UILabel()
@@ -54,6 +57,7 @@ class BookDetailViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+
     let ratingStackView: StarRatingStackView = {
         let ratingStackView = StarRatingStackView()
         ratingStackView.axis = .horizontal
@@ -63,6 +67,7 @@ class BookDetailViewController: UIViewController {
         ratingStackView.translatesAutoresizingMaskIntoConstraints = false
         return ratingStackView
     }()
+
     // FIXME: Average Rating label (3.12 avg rating / or No ratings)
     // Average Rating Label
     let averageRatingLabel: UILabel = {
@@ -73,6 +78,7 @@ class BookDetailViewController: UIViewController {
         averageRatingLabel.textAlignment = .center
         return averageRatingLabel
     }()
+
     // FIXME: make button have default "pressing" animation that comes with storyboard buttons
     let addButton: UIButton = {
         let tempButton = UIButton(type: .custom) // .system
@@ -84,6 +90,7 @@ class BookDetailViewController: UIViewController {
         tempButton.layer.cornerRadius = 10
         return tempButton
     }()
+
     let lineBreak: UIView = {
         let lineBreak = UIView()
         lineBreak.translatesAutoresizingMaskIntoConstraints = false
@@ -91,6 +98,7 @@ class BookDetailViewController: UIViewController {
         lineBreak.backgroundColor = .altoGray
         return lineBreak
     }()
+
     let bottomStackView: UIStackView = {
         let bottomStackView = UIStackView()
         bottomStackView.axis = .vertical
@@ -99,6 +107,7 @@ class BookDetailViewController: UIViewController {
         bottomStackView.translatesAutoresizingMaskIntoConstraints = false
         return bottomStackView
     }()
+
     let publisherLabel: UILabel = {
         let publisherLabel = UILabel()
         publisherLabel.text = "Publisher: Little, Brown Books for Young Readers, 2008"
@@ -106,18 +115,21 @@ class BookDetailViewController: UIViewController {
         publisherLabel.numberOfLines = 0
         return publisherLabel
     }()
+
     let isbnLabel: UILabel = {
         let isbnLabel = UILabel()
         isbnLabel.text = "ISBN: 9780316032834"
         isbnLabel.font = UIFont(name: "SourceSansPro-Light", size: 16)
         return isbnLabel
     }()
+
     let lengthLabel: UILabel = {
         let lengthLabel = UILabel()
         lengthLabel.text = "Length: 768 pages"
         lengthLabel.font = UIFont(name: "SourceSansPro-Light", size: 16)
         return lengthLabel
     }()
+
     /// Label (it's height can be easily based on it's content (text) inside so scroll view changes accordingly)
     let descriptionLabel: UILabel = {
         let decriptionLabel = UILabel()
@@ -132,6 +144,7 @@ class BookDetailViewController: UIViewController {
         decriptionLabel.numberOfLines = 0
         return decriptionLabel
     }()
+
     let dummyView: UILabel = {
         let dummyView = UILabel()
         dummyView.translatesAutoresizingMaskIntoConstraints = false
@@ -143,6 +156,7 @@ class BookDetailViewController: UIViewController {
         dummyView.clipsToBounds = true
         return dummyView
     }()
+
     let contentView: UIView = {
         let contentView = UIView()
         contentView.translatesAutoresizingMaskIntoConstraints = false
@@ -209,7 +223,6 @@ class BookDetailViewController: UIViewController {
             }
         })
     }
-    
 
     /// Uses the userBook's bookId to search for a Book version
     private func fetchBookById() {
@@ -234,7 +247,9 @@ class BookDetailViewController: UIViewController {
             }
         })
     }
+
     // MARK: - View Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         title = ""
@@ -243,6 +258,7 @@ class BookDetailViewController: UIViewController {
         navigationController?.navigationBar.isHidden = false
         setupSubviews()
     }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // To change status bar text to white
@@ -252,6 +268,7 @@ class BookDetailViewController: UIViewController {
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
     }
+
     // To change status bar text back to black
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -263,10 +280,7 @@ class BookDetailViewController: UIViewController {
         navigationController?.navigationBar.isTranslucent = false
     }
     // FIXME: button might be weird because contentSize is -1, -1
-//    override var intrinsicContentSize: CGSize {
-//      //let width = componentsWidth + componentsSpacing
-//        return CGSize(width: view.bounds.width, height: view.bounds.height)
-//    }
+
     private func updateViews() {
         //guard isViewLoaded else { print("view not loaded yet"); return }
         guard let book = book else { print("no book in guard let"); return }
@@ -280,7 +294,9 @@ class BookDetailViewController: UIViewController {
         isbnLabel.text = "ISBN: \(book.isbn13 ?? "")"
         lengthLabel.text = "Length: \(book.pageCount ?? 0) pages"
     }
+
     private func setupSubviews() {
+        // FIXME: make each of these element constraints happen in their own function and then call them in order
         // Scroll View
         // add the scroll view to self.view
         self.view.addSubview(scrollView)
