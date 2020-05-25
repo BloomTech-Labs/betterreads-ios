@@ -345,16 +345,20 @@ extension SignInViewController: UITextFieldDelegate {
         switch textField {
         case passwordTextField:
             confirmPasswordTextField.isSecureTextEntry = true
+            confirmPasswordEyeballButton.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
             passwordEyeballButton.isHidden = false
             confirmPasswordEyeballButton.isHidden = true
         case confirmPasswordTextField:
             passwordTextField.isSecureTextEntry = true
+            passwordEyeballButton.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
             passwordEyeballButton.isHidden = true
             confirmPasswordEyeballButton.isHidden = false
         default:
             passwordTextField.isSecureTextEntry = true
+            passwordEyeballButton.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
             passwordEyeballButton.isHidden = true
             confirmPasswordTextField.isSecureTextEntry = true
+            confirmPasswordEyeballButton.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
             confirmPasswordEyeballButton.isHidden = true
         }
     }
