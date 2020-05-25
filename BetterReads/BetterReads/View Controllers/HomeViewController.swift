@@ -90,6 +90,7 @@ Flip through the tailored recommendations below from a variety of authors and st
                 .dequeueReusableCell(withReuseIdentifier: "TopCollectionCell",
                                      for: indexPath
                 ) as? RecommendationCollectionViewCell ?? RecommendationCollectionViewCell()
+            cell.bookCoverImageView.image = UIImage().chooseDefaultBookImage()
             guard let books = UserController.shared.recommendedBooks else { return cell }
             cell.book = books[indexPath.item]
             return cell
@@ -98,6 +99,7 @@ Flip through the tailored recommendations below from a variety of authors and st
                 .dequeueReusableCell(withReuseIdentifier: "MiddleCollectionCell",
                                      for: indexPath
                 ) as? RecommendationCollectionViewCell ?? RecommendationCollectionViewCell()
+            cell.bookCoverImageView.image = UIImage().chooseDefaultBookImage()
             guard let books = UserController.sharedLibraryController.recommendationsForRandomShelf else { return cell }
             cell.book = books[indexPath.item]
             return cell
@@ -106,6 +108,7 @@ Flip through the tailored recommendations below from a variety of authors and st
                 .dequeueReusableCell(withReuseIdentifier: "BottomCollectionCell",
                                      for: indexPath
                 ) as? RecommendationCollectionViewCell ?? RecommendationCollectionViewCell()
+            cell.bookCoverImageView.image = UIImage().chooseDefaultBookImage()
             return cell
         }
         return RecommendationCollectionViewCell()

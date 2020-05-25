@@ -53,6 +53,21 @@ extension UIImage {
         self.init(data: image.pngData()!)!
     }
 }
+
+//Default Book Images
+extension UIImage {
+    func chooseDefaultBookImage() -> UIImage {
+        guard let orangeBookImage = UIImage(named: "BetterReads-DefaultBookImage_Orange"),
+            let greenBookImage = UIImage(named: "BetterReads-DefaultBookImage_Green"),
+            let blueBookImage = UIImage(named: "BetterReads-DefaultBookImage_Blue") else {
+                return UIImage()
+        }
+        let defaultBookImages = [orangeBookImage, greenBookImage, blueBookImage]
+        guard let randomBookImage = defaultBookImages.randomElement() else { return orangeBookImage }
+        return randomBookImage
+    }
+}
+
 // Break down User's full name into first and last
 extension Name {
     init(fullName: String) {

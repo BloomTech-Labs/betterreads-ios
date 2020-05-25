@@ -119,7 +119,7 @@ class ShelfDetailCollectionViewCell: UICollectionViewCell {
         shelfImageView.layer.cornerRadius = 5
         shelfImageView.contentMode = .scaleToFill //fill
         shelfImageView.clipsToBounds = true
-        shelfImageView.image = UIImage(named: "BetterReads-DefaultBookImage")
+        shelfImageView.image = UIImage().chooseDefaultBookImage()
 
         // Label
         let tempLabel = UILabel()
