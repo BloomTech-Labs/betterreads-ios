@@ -104,6 +104,8 @@ class SignInViewController: UIViewController {
         segmentedControl.setTitleTextAttributes(normalTextAttributes as [NSAttributedString.Key: Any], for: .normal)
     }
     @IBAction func segmentedControlChanged(_ sender: UISegmentedControl) {
+        submitButton.isEnabled = false
+        submitButton.backgroundColor = .altoGray
         if sender.selectedSegmentIndex == 0 {
             setUpSignUpForm()
         } else {
@@ -253,9 +255,12 @@ class SignInViewController: UIViewController {
                                      emailAddress: emailAddress,
                                      password: password) { (networkError) in
             if let error = networkError {
+                // Show vague alert even if the account already exists due to security reasons.
                 self.showBasicAlert(alertText: "Sign Up Error",
                                     alertMessage: "An error occured during Sign Up,\nplease try again later.")
                 NSLog("Error occured during Sign Up: \(error)")
+                self.activityIndicatorSubmit.stopAnimating()
+                self.submitButton.isHidden = false
             } else {
                 print("Sign up successful...now signing in...")
                 UserController.shared.isNewUser = true
@@ -265,6 +270,8 @@ class SignInViewController: UIViewController {
                         self.showBasicAlert(alertText: "Sign In Error",
                                             alertMessage: "An error occured during Sign In,\nplease try again later.")
                         NSLog("Error occured during Sign In: \(error)")
+                        self.activityIndicatorSubmit.stopAnimating()
+                        self.submitButton.isHidden = false
                     } else {
                         DispatchQueue.main.async {
                             self.performSegue(withIdentifier: "ShowHomeScreenSegue", sender: self)
@@ -280,8 +287,10 @@ class SignInViewController: UIViewController {
         UserController.shared.signIn(emailAddress: emailAddress, password: password) { (networkError) in
             if let error = networkError {
                 self.showBasicAlert(alertText: "Sign In Error",
-                                    alertMessage: "An error occured during Sign In,\nplease try again later.")
+                                    alertMessage: "Invalid email and/or password,\nplease try again.")
                 NSLog("Error occured during Sign In: \(error)")
+                self.activityIndicatorSubmit.stopAnimating()
+                self.submitButton.isHidden = false
             } else {
                 print("Sign in successful...")
                 DispatchQueue.main.async {
@@ -336,16 +345,20 @@ extension SignInViewController: UITextFieldDelegate {
         switch textField {
         case passwordTextField:
             confirmPasswordTextField.isSecureTextEntry = true
+            confirmPasswordEyeballButton.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
             passwordEyeballButton.isHidden = false
             confirmPasswordEyeballButton.isHidden = true
         case confirmPasswordTextField:
             passwordTextField.isSecureTextEntry = true
+            passwordEyeballButton.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
             passwordEyeballButton.isHidden = true
             confirmPasswordEyeballButton.isHidden = false
         default:
             passwordTextField.isSecureTextEntry = true
+            passwordEyeballButton.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
             passwordEyeballButton.isHidden = true
             confirmPasswordTextField.isSecureTextEntry = true
+            confirmPasswordEyeballButton.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
             confirmPasswordEyeballButton.isHidden = true
         }
     }

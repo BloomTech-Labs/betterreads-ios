@@ -12,8 +12,8 @@ import Nuke
 class HomeViewController: UIViewController, UICollectionViewDataSource {
     // MARK: - Properties
     let welcomeNewUserMessageText = """
-It’s great to have you! Discover interesting stories and unique perspectives from the suggestions below.
-Already a book nerd? Add your favorites to your library collection.
+It’s great to have you!
+Search for your favorite books and add them to your library collection.
 """
     let welcomeReturningUserMessageText = """
 Welcome back!
@@ -44,9 +44,15 @@ Flip through the tailored recommendations below from a variety of authors and st
             welcomeMessage.text = welcomeReturningUserMessageText
         }
         UserController.shared.getRecommendations { (error) in
+            var title = "Recommendations Error"
+            var message = "An error occurred while getting recommendations."
+            if UserController.shared.isNewUser == true {
+                title = "Welcome to BetterReads!"
+                message = "To help us make better recommendations, search for and add books to your library."
+            }
             if let error = error {
-                let alert = UIAlertController(title: "Recommendations Error",
-                                              message: "An error occurred while getting recommendations.",
+                let alert = UIAlertController(title: title,
+                                              message: message,
                                               preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
