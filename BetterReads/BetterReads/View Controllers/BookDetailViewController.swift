@@ -308,8 +308,9 @@ class BookDetailViewController: UIViewController {
         blurredBackgroundView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         blurredBackgroundView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
         blurredBackgroundView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
-        blurredBackgroundView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor,
-                                                      multiplier: 0.5).isActive = true
+        // height anchor used to be view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.5
+        blurredBackgroundView.heightAnchor.constraint(equalTo: blurredBackgroundView.widthAnchor,
+                                                      multiplier: 0.8).isActive = true
 
         // blur effect
         let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .systemMaterialDark))
@@ -320,12 +321,15 @@ class BookDetailViewController: UIViewController {
 
         // Book Image View
         contentView.addSubview(bookCoverImageView) // contentView.topAnchor, constant: 100
-        bookCoverImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 100).isActive = true
+        //bookCoverImageView.centerYAnchor.constraint(equalTo: blurredBackgroundView.centerYAnchor).isActive = true
+        //bookCoverImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 100).isActive = true
         //bookCoverImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
         bookCoverImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         bookCoverImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true
         bookCoverImageView.heightAnchor.constraint(equalTo: bookCoverImageView.widthAnchor,
                                                    multiplier: 1.5).isActive = true
+        bookCoverImageView.bottomAnchor.constraint(equalTo: blurredBackgroundView.bottomAnchor,
+                                                   constant: -40).isActive = true
         // Title Label
         contentView.addSubview(titleLabel)
         //titleLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
