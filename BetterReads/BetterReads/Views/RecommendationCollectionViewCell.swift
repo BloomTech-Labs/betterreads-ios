@@ -27,7 +27,7 @@ class RecommendationCollectionViewCell: UICollectionViewCell {
         }
         if let smallThumbnail = book.smallThumbnail, let smallThumbnailUrl = URL(string: smallThumbnail) {
             let options = ImageLoadingOptions(
-                placeholder: UIImage(named: "BetterReads-DefaultBookImage"),
+                placeholder: UIImage().chooseDefaultBookImage(),
                 transition: .fadeIn(duration: 0.33)
             )
             Nuke.loadImage(with: smallThumbnailUrl, options: options, into: bookCoverImageView)

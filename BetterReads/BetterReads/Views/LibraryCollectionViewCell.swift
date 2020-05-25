@@ -169,7 +169,7 @@ class LibraryCollectionViewCell: UICollectionViewCell {
         thirdImageView.layer.cornerRadius = 5
         thirdImageView.contentMode = .scaleToFill
         thirdImageView.clipsToBounds = true
-        thirdImageView.image = UIImage(named: "BetterReads-DefaultBookImage")
+        thirdImageView.image = UIImage().chooseDefaultBookImage()
         thirdImageView.alpha = 0.30
         
         // Second Image Gray Underlay
@@ -197,7 +197,7 @@ class LibraryCollectionViewCell: UICollectionViewCell {
         secondImageView.layer.cornerRadius = 5
         secondImageView.contentMode = .scaleToFill
         secondImageView.clipsToBounds = true
-        secondImageView.image = UIImage(named: "BetterReads-DefaultBookImage")
+        secondImageView.image = UIImage().chooseDefaultBookImage()
         secondImageView.alpha = 0.60
         
         // First Image View (front)
@@ -212,7 +212,7 @@ class LibraryCollectionViewCell: UICollectionViewCell {
         firstImageView.layer.cornerRadius = 5
         firstImageView.contentMode = .scaleToFill
         firstImageView.clipsToBounds = true
-        firstImageView.image = UIImage(named: "BetterReads-DefaultBookImage")
+        firstImageView.image = UIImage().chooseDefaultBookImage()
 
         // Label
         let tempLabel = UILabel()
