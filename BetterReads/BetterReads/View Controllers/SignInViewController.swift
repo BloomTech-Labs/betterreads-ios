@@ -253,6 +253,7 @@ class SignInViewController: UIViewController {
                                      emailAddress: emailAddress,
                                      password: password) { (networkError) in
             if let error = networkError {
+                // Show vague alert even if the account already exists due to security reasons.
                 self.showBasicAlert(alertText: "Sign Up Error",
                                     alertMessage: "An error occured during Sign Up,\nplease try again later.")
                 NSLog("Error occured during Sign Up: \(error)")
