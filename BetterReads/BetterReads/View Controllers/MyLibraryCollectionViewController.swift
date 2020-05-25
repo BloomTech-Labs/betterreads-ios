@@ -12,8 +12,6 @@ private let reuseIdentifier = "LibraryCell"
 
 class MyLibraryCollectionViewController: UICollectionViewController {
 
-    var tempShelfCount: Int = 1
-
     @IBOutlet var addShelfButtonLabel: UIBarButtonItem!
 
     @IBAction func addShelfButtonTapped(_ sender: UIBarButtonItem) {
@@ -45,9 +43,20 @@ class MyLibraryCollectionViewController: UICollectionViewController {
 
     fileprivate var alertTextField: UITextField?
 
+    func fetchLibraryAgain() {
+        print("called fetchLibraryAgain")
+        UserController.sharedLibraryController.fetchUserLibrary { (_) in
+            DispatchQueue.main.async {
+                print("refreshed library")
+                self.collectionView.reloadData()
+            }
+        }
+    }
+
     private func createNewShelf() {
         print("createNewShelf called, textField text = \(alertTextField?.text ?? "nil")")
-        tempShelfCount += 1
+        // FIXME: add a refresh button to nav bar, call fetchLibraryAgain in there and check LibraryCell because images are being kept when they should reflect contents of that array
+        fetchLibraryAgain()
         collectionView.reloadData()
     }
 

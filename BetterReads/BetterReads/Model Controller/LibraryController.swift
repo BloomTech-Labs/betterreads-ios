@@ -157,6 +157,8 @@ class LibraryController {
             do {
                 print("Data = \(data)")
                 let allCustomShelvesWithBooks = try jsonDecoder.decode([UserShelf].self, from: data)
+                // clear whole array to not get duplicates
+                self.userShelves = []
                 self.userShelves = allCustomShelvesWithBooks
                 DispatchQueue.main.async {
                     completion(nil)
@@ -172,11 +174,14 @@ class LibraryController {
 
     /// Returns all books in user's library
     func fetchUserLibrary(completion: @escaping (Error?) -> Void = { _ in }) {
+
+        print("fetchUserLibrary")
         guard let userId = UserController.shared.user?.userID else {
             print("no user id")
             completion(nil)
             return
         }
+
         var requestUrl = baseUrl.appendingPathComponent("\(userId)")
         requestUrl = requestUrl.appendingPathComponent("library")
         print("requestUrl = \(requestUrl)")
@@ -211,6 +216,8 @@ class LibraryController {
             do {
                 print("Data = \(data)")
                 let booksArray = try jsonDecoder.decode([UserBook].self, from: data)
+                // clear whole array to not get duplicates
+                self.allShelvesArray = []
 
                 self.myBooksArray = booksArray
                 self.allShelvesArray.append(booksArray)
@@ -231,6 +238,7 @@ class LibraryController {
                 self.allShelvesArray.append(self.finishedBooksArray)
 
                 DispatchQueue.main.async {
+                    print("Finished fetching Library")
                     completion(nil)
                 }
             } catch {
