@@ -15,18 +15,9 @@ class ShelfDetailCollectionViewController: UICollectionViewController {
     var allBooksIndex: Int?
     var userShelvesIndex: Int?
 
-    // FIXME: delete add button on shelf detail screen later and these outlets
-    @IBOutlet var addBookToShelfButtonLabel: UIBarButtonItem!
-
-    @IBAction func addBookToShelfTapped(_ sender: UIBarButtonItem) {
-        print("addBookToShelfTapped")
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.tintColor = .trinidadOrange
-        addBookToShelfButtonLabel.isEnabled = false
-        addBookToShelfButtonLabel.tintColor = .clear
         // Back button title for next screen
         let backItem = UIBarButtonItem()
         backItem.title = "" // now only the arrow is showing
