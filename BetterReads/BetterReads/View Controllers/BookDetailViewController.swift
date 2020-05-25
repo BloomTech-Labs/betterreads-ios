@@ -189,13 +189,6 @@ class BookDetailViewController: UIViewController {
         descriptionLabel.numberOfLines = descriptionLabel.numberOfLines == 0 ? 4 : 0
     }
 
-    /// UserBook that comes from a Default shelf
-    var userBook: UserBook? {
-        didSet {
-            fetchBookById()
-        }
-    }
-
     /// Book that comes from Home or Search screen
     var book: Book? {
         didSet {
@@ -203,55 +196,40 @@ class BookDetailViewController: UIViewController {
         }
     }
 
-    /// UserBookOnShelf that comes from a Custom Shelf
-    var userBookOnShelf: UserBookOnShelf? {
+    /// UserBook that comes from a Default shelf
+    var userBook: UserBook? {
         didSet {
-            fetchBookByIdWithShelfBook()
+            guard let bookId = userBook?.bookId else { return }
+            fetchBookById(bookId: bookId)
         }
     }
 
-    /// Uses UserBookOnShelf's bookId to search for a Book version
-    private func fetchBookByIdWithShelfBook() {
-        print("called fetchBookByIdWithShelfBook")
-        spinner.startAnimating()
-        guard let bookId = userBookOnShelf?.bookId else { return }
-        UserController.sharedLibraryController.fetchBookById(bookId: bookId, completion: { (userBookDetail) in
-            DispatchQueue.main.async {
-                self.titleLabel.text = userBookDetail?.title
-                self.authorLabel.text = "by \(userBookDetail?.authors ?? "Unknown")"
-                if let averageRating = userBookDetail?.averageRating {
-                    self.ratingStackView.ratingValue = Double(averageRating)
-                } else {
-                    self.ratingStackView.ratingValue = 0.0
-                }
-                self.averageRatingLabel.text = "\(userBookDetail?.averageRating ?? "0") average rating"
-                self.descriptionLabel.text = userBookDetail?.itemDescription//textSnippet
-                self.publisherLabel.text = "Publisher: \(userBookDetail?.publisher ?? "No publisher")"
-                self.isbnLabel.text = "ISBN: \(userBookDetail?.isbn13 ?? "")"
-                self.lengthLabel.text = "Length: \(userBookDetail?.pageCount ?? 0) pages"
-                self.spinner.stopAnimating()
-            }
-        })
+    /// UserBookOnShelf that comes from a Custom Shelf
+    var userBookOnShelf: UserBookOnShelf? {
+        didSet {
+            guard let bookId = userBookOnShelf?.bookId else { return }
+            fetchBookById(bookId: bookId)
+        }
     }
 
-    /// Uses the userBook's bookId to search for a Book version
-    private func fetchBookById() {
-        print("called fetchBookById in DetailVC")
+    /// Fetches detailed version of passed in book by it's bookId
+    private func fetchBookById(bookId: Int) {
+        print("called fetchBookById(bookId: Int)")
         spinner.startAnimating()
-        guard let bookId = userBook?.bookId else { return }
         UserController.sharedLibraryController.fetchBookById(bookId: bookId, completion: { (userBookDetail) in
             DispatchQueue.main.async {
-                self.titleLabel.text = userBookDetail?.title
+                self.titleLabel.text = userBookDetail?.title ?? "Untitled"
                 self.authorLabel.text = "by \(userBookDetail?.authors ?? "Unknown")"
-                if let averageRating = userBookDetail?.averageRating {
-                    self.ratingStackView.ratingValue = Double(averageRating)
+                if let averageRating = userBookDetail?.averageRating, let doubleValue = Double(averageRating) {
+                    self.ratingStackView.ratingValue = doubleValue
+                    self.averageRatingLabel.text = String(format: "%.1f average rating", doubleValue)
                 } else {
                     self.ratingStackView.ratingValue = 0.0
+                    self.averageRatingLabel.text = "no rating"
                 }
-                self.averageRatingLabel.text = "\(userBookDetail?.averageRating ?? "0") average rating"
-                self.descriptionLabel.text = userBookDetail?.itemDescription//textSnippet
+                self.descriptionLabel.text = userBookDetail?.itemDescription ?? "No description"
                 self.publisherLabel.text = "Publisher: \(userBookDetail?.publisher ?? "No publisher")"
-                self.isbnLabel.text = "ISBN: \(userBookDetail?.isbn13 ?? "")"
+                self.isbnLabel.text = "ISBN: \(userBookDetail?.isbn13 ?? "no ISBN")"
                 self.lengthLabel.text = "Length: \(userBookDetail?.pageCount ?? 0) pages"
                 self.spinner.stopAnimating()
             }
@@ -292,10 +270,8 @@ class BookDetailViewController: UIViewController {
     // FIXME: button might be weird because contentSize is -1, -1
 
     private func updateViews() {
-        //guard isViewLoaded else { print("view not loaded yet"); return }
         guard let book = book else { print("no book in guard let"); return }
         titleLabel.text = book.title
-        //bookCoverImageView.image = UIImage()book.thumbnail
         authorLabel.text = "by \(book.authors?[0] ?? "Unknown")"
         ratingStackView.ratingValue = book.averageRating
         averageRatingLabel.text = "\(book.averageRating ?? 0) average rating"
@@ -306,16 +282,15 @@ class BookDetailViewController: UIViewController {
     }
 
     private func setupSubviews() {
-        // FIXME: make each of these element constraints happen in their own function and then call them in order
+
         // Scroll View
         // add the scroll view to self.view
         self.view.addSubview(scrollView)
-        // constrain the scroll view to 8-pts on each side
         scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         scrollView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 0).isActive = true
         scrollView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: 0).isActive = true
         scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
-        // Holy fuck this solved my issue
+        // Very important
         scrollView.contentInsetAdjustmentBehavior = .never
         // quick fix to keep from scrolling too high
         scrollView.bounces = false
@@ -352,10 +327,7 @@ class BookDetailViewController: UIViewController {
         bookCoverImageView.heightAnchor.constraint(equalTo: bookCoverImageView.widthAnchor,
                                                    multiplier: 1.5).isActive = true
         // Title Label
-        // add labelOne to the scroll view
         contentView.addSubview(titleLabel)
-        // constrain labelOne to left & top with 16-pts padding
-        // this also defines the left & top of the scroll content
         //titleLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
         titleLabel.topAnchor.constraint(equalTo: blurredBackgroundView.bottomAnchor, constant: 16).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
@@ -363,9 +335,8 @@ class BookDetailViewController: UIViewController {
         //titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
 
         // Author Label
-        // add authorLabel to the scroll view
         contentView.addSubview(authorLabel)
-        authorLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8).isActive = true
+        authorLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 6).isActive = true
         authorLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
         authorLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
         //authorLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor, constant: 0).isActive = true
@@ -375,8 +346,8 @@ class BookDetailViewController: UIViewController {
         contentView.addSubview(ratingStackView)
         ratingStackView.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 8).isActive = true
         ratingStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        ratingStackView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true
-        ratingStackView.heightAnchor.constraint(equalTo: ratingStackView.widthAnchor, multiplier: 0.2).isActive = true
+        ratingStackView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.33).isActive = true
+        ratingStackView.heightAnchor.constraint(equalTo: ratingStackView.widthAnchor, multiplier: 0.18).isActive = true
 
         // Average Rating Label
         contentView.addSubview(averageRatingLabel)
@@ -395,6 +366,7 @@ class BookDetailViewController: UIViewController {
         //addButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
         addButton.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.4).isActive = true
         addButton.heightAnchor.constraint(equalTo: addButton.widthAnchor, multiplier: 0.3).isActive = true
+
         // Line Break
         contentView.addSubview(lineBreak)
         lineBreak.topAnchor.constraint(equalTo: addButton.bottomAnchor, constant: 16).isActive = true
@@ -431,6 +403,7 @@ class BookDetailViewController: UIViewController {
         bottomStackView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 16).isActive = true
         bottomStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
         bottomStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
+
         // Bottom Thing (change to genre tags later?)
         contentView.addSubview(dummyView)
         dummyView.topAnchor.constraint(equalTo: bottomStackView.bottomAnchor, constant: 16).isActive = true
