@@ -104,6 +104,8 @@ class SignInViewController: UIViewController {
         segmentedControl.setTitleTextAttributes(normalTextAttributes as [NSAttributedString.Key: Any], for: .normal)
     }
     @IBAction func segmentedControlChanged(_ sender: UISegmentedControl) {
+        submitButton.isEnabled = false
+        submitButton.backgroundColor = .altoGray
         if sender.selectedSegmentIndex == 0 {
             setUpSignUpForm()
         } else {
@@ -257,6 +259,8 @@ class SignInViewController: UIViewController {
                 self.showBasicAlert(alertText: "Sign Up Error",
                                     alertMessage: "An error occured during Sign Up,\nplease try again later.")
                 NSLog("Error occured during Sign Up: \(error)")
+                self.activityIndicatorSubmit.stopAnimating()
+                self.submitButton.isHidden = false
             } else {
                 print("Sign up successful...now signing in...")
                 UserController.shared.isNewUser = true
@@ -266,6 +270,8 @@ class SignInViewController: UIViewController {
                         self.showBasicAlert(alertText: "Sign In Error",
                                             alertMessage: "An error occured during Sign In,\nplease try again later.")
                         NSLog("Error occured during Sign In: \(error)")
+                        self.activityIndicatorSubmit.stopAnimating()
+                        self.submitButton.isHidden = false
                     } else {
                         DispatchQueue.main.async {
                             self.performSegue(withIdentifier: "ShowHomeScreenSegue", sender: self)
@@ -281,8 +287,10 @@ class SignInViewController: UIViewController {
         UserController.shared.signIn(emailAddress: emailAddress, password: password) { (networkError) in
             if let error = networkError {
                 self.showBasicAlert(alertText: "Sign In Error",
-                                    alertMessage: "An error occured during Sign In,\nplease try again later.")
+                                    alertMessage: "Invalid email and/or password,\nplease try again.")
                 NSLog("Error occured during Sign In: \(error)")
+                self.activityIndicatorSubmit.stopAnimating()
+                self.submitButton.isHidden = false
             } else {
                 print("Sign in successful...")
                 DispatchQueue.main.async {
