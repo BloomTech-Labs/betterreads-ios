@@ -14,7 +14,6 @@ class BookDetailViewController: UIViewController {
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        //v.backgroundColor = .cyan
         return scrollView
     }()
 
@@ -29,7 +28,6 @@ class BookDetailViewController: UIViewController {
     let bookCoverImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-//        iv.backgroundColor = .yellow
         imageView.image = UIImage(named: "twilightBookCover")
         imageView.contentMode = .scaleAspectFill // used to be .scaleToFit
         imageView.layer.cornerRadius = 5
@@ -37,23 +35,22 @@ class BookDetailViewController: UIViewController {
         return imageView
     }()
 
-    // FIXME: make this numberOfLines = 0 for long titles?
     let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Twilight Breaking Dawn"
         label.font = UIFont(name: "FrankRuhlLibre-Regular", size: 24)
         label.textAlignment = .center
-//        label.backgroundColor = .red
+        label.numberOfLines = 3
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
-    // FIXME: make this numberOfLines = 0 for long authors?
     let authorLabel: UILabel = {
         let label = UILabel()
         label.text = "by Stephenie Meyer"
         label.font = UIFont(name: "SourceSansPro-Light", size: 16)
-//        label.backgroundColor = .green
+        label.numberOfLines = 2
+        label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -135,12 +132,7 @@ class BookDetailViewController: UIViewController {
         let decriptionLabel = UILabel()
         decriptionLabel.translatesAutoresizingMaskIntoConstraints = false
 //        decriptionLabel.backgroundColor = .magenta
-        decriptionLabel.text = """
-                        With 160 million copies of the Twilight Saga sold worldwide,
-                        this addictive love story between a teenage girl and
-                        a vampire redefined romance for a generation.
-                        Here is the series finale.
-                        """
+        decriptionLabel.text = ""
         decriptionLabel.numberOfLines = 4 // can change by pressing button?
         return decriptionLabel
     }()
@@ -307,7 +299,7 @@ class BookDetailViewController: UIViewController {
         authorLabel.text = "by \(book.authors?[0] ?? "Unknown")"
         ratingStackView.ratingValue = book.averageRating
         averageRatingLabel.text = "\(book.averageRating ?? 0) average rating"
-        descriptionLabel.text = book.textSnippet
+        descriptionLabel.text = book.itemDescription
         publisherLabel.text = "Publisher: \(book.publisher ?? "No publisher")"
         isbnLabel.text = "ISBN: \(book.isbn13 ?? "")"
         lengthLabel.text = "Length: \(book.pageCount ?? 0) pages"
@@ -366,21 +358,26 @@ class BookDetailViewController: UIViewController {
         // this also defines the left & top of the scroll content
         //titleLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
         titleLabel.topAnchor.constraint(equalTo: blurredBackgroundView.bottomAnchor, constant: 16).isActive = true
-        //titleLabel.leadingAnchor.constraint(equalTo: bookCoverImageView.trailingAnchor, constant: 8).isActive = true
-        titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
+        titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
+        //titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+
         // Author Label
         // add authorLabel to the scroll view
         contentView.addSubview(authorLabel)
         authorLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8).isActive = true
-        //authorLabel.leadingAnchor.constraint(equalTo: bookCoverImageView.trailingAnchor, constant: 8).isActive = true
-        authorLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor, constant: 0).isActive = true
+        authorLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
+        authorLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
+        //authorLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor, constant: 0).isActive = true
         //authorLabel.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 0).isActive = true
+
         // Rating Stack View
         contentView.addSubview(ratingStackView)
         ratingStackView.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 8).isActive = true
         ratingStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         ratingStackView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true
         ratingStackView.heightAnchor.constraint(equalTo: ratingStackView.widthAnchor, multiplier: 0.2).isActive = true
+
         // Average Rating Label
         contentView.addSubview(averageRatingLabel)
         averageRatingLabel.topAnchor.constraint(equalTo: ratingStackView.bottomAnchor, constant: 4).isActive = true
@@ -388,7 +385,7 @@ class BookDetailViewController: UIViewController {
         //ratingView.leadingAnchor.constraint(equalTo: bookCoverImageView.trailingAnchor, constant: 8).isActive = true
         //averageRatingLabel.widthAnchor.constraint(equalTo: authorLabel.widthAnchor).isActive = true
         //averageRatingLabel.heightAnchor.constraint(equalTo: authorLabel.heightAnchor, multiplier: 1.2).isActive = true
-        // FIXME: change button width so its always maybe 0.4 of content view width? might cause bugs
+
         // Add Book Button
         contentView.addSubview(addButton)
         addButton.topAnchor.constraint(equalTo: averageRatingLabel.bottomAnchor, constant: 8).isActive = true
@@ -396,8 +393,8 @@ class BookDetailViewController: UIViewController {
         //addButton.bottomAnchor.constraint(equalTo: bookCoverImageView.bottomAnchor).isActive = true
         //addButton.leadingAnchor.constraint(equalTo: bookCoverImageView.trailingAnchor, constant: 8).isActive = true
         //addButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
-        addButton.widthAnchor.constraint(equalTo: titleLabel.widthAnchor).isActive = true
-        addButton.heightAnchor.constraint(equalTo: titleLabel.heightAnchor, multiplier: 1.5).isActive = true
+        addButton.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.4).isActive = true
+        addButton.heightAnchor.constraint(equalTo: addButton.widthAnchor, multiplier: 0.3).isActive = true
         // Line Break
         contentView.addSubview(lineBreak)
         lineBreak.topAnchor.constraint(equalTo: addButton.bottomAnchor, constant: 16).isActive = true
