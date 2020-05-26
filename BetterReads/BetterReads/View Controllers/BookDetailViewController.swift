@@ -87,6 +87,7 @@ class BookDetailViewController: UIViewController {
         tempButton.tintColor = .white
         tempButton.titleLabel?.font = UIFont(name: "SourceSansPro-Bold", size: 18)
         tempButton.setTitle("Add Book", for: .normal)
+        tempButton.setTitleColor(.doveGray, for: .disabled)
         tempButton.setTitle("In My Books", for: .disabled)
         tempButton.addTarget(self, action: #selector(addBookToLibrary), for: .touchUpInside)
         tempButton.layer.cornerRadius = 5
