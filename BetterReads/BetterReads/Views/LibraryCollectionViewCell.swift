@@ -71,6 +71,7 @@ class LibraryCollectionViewCell: UICollectionViewCell {
                     }
                 }
             }
+            coversArray[2].image = UIImage(named: "BetterReads-DefaultBookImage")
         }
 
         // 1 book only
@@ -81,6 +82,8 @@ class LibraryCollectionViewCell: UICollectionViewCell {
                     self.coversArray.first?.image = image
                 }
             }
+            coversArray[1].image = UIImage(named: "BetterReads-DefaultBookImage")
+            coversArray[2].image = UIImage(named: "BetterReads-DefaultBookImage")
         }
     }
 
@@ -111,6 +114,7 @@ class LibraryCollectionViewCell: UICollectionViewCell {
                     }
                 }
             }
+            coversArray[2].image = UIImage(named: "BetterReads-DefaultBookImage")
         }
 
         // 1 book only
@@ -121,9 +125,11 @@ class LibraryCollectionViewCell: UICollectionViewCell {
                     self.coversArray.first?.image = image
                 }
             }
+            coversArray[1].image = UIImage(named: "BetterReads-DefaultBookImage")
+            coversArray[2].image = UIImage(named: "BetterReads-DefaultBookImage")
         }
     }
-    
+
     private func updateViews() {
         fillUpCoverImages()
     }
@@ -229,7 +235,7 @@ class LibraryCollectionViewCell: UICollectionViewCell {
         shelfNameLabel.textAlignment = .center
         shelfNameLabel.numberOfLines = 0
         shelfNameLabel.backgroundColor = .white
-        
+
         coversArray.append(firstImageView)
         coversArray.append(secondImageView)
         coversArray.append(thirdImageView)
