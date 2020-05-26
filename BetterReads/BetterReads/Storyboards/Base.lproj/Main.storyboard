@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MA5-oK-UWx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MA5-oK-UWx">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -31,19 +31,26 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forgot your password?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1zX-eX-IL3">
-                                <rect key="frame" x="20" y="54" width="335" height="30.5"/>
+                                <rect key="frame" x="20" y="54" width="335" height="28"/>
+                                <accessibility key="accessibilityConfiguration" hint="Displays label above instructions" label="Forgot password label">
+                                    <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                </accessibility>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="24"/>
                                 <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No worries! Enter the email address associated with your account, and we will send you and email to reset your password." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LoE-zJ-L00">
-                                <rect key="frame" x="20" y="124.5" width="335" height="68"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No worries! Enter the email address associated with your account, and we will send you an email to reset your password." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LoE-zJ-L00">
+                                <rect key="frame" x="20" y="122" width="335" height="84"/>
+                                <accessibility key="accessibilityConfiguration" hint="Enter the email address associated with your account, and we will send you an email to reset your password." label="Instructions label">
+                                    <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                </accessibility>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
                                 <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="janesmith@email.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rgm-bZ-Ks6">
-                                <rect key="frame" x="20" y="232.5" width="335" height="40"/>
+                                <rect key="frame" x="20" y="246" width="335" height="40"/>
+                                <accessibility key="accessibilityConfiguration" hint="Enter your email" label="Email text field"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="XyH-cU-sVk"/>
                                 </constraints>
@@ -51,11 +58,16 @@
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="done" textContentType="email"/>
                             </textField>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="BetterReads-Graphics_Man" translatesAutoresizingMaskIntoConstraints="NO" id="AlX-hN-YS8">
-                                <rect key="frame" x="20" y="416" width="335" height="211"/>
+                                <rect key="frame" x="20" y="427" width="335" height="200"/>
+                                <accessibility key="accessibilityConfiguration" hint="An image graphic displaying a man reading a book" label="Man reading a book graphic">
+                                    <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aOZ-94-Io4">
-                                <rect key="frame" x="20" y="319.5" width="335" height="40"/>
+                                <rect key="frame" x="20" y="331.5" width="335" height="40"/>
                                 <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <accessibility key="accessibilityConfiguration" hint="After entering email, please click done button" label="Done Button"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="LuV-Ir-Ioz"/>
                                 </constraints>
@@ -70,27 +82,43 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Success or Failure Message" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eAz-Wf-Ror">
-                                <rect key="frame" x="20" y="379.5" width="335" height="16.5"/>
+                                <rect key="frame" x="20" y="391.5" width="335" height="15.5"/>
+                                <accessibility key="accessibilityConfiguration" hint="This label will display either a success or failure when submitting your request." label="Success or failure message label">
+                                    <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                </accessibility>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="13"/>
                                 <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Error Message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SoY-Zq-who">
-                                <rect key="frame" x="20" y="276.5" width="335" height="18"/>
+                                <rect key="frame" x="20" y="290" width="335" height="16.5"/>
+                                <accessibility key="accessibilityConfiguration" hint="Displays an error message if email text field is invalid" label="Email error message">
+                                    <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                </accessibility>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
                                 <color key="textColor" red="0.89019607840000003" green="0.20392156859999999" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="AMJ-2J-Yyb">
+                                <rect key="frame" x="20" y="331.5" width="335" height="40"/>
+                                <color key="backgroundColor" red="0.83137254900000002" green="0.28235294119999998" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="color" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.down" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="oou-QI-Vb4">
                                 <rect key="frame" x="172.5" y="9" width="30" height="20.5"/>
                                 <color key="tintColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="9oE-fb-QOX"/>
                                     <constraint firstAttribute="width" constant="30" id="KNq-ll-W4f"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kNc-E5-IkQ" userLabel="Down Arrow Button">
-                                <rect key="frame" x="4" y="4" width="367" height="30"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
+                                <accessibility key="accessibilityConfiguration" hint="When clicked, this will slide modal screen down and away." label="Down arrow button"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Down Arrow Button">
                                     <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -98,11 +126,6 @@
                                     <action selector="downArrowButtonTapped:" destination="p8v-6O-0X8" eventType="touchUpInside" id="6KY-LJ-aKk"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="AMJ-2J-Yyb">
-                                <rect key="frame" x="20" y="319.5" width="335" height="40"/>
-                                <color key="backgroundColor" red="0.83137254900000002" green="0.28235294119999998" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="color" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -110,13 +133,12 @@
                             <constraint firstItem="LoE-zJ-L00" firstAttribute="top" secondItem="1zX-eX-IL3" secondAttribute="bottom" constant="40" id="1xx-sP-X7M"/>
                             <constraint firstItem="1zX-eX-IL3" firstAttribute="top" secondItem="oou-QI-Vb4" secondAttribute="bottom" constant="20" id="2Zp-V4-5sQ"/>
                             <constraint firstItem="LHQ-VR-oYC" firstAttribute="trailing" secondItem="AMJ-2J-Yyb" secondAttribute="trailing" constant="20" id="2w4-RS-Doc"/>
-                            <constraint firstItem="1zX-eX-IL3" firstAttribute="top" secondItem="kNc-E5-IkQ" secondAttribute="bottom" constant="20" id="4g2-pS-naS"/>
-                            <constraint firstItem="kNc-E5-IkQ" firstAttribute="top" secondItem="LHQ-VR-oYC" secondAttribute="top" constant="4" id="6dg-ed-GBg"/>
+                            <constraint firstItem="kNc-E5-IkQ" firstAttribute="top" secondItem="LHQ-VR-oYC" secondAttribute="top" id="6dg-ed-GBg"/>
                             <constraint firstItem="oou-QI-Vb4" firstAttribute="centerX" secondItem="bgp-uT-hom" secondAttribute="centerX" id="APg-tr-go8"/>
                             <constraint firstItem="LHQ-VR-oYC" firstAttribute="trailing" secondItem="AlX-hN-YS8" secondAttribute="trailing" constant="20" id="BMP-lO-s3m"/>
                             <constraint firstItem="AMJ-2J-Yyb" firstAttribute="centerY" secondItem="aOZ-94-Io4" secondAttribute="centerY" id="Bsd-aw-GIq"/>
                             <constraint firstItem="AlX-hN-YS8" firstAttribute="top" secondItem="eAz-Wf-Ror" secondAttribute="bottom" constant="20" id="L3p-du-raq"/>
-                            <constraint firstItem="kNc-E5-IkQ" firstAttribute="leading" secondItem="LHQ-VR-oYC" secondAttribute="leading" constant="4" id="LoL-sS-HQc"/>
+                            <constraint firstItem="kNc-E5-IkQ" firstAttribute="leading" secondItem="LHQ-VR-oYC" secondAttribute="leading" id="LoL-sS-HQc"/>
                             <constraint firstItem="rgm-bZ-Ks6" firstAttribute="top" secondItem="LoE-zJ-L00" secondAttribute="bottom" constant="40" id="Qzf-2l-ueb"/>
                             <constraint firstItem="eAz-Wf-Ror" firstAttribute="top" secondItem="aOZ-94-Io4" secondAttribute="bottom" constant="20" id="R4z-g6-UvO"/>
                             <constraint firstItem="LHQ-VR-oYC" firstAttribute="trailing" secondItem="rgm-bZ-Ks6" secondAttribute="trailing" constant="20" id="RjH-h7-ICk"/>
@@ -125,7 +147,7 @@
                             <constraint firstItem="LHQ-VR-oYC" firstAttribute="bottom" secondItem="AlX-hN-YS8" secondAttribute="bottom" constant="20" id="dEy-8S-7y1"/>
                             <constraint firstItem="eAz-Wf-Ror" firstAttribute="leading" secondItem="LHQ-VR-oYC" secondAttribute="leading" constant="20" id="eAP-9Y-prK"/>
                             <constraint firstItem="AlX-hN-YS8" firstAttribute="leading" secondItem="LHQ-VR-oYC" secondAttribute="leading" constant="20" id="fFS-TD-ewq"/>
-                            <constraint firstItem="LHQ-VR-oYC" firstAttribute="trailing" secondItem="kNc-E5-IkQ" secondAttribute="trailing" constant="4" id="fuw-bx-hyt"/>
+                            <constraint firstItem="LHQ-VR-oYC" firstAttribute="trailing" secondItem="kNc-E5-IkQ" secondAttribute="trailing" id="fuw-bx-hyt"/>
                             <constraint firstAttribute="trailing" secondItem="LoE-zJ-L00" secondAttribute="trailing" constant="20" id="gAK-cs-OtY"/>
                             <constraint firstItem="aOZ-94-Io4" firstAttribute="top" secondItem="SoY-Zq-who" secondAttribute="bottom" constant="25" id="hu1-eC-rCl"/>
                             <constraint firstItem="SoY-Zq-who" firstAttribute="leading" secondItem="LHQ-VR-oYC" secondAttribute="leading" constant="20" id="jh5-Dh-jCX"/>
@@ -138,6 +160,7 @@
                             <constraint firstItem="AMJ-2J-Yyb" firstAttribute="width" secondItem="aOZ-94-Io4" secondAttribute="width" id="uiY-1X-CcM"/>
                             <constraint firstItem="LHQ-VR-oYC" firstAttribute="trailing" secondItem="SoY-Zq-who" secondAttribute="trailing" constant="20" id="wbL-GU-6X1"/>
                             <constraint firstItem="AMJ-2J-Yyb" firstAttribute="leading" secondItem="LHQ-VR-oYC" secondAttribute="leading" constant="20" id="yVa-Tf-CKm"/>
+                            <constraint firstItem="1zX-eX-IL3" firstAttribute="top" secondItem="kNc-E5-IkQ" secondAttribute="bottom" id="zmr-ZX-7dq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LHQ-VR-oYC"/>
                     </view>
@@ -163,6 +186,10 @@
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BetterReads-Graphics_Blob" translatesAutoresizingMaskIntoConstraints="NO" id="mgH-Ar-tRv">
                                 <rect key="frame" x="-111" y="133.5" width="597" height="400"/>
+                                <accessibility key="accessibilityConfiguration" hint="Displays the loading screen animation" label="Loading Screen Book Image">
+                                    <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="400" id="HrA-ZQ-GrK"/>
                                     <constraint firstAttribute="width" constant="597" id="Trg-US-dBd"/>
@@ -170,6 +197,10 @@
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BetterReads-Graphics_DashedCircle" translatesAutoresizingMaskIntoConstraints="NO" id="dNA-xg-m90" userLabel="Dashed Circle Image">
                                 <rect key="frame" x="9" y="155" width="357" height="357"/>
+                                <accessibility key="accessibilityConfiguration" hint="Displays the loading screen animation" label="Loading Screen Book Image">
+                                    <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="357" id="60p-Wu-oAn"/>
                                     <constraint firstAttribute="width" constant="357" id="ECt-CO-CIv"/>
@@ -177,6 +208,9 @@
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BetterReads-Graphics_CircleBook" translatesAutoresizingMaskIntoConstraints="NO" id="RKz-PH-ZAQ">
                                 <rect key="frame" x="9" y="155" width="357" height="357"/>
+                                <accessibility key="accessibilityConfiguration" hint="Displays the loading screen animation" label="Loading Screen Book Image">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="357" id="Kgd-7c-epF"/>
                                     <constraint firstAttribute="width" constant="357" id="uS8-2Q-qys"/>
@@ -208,13 +242,13 @@
         <!--Sign In View Controller-->
         <scene sceneID="dW7-u0-HBH">
             <objects>
-                <viewController id="pRd-tq-Kku" customClass="SignInViewController" customModule="BetterReads" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignInViewController" id="pRd-tq-Kku" customClass="SignInViewController" customModule="BetterReads" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rly-3I-hjN">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="980"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="guE-28-28E">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="980"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UwA-YK-r6A" userLabel="ContentView">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1066.5"/>
@@ -244,12 +278,16 @@
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEY-vW-qu1">
                                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="22"/>
+                                                                <accessibility key="accessibilityConfiguration" hint="Displays the label above the full name text field" label="Full name label">
+                                                                    <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                                                </accessibility>
                                                                 <fontDescription key="fontDescription" name="FrankRuhlLibre-Regular" family="Frank Ruhl Libre" pointSize="17"/>
                                                                 <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Jane Smith" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="10h-Nb-0XN">
                                                                 <rect key="frame" x="0.0" y="26" width="374" height="40"/>
+                                                                <accessibility key="accessibilityConfiguration" hint="Displays the full name text field under the full name label" label="Full name text field"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="aMQ-GQ-dit"/>
                                                                 </constraints>
@@ -258,6 +296,9 @@
                                                             </textField>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Name Error Message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9kO-uI-Mvx">
                                                                 <rect key="frame" x="0.0" y="70" width="374" height="18"/>
+                                                                <accessibility key="accessibilityConfiguration" hint="Displays an error message if full name text field is invalid" label="Full name error message">
+                                                                    <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                                                </accessibility>
                                                                 <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
                                                                 <color key="textColor" red="0.89019607840000003" green="0.20392156859999999" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -269,12 +310,16 @@
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ux6-u6-N28">
                                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="22"/>
+                                                                <accessibility key="accessibilityConfiguration" hint="Displays the label above the email text field" label="Email address label">
+                                                                    <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                                                </accessibility>
                                                                 <fontDescription key="fontDescription" name="FrankRuhlLibre-Regular" family="Frank Ruhl Libre" pointSize="17"/>
                                                                 <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="janesmith@email.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9aL-Hg-XuH">
                                                                 <rect key="frame" x="0.0" y="26" width="374" height="40"/>
+                                                                <accessibility key="accessibilityConfiguration" hint="Displays the email text field under the email label" label="Email text field"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="5dY-KK-C5O"/>
                                                                 </constraints>
@@ -283,6 +328,9 @@
                                                             </textField>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Error Message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ctn-5m-dTW">
                                                                 <rect key="frame" x="0.0" y="70" width="374" height="18"/>
+                                                                <accessibility key="accessibilityConfiguration" hint="Displays an error message if email text field is invalid" label="Email error message">
+                                                                    <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                                                </accessibility>
                                                                 <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
                                                                 <color key="textColor" red="0.89019607840000003" green="0.20392156859999999" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -297,12 +345,18 @@
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NX5-9s-JnK">
                                                                         <rect key="frame" x="0.0" y="0.0" width="69.5" height="22"/>
+                                                                        <accessibility key="accessibilityConfiguration" hint="Displays the label above the password text field" label="Password label">
+                                                                            <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                                                        </accessibility>
                                                                         <fontDescription key="fontDescription" name="FrankRuhlLibre-Regular" family="Frank Ruhl Libre" pointSize="17"/>
                                                                         <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQ3-Y9-XlB" userLabel="Info Button">
                                                                         <rect key="frame" x="73.5" y="0.0" width="300.5" height="22"/>
+                                                                        <accessibility key="accessibilityConfiguration" hint="Password must be at least 6 characters with 1 number" label="Password requirements information">
+                                                                            <accessibilityTraits key="traits" button="YES"/>
+                                                                        </accessibility>
                                                                         <color key="tintColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <state key="normal" image="info.circle.fill" catalog="system"/>
                                                                         <connections>
@@ -313,6 +367,7 @@
                                                             </stackView>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Create a password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HAQ-16-GNd">
                                                                 <rect key="frame" x="0.0" y="26" width="374" height="40"/>
+                                                                <accessibility key="accessibilityConfiguration" hint="Displays the password text field under the password label" label="Password text field"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="PdC-2s-ECY"/>
                                                                 </constraints>
@@ -321,6 +376,9 @@
                                                             </textField>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password Error Message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RKl-3e-6Ai">
                                                                 <rect key="frame" x="0.0" y="70" width="374" height="18"/>
+                                                                <accessibility key="accessibilityConfiguration" hint="Displays an error message if password text field is invalid" label="Password error message">
+                                                                    <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                                                </accessibility>
                                                                 <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
                                                                 <color key="textColor" red="0.89019607840000003" green="0.20392156859999999" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -335,12 +393,16 @@
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="098-Ld-TdH">
                                                                         <rect key="frame" x="0.0" y="0.0" width="133" height="22"/>
+                                                                        <accessibility key="accessibilityConfiguration" hint="Displays the label above the confirm password text field" label="Confirm password label">
+                                                                            <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                                                        </accessibility>
                                                                         <fontDescription key="fontDescription" name="FrankRuhlLibre-Regular" family="Frank Ruhl Libre" pointSize="17"/>
                                                                         <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9hS-a4-rJR" userLabel="Info Button">
                                                                         <rect key="frame" x="137" y="0.0" width="237" height="22"/>
+                                                                        <accessibility key="accessibilityConfiguration" hint="Password must be at least 6 characters with 1 number" label="Confirm password requirements information"/>
                                                                         <color key="tintColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <state key="normal" image="info.circle.fill" catalog="system"/>
                                                                         <connections>
@@ -351,6 +413,7 @@
                                                             </stackView>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WXC-Hx-PM6">
                                                                 <rect key="frame" x="0.0" y="26" width="374" height="40"/>
+                                                                <accessibility key="accessibilityConfiguration" hint="Displays the confirm password text field under the confirm password label" label="Confirm password text field"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="qqa-1V-Taz"/>
                                                                 </constraints>
@@ -359,6 +422,9 @@
                                                             </textField>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm Password Error Message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ve3-It-MEw">
                                                                 <rect key="frame" x="0.0" y="70" width="374" height="18"/>
+                                                                <accessibility key="accessibilityConfiguration" hint="Displays an error message if confirm password text field is invalid" label="Confirm password error message">
+                                                                    <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                                                </accessibility>
                                                                 <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
                                                                 <color key="textColor" red="0.89019607840000003" green="0.20392156859999999" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -370,6 +436,10 @@
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BetterReads-Graphics_Sitting" translatesAutoresizingMaskIntoConstraints="NO" id="MMk-Qt-2zY">
                                                 <rect key="frame" x="20" y="679" width="374" height="270"/>
                                                 <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <accessibility key="accessibilityConfiguration" hint="An image graphic displaying a woman reading a book" label="Woman reading a book graphic">
+                                                    <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
+                                                    <bool key="isElement" value="YES"/>
+                                                </accessibility>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="MMk-Qt-2zY" secondAttribute="height" multiplier="187:135" id="WTd-Yt-2Iz"/>
                                                     <constraint firstAttribute="height" constant="270" id="Xd4-Ns-olD"/>
@@ -378,6 +448,7 @@
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mKe-xP-9Fu">
                                                 <rect key="frame" x="20" y="643" width="374" height="31"/>
+                                                <accessibility key="accessibilityConfiguration" hint="Displays a new screen to request to eset your password" label="Forgot password button"/>
                                                 <fontDescription key="fontDescription" name="FrankRuhlLibre-Regular" family="Frank Ruhl Libre" pointSize="14"/>
                                                 <state key="normal" title="Forgot your password?">
                                                     <color key="titleColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -388,6 +459,10 @@
                                             </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BetterReads-Logo_Orange" translatesAutoresizingMaskIntoConstraints="NO" id="KfD-Ub-2Cw">
                                                 <rect key="frame" x="20" y="40" width="374" height="50"/>
+                                                <accessibility key="accessibilityConfiguration" hint="Displays the logo at the top of the screen" label="BetterReads Logo">
+                                                    <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
+                                                    <bool key="isElement" value="YES"/>
+                                                </accessibility>
                                             </imageView>
                                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="HCV-Bp-ZBb">
                                                 <rect key="frame" x="20" y="593" width="374" height="40"/>
@@ -397,6 +472,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R5i-h0-MfM">
                                                 <rect key="frame" x="20" y="593" width="374" height="40"/>
                                                 <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <accessibility key="accessibilityConfiguration" hint="Sign up or in button" label="Submit Button"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="hVY-uQ-9ni"/>
                                                 </constraints>
@@ -527,12 +603,18 @@
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome, User!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3xZ-Rv-Ed4">
                                                 <rect key="frame" x="20" y="20" width="374" height="30.5"/>
+                                                <accessibility key="accessibilityConfiguration" hint="Displays label welcoming user" label="Welcome user label">
+                                                    <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                                </accessibility>
                                                 <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="24"/>
                                                 <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XrN-eJ-L2C">
                                                 <rect key="frame" x="20" y="54.5" width="374" height="72.5"/>
+                                                <accessibility key="accessibilityConfiguration" hint="Displays welcome message" label="Welcome message label">
+                                                    <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                                </accessibility>
                                                 <string key="text">Si ergo illa tantum fastidium compesce contra lem naturalem usum habili, quem habetis vestra potate, non aliud quam aversantur incurrere. Sed si ipses aversaris, ad languorem: et mors, paupertas et tu miseros fore.</string>
                                                 <fontDescription key="fontDescription" name="FrankRuhlLibre-Regular" family="Frank Ruhl Libre" pointSize="14"/>
                                                 <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -543,6 +625,9 @@
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your library" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TvC-EH-p2C">
                                                         <rect key="frame" x="20" y="4" width="374" height="20.5"/>
+                                                        <accessibility key="accessibilityConfiguration" hint="Displays a label above scrollable horizontal collection view" label="Recommendations based on your library label">
+                                                            <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                                        </accessibility>
                                                         <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="16"/>
                                                         <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -579,6 +664,9 @@
                                                                         </view>
                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BetterReads-DefaultBookImage" translatesAutoresizingMaskIntoConstraints="NO" id="1EK-77-Ugp">
                                                                             <rect key="frame" x="0.0" y="0.0" width="130" height="195"/>
+                                                                            <accessibility key="accessibilityConfiguration" hint="Displays the cover of a book" label="Book cover image">
+                                                                                <bool key="isElement" value="YES"/>
+                                                                            </accessibility>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" secondItem="1EK-77-Ugp" secondAttribute="height" multiplier="2:3" id="VGk-eX-Mif"/>
                                                                                 <constraint firstAttribute="width" constant="130" id="rgF-6t-pny"/>
@@ -595,12 +683,18 @@
                                                                         </activityIndicatorView>
                                                                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L1b-FP-USc">
                                                                             <rect key="frame" x="4" y="4" width="122" height="15.5"/>
+                                                                            <accessibility key="accessibilityConfiguration" label="Book's title label">
+                                                                                <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                                                            </accessibility>
                                                                             <fontDescription key="fontDescription" name="SourceSansPro-SemiBold" family="Source Sans Pro" pointSize="12"/>
                                                                             <color key="textColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Authors" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6zi-Lf-yMa">
                                                                             <rect key="frame" x="4" y="175.5" width="122" height="15.5"/>
+                                                                            <accessibility key="accessibilityConfiguration" label="Book's author(s) label">
+                                                                                <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                                                            </accessibility>
                                                                             <fontDescription key="fontDescription" name="SourceSansPro-SemiBold" family="Source Sans Pro" pointSize="12"/>
                                                                             <color key="textColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                             <nil key="highlightedColor"/>
@@ -657,6 +751,9 @@
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User's custom shelf" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aif-ry-1pR">
                                                         <rect key="frame" x="20" y="4" width="374" height="20.5"/>
+                                                        <accessibility key="accessibilityConfiguration" hint="Displays a label above scrollable horizontal collection view" label="Recommendations based on user's custom shelf">
+                                                            <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                                        </accessibility>
                                                         <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="16"/>
                                                         <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -687,6 +784,9 @@
                                                                             <subviews>
                                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BetterReads-DefaultBookImage" translatesAutoresizingMaskIntoConstraints="NO" id="TIO-IA-ihl">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="130" height="195"/>
+                                                                                    <accessibility key="accessibilityConfiguration" hint="Displays the cover of a book" label="Book cover image">
+                                                                                        <bool key="isElement" value="YES"/>
+                                                                                    </accessibility>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="width" secondItem="TIO-IA-ihl" secondAttribute="height" multiplier="2:3" id="MSe-iH-xJl"/>
                                                                                         <constraint firstAttribute="width" constant="130" id="lga-Ky-31F"/>
@@ -703,12 +803,18 @@
                                                                                 </activityIndicatorView>
                                                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z6e-d9-SgY">
                                                                                     <rect key="frame" x="4" y="4" width="122" height="15.5"/>
+                                                                                    <accessibility key="accessibilityConfiguration" label="Book's title label">
+                                                                                        <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                                                                    </accessibility>
                                                                                     <fontDescription key="fontDescription" name="SourceSansPro-SemiBold" family="Source Sans Pro" pointSize="12"/>
                                                                                     <color key="textColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
                                                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Authors" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8qy-Qj-O7a">
                                                                                     <rect key="frame" x="4" y="175.5" width="122" height="15.5"/>
+                                                                                    <accessibility key="accessibilityConfiguration" label="Book's author(s) label">
+                                                                                        <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                                                                    </accessibility>
                                                                                     <fontDescription key="fontDescription" name="SourceSansPro-SemiBold" family="Source Sans Pro" pointSize="12"/>
                                                                                     <color key="textColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                                     <nil key="highlightedColor"/>
@@ -775,6 +881,9 @@
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Popular" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IcG-TF-rzq">
                                                         <rect key="frame" x="20" y="4" width="374" height="20.5"/>
+                                                        <accessibility key="accessibilityConfiguration" hint="Displays a label above scrollable horizontal collection view" label="Recommendations based on what's popular">
+                                                            <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                                        </accessibility>
                                                         <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="16"/>
                                                         <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -805,6 +914,9 @@
                                                                             <subviews>
                                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BetterReads-DefaultBookImage" translatesAutoresizingMaskIntoConstraints="NO" id="m1W-2k-kFT">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="130" height="195"/>
+                                                                                    <accessibility key="accessibilityConfiguration" hint="Displays the cover of a book" label="Book cover image">
+                                                                                        <bool key="isElement" value="YES"/>
+                                                                                    </accessibility>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="width" secondItem="m1W-2k-kFT" secondAttribute="height" multiplier="2:3" id="5y6-aR-red"/>
                                                                                         <constraint firstAttribute="width" constant="130" id="fty-E9-aKD"/>
@@ -821,12 +933,18 @@
                                                                                 </activityIndicatorView>
                                                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s4u-01-xVe">
                                                                                     <rect key="frame" x="4" y="4" width="122" height="15.5"/>
+                                                                                    <accessibility key="accessibilityConfiguration" label="Book's title label">
+                                                                                        <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                                                                    </accessibility>
                                                                                     <fontDescription key="fontDescription" name="SourceSansPro-SemiBold" family="Source Sans Pro" pointSize="12"/>
                                                                                     <color key="textColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
                                                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Authors" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f8K-tt-ZJ0">
                                                                                     <rect key="frame" x="4" y="175.5" width="122" height="15.5"/>
+                                                                                    <accessibility key="accessibilityConfiguration" label="Book's author(s) label">
+                                                                                        <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                                                                    </accessibility>
                                                                                     <fontDescription key="fontDescription" name="SourceSansPro-SemiBold" family="Source Sans Pro" pointSize="12"/>
                                                                                     <color key="textColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                                     <nil key="highlightedColor"/>
@@ -1196,13 +1314,18 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.down" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Kuq-dL-8Ea">
                                 <rect key="frame" x="172.5" y="9" width="30" height="20.5"/>
                                 <color key="tintColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="YeO-5d-u4u"/>
                                     <constraint firstAttribute="width" constant="30" id="ang-4z-51s"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jqb-w1-bSm" userLabel="Down Arrow Button">
-                                <rect key="frame" x="4" y="4" width="367" height="30"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
+                                <accessibility key="accessibilityConfiguration" hint="When clicked, this will slide modal screen down and away." label="Down arrow button"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Down Arrow Button">
                                     <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -1212,10 +1335,10 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="c8y-SL-Eiu">
-                                <rect key="frame" x="0.0" y="54" width="375" height="185"/>
+                                <rect key="frame" x="0.0" y="54" width="375" height="195"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="185" id="t21-sM-UIX"/>
+                                    <constraint firstAttribute="height" constant="195" id="t21-sM-UIX"/>
                                 </constraints>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="Op1-Uj-DiK">
                                     <rect key="frame" x="0.0" y="116" width="375" height="44"/>
@@ -1239,7 +1362,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uY4-Iu-gWo">
-                                                    <rect key="frame" x="63" y="20" width="277" height="20.5"/>
+                                                    <rect key="frame" x="63" y="20.5" width="277" height="19"/>
                                                     <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="16"/>
                                                     <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1261,7 +1384,10 @@
                                 </prototypes>
                             </tableView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" image="BetterReads-Graphics_Kneel" translatesAutoresizingMaskIntoConstraints="NO" id="wrX-99-HeI">
-                                <rect key="frame" x="25" y="279" width="325" height="325"/>
+                                <rect key="frame" x="25" y="269" width="325" height="325"/>
+                                <accessibility key="accessibilityConfiguration" hint="An image graphic displaying a woman reading a book" label="Woman reading a book graphic">
+                                    <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="325" id="OCx-kE-fev"/>
                                     <constraint firstAttribute="height" constant="325" id="oCP-is-n6E"/>
@@ -1274,28 +1400,31 @@
                             <constraint firstItem="Kuq-dL-8Ea" firstAttribute="centerX" secondItem="K75-Jh-Tcf" secondAttribute="centerX" id="7wC-gD-8He"/>
                             <constraint firstItem="c8y-SL-Eiu" firstAttribute="leading" secondItem="2cI-aM-CHr" secondAttribute="leading" id="DGp-Nt-Y9X"/>
                             <constraint firstItem="Kuq-dL-8Ea" firstAttribute="top" secondItem="2cI-aM-CHr" secondAttribute="top" constant="4" id="EZT-sh-FPf"/>
-                            <constraint firstItem="Jqb-w1-bSm" firstAttribute="top" secondItem="2cI-aM-CHr" secondAttribute="top" constant="4" id="FRy-GV-haH"/>
+                            <constraint firstItem="Jqb-w1-bSm" firstAttribute="top" secondItem="2cI-aM-CHr" secondAttribute="top" id="FRy-GV-haH"/>
                             <constraint firstItem="2cI-aM-CHr" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="wrX-99-HeI" secondAttribute="bottom" constant="40" id="Fji-zr-XHa"/>
-                            <constraint firstItem="wrX-99-HeI" firstAttribute="top" secondItem="c8y-SL-Eiu" secondAttribute="bottom" constant="40" id="bzr-f4-i1T"/>
-                            <constraint firstItem="2cI-aM-CHr" firstAttribute="trailing" secondItem="Jqb-w1-bSm" secondAttribute="trailing" constant="4" id="cCf-fS-oI8"/>
+                            <constraint firstItem="c8y-SL-Eiu" firstAttribute="top" secondItem="Jqb-w1-bSm" secondAttribute="bottom" id="YLZ-WV-jy4"/>
+                            <constraint firstItem="wrX-99-HeI" firstAttribute="top" secondItem="c8y-SL-Eiu" secondAttribute="bottom" constant="20" id="bzr-f4-i1T"/>
+                            <constraint firstItem="2cI-aM-CHr" firstAttribute="trailing" secondItem="Jqb-w1-bSm" secondAttribute="trailing" id="cCf-fS-oI8"/>
                             <constraint firstItem="c8y-SL-Eiu" firstAttribute="trailing" secondItem="2cI-aM-CHr" secondAttribute="trailing" id="lzn-dN-7u8"/>
-                            <constraint firstItem="Jqb-w1-bSm" firstAttribute="leading" secondItem="2cI-aM-CHr" secondAttribute="leading" constant="4" id="tfa-0H-EMp"/>
+                            <constraint firstItem="c8y-SL-Eiu" firstAttribute="top" secondItem="Kuq-dL-8Ea" secondAttribute="bottom" constant="20" id="qDo-gd-4bh"/>
+                            <constraint firstItem="Jqb-w1-bSm" firstAttribute="leading" secondItem="2cI-aM-CHr" secondAttribute="leading" id="tfa-0H-EMp"/>
                             <constraint firstItem="wrX-99-HeI" firstAttribute="centerX" secondItem="K75-Jh-Tcf" secondAttribute="centerX" id="u1k-ZS-FQO"/>
-                            <constraint firstItem="c8y-SL-Eiu" firstAttribute="top" secondItem="Jqb-w1-bSm" secondAttribute="bottom" constant="20" id="vSx-hm-cgA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2cI-aM-CHr"/>
                     </view>
                     <connections>
                         <outlet property="tableView" destination="c8y-SL-Eiu" id="kYR-uk-60L"/>
+                        <segue destination="pRd-tq-Kku" kind="show" identifier="LogOutSegue" id="52r-2R-thD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="auU-3B-2Ao" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-429.60000000000002" y="1549.4752623688157"/>
+            <point key="canvasLocation" x="-511" y="1511"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="WQ3-sy-enq"/>
+        <segue reference="52r-2R-thD"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="BetterReads-DefaultBookImage" width="267" height="400"/>

@@ -33,10 +33,10 @@ extension UIColor {
 }
 // Alerts
 extension UIViewController {
-    func showBasicAlert(alertText: String, alertMessage: String) {
+    func showBasicAlert(alertText: String, alertMessage: String, actionTitle: String) {
         let alert = UIAlertController(title: alertText,
                                       message: alertMessage, preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
+        alert.addAction(UIAlertAction(title: actionTitle, style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
 }

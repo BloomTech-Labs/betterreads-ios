@@ -56,11 +56,7 @@ class ForgotPasswordViewController: UIViewController {
             guard let emailAddress = emailTextField.text else { return }
             UserController.shared.forgotPasswordEmail(emailAddress: emailAddress) { (networkError) in
                 if let error = networkError {
-                    let alert = UIAlertController(title: "Forgot Password Error",
-                                                  message: "An error occurred when processing your request.",
-                                                  preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Try again", style: .default, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
+                    self.showBasicAlert(alertText: "Forgot Password Error", alertMessage: "An error occurred when processing your request.", actionTitle: "Try again")
                     NSLog("Error occured during Forgot Password: \(error)")
                     self.doneActivityIndicator.stopAnimating()
                     self.doneActivityIndicator.isHidden = true
@@ -92,6 +88,7 @@ extension ForgotPasswordViewController: UITextFieldDelegate {
         if valid {
             self.emailErrorMessage.text = " "
             emailTextField.resignFirstResponder()
+            doneButtonTapped(doneButton)
             return true
         }
         self.emailErrorMessage.text = message
