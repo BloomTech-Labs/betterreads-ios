@@ -39,6 +39,7 @@ class BookDetailViewController: UIViewController {
         let label = UILabel()
         label.text = "Twilight Breaking Dawn"
         label.font = UIFont(name: "FrankRuhlLibre-Regular", size: 24)
+        label.textColor = .tundra
         label.textAlignment = .center
         label.numberOfLines = 3
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -49,6 +50,7 @@ class BookDetailViewController: UIViewController {
         let label = UILabel()
         label.text = "by Stephenie Meyer"
         label.font = UIFont(name: "SourceSansPro-Light", size: 16)
+        label.textColor = .tundra
         label.numberOfLines = 2
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -72,6 +74,7 @@ class BookDetailViewController: UIViewController {
         averageRatingLabel.translatesAutoresizingMaskIntoConstraints = false
         averageRatingLabel.text = "4.7 average rating"
         averageRatingLabel.font = UIFont(name: "SourceSansPro-Regular", size: 14)
+        averageRatingLabel.textColor = .doveGray
         averageRatingLabel.textAlignment = .center
         return averageRatingLabel
     }()
@@ -82,10 +85,12 @@ class BookDetailViewController: UIViewController {
         tempButton.translatesAutoresizingMaskIntoConstraints = false
         tempButton.backgroundColor = .trinidadOrange
         tempButton.tintColor = .white
+        tempButton.titleLabel?.font = UIFont(name: "SourceSansPro-Bold", size: 18)
         tempButton.setTitle("Add Book", for: .normal)
+        tempButton.setTitleColor(.doveGray, for: .disabled)
         tempButton.setTitle("In My Books", for: .disabled)
         tempButton.addTarget(self, action: #selector(addBookToLibrary), for: .touchUpInside)
-        tempButton.layer.cornerRadius = 10
+        tempButton.layer.cornerRadius = 5
         return tempButton
     }()
 
@@ -134,6 +139,7 @@ class BookDetailViewController: UIViewController {
         decriptionLabel.translatesAutoresizingMaskIntoConstraints = false
 //        decriptionLabel.backgroundColor = .magenta
         decriptionLabel.text = ""
+        decriptionLabel.font = UIFont(name: "FrankRuhlLibre-Regular", size: 16)
         decriptionLabel.numberOfLines = 4 // can change by pressing button?
         return decriptionLabel
     }()
@@ -154,6 +160,7 @@ class BookDetailViewController: UIViewController {
         dummyView.translatesAutoresizingMaskIntoConstraints = false
         dummyView.layer.cornerRadius = 5
         dummyView.backgroundColor = .tundra
+        dummyView.font = UIFont(name: "SourceSansPro-Semibold", size: 16)
         dummyView.textColor = .white
         dummyView.textAlignment = .center
         dummyView.text = "Fiction"
@@ -353,7 +360,7 @@ class BookDetailViewController: UIViewController {
 
         // Author Label
         contentView.addSubview(authorLabel)
-        authorLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 6).isActive = true
+        authorLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4).isActive = true
         authorLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
         authorLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
         //authorLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor, constant: 0).isActive = true
@@ -361,7 +368,7 @@ class BookDetailViewController: UIViewController {
 
         // Rating Stack View
         contentView.addSubview(ratingStackView)
-        ratingStackView.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 8).isActive = true
+        ratingStackView.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 12).isActive = true
         ratingStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         ratingStackView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.33).isActive = true
         ratingStackView.heightAnchor.constraint(equalTo: ratingStackView.widthAnchor, multiplier: 0.18).isActive = true
@@ -376,14 +383,15 @@ class BookDetailViewController: UIViewController {
 
         // Add Book Button
         contentView.addSubview(addButton)
-        addButton.topAnchor.constraint(equalTo: averageRatingLabel.bottomAnchor, constant: 8).isActive = true
+        addButton.topAnchor.constraint(equalTo: averageRatingLabel.bottomAnchor, constant: 16).isActive = true
         addButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         //addButton.bottomAnchor.constraint(equalTo: bookCoverImageView.bottomAnchor).isActive = true
-        //addButton.leadingAnchor.constraint(equalTo: bookCoverImageView.trailingAnchor, constant: 8).isActive = true
-        //addButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
-        addButton.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.4).isActive = true
-        addButton.heightAnchor.constraint(equalTo: addButton.widthAnchor, multiplier: 0.3).isActive = true
-
+        addButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
+        addButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
+        //addButton.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.4).isActive = true
+        //addButton.heightAnchor.constraint(equalTo: addButton.widthAnchor, multiplier: 0.3).isActive = true
+        addButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        
         // Line Break
         contentView.addSubview(lineBreak)
         lineBreak.topAnchor.constraint(equalTo: addButton.bottomAnchor, constant: 16).isActive = true
