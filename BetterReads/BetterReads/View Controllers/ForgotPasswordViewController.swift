@@ -92,6 +92,7 @@ extension ForgotPasswordViewController: UITextFieldDelegate {
         if valid {
             self.emailErrorMessage.text = " "
             emailTextField.resignFirstResponder()
+            doneButtonTapped(doneButton)
             return true
         }
         self.emailErrorMessage.text = message
