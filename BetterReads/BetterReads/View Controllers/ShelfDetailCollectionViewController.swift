@@ -22,6 +22,18 @@ class ShelfDetailCollectionViewController: UICollectionViewController {
         let backItem = UIBarButtonItem()
         backItem.title = "" // now only the arrow is showing
         navigationItem.backBarButtonItem = backItem
+        navigationController?.navigationBar.isTranslucent = true
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.barTintColor = .white
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        navigationController?.navigationBar.isTranslucent = false
     }
 
     // MARK: UICollectionViewDataSource

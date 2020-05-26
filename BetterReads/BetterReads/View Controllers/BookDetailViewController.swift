@@ -279,7 +279,7 @@ class BookDetailViewController: UIViewController {
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default) //nil, .default
         navigationController?.navigationBar.shadowImage = UIImage()
         // Setting Nav bar to NOT be translucent causes the black nav bar somehow
-//        navigationController?.navigationBar.isTranslucent = false
+        //navigationController?.navigationBar.isTranslucent = false
     }
 
     private func updateViews() {

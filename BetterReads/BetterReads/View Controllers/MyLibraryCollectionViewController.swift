@@ -62,6 +62,8 @@ class MyLibraryCollectionViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.barTintColor = .white
+        navigationController?.navigationBar.isTranslucent = true
     }
 
     // MARK: UICollectionViewDataSource
