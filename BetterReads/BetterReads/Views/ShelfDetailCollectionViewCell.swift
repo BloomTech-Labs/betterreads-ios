@@ -73,13 +73,10 @@ class ShelfDetailCollectionViewCell: UICollectionViewCell {
     }
 
     private func setUpSubviews() {
-        // cell size is 192, 249.6 methinks
-        // FIXME: change "magic numbers" to be based on cell size instead?
         // Custom View
         let bigView = UIView()
         addSubview(bigView)
         self.customView = bigView
-        //customView.backgroundColor = .yellow
         customView.translatesAutoresizingMaskIntoConstraints = false
         customView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         customView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
@@ -89,14 +86,14 @@ class ShelfDetailCollectionViewCell: UICollectionViewCell {
         // Container View for Image View
         customView.addSubview(containerForImageView)
         containerForImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        containerForImageView.topAnchor.constraint(equalTo: customView.topAnchor, constant: 20).isActive = true
+        containerForImageView.topAnchor.constraint(equalTo: customView.topAnchor, constant: 10).isActive = true
         containerForImageView.widthAnchor.constraint(equalTo: widthAnchor,
-                                         multiplier: 0.60).isActive = true
+                                         multiplier: 0.64).isActive = true
         containerForImageView.heightAnchor.constraint(equalTo: heightAnchor,
-                                          multiplier: 0.60).isActive = true
+                                          multiplier: 0.69).isActive = true
         //containerForImageView.bottomAnchor.constraint(equalTo: customView.bottomAnchor, constant: -50).isActive = true
 
-        // Image View (front)
+        // Image View
         let tempImageView = UIImageView()
         containerForImageView.addSubview(tempImageView)
         self.shelfImageView = tempImageView
@@ -130,13 +127,12 @@ class ShelfDetailCollectionViewCell: UICollectionViewCell {
 //        shelfNameLabel.leadingAnchor.constraint(equalTo: shelfImageView.leadingAnchor).isActive = true
         shelfNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
         shelfNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
-        shelfNameLabel.bottomAnchor.constraint(equalTo: customView.bottomAnchor, constant: -8).isActive = true
+        //shelfNameLabel.bottomAnchor.constraint(equalTo: customView.bottomAnchor, constant: -8).isActive = true
         shelfNameLabel.text = "Book Name"
         shelfNameLabel.textAlignment = .center
-        shelfNameLabel.numberOfLines = 0
-        shelfNameLabel.backgroundColor = .white
+        shelfNameLabel.numberOfLines = 3
+        shelfNameLabel.backgroundColor = .clear
         shelfNameLabel.font = UIFont(name: "SourceSansPro-Regular", size: 14)
-        shelfNameLabel.textColor = .doveGray
-        shelfNameLabel.numberOfLines = 0
+        shelfNameLabel.textColor = .doveGray        
     }
 }

@@ -101,7 +101,8 @@ extension ShelfDetailCollectionViewController: UICollectionViewDelegateFlowLayou
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 20, left: 10, bottom: 20, right: 10)
+        // 20, 10, 20, 10
+        return UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
     }
 
     // MARK: Flow Layout
@@ -117,7 +118,7 @@ extension ShelfDetailCollectionViewController: UICollectionViewDelegateFlowLayou
                                                layout: collectionViewLayout,
                                                minimumInteritemSpacingForSectionAt: 0)) * (itemsPerRow - 1)
         let width = (collectionView.frame.width - horizontalInsets - itemSpacing) / itemsPerRow
-        return CGSize(width: width, height: width * 1.4)
+        return CGSize(width: width, height: width * 1.3)
     }
 
 }

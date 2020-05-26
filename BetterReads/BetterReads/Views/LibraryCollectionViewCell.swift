@@ -85,6 +85,13 @@ class LibraryCollectionViewCell: UICollectionViewCell {
             coversArray[1].image = UIImage(named: "BetterReads-DefaultBookImage")
             coversArray[2].image = UIImage(named: "BetterReads-DefaultBookImage")
         }
+
+        // Empty Shelf
+        if allUserBooks.count == 0 {
+            for book in coversArray {
+                book.image = UIImage(named: "BetterReads-DefaultBookImage")
+            }
+        }
     }
 
     /// Used if a UserShelf is passed in instead of an array of UserBook
@@ -128,6 +135,13 @@ class LibraryCollectionViewCell: UICollectionViewCell {
             coversArray[1].image = UIImage(named: "BetterReads-DefaultBookImage")
             coversArray[2].image = UIImage(named: "BetterReads-DefaultBookImage")
         }
+
+        // Empty Shelf
+        if customShelfBooks.count == 0 {
+            for book in coversArray {
+                book.image = UIImage(named: "BetterReads-DefaultBookImage")
+            }
+        }
     }
 
     private func updateViews() {
@@ -135,8 +149,6 @@ class LibraryCollectionViewCell: UICollectionViewCell {
     }
 
     private func setUpSubviews() {
-        // cell size is 192, 249.6 methinks
-        // FIXME: change "magic numbers" to be based on cell size instead?
         // Custom View
         let bigView = UIView()
         addSubview(bigView)
@@ -162,7 +174,7 @@ class LibraryCollectionViewCell: UICollectionViewCell {
         thirdBGView.backgroundColor = .doveGray
         thirdBGView.alpha = 1
         thirdBGView.layer.cornerRadius = 5
-        
+
         // Third Image View (Back)
         let tempImageView3 = UIImageView()
         addSubview(tempImageView3)
@@ -175,9 +187,9 @@ class LibraryCollectionViewCell: UICollectionViewCell {
         thirdImageView.layer.cornerRadius = 5
         thirdImageView.contentMode = .scaleToFill
         thirdImageView.clipsToBounds = true
-        thirdImageView.image = UIImage().chooseDefaultBookImage()
+        thirdImageView.image = UIImage(named: "BetterReads-DefaultBookImage")
         thirdImageView.alpha = 0.30
-        
+
         // Second Image Gray Underlay
         let secondBGView1 = UIView()
         addSubview(secondBGView1)
@@ -190,7 +202,7 @@ class LibraryCollectionViewCell: UICollectionViewCell {
         secondBGView.backgroundColor = .doveGray
         secondBGView.alpha = 1
         secondBGView.layer.cornerRadius = 5
-        
+
         // Second Image View (Middle)
         let tempImageView2 = UIImageView()
         addSubview(tempImageView2)
@@ -203,9 +215,9 @@ class LibraryCollectionViewCell: UICollectionViewCell {
         secondImageView.layer.cornerRadius = 5
         secondImageView.contentMode = .scaleToFill
         secondImageView.clipsToBounds = true
-        secondImageView.image = UIImage().chooseDefaultBookImage()
+        secondImageView.image = UIImage(named: "BetterReads-DefaultBookImage")
         secondImageView.alpha = 0.60
-        
+
         // First Image View (front)
         let tempImageView1 = UIImageView()
         addSubview(tempImageView1)
@@ -218,7 +230,7 @@ class LibraryCollectionViewCell: UICollectionViewCell {
         firstImageView.layer.cornerRadius = 5
         firstImageView.contentMode = .scaleToFill
         firstImageView.clipsToBounds = true
-        firstImageView.image = UIImage().chooseDefaultBookImage()
+        firstImageView.image = UIImage(named: "BetterReads-DefaultBookImage")
 
         // Label
         let tempLabel = UILabel()
