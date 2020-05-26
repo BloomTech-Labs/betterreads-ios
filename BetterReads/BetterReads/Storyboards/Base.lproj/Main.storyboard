@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MA5-oK-UWx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pRd-tq-Kku">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -179,13 +179,13 @@
         <!--Launch View Controller-->
         <scene sceneID="oxF-Rr-QTf">
             <objects>
-                <viewController id="MA5-oK-UWx" customClass="LaunchViewController" customModule="BetterReads" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LaunchViewController" id="MA5-oK-UWx" customClass="LaunchViewController" customModule="BetterReads" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sJe-V7-MKN">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BetterReads-Graphics_Blob" translatesAutoresizingMaskIntoConstraints="NO" id="mgH-Ar-tRv">
-                                <rect key="frame" x="-111" y="133.5" width="597" height="400"/>
+                                <rect key="frame" x="-91.5" y="300" width="597" height="400"/>
                                 <accessibility key="accessibilityConfiguration" hint="Displays the loading screen animation" label="Loading Screen Book Image">
                                     <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
                                     <bool key="isElement" value="YES"/>
@@ -196,7 +196,7 @@
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BetterReads-Graphics_DashedCircle" translatesAutoresizingMaskIntoConstraints="NO" id="dNA-xg-m90" userLabel="Dashed Circle Image">
-                                <rect key="frame" x="9" y="155" width="357" height="357"/>
+                                <rect key="frame" x="28.5" y="321.5" width="357" height="357"/>
                                 <accessibility key="accessibilityConfiguration" hint="Displays the loading screen animation" label="Loading Screen Book Image">
                                     <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
                                     <bool key="isElement" value="YES"/>
@@ -207,7 +207,7 @@
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BetterReads-Graphics_CircleBook" translatesAutoresizingMaskIntoConstraints="NO" id="RKz-PH-ZAQ">
-                                <rect key="frame" x="9" y="155" width="357" height="357"/>
+                                <rect key="frame" x="28.5" y="321.5" width="357" height="357"/>
                                 <accessibility key="accessibilityConfiguration" hint="Displays the loading screen animation" label="Loading Screen Book Image">
                                     <bool key="isElement" value="YES"/>
                                 </accessibility>
@@ -232,12 +232,11 @@
                         <outlet property="blobBackgroundImage" destination="mgH-Ar-tRv" id="e2o-e9-dn5"/>
                         <outlet property="circleBookImage" destination="RKz-PH-ZAQ" id="J9X-j5-3sF"/>
                         <outlet property="dashedCircleImage" destination="dNA-xg-m90" id="ywi-vn-QQz"/>
-                        <segue destination="pRd-tq-Kku" kind="presentation" identifier="ShowMainScreen" modalPresentationStyle="fullScreen" id="sdA-1z-WcW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yqU-X5-OCe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-742" y="-311"/>
+            <point key="canvasLocation" x="-1290" y="1794"/>
         </scene>
         <!--Sign In View Controller-->
         <scene sceneID="dW7-u0-HBH">
@@ -1040,13 +1039,23 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="5el-ek-J78"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="rcL-GX-fUX"/>
                             </scrollView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vV4-qH-yrA">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
+                                <connections>
+                                    <segue destination="MA5-oK-UWx" kind="embed" id="h0t-sh-mHt"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Il2-zb-RAW" firstAttribute="bottom" secondItem="PRK-xs-FOr" secondAttribute="bottom" id="B5V-SM-fpR"/>
                             <constraint firstItem="Il2-zb-RAW" firstAttribute="trailing" secondItem="PRK-xs-FOr" secondAttribute="trailing" id="BfI-Xe-nhC"/>
+                            <constraint firstItem="vV4-qH-yrA" firstAttribute="top" secondItem="mwp-RS-WaK" secondAttribute="top" id="H28-DX-zTU"/>
                             <constraint firstItem="PRK-xs-FOr" firstAttribute="top" secondItem="Il2-zb-RAW" secondAttribute="top" id="RIM-r8-UUO"/>
+                            <constraint firstAttribute="bottom" secondItem="vV4-qH-yrA" secondAttribute="bottom" id="fnv-Dp-QEP"/>
                             <constraint firstItem="PRK-xs-FOr" firstAttribute="leading" secondItem="Il2-zb-RAW" secondAttribute="leading" id="gTU-PU-p8s"/>
+                            <constraint firstItem="vV4-qH-yrA" firstAttribute="leading" secondItem="mwp-RS-WaK" secondAttribute="leading" id="kUM-FD-Ry4"/>
+                            <constraint firstAttribute="trailing" secondItem="vV4-qH-yrA" secondAttribute="trailing" id="rNC-Uz-twK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Il2-zb-RAW"/>
                     </view>
@@ -1065,6 +1074,7 @@
                     <connections>
                         <outlet property="bottomCollectionView" destination="sPu-l3-I1e" id="k6A-yd-Pcu"/>
                         <outlet property="bottomRecommendationLabel" destination="IcG-TF-rzq" id="tgV-BR-wxM"/>
+                        <outlet property="containerView" destination="vV4-qH-yrA" id="CjO-at-Z4h"/>
                         <outlet property="middleCollectionView" destination="QLh-VK-V1n" id="Ohr-O5-aCm"/>
                         <outlet property="middleRecommendationLabel" destination="Aif-ry-1pR" id="5ff-vP-77S"/>
                         <outlet property="topCollectionView" destination="GSU-Jq-gQb" id="JmV-4K-5xt"/>
@@ -1423,8 +1433,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="WQ3-sy-enq"/>
-        <segue reference="52r-2R-thD"/>
+        <segue reference="Anw-HX-Ft2"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="BetterReads-DefaultBookImage" width="267" height="400"/>
