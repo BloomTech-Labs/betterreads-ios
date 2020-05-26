@@ -17,11 +17,23 @@ class ShelfDetailCollectionViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.tintColor = .trinidadOrange
+        navigationController?.navigationBar.tintColor = .trinidadOrange
         // Back button title for next screen
         let backItem = UIBarButtonItem()
         backItem.title = "" // now only the arrow is showing
         navigationItem.backBarButtonItem = backItem
+        navigationController?.navigationBar.isTranslucent = true
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.barTintColor = .white
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        navigationController?.navigationBar.isTranslucent = false
     }
 
     // MARK: UICollectionViewDataSource
@@ -101,7 +113,8 @@ extension ShelfDetailCollectionViewController: UICollectionViewDelegateFlowLayou
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 20, left: 10, bottom: 20, right: 10)
+        // 20, 10, 20, 10
+        return UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
     }
 
     // MARK: Flow Layout
@@ -117,7 +130,7 @@ extension ShelfDetailCollectionViewController: UICollectionViewDelegateFlowLayou
                                                layout: collectionViewLayout,
                                                minimumInteritemSpacingForSectionAt: 0)) * (itemsPerRow - 1)
         let width = (collectionView.frame.width - horizontalInsets - itemSpacing) / itemsPerRow
-        return CGSize(width: width, height: width * 1.4)
+        return CGSize(width: width, height: width * 1.3)
     }
 
 }

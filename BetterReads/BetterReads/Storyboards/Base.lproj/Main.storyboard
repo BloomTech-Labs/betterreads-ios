@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MA5-oK-UWx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MA5-oK-UWx">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -754,7 +754,7 @@
                                                                     <outlet property="bookCoverImageView" destination="TIO-IA-ihl" id="nXR-hz-QaH"/>
                                                                     <outlet property="defaultBookImageAuthor" destination="8qy-Qj-O7a" id="2IV-BW-Aoq"/>
                                                                     <outlet property="defaultBookImageTitle" destination="z6e-d9-SgY" id="Ryv-a4-IcP"/>
-                                                                    <segue destination="KfY-WO-sJ9" kind="show" identifier="ShowBookDetailSegue" id="Anw-HX-Ft2"/>
+                                                                    <segue destination="KfY-WO-sJ9" kind="show" identifier="ShowBookDetailSegue2" id="Anw-HX-Ft2"/>
                                                                 </connections>
                                                             </collectionViewCell>
                                                         </cells>
@@ -872,7 +872,7 @@
                                                                     <outlet property="bookCoverImageView" destination="m1W-2k-kFT" id="wVx-WX-pCt"/>
                                                                     <outlet property="defaultBookImageAuthor" destination="f8K-tt-ZJ0" id="f5m-gh-Nfz"/>
                                                                     <outlet property="defaultBookImageTitle" destination="s4u-01-xVe" id="IYc-4w-n8k"/>
-                                                                    <segue destination="KfY-WO-sJ9" kind="show" identifier="ShowBookDetailSegue" id="WQ3-sy-enq"/>
+                                                                    <segue destination="KfY-WO-sJ9" kind="show" identifier="ShowBookDetailSegue3" id="WQ3-sy-enq"/>
                                                                 </connections>
                                                             </collectionViewCell>
                                                         </cells>
@@ -1295,7 +1295,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Anw-HX-Ft2"/>
+        <segue reference="WQ3-sy-enq"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="BetterReads-DefaultBookImage" width="267" height="400"/>

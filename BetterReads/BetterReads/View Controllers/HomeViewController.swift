@@ -38,11 +38,22 @@ Flip through the tailored recommendations below from a variety of authors and st
         middleCollectionView.dataSource = self
         bottomCollectionView.delegate = self
         bottomCollectionView.dataSource = self
+        // Back button title for next screen
+        let backItem = UIBarButtonItem()
+        backItem.title = "" // now only the arrow is showing
+        navigationItem.backBarButtonItem = backItem
         if UserController.shared.isNewUser ?? false {
             welcomeMessage.text = welcomeNewUserMessageText
         } else {
             welcomeMessage.text = welcomeReturningUserMessageText
         }
+        fetchUserRecommendations()
+        fetchShelfRecommendations()
+        fetchPopularRecommendations()
+    }
+
+    /// Fetches recommendations based on the user's library then reloads topCollectionView
+    private func fetchUserRecommendations() {
         UserController.shared.getRecommendations { (error) in
             var title = "Recommendations Error"
             var message = "An error occurred while getting recommendations."
@@ -62,7 +73,10 @@ Flip through the tailored recommendations below from a variety of authors and st
                 self.topCollectionView.reloadData()
             }
         }
+    }
 
+    /// Fetches recommendations based on a random custom shelf then reloads middleCollectionView
+    private func fetchShelfRecommendations() {
         UserController.sharedLibraryController.fetchCustomShelves { (error) in
             if let error = error {
                 print("Error fetching shelves in HomeVC \(error)")
@@ -73,11 +87,17 @@ Flip through the tailored recommendations below from a variety of authors and st
                         DispatchQueue.main.async {
                             print("finished recs for middle")
                             self.middleCollectionView.reloadData()
+                            self.bottomCollectionView.reloadData() // MOVE LATER
                         }
                     }
                 }
             }
         }
+    }
+
+    /// Fetches recommendations based on New York Times Best Sellers then reloads bottomCollectionView
+    private func fetchPopularRecommendations() {
+        // FIXME: Fetch NYT Best Sellers here, then reload bottomCollectionView
     }
 
     // MARK: - Methods
@@ -86,7 +106,18 @@ Flip through the tailored recommendations below from a variety of authors and st
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+
+        // FIXME: some arrays might need specific sizes
+        switch collectionView {
+        case topCollectionView:
+            return 5
+        case middleCollectionView:
+            return 5
+        case bottomCollectionView:
+            return 5
+        default:
+            return 5
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView,
@@ -106,7 +137,7 @@ Flip through the tailored recommendations below from a variety of authors and st
                                      for: indexPath
                 ) as? RecommendationCollectionViewCell ?? RecommendationCollectionViewCell()
             cell.bookCoverImageView.image = UIImage().chooseDefaultBookImage()
-            guard let books = UserController.sharedLibraryController.recommendationsForRandomShelf else { return cell }
+            guard let books = UserController.sharedLibraryController.recommendationsForRandomShelf else {return cell}
             cell.book = books[indexPath.item]
             return cell
         } else if collectionView == self.bottomCollectionView {
@@ -115,12 +146,17 @@ Flip through the tailored recommendations below from a variety of authors and st
                                      for: indexPath
                 ) as? RecommendationCollectionViewCell ?? RecommendationCollectionViewCell()
             cell.bookCoverImageView.image = UIImage().chooseDefaultBookImage()
+            // FIXME: books should be equal to array from the NYT endpoint
+            guard let books = UserController.sharedLibraryController.recommendationsForRandomShelf else {return cell}
+            cell.book = books[indexPath.item]
             return cell
         }
         return RecommendationCollectionViewCell()
     }
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        // Your Library - topCollectionView
         if segue.identifier == "ShowBookDetailSegue" {
             if let detailVC = segue.destination as? BookDetailViewController {
                 guard let books = UserController.shared.recommendedBooks,
@@ -130,12 +166,39 @@ Flip through the tailored recommendations below from a variety of authors and st
                 let cell = topCollectionView.cellForItem(at: indexPath) as? RecommendationCollectionViewCell
                 detailVC.bookCoverImageView.image = cell?.bookCoverImageView.image
                 detailVC.blurredBackgroundView.image = cell?.bookCoverImageView.image
-                // FIXME: pass in controller that has CRUD methods to add books
-                // Back button title for next screen
-                let backItem = UIBarButtonItem()
-                backItem.title = "" // now only the arrow is showing
-                navigationItem.backBarButtonItem = backItem
             }
+        }
+
+        // Shelf Recommendations - middleCollectionView
+        if segue.identifier == "ShowBookDetailSegue2" {
+            if let detailVC = segue.destination as? BookDetailViewController {
+                guard let books = UserController.sharedLibraryController.recommendationsForRandomShelf,
+                    let indexPath = middleCollectionView.indexPathsForSelectedItems?.first else { return }
+                let book = books[indexPath.row]
+                detailVC.book = book
+                let cell = middleCollectionView.cellForItem(at: indexPath) as? RecommendationCollectionViewCell
+                detailVC.bookCoverImageView.image = cell?.bookCoverImageView.image
+                detailVC.blurredBackgroundView.image = cell?.bookCoverImageView.image
+            }
+        }
+
+        // Popular - bottomCollectionView (NOT DONE)
+        if segue.identifier == "ShowBookDetailSegue3" {
+            if let detailVC = segue.destination as? BookDetailViewController {
+                // FIXME: books should be equal to array that's set from the NYT endpoint
+                guard let books = UserController.sharedLibraryController.recommendationsForRandomShelf,
+                    let indexPath = bottomCollectionView.indexPathsForSelectedItems?.first else { return }
+                let book = books[indexPath.row]
+                detailVC.book = book
+                let cell = bottomCollectionView.cellForItem(at: indexPath) as? RecommendationCollectionViewCell
+                detailVC.bookCoverImageView.image = cell?.bookCoverImageView.image
+                detailVC.blurredBackgroundView.image = cell?.bookCoverImageView.image
+            }
+        }
+    }
+}
+
+//              this was inside if segue.identifier == "ShowBookDetailSegue" at the bottom
 //            guard let barViewControllers = segue.destination as? UITabBarController,
 //                let nav = barViewControllers.viewControllers?[0] as? UINavigationController,
 //                let _ = nav.topViewController as? BookDetailViewController else {
@@ -143,9 +206,6 @@ Flip through the tailored recommendations below from a variety of authors and st
 //                //FIXME: - Give book to destinationVC when BookDetails is built
 //                return
 //            }
-        }
-    }
-}
 
 // MARK: UICollectionViewDelegate
 extension UIViewController: UICollectionViewDelegate {

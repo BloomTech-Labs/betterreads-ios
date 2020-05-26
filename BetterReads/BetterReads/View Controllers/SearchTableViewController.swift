@@ -20,6 +20,8 @@ class SearchTableViewController: UITableViewController {
         super.viewDidLoad()
         searchBar.delegate = self
         searchBar.tintColor = .trinidadOrange
+        navigationController?.navigationBar.barTintColor = .white
+        navigationController?.navigationBar.isTranslucent = true
         tableView.keyboardDismissMode = .onDrag
         tableView.backgroundView?.isHidden = true
         tableView.backgroundView = spinner
@@ -29,6 +31,11 @@ class SearchTableViewController: UITableViewController {
         let backItem = UIBarButtonItem()
         backItem.title = "" // now only the arrow is showing
         navigationItem.backBarButtonItem = backItem
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isTranslucent = false
     }
 
     override func viewDidAppear(_ animated: Bool) {

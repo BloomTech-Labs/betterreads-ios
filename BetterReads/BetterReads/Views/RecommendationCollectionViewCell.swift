@@ -25,11 +25,12 @@ class RecommendationCollectionViewCell: UICollectionViewCell {
             activityIndicator.stopAnimating()
             return
         }
-        if let smallThumbnail = book.smallThumbnail, let smallThumbnailUrl = URL(string: smallThumbnail) {
+        if let thumbnail = book.thumbnail?.replacingOccurrences(of: "&edge=curl", with: ""),
+            let thumbnailUrl = URL(string: thumbnail) {
             let options = ImageLoadingOptions(
                 transition: .fadeIn(duration: 0.33)
             )
-            Nuke.loadImage(with: smallThumbnailUrl, options: options, into: bookCoverImageView)
+            Nuke.loadImage(with: thumbnailUrl, options: options, into: bookCoverImageView)
             return updateViews()
         } else {
             defaultBookImageTitle.text = """
