@@ -31,6 +31,13 @@ extension UIColor {
     /// Cinnabar Red #E33434
     static let cinnabarRed = UIColor(red: 208.0/255.0, green: 68.0/255.0, blue: 61.0/255.0, alpha: 1.0)
 }
+
+// Fonts
+extension UIFont {
+    static let sourceSansProRegular16 = UIFont(name: "SourceSansPro-Regular", size: 16)
+    static let sourceSansProSemibold20 = UIFont(name: "SourceSansPro-SemiBold", size: 20)
+}
+
 // Alerts
 extension UIViewController {
     func showBasicAlert(alertText: String, alertMessage: String, actionTitle: String) {
@@ -43,6 +50,8 @@ extension UIViewController {
 
 // Segmented Control Background & Divider Image on Sign Up/Sign In Screen
 extension UIImage {
+    static let segControlBackgroundImage = UIImage(color: .clear, size: CGSize(width: 1, height: 32))
+    static let segControlDividerImage = UIImage(color: .clear, size: CGSize(width: 1, height: 32))
     convenience init(color: UIColor, size: CGSize) {
         UIGraphicsBeginImageContextWithOptions(size, false, 1)
         color.set()
@@ -54,7 +63,7 @@ extension UIImage {
     }
 }
 
-//Default Book Images
+// Default Book Images
 extension UIImage {
     func chooseDefaultBookImage() -> UIImage {
         guard let orangeBookImage = UIImage(named: "BetterReads-DefaultBookImage_Orange"),
@@ -69,15 +78,12 @@ extension UIImage {
 }
 
 // Break down User's full name into first and last
-extension Name {
+extension Name: CustomStringConvertible {
+    var description: String { return "\(first) \(last)" }
     init(fullName: String) {
         var names = fullName.components(separatedBy: " ")
         let first = names.removeFirst()
         let last = names.joined(separator: " ")
         self.init(first: first, last: last)
     }
-}
-
-extension Name: CustomStringConvertible {
-    var description: String { return "\(first) \(last)" }
 }

@@ -14,14 +14,10 @@ enum LoginType {
 class SignInViewController: UIViewController {
     // MARK: - Properties
     var loginType = LoginType.signup
-    let segControlBackgroundImage = UIImage(color: .clear, size: CGSize(width: 1, height: 32))
-    let segControlDividerImage = UIImage(color: .clear, size: CGSize(width: 1, height: 32))
-    let regularFont = UIFont(name: "SourceSansPro-Regular", size: 16)
-    let semiBoldFont = UIFont(name: "SourceSansPro-SemiBold", size: 20)
     let selectedTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.tundra,
-                                  NSAttributedString.Key.font: UIFont(name: "SourceSansPro-SemiBold", size: 20)]
+                                  NSAttributedString.Key.font: UIFont.sourceSansProSemibold20]
     let normalTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.tundra,
-                                NSAttributedString.Key.font: UIFont(name: "SourceSansPro-Regular", size: 16)]
+                                NSAttributedString.Key.font: UIFont.sourceSansProRegular16]
     var passwordEyeballButton = UIButton()
     var confirmPasswordEyeballButton = UIButton()
     // MARK: - Outlets
@@ -93,10 +89,11 @@ class SignInViewController: UIViewController {
     // MARK: - Custom Segmented Control
     private func setupCustomSegmentedControl() {
         // Change font on the segmented control, add a default font to dismiss warning
-        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.font: semiBoldFont ?? UIFont()], for: .selected)
+        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.font:
+            UIFont.sourceSansProSemibold20 ?? UIFont()], for: .selected)
         // Change the background and divider image on the segmented control to a transparent (clear) image
-        segmentedControl.setBackgroundImage(segControlBackgroundImage, for: .normal, barMetrics: .default)
-        segmentedControl.setDividerImage(segControlDividerImage,
+        segmentedControl.setBackgroundImage(.segControlBackgroundImage, for: .normal, barMetrics: .default)
+        segmentedControl.setDividerImage(.segControlDividerImage,
                                          forLeftSegmentState: .normal,
                                          rightSegmentState: .normal,
                                          barMetrics: .default)
@@ -256,7 +253,9 @@ class SignInViewController: UIViewController {
                                      password: password) { (networkError) in
             if let error = networkError {
                 // Show vague alert even if the account already exists due to security reasons.
-                self.showBasicAlert(alertText: "Sign Up Error", alertMessage: "An error occured during Sign Up,\nplease try again later.", actionTitle: "Okay")
+                self.showBasicAlert(alertText: "Sign Up Error",
+                                    alertMessage: "An error occured during Sign Up,\nplease try again later.",
+                                    actionTitle: "Okay")
                 NSLog("Error occured during Sign Up: \(error)")
                 self.activityIndicatorSubmit.stopAnimating()
                 self.submitButton.isHidden = false
@@ -266,7 +265,9 @@ class SignInViewController: UIViewController {
                 UserController.shared.signIn(emailAddress: emailAddress, password: password) { (networkError) in
                     if let error = networkError {
                         self.setUpSignInForm()
-                        self.showBasicAlert(alertText: "Sign In Error", alertMessage: "An error occured during Sign In,\nplease try again later.", actionTitle: "Okay")
+                        self.showBasicAlert(alertText: "Sign In Error",
+                                            alertMessage: "An error occured during Sign In,\nplease try again later.",
+                                            actionTitle: "Okay")
                         NSLog("Error occured during Sign In: \(error)")
                         self.activityIndicatorSubmit.stopAnimating()
                         self.submitButton.isHidden = false
@@ -284,7 +285,9 @@ class SignInViewController: UIViewController {
             let password = passwordTextField.text else { return }
         UserController.shared.signIn(emailAddress: emailAddress, password: password) { (networkError) in
             if let error = networkError {
-                self.showBasicAlert(alertText: "Sign In Error", alertMessage: "Invalid email and/or password,\nplease try again.", actionTitle: "Okay")
+                self.showBasicAlert(alertText: "Sign In Error",
+                                    alertMessage: "Invalid email and/or password,\nplease try again.",
+                                    actionTitle: "Okay")
                 NSLog("Error occured during Sign In: \(error)")
                 self.activityIndicatorSubmit.stopAnimating()
                 self.submitButton.isHidden = false
@@ -298,10 +301,14 @@ class SignInViewController: UIViewController {
     }
     // MARK: - Password Information Circles
     @IBAction func passwordInfoCircleTapped(_ sender: UIButton) {
-        self.showBasicAlert(alertText: "Password Required", alertMessage: "Must be at least 6 characters, with at least 1 number.", actionTitle: "Okay")
+        self.showBasicAlert(alertText: "Password Required",
+                            alertMessage: "Must be at least 6 characters, with at least 1 number.",
+                            actionTitle: "Okay")
     }
     @IBAction func confirmPasswordInfoCircleTapped(_ sender: UIButton) {
-        self.showBasicAlert(alertText: "Confirm Password Required", alertMessage: "Must be at least 6 characters, with at least 1 number.", actionTitle: "Okay")
+        self.showBasicAlert(alertText: "Confirm Password Required",
+                            alertMessage: "Must be at least 6 characters, with at least 1 number.",
+                            actionTitle: "Okay")
     }
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -309,7 +316,9 @@ class SignInViewController: UIViewController {
             guard let barViewControllers = segue.destination as? UITabBarController,
                 let nav = barViewControllers.viewControllers?[0] as? UINavigationController,
                 let _ = nav.topViewController as? HomeViewController else {
-                    self.showBasicAlert(alertText: "Ouch, papercut!", alertMessage: "Sorry, we are unable to turn the page. Please try again later.", actionTitle: "Okay")
+                    self.showBasicAlert(alertText: "Ouch, papercut!",
+                                        alertMessage: "Sorry, we are unable to turn the page. Please try again later.",
+                                        actionTitle: "Okay")
                 return
             }
         }
