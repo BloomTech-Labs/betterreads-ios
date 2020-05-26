@@ -93,10 +93,8 @@ class SignInViewController: UIViewController {
             UIFont.sourceSansProSemibold20 ?? UIFont()], for: .selected)
         // Change the background and divider image on the segmented control to a transparent (clear) image
         segmentedControl.setBackgroundImage(.segControlBackgroundImage, for: .normal, barMetrics: .default)
-        segmentedControl.setDividerImage(.segControlDividerImage,
-                                         forLeftSegmentState: .normal,
-                                         rightSegmentState: .normal,
-                                         barMetrics: .default)
+        segmentedControl.setDividerImage(.segControlDividerImage, forLeftSegmentState: .normal,
+                                         rightSegmentState: .normal, barMetrics: .default)
         segmentedControl.setTitleTextAttributes(selectedTextAttributes as [NSAttributedString.Key: Any], for: .selected)
         segmentedControl.setTitleTextAttributes(normalTextAttributes as [NSAttributedString.Key: Any], for: .normal)
     }
