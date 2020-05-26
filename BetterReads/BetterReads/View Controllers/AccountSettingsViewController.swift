@@ -38,10 +38,8 @@ class AccountSettingsViewController: UIViewController, UITableViewDataSource, UI
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 2 {
-//            self.dismiss(animated: true, completion: nil)
+            // This is the dirty way, consider a better alternative to logging out
             self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
-//            self.parent?.dismiss(animated: true, completion: nil)
-            //performSegue(withIdentifier: "LogOutSegue", sender: nil)
         }
     }
 }
