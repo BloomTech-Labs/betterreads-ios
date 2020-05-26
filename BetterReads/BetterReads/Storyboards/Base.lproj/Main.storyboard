@@ -1335,10 +1335,10 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="c8y-SL-Eiu">
-                                <rect key="frame" x="0.0" y="54" width="375" height="185"/>
+                                <rect key="frame" x="0.0" y="54" width="375" height="195"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="185" id="t21-sM-UIX"/>
+                                    <constraint firstAttribute="height" constant="195" id="t21-sM-UIX"/>
                                 </constraints>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="Op1-Uj-DiK">
                                     <rect key="frame" x="0.0" y="116" width="375" height="44"/>
@@ -1384,7 +1384,7 @@
                                 </prototypes>
                             </tableView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" image="BetterReads-Graphics_Kneel" translatesAutoresizingMaskIntoConstraints="NO" id="wrX-99-HeI">
-                                <rect key="frame" x="25" y="279" width="325" height="325"/>
+                                <rect key="frame" x="25" y="269" width="325" height="325"/>
                                 <accessibility key="accessibilityConfiguration" hint="An image graphic displaying a woman reading a book" label="Woman reading a book graphic">
                                     <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
                                 </accessibility>
@@ -1403,7 +1403,7 @@
                             <constraint firstItem="Jqb-w1-bSm" firstAttribute="top" secondItem="2cI-aM-CHr" secondAttribute="top" id="FRy-GV-haH"/>
                             <constraint firstItem="2cI-aM-CHr" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="wrX-99-HeI" secondAttribute="bottom" constant="40" id="Fji-zr-XHa"/>
                             <constraint firstItem="c8y-SL-Eiu" firstAttribute="top" secondItem="Jqb-w1-bSm" secondAttribute="bottom" id="YLZ-WV-jy4"/>
-                            <constraint firstItem="wrX-99-HeI" firstAttribute="top" secondItem="c8y-SL-Eiu" secondAttribute="bottom" constant="40" id="bzr-f4-i1T"/>
+                            <constraint firstItem="wrX-99-HeI" firstAttribute="top" secondItem="c8y-SL-Eiu" secondAttribute="bottom" constant="20" id="bzr-f4-i1T"/>
                             <constraint firstItem="2cI-aM-CHr" firstAttribute="trailing" secondItem="Jqb-w1-bSm" secondAttribute="trailing" id="cCf-fS-oI8"/>
                             <constraint firstItem="c8y-SL-Eiu" firstAttribute="trailing" secondItem="2cI-aM-CHr" secondAttribute="trailing" id="lzn-dN-7u8"/>
                             <constraint firstItem="c8y-SL-Eiu" firstAttribute="top" secondItem="Kuq-dL-8Ea" secondAttribute="bottom" constant="20" id="qDo-gd-4bh"/>
