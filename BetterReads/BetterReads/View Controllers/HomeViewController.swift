@@ -11,6 +11,7 @@ import Nuke
 
 class HomeViewController: UIViewController, UICollectionViewDataSource {
     // MARK: - Properties
+    var animationViewController: AnimationViewController!
     let welcomeNewUserMessageText = """
 It’s great to have you!
 Search for your favorite books and add them to your library collection.
@@ -28,8 +29,7 @@ Flip through the tailored recommendations below from a variety of authors and st
     @IBOutlet weak var middleCollectionView: UICollectionView!
     @IBOutlet weak var bottomRecommendationLabel: UILabel!
     @IBOutlet weak var bottomCollectionView: UICollectionView!
-    var launchViewController: LaunchViewController!
-    @IBOutlet var containerView: UIView!
+    @IBOutlet weak var containerView: UIView!
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,8 +44,7 @@ Flip through the tailored recommendations below from a variety of authors and st
         middleCollectionView.dataSource = self
         bottomCollectionView.delegate = self
         bottomCollectionView.dataSource = self
-        // Back button title for next screen
-        let backItem = UIBarButtonItem()
+        let backItem = UIBarButtonItem() // Back button title for next screen
         backItem.title = "" // now only the arrow is showing
         navigationItem.backBarButtonItem = backItem
         if UserController.shared.isNewUser ?? false {
@@ -57,7 +56,6 @@ Flip through the tailored recommendations below from a variety of authors and st
         fetchShelfRecommendations()
         fetchPopularRecommendations()
     }
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         guard containerView.isHidden == false else { return }
@@ -70,10 +68,7 @@ Flip through the tailored recommendations below from a variety of authors and st
                 tab.isEnabled = true
             }
         }
-//        launchViewController = modalLaunchViewController()
-//        present(launchViewController, animated: false, completion: nil)
     }
-
     /// Fetches recommendations based on the user's library then reloads topCollectionView
     private func fetchUserRecommendations() {
         UserController.shared.getRecommendations { (error) in
@@ -92,7 +87,6 @@ Flip through the tailored recommendations below from a variety of authors and st
             }
         }
     }
-
     /// Fetches recommendations based on a random custom shelf then reloads middleCollectionView
     private func fetchShelfRecommendations() {
         UserController.sharedLibraryController.fetchCustomShelves { (error) in
@@ -112,7 +106,6 @@ Flip through the tailored recommendations below from a variety of authors and st
             }
         }
     }
-
     /// Fetches recommendations based on New York Times Best Sellers then reloads bottomCollectionView
     private func fetchPopularRecommendations() {
         // FIXME: Fetch NYT Best Sellers here, then reload bottomCollectionView
@@ -122,9 +115,7 @@ Flip through the tailored recommendations below from a variety of authors and st
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
-
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-
         // FIXME: some arrays might need specific sizes
         switch collectionView {
         case topCollectionView:
@@ -137,7 +128,6 @@ Flip through the tailored recommendations below from a variety of authors and st
             return 5
         }
     }
-
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.topCollectionView {
@@ -173,7 +163,6 @@ Flip through the tailored recommendations below from a variety of authors and st
     }
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
         // Your Library - topCollectionView
         if segue.identifier == "ShowBookDetailSegue" {
             if let detailVC = segue.destination as? BookDetailViewController {
@@ -186,7 +175,6 @@ Flip through the tailored recommendations below from a variety of authors and st
                 detailVC.blurredBackgroundView.image = cell?.bookCoverImageView.image
             }
         }
-
         // Shelf Recommendations - middleCollectionView
         if segue.identifier == "ShowBookDetailSegue2" {
             if let detailVC = segue.destination as? BookDetailViewController {
@@ -199,7 +187,6 @@ Flip through the tailored recommendations below from a variety of authors and st
                 detailVC.blurredBackgroundView.image = cell?.bookCoverImageView.image
             }
         }
-
         // Popular - bottomCollectionView (NOT DONE)
         if segue.identifier == "ShowBookDetailSegue3" {
             if let detailVC = segue.destination as? BookDetailViewController {
@@ -215,15 +202,6 @@ Flip through the tailored recommendations below from a variety of authors and st
         }
     }
 }
-
-//              this was inside if segue.identifier == "ShowBookDetailSegue" at the bottom
-//            guard let barViewControllers = segue.destination as? UITabBarController,
-//                let nav = barViewControllers.viewControllers?[0] as? UINavigationController,
-//                let _ = nav.topViewController as? BookDetailViewController else {
-//                //FIXME: - Better error handling and alert
-//                //FIXME: - Give book to destinationVC when BookDetails is built
-//                return
-//            }
 
 // MARK: UICollectionViewDelegate
 extension UIViewController: UICollectionViewDelegate {

@@ -9,10 +9,10 @@ import UIKit
 import Foundation
 
 extension UIViewController {
-    func modalLaunchViewController() -> LaunchViewController {
+    func modalLaunchViewController() -> AnimationViewController {
         // get storyboard
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let launchVC = storyboard.instantiateViewController(identifier: "LaunchViewController") as? LaunchViewController else { fatalError("launchVC is nil, check SB") }
+        guard let launchVC = storyboard.instantiateViewController(identifier: "LaunchViewController") as? AnimationViewController else { fatalError("launchVC is nil, check SB") }
         launchVC.modalPresentationStyle = .overCurrentContext
         launchVC.modalTransitionStyle = .crossDissolve
         return launchVC
