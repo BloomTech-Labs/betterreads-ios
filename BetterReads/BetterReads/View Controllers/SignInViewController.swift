@@ -256,8 +256,7 @@ class SignInViewController: UIViewController {
                                      password: password) { (networkError) in
             if let error = networkError {
                 // Show vague alert even if the account already exists due to security reasons.
-                self.showBasicAlert(alertText: "Sign Up Error",
-                                    alertMessage: "An error occured during Sign Up,\nplease try again later.")
+                self.showBasicAlert(alertText: "Sign Up Error", alertMessage: "An error occured during Sign Up,\nplease try again later.", actionTitle: "Okay")
                 NSLog("Error occured during Sign Up: \(error)")
                 self.activityIndicatorSubmit.stopAnimating()
                 self.submitButton.isHidden = false
@@ -267,8 +266,7 @@ class SignInViewController: UIViewController {
                 UserController.shared.signIn(emailAddress: emailAddress, password: password) { (networkError) in
                     if let error = networkError {
                         self.setUpSignInForm()
-                        self.showBasicAlert(alertText: "Sign In Error",
-                                            alertMessage: "An error occured during Sign In,\nplease try again later.")
+                        self.showBasicAlert(alertText: "Sign In Error", alertMessage: "An error occured during Sign In,\nplease try again later.", actionTitle: "Okay")
                         NSLog("Error occured during Sign In: \(error)")
                         self.activityIndicatorSubmit.stopAnimating()
                         self.submitButton.isHidden = false
@@ -286,8 +284,7 @@ class SignInViewController: UIViewController {
             let password = passwordTextField.text else { return }
         UserController.shared.signIn(emailAddress: emailAddress, password: password) { (networkError) in
             if let error = networkError {
-                self.showBasicAlert(alertText: "Sign In Error",
-                                    alertMessage: "Invalid email and/or password,\nplease try again.")
+                self.showBasicAlert(alertText: "Sign In Error", alertMessage: "Invalid email and/or password,\nplease try again.", actionTitle: "Okay")
                 NSLog("Error occured during Sign In: \(error)")
                 self.activityIndicatorSubmit.stopAnimating()
                 self.submitButton.isHidden = false
@@ -301,21 +298,10 @@ class SignInViewController: UIViewController {
     }
     // MARK: - Password Information Circles
     @IBAction func passwordInfoCircleTapped(_ sender: UIButton) {
-        let alert = UIAlertController(title: "Password Required",
-                                      message: "Must be at least 6 characters, with at least 1 number.",
-                                      preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
-        present(alert, animated: true, completion: nil)
+        self.showBasicAlert(alertText: "Password Required", alertMessage: "Must be at least 6 characters, with at least 1 number.", actionTitle: "Okay")
     }
     @IBAction func confirmPasswordInfoCircleTapped(_ sender: UIButton) {
-        let alert = UIAlertController(title: "Confirm Password Required",
-                                      message: """
-                                        Must be at least 6 characters, with at least 1 number,
-                                        and must match your password.
-                                        """,
-                                      preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
-        present(alert, animated: true, completion: nil)
+        self.showBasicAlert(alertText: "Confirm Password Required", alertMessage: "Must be at least 6 characters, with at least 1 number.", actionTitle: "Okay")
     }
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -323,11 +309,7 @@ class SignInViewController: UIViewController {
             guard let barViewControllers = segue.destination as? UITabBarController,
                 let nav = barViewControllers.viewControllers?[0] as? UINavigationController,
                 let _ = nav.topViewController as? HomeViewController else {
-                let alert = UIAlertController(title: "Ouch, papercut!",
-                                              message: "Sorry, we are unable to turn the page. Please try again later.",
-                                              preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
-                present(alert, animated: true, completion: nil)
+                    self.showBasicAlert(alertText: "Ouch, papercut!", alertMessage: "Sorry, we are unable to turn the page. Please try again later.", actionTitle: "Okay")
                 return
             }
         }

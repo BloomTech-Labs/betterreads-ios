@@ -62,11 +62,7 @@ Flip through the tailored recommendations below from a variety of authors and st
                 message = "To help us make better recommendations, search for and add books to your library."
             }
             if let error = error {
-                let alert = UIAlertController(title: title,
-                                              message: message,
-                                              preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+                self.showBasicAlert(alertText: title, alertMessage: message, actionTitle: "Okay")
                 NSLog("Error occured during Get Recommendations: \(error)")
             }
             DispatchQueue.main.async {
