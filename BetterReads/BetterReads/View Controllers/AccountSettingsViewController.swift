@@ -8,11 +8,12 @@
 
 import UIKit
 
-class AccountSettingsViewController: UIViewController, UITableViewDataSource {
+class AccountSettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
+        tableView.delegate = self
     }
     @IBAction func downArrowButtonTapped(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -34,5 +35,11 @@ class AccountSettingsViewController: UIViewController, UITableViewDataSource {
             cell.settingIconImageView.image = UIImage(systemName: "arrow.uturn.left.circle.fill")
         }
         return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 2 {
+            self.dismiss(animated: true, completion: nil)
+            //performSegue(withIdentifier: "LogOutSegue", sender: nil)
+        }
     }
 }
