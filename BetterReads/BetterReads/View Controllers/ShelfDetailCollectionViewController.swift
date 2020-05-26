@@ -17,7 +17,7 @@ class ShelfDetailCollectionViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.tintColor = .trinidadOrange
+        navigationController?.navigationBar.tintColor = .trinidadOrange
         // Back button title for next screen
         let backItem = UIBarButtonItem()
         backItem.title = "" // now only the arrow is showing

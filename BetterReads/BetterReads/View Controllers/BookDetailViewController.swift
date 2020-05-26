@@ -249,16 +249,18 @@ class BookDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = ""
-        navigationController?.navigationBar.tintColor = .white
+        //navigationController?.navigationBar.tintColor = .white
         print("intrinsicContentSize = \(self.view.intrinsicContentSize)")
-        navigationController?.navigationBar.isHidden = false
+        //navigationController?.navigationBar.isHidden = false
         setupSubviews()
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        print("viewWillAppear")
         super.viewWillAppear(animated)
         // To change status bar text to white
         navigationController?.navigationBar.barStyle = .black
+        navigationController?.navigationBar.tintColor = .white
         // Transparent Nav bar
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
@@ -267,15 +269,18 @@ class BookDetailViewController: UIViewController {
 
     // To change status bar text back to black
     override func viewWillDisappear(_ animated: Bool) {
+        print("viewWillDisappear")
         super.viewWillDisappear(animated)
+        // change back so status bar text black again
         navigationController?.navigationBar.barStyle = .default
         navigationController?.navigationBar.tintColor = .trinidadOrange
         // FIXME: change nav bar back to normal but it flashes a little now
-        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
-        navigationController?.navigationBar.shadowImage = nil
-        navigationController?.navigationBar.isTranslucent = false
+        // for some reason, the homescreen nav bar works perfectly, no flash and not black background
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default) //nil, .default
+        navigationController?.navigationBar.shadowImage = UIImage()
+        // Setting Nav bar to NOT be translucent causes the black nav bar somehow
+//        navigationController?.navigationBar.isTranslucent = false
     }
-    // FIXME: button might be weird because contentSize is -1, -1
 
     private func updateViews() {
         guard let book = book else { print("no book in guard let"); return }
