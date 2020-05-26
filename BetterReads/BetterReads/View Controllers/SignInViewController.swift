@@ -387,6 +387,7 @@ extension SignInViewController: UITextFieldDelegate {
                     confirmPasswordTextField.becomeFirstResponder()
                 } else {
                     passwordTextField.resignFirstResponder()
+                    submitButtonTapped(submitButton)
                 }
                 self.passwordErrorMessage.text = " "
                 return true
@@ -397,6 +398,7 @@ extension SignInViewController: UITextFieldDelegate {
             if valid {
                 confirmPasswordTextField.resignFirstResponder()
                 self.confirmPasswordErrorMessage.text = " "
+                submitButtonTapped(submitButton)
                 return true
             }
             self.confirmPasswordErrorMessage.text = message
