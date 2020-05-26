@@ -31,7 +31,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forgot your password?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1zX-eX-IL3">
-                                <rect key="frame" x="20" y="54" width="335" height="28"/>
+                                <rect key="frame" x="20" y="54" width="335" height="30.5"/>
                                 <accessibility key="accessibilityConfiguration" hint="Displays label above instructions" label="Forgot password label">
                                     <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
                                 </accessibility>
@@ -40,7 +40,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No worries! Enter the email address associated with your account, and we will send you an email to reset your password." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LoE-zJ-L00">
-                                <rect key="frame" x="20" y="122" width="335" height="84"/>
+                                <rect key="frame" x="20" y="124.5" width="335" height="68"/>
                                 <accessibility key="accessibilityConfiguration" hint="Enter the email address associated with your account, and we will send you an email to reset your password." label="Instructions label">
                                     <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
                                 </accessibility>
@@ -49,7 +49,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="janesmith@email.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rgm-bZ-Ks6">
-                                <rect key="frame" x="20" y="246" width="335" height="40"/>
+                                <rect key="frame" x="20" y="232.5" width="335" height="40"/>
                                 <accessibility key="accessibilityConfiguration" hint="Enter your email" label="Email text field"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="XyH-cU-sVk"/>
@@ -58,14 +58,14 @@
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="done" textContentType="email"/>
                             </textField>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="BetterReads-Graphics_Man" translatesAutoresizingMaskIntoConstraints="NO" id="AlX-hN-YS8">
-                                <rect key="frame" x="20" y="427" width="335" height="200"/>
+                                <rect key="frame" x="20" y="416" width="335" height="211"/>
                                 <accessibility key="accessibilityConfiguration" hint="An image graphic displaying a man reading a book" label="Man reading a book graphic">
                                     <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
                                     <bool key="isElement" value="YES"/>
                                 </accessibility>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aOZ-94-Io4">
-                                <rect key="frame" x="20" y="331.5" width="335" height="40"/>
+                                <rect key="frame" x="20" y="319.5" width="335" height="40"/>
                                 <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <accessibility key="accessibilityConfiguration" hint="After entering email, please click done button" label="Done Button"/>
                                 <constraints>
@@ -82,7 +82,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Success or Failure Message" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eAz-Wf-Ror">
-                                <rect key="frame" x="20" y="391.5" width="335" height="15.5"/>
+                                <rect key="frame" x="20" y="379.5" width="335" height="16.5"/>
                                 <accessibility key="accessibilityConfiguration" hint="This label will display either a success or failure when submitting your request." label="Success or failure message label">
                                     <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
                                 </accessibility>
@@ -91,7 +91,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Error Message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SoY-Zq-who">
-                                <rect key="frame" x="20" y="290" width="335" height="16.5"/>
+                                <rect key="frame" x="20" y="276.5" width="335" height="18"/>
                                 <accessibility key="accessibilityConfiguration" hint="Displays an error message if email text field is invalid" label="Email error message">
                                     <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
                                 </accessibility>
@@ -99,6 +99,11 @@
                                 <color key="textColor" red="0.89019607840000003" green="0.20392156859999999" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="AMJ-2J-Yyb">
+                                <rect key="frame" x="20" y="319.5" width="335" height="40"/>
+                                <color key="backgroundColor" red="0.83137254900000002" green="0.28235294119999998" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="color" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.down" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="oou-QI-Vb4">
                                 <rect key="frame" x="172.5" y="9" width="30" height="20.5"/>
                                 <color key="tintColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -111,8 +116,9 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kNc-E5-IkQ" userLabel="Down Arrow Button">
-                                <rect key="frame" x="4" y="4" width="367" height="30"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                 <accessibility key="accessibilityConfiguration" hint="When clicked, this will slide modal screen down and away." label="Down arrow button"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Down Arrow Button">
                                     <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -120,11 +126,6 @@
                                     <action selector="downArrowButtonTapped:" destination="p8v-6O-0X8" eventType="touchUpInside" id="6KY-LJ-aKk"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="AMJ-2J-Yyb">
-                                <rect key="frame" x="20" y="331.5" width="335" height="40"/>
-                                <color key="backgroundColor" red="0.83137254900000002" green="0.28235294119999998" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="color" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -132,13 +133,12 @@
                             <constraint firstItem="LoE-zJ-L00" firstAttribute="top" secondItem="1zX-eX-IL3" secondAttribute="bottom" constant="40" id="1xx-sP-X7M"/>
                             <constraint firstItem="1zX-eX-IL3" firstAttribute="top" secondItem="oou-QI-Vb4" secondAttribute="bottom" constant="20" id="2Zp-V4-5sQ"/>
                             <constraint firstItem="LHQ-VR-oYC" firstAttribute="trailing" secondItem="AMJ-2J-Yyb" secondAttribute="trailing" constant="20" id="2w4-RS-Doc"/>
-                            <constraint firstItem="1zX-eX-IL3" firstAttribute="top" secondItem="kNc-E5-IkQ" secondAttribute="bottom" constant="20" id="4g2-pS-naS"/>
-                            <constraint firstItem="kNc-E5-IkQ" firstAttribute="top" secondItem="LHQ-VR-oYC" secondAttribute="top" constant="4" id="6dg-ed-GBg"/>
+                            <constraint firstItem="kNc-E5-IkQ" firstAttribute="top" secondItem="LHQ-VR-oYC" secondAttribute="top" id="6dg-ed-GBg"/>
                             <constraint firstItem="oou-QI-Vb4" firstAttribute="centerX" secondItem="bgp-uT-hom" secondAttribute="centerX" id="APg-tr-go8"/>
                             <constraint firstItem="LHQ-VR-oYC" firstAttribute="trailing" secondItem="AlX-hN-YS8" secondAttribute="trailing" constant="20" id="BMP-lO-s3m"/>
                             <constraint firstItem="AMJ-2J-Yyb" firstAttribute="centerY" secondItem="aOZ-94-Io4" secondAttribute="centerY" id="Bsd-aw-GIq"/>
                             <constraint firstItem="AlX-hN-YS8" firstAttribute="top" secondItem="eAz-Wf-Ror" secondAttribute="bottom" constant="20" id="L3p-du-raq"/>
-                            <constraint firstItem="kNc-E5-IkQ" firstAttribute="leading" secondItem="LHQ-VR-oYC" secondAttribute="leading" constant="4" id="LoL-sS-HQc"/>
+                            <constraint firstItem="kNc-E5-IkQ" firstAttribute="leading" secondItem="LHQ-VR-oYC" secondAttribute="leading" id="LoL-sS-HQc"/>
                             <constraint firstItem="rgm-bZ-Ks6" firstAttribute="top" secondItem="LoE-zJ-L00" secondAttribute="bottom" constant="40" id="Qzf-2l-ueb"/>
                             <constraint firstItem="eAz-Wf-Ror" firstAttribute="top" secondItem="aOZ-94-Io4" secondAttribute="bottom" constant="20" id="R4z-g6-UvO"/>
                             <constraint firstItem="LHQ-VR-oYC" firstAttribute="trailing" secondItem="rgm-bZ-Ks6" secondAttribute="trailing" constant="20" id="RjH-h7-ICk"/>
@@ -147,7 +147,7 @@
                             <constraint firstItem="LHQ-VR-oYC" firstAttribute="bottom" secondItem="AlX-hN-YS8" secondAttribute="bottom" constant="20" id="dEy-8S-7y1"/>
                             <constraint firstItem="eAz-Wf-Ror" firstAttribute="leading" secondItem="LHQ-VR-oYC" secondAttribute="leading" constant="20" id="eAP-9Y-prK"/>
                             <constraint firstItem="AlX-hN-YS8" firstAttribute="leading" secondItem="LHQ-VR-oYC" secondAttribute="leading" constant="20" id="fFS-TD-ewq"/>
-                            <constraint firstItem="LHQ-VR-oYC" firstAttribute="trailing" secondItem="kNc-E5-IkQ" secondAttribute="trailing" constant="4" id="fuw-bx-hyt"/>
+                            <constraint firstItem="LHQ-VR-oYC" firstAttribute="trailing" secondItem="kNc-E5-IkQ" secondAttribute="trailing" id="fuw-bx-hyt"/>
                             <constraint firstAttribute="trailing" secondItem="LoE-zJ-L00" secondAttribute="trailing" constant="20" id="gAK-cs-OtY"/>
                             <constraint firstItem="aOZ-94-Io4" firstAttribute="top" secondItem="SoY-Zq-who" secondAttribute="bottom" constant="25" id="hu1-eC-rCl"/>
                             <constraint firstItem="SoY-Zq-who" firstAttribute="leading" secondItem="LHQ-VR-oYC" secondAttribute="leading" constant="20" id="jh5-Dh-jCX"/>
@@ -160,6 +160,7 @@
                             <constraint firstItem="AMJ-2J-Yyb" firstAttribute="width" secondItem="aOZ-94-Io4" secondAttribute="width" id="uiY-1X-CcM"/>
                             <constraint firstItem="LHQ-VR-oYC" firstAttribute="trailing" secondItem="SoY-Zq-who" secondAttribute="trailing" constant="20" id="wbL-GU-6X1"/>
                             <constraint firstItem="AMJ-2J-Yyb" firstAttribute="leading" secondItem="LHQ-VR-oYC" secondAttribute="leading" constant="20" id="yVa-Tf-CKm"/>
+                            <constraint firstItem="1zX-eX-IL3" firstAttribute="top" secondItem="kNc-E5-IkQ" secondAttribute="bottom" id="zmr-ZX-7dq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LHQ-VR-oYC"/>
                     </view>
@@ -1322,8 +1323,9 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jqb-w1-bSm" userLabel="Down Arrow Button">
-                                <rect key="frame" x="4" y="4" width="367" height="30"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                 <accessibility key="accessibilityConfiguration" hint="When clicked, this will slide modal screen down and away." label="Down arrow button"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Down Arrow Button">
                                     <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -1360,7 +1362,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uY4-Iu-gWo">
-                                                    <rect key="frame" x="63" y="20.5" width="277" height="19"/>
+                                                    <rect key="frame" x="63" y="20" width="277" height="20.5"/>
                                                     <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="16"/>
                                                     <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1398,14 +1400,15 @@
                             <constraint firstItem="Kuq-dL-8Ea" firstAttribute="centerX" secondItem="K75-Jh-Tcf" secondAttribute="centerX" id="7wC-gD-8He"/>
                             <constraint firstItem="c8y-SL-Eiu" firstAttribute="leading" secondItem="2cI-aM-CHr" secondAttribute="leading" id="DGp-Nt-Y9X"/>
                             <constraint firstItem="Kuq-dL-8Ea" firstAttribute="top" secondItem="2cI-aM-CHr" secondAttribute="top" constant="4" id="EZT-sh-FPf"/>
-                            <constraint firstItem="Jqb-w1-bSm" firstAttribute="top" secondItem="2cI-aM-CHr" secondAttribute="top" constant="4" id="FRy-GV-haH"/>
+                            <constraint firstItem="Jqb-w1-bSm" firstAttribute="top" secondItem="2cI-aM-CHr" secondAttribute="top" id="FRy-GV-haH"/>
                             <constraint firstItem="2cI-aM-CHr" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="wrX-99-HeI" secondAttribute="bottom" constant="40" id="Fji-zr-XHa"/>
+                            <constraint firstItem="c8y-SL-Eiu" firstAttribute="top" secondItem="Jqb-w1-bSm" secondAttribute="bottom" id="YLZ-WV-jy4"/>
                             <constraint firstItem="wrX-99-HeI" firstAttribute="top" secondItem="c8y-SL-Eiu" secondAttribute="bottom" constant="40" id="bzr-f4-i1T"/>
-                            <constraint firstItem="2cI-aM-CHr" firstAttribute="trailing" secondItem="Jqb-w1-bSm" secondAttribute="trailing" constant="4" id="cCf-fS-oI8"/>
+                            <constraint firstItem="2cI-aM-CHr" firstAttribute="trailing" secondItem="Jqb-w1-bSm" secondAttribute="trailing" id="cCf-fS-oI8"/>
                             <constraint firstItem="c8y-SL-Eiu" firstAttribute="trailing" secondItem="2cI-aM-CHr" secondAttribute="trailing" id="lzn-dN-7u8"/>
-                            <constraint firstItem="Jqb-w1-bSm" firstAttribute="leading" secondItem="2cI-aM-CHr" secondAttribute="leading" constant="4" id="tfa-0H-EMp"/>
+                            <constraint firstItem="c8y-SL-Eiu" firstAttribute="top" secondItem="Kuq-dL-8Ea" secondAttribute="bottom" constant="20" id="qDo-gd-4bh"/>
+                            <constraint firstItem="Jqb-w1-bSm" firstAttribute="leading" secondItem="2cI-aM-CHr" secondAttribute="leading" id="tfa-0H-EMp"/>
                             <constraint firstItem="wrX-99-HeI" firstAttribute="centerX" secondItem="K75-Jh-Tcf" secondAttribute="centerX" id="u1k-ZS-FQO"/>
-                            <constraint firstItem="c8y-SL-Eiu" firstAttribute="top" secondItem="Jqb-w1-bSm" secondAttribute="bottom" constant="20" id="vSx-hm-cgA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2cI-aM-CHr"/>
                     </view>
