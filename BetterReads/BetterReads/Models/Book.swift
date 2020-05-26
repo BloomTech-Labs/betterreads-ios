@@ -20,6 +20,13 @@ struct TypeQuery: Codable {
     var query: String
 }
 
+/// Used to post of Book to user's Library
+struct PostBookStruct: Encodable {
+    let book: Book
+    let readingStatus: Int
+    let favorite: Bool
+}
+
 /// Books are returned in Recommendations and Search Results
 struct Book: Codable {
     let authors: [String]?

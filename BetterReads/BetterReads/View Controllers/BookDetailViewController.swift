@@ -83,7 +83,8 @@ class BookDetailViewController: UIViewController {
         tempButton.backgroundColor = .trinidadOrange
         tempButton.tintColor = .white
         tempButton.setTitle("Add Book", for: .normal)
-        tempButton.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
+        tempButton.setTitle("In My Books", for: .disabled)
+        tempButton.addTarget(self, action: #selector(addBookToLibrary), for: .touchUpInside)
         tempButton.layer.cornerRadius = 10
         return tempButton
     }()
@@ -178,9 +179,16 @@ class BookDetailViewController: UIViewController {
     }()
 
     // FIXME: add sound effect for add book to library? (similar to App store purchase success)?
-    @objc func showAlert() {
+    @objc func addBookToLibrary() {
         print("add button tapped")
         addButton.performFlare()
+        guard let book = book else { return }
+        UserController.sharedLibraryController.addBookToLibrary(book: book) { (_) in
+            DispatchQueue.main.async {
+                print("Book added to My Books")
+                self.addButton.isEnabled = false
+            }
+        }
     }
 
     /// Expands or collapses description (change max number of lines here and in the descriptionLabel property)

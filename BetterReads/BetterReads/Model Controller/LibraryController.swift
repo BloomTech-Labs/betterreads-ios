@@ -292,4 +292,65 @@ class LibraryController {
             }
         }.resume()
     }
+
+    /// Add's Book to user's library (just to My Books, readingStatus = 0, favorite = false)
+    func addBookToLibrary(book: Book, completion: @escaping (Error?) -> Void = { _ in }) {
+
+        print("addBookToLibrary")
+        guard let userId = UserController.shared.user?.userID else {
+            print("no user id")
+            completion(nil)
+            return
+        }
+
+        var requestUrl = baseUrl.appendingPathComponent("\(userId)")
+        requestUrl = requestUrl.appendingPathComponent("library")
+        print("requestUrl = \(requestUrl)")
+        var request = URLRequest(url: requestUrl)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        guard let unwrappedToken = UserController.shared.authToken else {
+            print("No token")
+            completion(nil)
+            return
+        }
+
+        request.addValue(unwrappedToken, forHTTPHeaderField: "Authorization")
+
+        let body = PostBookStruct(book: book, readingStatus: 0, favorite: false)
+        //print("body = \(body)")
+        do {
+            let jsonEncoder = JSONEncoder()
+            request.httpBody = try jsonEncoder.encode(body)
+            //            if let possibleJsonSent = request.httpBody {
+            //                let jsonSent = try JSONSerialization.jsonObject(with: possibleJsonSent, options: .allowFragments)
+            //                print("JSON SENT = \(jsonSent)")
+            //            }
+        } catch {
+            print("Error encoding json body: \(error)")
+            DispatchQueue.main.async {
+                completion(error)
+            }
+            return
+        }
+
+        URLSession.shared.dataTask(with: request) { (_, response, error) in
+            if let response = response as? HTTPURLResponse, response.statusCode != 201 {
+                print("CODE: \(response.statusCode)")
+                completion(error)
+                return
+            }
+            
+            if let error = error {
+                print("Error POSTING book: \(error)")
+                DispatchQueue.main.async {
+                    completion(error)
+                }
+                return
+            }
+            completion(nil)
+            print("POST book success")
+        }.resume()
+    }
 }
