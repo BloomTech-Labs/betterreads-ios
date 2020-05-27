@@ -1167,11 +1167,38 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="eR8-ug-sk3"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Book Details" id="Taw-AY-tTN"/>
+                    <navigationItem key="navigationItem" title="Book Details" id="Taw-AY-tTN">
+                        <barButtonItem key="rightBarButtonItem" image="square.and.arrow.up" catalog="system" id="k8Q-mD-Lqi">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="webButtonTapped:" destination="KfY-WO-sJ9" id="JVR-t8-Oyr"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="webButtonLabel" destination="k8Q-mD-Lqi" id="6U0-XD-ODh"/>
+                        <segue destination="t3d-at-T18" kind="show" identifier="PresentWebView" id="Y0U-Se-S4Z"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8rX-fA-r9P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2096" y="2260"/>
+            <point key="canvasLocation" x="2134" y="2257"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="RZt-3e-5Ss">
+            <objects>
+                <viewController id="EQe-f9-I12" customClass="WebViewController" customModule="BetterReads" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4Hq-mp-ncc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Kfd-Qk-B9S"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="6RI-eV-MNV"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bvJ-wk-7Uj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3089" y="2696"/>
         </scene>
         <!--My Library-->
         <scene sceneID="zcO-xC-gwK">
@@ -1463,6 +1490,25 @@
             </objects>
             <point key="canvasLocation" x="-511" y="1511"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="7z5-XW-bhW">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="t3d-at-T18" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="Nlu-F1-Yop"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7Lh-bh-5mV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="EQe-f9-I12" kind="relationship" relationship="rootViewController" id="9wn-0M-Eli"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="peu-3h-F2f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3089" y="1921"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="rTd-to-6nz"/>
@@ -1484,5 +1530,6 @@
         <image name="info.circle.fill" catalog="system" width="128" height="121"/>
         <image name="lock.circle.fill" catalog="system" width="128" height="121"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>
+        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
     </resources>
 </document>

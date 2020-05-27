@@ -24,6 +24,7 @@
 		1BA843952474944A000C4367 /* UserShelf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA843942474944A000C4367 /* UserShelf.swift */; };
 		1BA8439724749CFD000C4367 /* UserBookOnShelf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA8439624749CFD000C4367 /* UserBookOnShelf.swift */; };
 		1BA84399247D9BAF000C4367 /* MockShelfRecommendation.json in Resources */ = {isa = PBXBuildFile; fileRef = 1BA84398247D9BAF000C4367 /* MockShelfRecommendation.json */; };
+		1BA843A7247EC1F8000C4367 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA843A6247EC1F8000C4367 /* WebViewController.swift */; };
 		7732DCE2244F7DF400C82B7F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7732DCE1244F7DF400C82B7F /* User.swift */; };
 		7732DCE5244F7F6900C82B7F /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7732DCE4244F7F6900C82B7F /* UserController.swift */; };
 		7732DCEE244FA93800C82B7F /* FrankRuhlLibre-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7732DCED244FA8F000C82B7F /* FrankRuhlLibre-Black.ttf */; };
@@ -104,6 +105,7 @@
 		1BA843942474944A000C4367 /* UserShelf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserShelf.swift; sourceTree = "<group>"; };
 		1BA8439624749CFD000C4367 /* UserBookOnShelf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBookOnShelf.swift; sourceTree = "<group>"; };
 		1BA84398247D9BAF000C4367 /* MockShelfRecommendation.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockShelfRecommendation.json; sourceTree = "<group>"; };
+		1BA843A6247EC1F8000C4367 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		7732DCE1244F7DF400C82B7F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7732DCE4244F7F6900C82B7F /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		7732DCE9244FA8EF00C82B7F /* FrankRuhlLibre-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FrankRuhlLibre-Bold.ttf"; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				1B102ACA244E17790095733B /* SearchTableViewController.swift */,
 				1B102B0F246366870095733B /* ShelfDetailCollectionViewController.swift */,
 				1B102ACC244E2F600095733B /* SignInViewController.swift */,
+				1BA843A6247EC1F8000C4367 /* WebViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -568,6 +571,7 @@
 				77538BE9246B0738007FD8E6 /* AccountSettingsViewController.swift in Sources */,
 				1B102AD824524D3F0095733B /* SearchController.swift in Sources */,
 				77538BE7246B056C007FD8E6 /* Recommendation.swift in Sources */,
+				1BA843A7247EC1F8000C4367 /* WebViewController.swift in Sources */,
 				77F20680247DCB6C00010BA3 /* LaunchViewController.swift in Sources */,
 				1B102B0A2463635B0095733B /* MyLibraryCollectionViewController.swift in Sources */,
 				77B6A39B2448F5A400FF604B /* SceneDelegate.swift in Sources */,
