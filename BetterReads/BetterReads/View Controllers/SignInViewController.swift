@@ -49,6 +49,7 @@ class SignInViewController: UIViewController {
         configurePasswordTextField()
         configureConfirmTextField()
         forgotPassword.isHidden = true
+        activityIndicatorSubmit.backgroundColor = .trinidadOrange
         activityIndicatorSubmit.isHidden = true
         activityIndicatorSubmit.layer.cornerRadius = 5
         submitButton.layer.cornerRadius = 5

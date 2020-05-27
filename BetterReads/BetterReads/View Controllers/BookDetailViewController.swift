@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class BookDetailViewController: UIViewController {
 
@@ -83,12 +84,13 @@ class BookDetailViewController: UIViewController {
     let addButton: UIButton = {
         let tempButton = UIButton(type: .custom) // .system
         tempButton.translatesAutoresizingMaskIntoConstraints = false
-        tempButton.backgroundColor = .trinidadOrange
+        //tempButton.backgroundColor = .trinidadOrange
         tempButton.tintColor = .white
         tempButton.titleLabel?.font = UIFont(name: "SourceSansPro-Bold", size: 18)
         tempButton.setTitle("Add Book", for: .normal)
-        tempButton.setTitleColor(.doveGray, for: .disabled)
-        tempButton.setTitle("In My Books", for: .disabled)
+        tempButton.setTitle("In My Library", for: .disabled)
+        tempButton.isEnabled = false
+        tempButton.backgroundColor = .doveGray
         tempButton.addTarget(self, action: #selector(addBookToLibrary), for: .touchUpInside)
         tempButton.layer.cornerRadius = 5
         return tempButton
@@ -185,15 +187,44 @@ class BookDetailViewController: UIViewController {
         return tempActivityView
     }()
 
-    // FIXME: add sound effect for add book to library? (similar to App store purchase success)?
     @objc func addBookToLibrary() {
         print("add button tapped")
-        addButton.performFlare()
+        AudioServicesPlaySystemSound(SystemSoundID(1105))
+        addButton.buttonTap()
+
+        let act = UIAlertController(title: "Track this", message: nil, preferredStyle: .actionSheet)
+        act.addAction(UIAlertAction(title: "To be read", style: .default, handler: addBookToDefaultShelves))
+        act.addAction(UIAlertAction(title: "In progress", style: .default, handler: addBookToDefaultShelves))
+        act.addAction(UIAlertAction(title: "Finished", style: .default, handler: addBookToDefaultShelves))
+        act.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        act.popoverPresentationController?.barButtonItem = self.navigationItem.rightBarButtonItem
+        present(act, animated: true)
+    }
+
+    /// Adds book to default shelf based on title selected
+    private func addBookToDefaultShelves(action: UIAlertAction) {
+        print("action tapped")
+        var readingStatus = 0
+        switch action.title {
+        case "To be read":
+            print(1)
+            readingStatus = 1
+        case "In progress":
+            print(2)
+            readingStatus = 2
+        case "Finished":
+            print(3)
+            readingStatus = 3
+        default:
+            print(0)
+        }
         guard let book = book else { return }
-        UserController.sharedLibraryController.addBookToLibrary(book: book) { (_) in
+        UserController.sharedLibraryController.addBookToLibrary(book: book, status: readingStatus) { (_) in
             DispatchQueue.main.async {
-                print("Book added to My Books")
+                print("Book added!")
+                AudioServicesPlaySystemSound(SystemSoundID(1118))
                 self.addButton.isEnabled = false
+                self.addButton.backgroundColor = .doveGray
             }
         }
     }
@@ -234,7 +265,11 @@ class BookDetailViewController: UIViewController {
         UserController.sharedLibraryController.fetchBookById(bookId: bookId, completion: { (userBookDetail) in
             DispatchQueue.main.async {
                 self.titleLabel.text = userBookDetail?.title ?? "Untitled"
-                self.authorLabel.text = "by \(userBookDetail?.authors ?? "Unknown")"
+
+                if let author = userBookDetail?.authors {
+                    self.authorLabel.text = "by " + author.removeTags(author)
+                } else { self.authorLabel.text = "Unknown" }
+
                 if let averageRating = userBookDetail?.averageRating, let doubleValue = Double(averageRating) {
                     self.ratingStackView.ratingValue = doubleValue
                     self.averageRatingLabel.text = String(format: "%.1f average rating", doubleValue)
@@ -242,7 +277,11 @@ class BookDetailViewController: UIViewController {
                     self.ratingStackView.ratingValue = 0.0
                     self.averageRatingLabel.text = "no rating"
                 }
-                self.descriptionLabel.text = userBookDetail?.itemDescription ?? "No description"
+
+                if let itemDescription = userBookDetail?.itemDescription {
+                    self.descriptionLabel.text = itemDescription.removeTags(itemDescription)
+                } else { self.descriptionLabel.text = "No description"}
+
                 self.publisherLabel.text = "Publisher: \(userBookDetail?.publisher ?? "No publisher")"
                 self.isbnLabel.text = "ISBN: \(userBookDetail?.isbn13 ?? "no ISBN")"
                 self.lengthLabel.text = "Length: \(userBookDetail?.pageCount ?? 0) pages"
@@ -291,10 +330,14 @@ class BookDetailViewController: UIViewController {
 
     private func updateViews() {
         guard let book = book else { print("no book in guard let"); return }
+        addButton.isEnabled = true
+        addButton.backgroundColor = .trinidadOrange
         titleLabel.text = book.title
         authorLabel.text = "by \(book.authors?[0] ?? "Unknown")"
         ratingStackView.ratingValue = book.averageRating
-        averageRatingLabel.text = "\(book.averageRating ?? 0) average rating"
+        if let averageRatingText = book.averageRating {
+            averageRatingLabel.text = "\(averageRatingText) average rating"
+        } else { averageRatingLabel.text = "no rating" }
         descriptionLabel.text = book.itemDescription
         publisherLabel.text = "Publisher: \(book.publisher ?? "No publisher")"
         isbnLabel.text = "ISBN: \(book.isbn13 ?? "")"
@@ -448,3 +491,33 @@ class BookDetailViewController: UIViewController {
         spinner.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
     }
 }
+
+extension String {
+    /// Removes all random HTML tags that string could contain and returns a clean one
+    func removeTags(_ string: String) -> String {
+        var cleanString = string
+        let tags = ["<br>", "<b>", "</b>", "{\"", "\"}", "<i>", "</i>", "<p>", "</p>"]
+        for tag in tags {
+            if tag == "<br>" {
+                // tag was a break, add a new line
+                cleanString = cleanString.replacingOccurrences(of: tag, with: "\n")
+            } else {
+                // any other case, replace tag with "remove" tag
+                cleanString = cleanString.replacingOccurrences(of: tag, with: "")
+            }
+        }
+        return cleanString
+    }
+}
+
+///// Removes all random HTML tags that string could contain and returns a clean one
+//func removeTags(_ string: String) -> String {
+//    var cleanString = string
+//    print("unclean: " + string)
+//    let tags = ["<br>", "<b>", "</b>", "{\"", "\"}", "<i>", "</i>"]
+//    for tag in tags {
+//        cleanString = cleanString.replacingOccurrences(of: tag, with: "")
+//    }
+//    print("clean:" + cleanString)
+//    return cleanString
+//}

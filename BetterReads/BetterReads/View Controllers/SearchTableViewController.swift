@@ -15,7 +15,6 @@ class SearchTableViewController: UITableViewController {
     let spinner = UIActivityIndicatorView(style: .large)
 
     @IBOutlet var searchBar: UISearchBar!
-    // FIXME: change so cancel/x button act like they do in Goodreads/Apple Books?
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
@@ -93,7 +92,6 @@ class SearchTableViewController: UITableViewController {
 // MARK: - Extensions
 
 extension SearchTableViewController: UISearchBarDelegate {
-    // FIXME: - Scroll dismisses keyboard (onScroll?)
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = true
     }
@@ -101,7 +99,7 @@ extension SearchTableViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
         searchController.searchResultBooks = []
-        tableView.reloadData() // FIXME: clear table another way?
+        tableView.reloadData()
         hideKeyboardAndCancelButton()
     }
 

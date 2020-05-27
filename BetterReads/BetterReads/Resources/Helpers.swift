@@ -10,13 +10,20 @@ import UIKit
 
 // Animation
 extension UIView {
-  func performFlare() {
-    func flare() { transform = CGAffineTransform( scaleX: 1.03, y: 1.04) }
-    func unflare() { transform = .identity }
-    UIView.animate(withDuration: 0.15,
-                   animations: { flare() },
-                   completion: { _ in UIView.animate(withDuration: 0.7) { unflare() }})
-  }
+    func performFlare() {
+        func flare() { transform = CGAffineTransform( scaleX: 1.03, y: 1.04) }
+        func unflare() { transform = .identity }
+        UIView.animate(withDuration: 0.15,
+                       animations: { flare() },
+                       completion: { _ in UIView.animate(withDuration: 0.7) { unflare() }})
+    }
+    func buttonTap() {
+        func flare() { transform = CGAffineTransform( scaleX: 1.1, y: 1.3) }
+        func unflare() { transform = .identity }
+        UIView.animate(withDuration: 0.07,
+                       animations: { flare() },
+                       completion: { _ in UIView.animate(withDuration: 0.3) { unflare() }})
+    }
 }
 // Color Palette
 extension UIColor {

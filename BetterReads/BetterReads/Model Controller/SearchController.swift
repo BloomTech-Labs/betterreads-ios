@@ -118,4 +118,47 @@ class SearchController {
             }
         }.resume()
     }
+
+    /// Fetches array of NYT Best Sellers (fiction), and returns that array (can NOT be added to library though)
+    static func fetchNYTBestSellers(completion: @escaping ([Book]?) -> Void = { _ in }) {
+        // FIXME: nil should be default books from json
+        ///https://dsapi.readrr.app/nyt/fiction
+        let requestUrl = URL(string: "https://dsapi.readrr.app/nyt/fiction")!
+        var request = URLRequest(url: requestUrl)
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        URLSession.shared.dataTask(with: request) { (data, _, error) in
+            if let error = error {
+                print("Error fetching NYT: \(error)")
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+                return
+            }
+            guard let data = data else {
+                print("No data return by data task in fetchNYT")
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+                return
+            }
+            let jsonDecoder = JSONDecoder()
+            jsonDecoder.dateDecodingStrategy = .iso8601
+            do {
+                print("Data = \(data)")
+                let recommendation = try jsonDecoder.decode(Recommendation.self, from: data)
+                let bestSellersArray = recommendation.recommendations
+                DispatchQueue.main.async {
+                    print(bestSellersArray)
+                    completion(bestSellersArray)
+                }
+            } catch {
+                print("Error decoding NYT \(error)")
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+            }
+        }.resume()
+    }
 }
