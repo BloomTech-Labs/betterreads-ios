@@ -123,10 +123,12 @@ Flip through the tailored recommendations below from a variety of authors and st
         return 1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // FIXME: some arrays might need specific sizes
         switch collectionView {
         case topCollectionView:
-            return 5
+            guard let recommendedBooks = UserController.shared.recommendedBooks else {
+                return 5
+            }
+            return recommendedBooks.count
         case middleCollectionView:
             return 5
         case bottomCollectionView:
