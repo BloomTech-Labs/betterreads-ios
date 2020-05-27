@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class BookDetailViewController: UIViewController {
 
@@ -87,7 +88,6 @@ class BookDetailViewController: UIViewController {
         tempButton.tintColor = .white
         tempButton.titleLabel?.font = UIFont(name: "SourceSansPro-Bold", size: 18)
         tempButton.setTitle("Add Book", for: .normal)
-        tempButton.setTitleColor(.doveGray, for: .disabled)
         tempButton.setTitle("In My Books", for: .disabled)
         tempButton.addTarget(self, action: #selector(addBookToLibrary), for: .touchUpInside)
         tempButton.layer.cornerRadius = 5
@@ -185,15 +185,16 @@ class BookDetailViewController: UIViewController {
         return tempActivityView
     }()
 
-    // FIXME: add sound effect for add book to library? (similar to App store purchase success)?
     @objc func addBookToLibrary() {
         print("add button tapped")
-        addButton.performFlare()
+        AudioServicesPlaySystemSound(SystemSoundID(1117))
+        addButton.buttonTap()
         guard let book = book else { return }
         UserController.sharedLibraryController.addBookToLibrary(book: book) { (_) in
             DispatchQueue.main.async {
                 print("Book added to My Books")
                 self.addButton.isEnabled = false
+                self.addButton.backgroundColor = .doveGray
             }
         }
     }
