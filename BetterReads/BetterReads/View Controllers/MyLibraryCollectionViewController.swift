@@ -43,20 +43,21 @@ class MyLibraryCollectionViewController: UICollectionViewController {
 
     fileprivate var alertTextField: UITextField?
 
-    func fetchLibraryAgain() {
+    let refreshControl = UIRefreshControl()
+
+    @objc func fetchLibraryAgain() {
         print("called fetchLibraryAgain")
         UserController.sharedLibraryController.fetchUserLibrary { (_) in
             DispatchQueue.main.async {
                 print("refreshed library")
                 self.collectionView.reloadData()
+                self.refreshControl.endRefreshing()
             }
         }
     }
 
     private func createNewShelf() {
         print("createNewShelf called, textField text = \(alertTextField?.text ?? "nil")")
-        // FIXME: add a refresh button to nav bar, call fetchLibraryAgain in there and check LibraryCell because images are being kept when they should reflect contents of that array
-        fetchLibraryAgain()
         collectionView.reloadData()
     }
 
@@ -64,6 +65,18 @@ class MyLibraryCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         navigationController?.navigationBar.barTintColor = .white
         navigationController?.navigationBar.isTranslucent = true
+        // add refreshControl to collectionView
+        if #available(iOS 10.0, *) {
+            // iOS 10 and up TVC/CVC have .refreshControl property
+            collectionView.refreshControl = refreshControl
+        } else {
+            collectionView.addSubview(refreshControl)
+        }
+        refreshControl.tintColor = .tundra
+        refreshControl.addTarget(self, action: #selector(fetchLibraryAgain), for: .valueChanged)
+        // leaving the "add shelf" button intact for next team, delete is enabled and delete .clear
+        addShelfButtonLabel.isEnabled = false
+        addShelfButtonLabel.tintColor = .clear
     }
 
     // MARK: UICollectionViewDataSource
