@@ -130,7 +130,10 @@ Flip through the tailored recommendations below from a variety of authors and st
             }
             return recommendedBooks.count
         case middleCollectionView:
-            return 5
+            guard let recsFromShelf = UserController.sharedLibraryController.recommendationsForRandomShelf else {
+                return 5
+            }
+            return recsFromShelf.count
         case bottomCollectionView:
             return bestSellers.count
         default:
