@@ -34,6 +34,7 @@ Flip through the tailored recommendations below from a variety of authors and st
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        tabBarController?.tabBar.backgroundColor = .white
         for (index, tab) in self.tabBarController!.tabBar.items!.enumerated() {
             guard index != 0 else { continue }
             tab.isEnabled = false
@@ -41,10 +42,13 @@ Flip through the tailored recommendations below from a variety of authors and st
         self.welcomeUser.text = "Hello, \(UserController.shared.user?.fullName.first ?? "there")!"
         topCollectionView.delegate = self
         topCollectionView.dataSource = self
+        topRecommendationLabel.text = "New York Times Best Sellers"
         middleCollectionView.delegate = self
         middleCollectionView.dataSource = self
+        middleRecommendationLabel.text = "Based on your library"
         bottomCollectionView.delegate = self
         bottomCollectionView.dataSource = self
+        bottomRecommendationLabel.text = "Based on your shelves"
         let backItem = UIBarButtonItem() // Back button title for next screen
         backItem.title = "" // now only the arrow is showing
         navigationItem.backBarButtonItem = backItem
@@ -53,14 +57,14 @@ Flip through the tailored recommendations below from a variety of authors and st
         } else {
             welcomeMessage.text = welcomeReturningUserMessageText
         }
+        fetchPopularRecommendations()
         fetchUserRecommendations()
         fetchShelfRecommendations()
-        fetchPopularRecommendations()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         guard containerView.isHidden == false else { return }
-        UIView.animate(withDuration: 1, delay: 5, options: .curveLinear, animations: {
+        UIView.animate(withDuration: 0.5, delay: 2, options: .curveLinear, animations: {
             self.containerView.alpha = 0
         }) { (_) in
             self.containerView.isHidden = true
@@ -84,7 +88,7 @@ Flip through the tailored recommendations below from a variety of authors and st
                 NSLog("Error occured during Get Recommendations: \(error)")
             }
             DispatchQueue.main.async {
-                self.topCollectionView.reloadData()
+                self.middleCollectionView.reloadData()
             }
         }
     }
@@ -99,8 +103,7 @@ Flip through the tailored recommendations below from a variety of authors and st
                     UserController.sharedLibraryController.fetchRecommendedBooks { (_) in
                         DispatchQueue.main.async {
                             print("finished recs for middle")
-                            self.middleCollectionView.reloadData()
-                            self.bottomCollectionView.reloadData() // MOVE LATER
+                            self.bottomCollectionView.reloadData()
                         }
                     }
                 }
@@ -113,7 +116,7 @@ Flip through the tailored recommendations below from a variety of authors and st
             DispatchQueue.main.async {
                 guard let result = result else { return }
                 self.bestSellers = result
-                self.bottomCollectionView.reloadData()
+                self.topCollectionView.reloadData()
             }
         }
     }
@@ -125,17 +128,17 @@ Flip through the tailored recommendations below from a variety of authors and st
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
         case topCollectionView:
+            return bestSellers.count
+        case middleCollectionView:
             guard let recommendedBooks = UserController.shared.recommendedBooks else {
                 return 5
             }
             return recommendedBooks.count
-        case middleCollectionView:
+        case bottomCollectionView:
             guard let recsFromShelf = UserController.sharedLibraryController.recommendationsForRandomShelf else {
                 return 5
             }
             return recsFromShelf.count
-        case bottomCollectionView:
-            return bestSellers.count
         default:
             return 5
         }
@@ -148,7 +151,9 @@ Flip through the tailored recommendations below from a variety of authors and st
                                      for: indexPath
                 ) as? RecommendationCollectionViewCell ?? RecommendationCollectionViewCell()
             cell.bookCoverImageView.image = UIImage().chooseDefaultBookImage()
-            guard let books = UserController.shared.recommendedBooks else { return cell }
+            // FIXME: books should be equal to array from the NYT endpoint
+            //guard let books = bestSellers else {return cell}
+            let books = bestSellers
             cell.book = books[indexPath.item]
             return cell
         } else if collectionView == self.middleCollectionView {
@@ -157,7 +162,7 @@ Flip through the tailored recommendations below from a variety of authors and st
                                      for: indexPath
                 ) as? RecommendationCollectionViewCell ?? RecommendationCollectionViewCell()
             cell.bookCoverImageView.image = UIImage().chooseDefaultBookImage()
-            guard let books = UserController.sharedLibraryController.recommendationsForRandomShelf else {return cell}
+            guard let books = UserController.shared.recommendedBooks else { return cell }
             cell.book = books[indexPath.item]
             return cell
         } else if collectionView == self.bottomCollectionView {
@@ -166,9 +171,7 @@ Flip through the tailored recommendations below from a variety of authors and st
                                      for: indexPath
                 ) as? RecommendationCollectionViewCell ?? RecommendationCollectionViewCell()
             cell.bookCoverImageView.image = UIImage().chooseDefaultBookImage()
-            // FIXME: books should be equal to array from the NYT endpoint
-            //guard let books = bestSellers else {return cell}
-            let books = bestSellers
+            guard let books = UserController.sharedLibraryController.recommendationsForRandomShelf else {return cell}
             cell.book = books[indexPath.item]
             return cell
         }
@@ -176,11 +179,11 @@ Flip through the tailored recommendations below from a variety of authors and st
     }
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Your Library - topCollectionView
+        // NYT Best Sellers - topCollectionView
         if segue.identifier == "ShowBookDetailSegue" {
             if let detailVC = segue.destination as? BookDetailViewController {
-                guard let books = UserController.shared.recommendedBooks,
-                    let indexPath = topCollectionView.indexPathsForSelectedItems?.first else { return }
+                guard let indexPath = topCollectionView.indexPathsForSelectedItems?.first else { return }
+                let books = bestSellers
                 let book = books[indexPath.row]
                 detailVC.book = book
                 let cell = topCollectionView.cellForItem(at: indexPath) as? RecommendationCollectionViewCell
@@ -188,10 +191,10 @@ Flip through the tailored recommendations below from a variety of authors and st
                 detailVC.blurredBackgroundView.image = cell?.bookCoverImageView.image
             }
         }
-        // Shelf Recommendations - middleCollectionView
+        // User Library - middleCollectionView
         if segue.identifier == "ShowBookDetailSegue2" {
             if let detailVC = segue.destination as? BookDetailViewController {
-                guard let books = UserController.sharedLibraryController.recommendationsForRandomShelf,
+                guard let books = UserController.shared.recommendedBooks,
                     let indexPath = middleCollectionView.indexPathsForSelectedItems?.first else { return }
                 let book = books[indexPath.row]
                 detailVC.book = book
@@ -200,18 +203,26 @@ Flip through the tailored recommendations below from a variety of authors and st
                 detailVC.blurredBackgroundView.image = cell?.bookCoverImageView.image
             }
         }
-        // Popular - bottomCollectionView (NOT DONE)
+        // User Shelves - bottomCollectionView
         if segue.identifier == "ShowBookDetailSegue3" {
             if let detailVC = segue.destination as? BookDetailViewController {
-                // FIXME: books should be equal to array that's set from the NYT endpoint
-                guard let indexPath = bottomCollectionView.indexPathsForSelectedItems?.first else { return }
-                let books = bestSellers
+                guard let books = UserController.sharedLibraryController.recommendationsForRandomShelf,
+                    let indexPath = bottomCollectionView.indexPathsForSelectedItems?.first else { return }
                 let book = books[indexPath.row]
                 detailVC.book = book
                 let cell = bottomCollectionView.cellForItem(at: indexPath) as? RecommendationCollectionViewCell
                 detailVC.bookCoverImageView.image = cell?.bookCoverImageView.image
                 detailVC.blurredBackgroundView.image = cell?.bookCoverImageView.image
             }
+//            if let detailVC = segue.destination as? BookDetailViewController {
+//                guard let books = UserController.sharedLibraryController.recommendationsForRandomShelf,
+//                    let indexPath = middleCollectionView.indexPathsForSelectedItems?.first else { return }
+//                let book = books[indexPath.row]
+//                detailVC.book = book
+//                let cell = middleCollectionView.cellForItem(at: indexPath) as? RecommendationCollectionViewCell
+//                detailVC.bookCoverImageView.image = cell?.bookCoverImageView.image
+//                detailVC.blurredBackgroundView.image = cell?.bookCoverImageView.image
+//            }
         }
     }
 }
