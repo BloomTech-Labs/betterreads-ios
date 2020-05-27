@@ -30,6 +30,7 @@ Flip through the tailored recommendations below from a variety of authors and st
     @IBOutlet weak var bottomRecommendationLabel: UILabel!
     @IBOutlet weak var bottomCollectionView: UICollectionView!
     @IBOutlet weak var containerView: UIView!
+    var bestSellers = [Book]()
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,7 +109,13 @@ Flip through the tailored recommendations below from a variety of authors and st
     }
     /// Fetches recommendations based on New York Times Best Sellers then reloads bottomCollectionView
     private func fetchPopularRecommendations() {
-        // FIXME: Fetch NYT Best Sellers here, then reload bottomCollectionView
+        SearchController.fetchNYTBestSellers { (result) in
+            DispatchQueue.main.async {
+                guard let result = result else { return }
+                self.bestSellers = result
+                self.bottomCollectionView.reloadData()
+            }
+        }
     }
 
     // MARK: - Methods
@@ -123,7 +130,7 @@ Flip through the tailored recommendations below from a variety of authors and st
         case middleCollectionView:
             return 5
         case bottomCollectionView:
-            return 5
+            return bestSellers.count
         default:
             return 5
         }
@@ -155,7 +162,8 @@ Flip through the tailored recommendations below from a variety of authors and st
                 ) as? RecommendationCollectionViewCell ?? RecommendationCollectionViewCell()
             cell.bookCoverImageView.image = UIImage().chooseDefaultBookImage()
             // FIXME: books should be equal to array from the NYT endpoint
-            guard let books = UserController.sharedLibraryController.recommendationsForRandomShelf else {return cell}
+            //guard let books = bestSellers else {return cell}
+            let books = bestSellers
             cell.book = books[indexPath.item]
             return cell
         }
@@ -191,8 +199,8 @@ Flip through the tailored recommendations below from a variety of authors and st
         if segue.identifier == "ShowBookDetailSegue3" {
             if let detailVC = segue.destination as? BookDetailViewController {
                 // FIXME: books should be equal to array that's set from the NYT endpoint
-                guard let books = UserController.sharedLibraryController.recommendationsForRandomShelf,
-                    let indexPath = bottomCollectionView.indexPathsForSelectedItems?.first else { return }
+                guard let indexPath = bottomCollectionView.indexPathsForSelectedItems?.first else { return }
+                let books = bestSellers
                 let book = books[indexPath.row]
                 detailVC.book = book
                 let cell = bottomCollectionView.cellForItem(at: indexPath) as? RecommendationCollectionViewCell
