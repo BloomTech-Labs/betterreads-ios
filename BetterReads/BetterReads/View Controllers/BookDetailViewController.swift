@@ -332,15 +332,15 @@ class BookDetailViewController: UIViewController {
         guard let book = book else { print("no book in guard let"); return }
         addButton.isEnabled = true
         addButton.backgroundColor = .trinidadOrange
-        titleLabel.text = book.title
+        titleLabel.text = book.title ?? "Untitled"
         authorLabel.text = "by \(book.authors?[0] ?? "Unknown")"
         ratingStackView.ratingValue = book.averageRating
         if let averageRatingText = book.averageRating {
             averageRatingLabel.text = "\(averageRatingText) average rating"
         } else { averageRatingLabel.text = "no rating" }
-        descriptionLabel.text = book.itemDescription
+        descriptionLabel.text = book.itemDescription ?? "No description"
         publisherLabel.text = "Publisher: \(book.publisher ?? "No publisher")"
-        isbnLabel.text = "ISBN: \(book.isbn13 ?? "")"
+        isbnLabel.text = "ISBN: \(book.isbn13 ?? "None")"
         lengthLabel.text = "Length: \(book.pageCount ?? 0) pages"
     }
 
