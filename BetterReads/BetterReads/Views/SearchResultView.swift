@@ -49,15 +49,15 @@ class SearchResultView: UIView {
         guard let book = book else { return }
         titleLabel.text = book.title
         authorLabel.text = book.authors?.first
-        updateStarRating(value: book.averageRating ?? 0.0) // book.rating
-        // FIXME: use cache to improve this?
-        guard let thumbnail = book.thumbnail else { return }
-        //print("updateViews, lastImage = \(lastThumbnailImage ?? "nil thumbnail")")
+        updateStarRating(value: book.averageRating ?? 0.0)
+        //use cache to improve this later
+        guard let thumbnail = book.thumbnail else {
+            imageView.image = UIImage().chooseDefaultBookImage()
+            return
+        }
         if lastThumbnailImage != thumbnail {
-            //print("no image in imageView, fetching an image")
             SearchController.fetchImage(with: thumbnail) { (image) in
                 DispatchQueue.main.async {
-                    // Add quick fade-in animation (alpha) 
                     self.imageView.image = image
                     self.lastThumbnailImage = thumbnail
                 }
