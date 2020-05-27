@@ -76,7 +76,7 @@ Flip through the tailored recommendations below from a variety of authors and st
 //            }
         }
     }
-    /// Fetches recommendations based on the user's library then reloads topCollectionView
+    /// Fetches recommendations based on the user's library then reloads middleCollectionView
     private func fetchUserRecommendations() {
         UserController.shared.getRecommendations { (error) in
             var title = "Recommendations Error"
@@ -94,14 +94,13 @@ Flip through the tailored recommendations below from a variety of authors and st
             }
         }
     }
-    /// Fetches recommendations based on a random custom shelf then reloads middleCollectionView
+    /// Fetches recommendations based on a random custom shelf then reloads bottomCollectionView
     private func fetchShelfRecommendations() {
         UserController.sharedLibraryController.fetchCustomShelves { (error) in
             if let error = error {
                 print("Error fetching shelves in HomeVC \(error)")
             } else {
                 DispatchQueue.main.async {
-                    print("shelves count: \(UserController.sharedLibraryController.userShelves.count)")
                     UserController.sharedLibraryController.fetchRecommendedBooks { (_) in
                         DispatchQueue.main.async {
                             print("finished recs for middle")
@@ -112,7 +111,7 @@ Flip through the tailored recommendations below from a variety of authors and st
             }
         }
     }
-    /// Fetches recommendations based on New York Times Best Sellers then reloads bottomCollectionView
+    /// Fetches recommendations based on New York Times Best Sellers then reloads topCollectionView
     private func fetchPopularRecommendations() {
         SearchController.fetchNYTBestSellers { (result) in
             DispatchQueue.main.async {
@@ -153,8 +152,6 @@ Flip through the tailored recommendations below from a variety of authors and st
                                      for: indexPath
                 ) as? RecommendationCollectionViewCell ?? RecommendationCollectionViewCell()
             cell.bookCoverImageView.image = UIImage().chooseDefaultBookImage()
-            // FIXME: books should be equal to array from the NYT endpoint
-            //guard let books = bestSellers else {return cell}
             let books = bestSellers
             cell.book = books[indexPath.item]
             return cell
@@ -216,15 +213,6 @@ Flip through the tailored recommendations below from a variety of authors and st
                 detailVC.bookCoverImageView.image = cell?.bookCoverImageView.image
                 detailVC.blurredBackgroundView.image = cell?.bookCoverImageView.image
             }
-//            if let detailVC = segue.destination as? BookDetailViewController {
-//                guard let books = UserController.sharedLibraryController.recommendationsForRandomShelf,
-//                    let indexPath = middleCollectionView.indexPathsForSelectedItems?.first else { return }
-//                let book = books[indexPath.row]
-//                detailVC.book = book
-//                let cell = middleCollectionView.cellForItem(at: indexPath) as? RecommendationCollectionViewCell
-//                detailVC.bookCoverImageView.image = cell?.bookCoverImageView.image
-//                detailVC.blurredBackgroundView.image = cell?.bookCoverImageView.image
-//            }
         }
     }
 }
