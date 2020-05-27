@@ -119,7 +119,7 @@ class SearchController {
         }.resume()
     }
 
-    /// Fetches array of NYT Best Sellers (fiction), and returns that array
+    /// Fetches array of NYT Best Sellers (fiction), and returns that array (can NOT be added to library though)
     static func fetchNYTBestSellers(completion: @escaping ([Book]?) -> Void = { _ in }) {
         // FIXME: nil should be default books from json
         ///https://dsapi.readrr.app/nyt/fiction

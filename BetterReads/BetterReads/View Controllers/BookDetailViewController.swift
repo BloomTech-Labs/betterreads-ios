@@ -84,11 +84,13 @@ class BookDetailViewController: UIViewController {
     let addButton: UIButton = {
         let tempButton = UIButton(type: .custom) // .system
         tempButton.translatesAutoresizingMaskIntoConstraints = false
-        tempButton.backgroundColor = .trinidadOrange
+        //tempButton.backgroundColor = .trinidadOrange
         tempButton.tintColor = .white
         tempButton.titleLabel?.font = UIFont(name: "SourceSansPro-Bold", size: 18)
         tempButton.setTitle("Add Book", for: .normal)
         tempButton.setTitle("In My Books", for: .disabled)
+        tempButton.isEnabled = false
+        tempButton.backgroundColor = .doveGray
         tempButton.addTarget(self, action: #selector(addBookToLibrary), for: .touchUpInside)
         tempButton.layer.cornerRadius = 5
         return tempButton
@@ -292,6 +294,8 @@ class BookDetailViewController: UIViewController {
 
     private func updateViews() {
         guard let book = book else { print("no book in guard let"); return }
+        addButton.isEnabled = true
+        addButton.backgroundColor = .trinidadOrange
         titleLabel.text = book.title
         authorLabel.text = "by \(book.authors?[0] ?? "Unknown")"
         ratingStackView.ratingValue = book.averageRating
