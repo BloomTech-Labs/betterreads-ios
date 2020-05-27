@@ -191,14 +191,53 @@ class BookDetailViewController: UIViewController {
         print("add button tapped")
         AudioServicesPlaySystemSound(SystemSoundID(1117))
         addButton.buttonTap()
+        
+        // NEW
+        let act = UIAlertController(title: "Choose Shelf", message: nil, preferredStyle: .actionSheet)
+        act.addAction(UIAlertAction(title: "To be read", style: .default, handler: openPage))
+        act.addAction(UIAlertAction(title: "In progress", style: .default, handler: openPage))
+        act.addAction(UIAlertAction(title: "Finished", style: .default, handler: openPage))
+        act.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        act.popoverPresentationController?.barButtonItem = self.navigationItem.rightBarButtonItem
+        present(act, animated: true)
+        // NEW
+        
+//        guard let book = book else { return }
+//        UserController.sharedLibraryController.addBookToLibrary(book: book, status: 0) { (_) in
+//            DispatchQueue.main.async {
+//                print("Book added to My Books")
+//                self.addButton.isEnabled = false
+//                self.addButton.backgroundColor = .doveGray
+//            }
+//        }
+    }
+
+    // NEW
+    func openPage(action: UIAlertAction) {
+        print("action tapped")
+        var readingStatus = 0
+        switch action.title {
+        case "To be read":
+            print(1)
+            readingStatus = 1
+        case "In progress":
+            print(2)
+            readingStatus = 2
+        case "Finished":
+            print(3)
+            readingStatus = 3
+        default:
+            print(0)
+        }
         guard let book = book else { return }
-        UserController.sharedLibraryController.addBookToLibrary(book: book) { (_) in
+        UserController.sharedLibraryController.addBookToLibrary(book: book, status: readingStatus) { (_) in
             DispatchQueue.main.async {
-                print("Book added to My Books")
+                print("Book added!")
                 self.addButton.isEnabled = false
                 self.addButton.backgroundColor = .doveGray
             }
         }
+        
     }
 
     /// Expands or collapses description (change max number of lines here and in the descriptionLabel property)

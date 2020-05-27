@@ -294,7 +294,7 @@ class LibraryController {
     }
 
     /// Add's Book to user's library (just to My Books, readingStatus = 0, favorite = false)
-    func addBookToLibrary(book: Book, completion: @escaping (Error?) -> Void = { _ in }) {
+    func addBookToLibrary(book: Book, status: Int, completion: @escaping (Error?) -> Void = { _ in }) {
 
         print("addBookToLibrary")
         guard let userId = UserController.shared.user?.userID else {
@@ -318,7 +318,7 @@ class LibraryController {
 
         request.addValue(unwrappedToken, forHTTPHeaderField: "Authorization")
 
-        let body = PostBookStruct(book: book, readingStatus: 0, favorite: false)
+        let body = PostBookStruct(book: book, readingStatus: status, favorite: false)
         //print("body = \(body)")
         do {
             let jsonEncoder = JSONEncoder()
