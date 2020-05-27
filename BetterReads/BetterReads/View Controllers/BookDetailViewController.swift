@@ -298,8 +298,7 @@ class BookDetailViewController: UIViewController {
                 } else { self.descriptionLabel.text = "No description"}
 
                 self.publisherLabel.text = "Publisher: \(userBookDetail?.publisher ?? "No publisher")"
-//                self.isbnLabel.text = "ISBN: \(userBookDetail?.isbn13 ?? "no ISBN")"
-                self.isbnLabel.text = userBookDetail?.webReaderLink
+                self.isbnLabel.text = "ISBN: \(userBookDetail?.isbn13 ?? "no ISBN")"
 
                 self.lengthLabel.text = "Length: \(userBookDetail?.pageCount ?? 0) pages"
                 self.spinner.stopAnimating()
