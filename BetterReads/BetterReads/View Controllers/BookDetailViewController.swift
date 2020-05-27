@@ -88,7 +88,7 @@ class BookDetailViewController: UIViewController {
         tempButton.tintColor = .white
         tempButton.titleLabel?.font = UIFont(name: "SourceSansPro-Bold", size: 18)
         tempButton.setTitle("Add Book", for: .normal)
-        tempButton.setTitle("In My Books", for: .disabled)
+        tempButton.setTitle("In My Library", for: .disabled)
         tempButton.isEnabled = false
         tempButton.backgroundColor = .doveGray
         tempButton.addTarget(self, action: #selector(addBookToLibrary), for: .touchUpInside)
@@ -189,31 +189,20 @@ class BookDetailViewController: UIViewController {
 
     @objc func addBookToLibrary() {
         print("add button tapped")
-        AudioServicesPlaySystemSound(SystemSoundID(1117))
+        AudioServicesPlaySystemSound(SystemSoundID(1105))
         addButton.buttonTap()
-        
-        // NEW
-        let act = UIAlertController(title: "Choose Shelf", message: nil, preferredStyle: .actionSheet)
-        act.addAction(UIAlertAction(title: "To be read", style: .default, handler: openPage))
-        act.addAction(UIAlertAction(title: "In progress", style: .default, handler: openPage))
-        act.addAction(UIAlertAction(title: "Finished", style: .default, handler: openPage))
+
+        let act = UIAlertController(title: "Track this", message: nil, preferredStyle: .actionSheet)
+        act.addAction(UIAlertAction(title: "To be read", style: .default, handler: addBookToDefaultShelves))
+        act.addAction(UIAlertAction(title: "In progress", style: .default, handler: addBookToDefaultShelves))
+        act.addAction(UIAlertAction(title: "Finished", style: .default, handler: addBookToDefaultShelves))
         act.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         act.popoverPresentationController?.barButtonItem = self.navigationItem.rightBarButtonItem
         present(act, animated: true)
-        // NEW
-        
-//        guard let book = book else { return }
-//        UserController.sharedLibraryController.addBookToLibrary(book: book, status: 0) { (_) in
-//            DispatchQueue.main.async {
-//                print("Book added to My Books")
-//                self.addButton.isEnabled = false
-//                self.addButton.backgroundColor = .doveGray
-//            }
-//        }
     }
 
-    // NEW
-    func openPage(action: UIAlertAction) {
+    /// Adds book to default shelf based on title selected
+    private func addBookToDefaultShelves(action: UIAlertAction) {
         print("action tapped")
         var readingStatus = 0
         switch action.title {
@@ -233,11 +222,11 @@ class BookDetailViewController: UIViewController {
         UserController.sharedLibraryController.addBookToLibrary(book: book, status: readingStatus) { (_) in
             DispatchQueue.main.async {
                 print("Book added!")
+                AudioServicesPlaySystemSound(SystemSoundID(1118))
                 self.addButton.isEnabled = false
                 self.addButton.backgroundColor = .doveGray
             }
         }
-        
     }
 
     /// Expands or collapses description (change max number of lines here and in the descriptionLabel property)
