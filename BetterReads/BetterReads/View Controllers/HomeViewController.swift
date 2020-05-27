@@ -34,11 +34,12 @@ Flip through the tailored recommendations below from a variety of authors and st
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabBarController?.tabBar.backgroundColor = .white
-        for (index, tab) in self.tabBarController!.tabBar.items!.enumerated() {
-            guard index != 0 else { continue }
-            tab.isEnabled = false
-        }
+//        // Disables tab buttons
+//        tabBarController?.tabBar.backgroundColor = .white
+//        for (index, tab) in self.tabBarController!.tabBar.items!.enumerated() {
+//            guard index != 0 else { continue }
+//            tab.isEnabled = false
+//        }
         self.welcomeUser.text = "Hello, \(UserController.shared.user?.fullName.first ?? "there")!"
         topCollectionView.delegate = self
         topCollectionView.dataSource = self
@@ -64,14 +65,15 @@ Flip through the tailored recommendations below from a variety of authors and st
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         guard containerView.isHidden == false else { return }
-        UIView.animate(withDuration: 0.5, delay: 2, options: .curveLinear, animations: {
+        UIView.animate(withDuration: 1, delay: 4, options: .curveLinear, animations: {
             self.containerView.alpha = 0
         }) { (_) in
             self.containerView.isHidden = true
-            for (index, tab) in self.tabBarController!.tabBar.items!.enumerated() {
-                guard index != 0 else { continue }
-                tab.isEnabled = true
-            }
+//            // Enables tab buttons
+//            for (index, tab) in self.tabBarController!.tabBar.items!.enumerated() {
+//                guard index != 0 else { continue }
+//                tab.isEnabled = true
+//            }
         }
     }
     /// Fetches recommendations based on the user's library then reloads topCollectionView
