@@ -11,7 +11,12 @@ import AVFoundation
 
 class BookDetailViewController: UIViewController {
 
+    @IBOutlet var webButtonLabel: UIBarButtonItem!
     // FIXME: give intrinsicContentSize a value so it's not -1,-1
+    @IBAction func webButtonTapped(_ sender: UIBarButtonItem) {
+        print("tapped web button")
+        performSegue(withIdentifier: "PresentWebView", sender: self)
+    }
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -258,12 +263,22 @@ class BookDetailViewController: UIViewController {
         }
     }
 
+    // NEW
+    var userBookDetail: UserBookDetail? {
+        didSet {
+            print(userBookDetail?.webReaderLink)
+        }
+    }
+
     /// Fetches detailed version of passed in book by it's bookId
     private func fetchBookById(bookId: Int) {
         print("called fetchBookById(bookId: Int)")
         spinner.startAnimating()
         UserController.sharedLibraryController.fetchBookById(bookId: bookId, completion: { (userBookDetail) in
             DispatchQueue.main.async {
+                // NEW
+                self.userBookDetail = userBookDetail
+                // NEW
                 self.titleLabel.text = userBookDetail?.title ?? "Untitled"
 
                 if let author = userBookDetail?.authors {
@@ -284,6 +299,7 @@ class BookDetailViewController: UIViewController {
 
                 self.publisherLabel.text = "Publisher: \(userBookDetail?.publisher ?? "No publisher")"
                 self.isbnLabel.text = "ISBN: \(userBookDetail?.isbn13 ?? "no ISBN")"
+
                 self.lengthLabel.text = "Length: \(userBookDetail?.pageCount ?? 0) pages"
                 self.spinner.stopAnimating()
             }
@@ -342,6 +358,27 @@ class BookDetailViewController: UIViewController {
         publisherLabel.text = "Publisher: \(book.publisher ?? "No publisher")"
         isbnLabel.text = "ISBN: \(book.isbn13 ?? "None")"
         lengthLabel.text = "Length: \(book.pageCount ?? 0) pages"
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "PresentWebView" {
+            print("PresentWebView Segue")
+            if let navVC = segue.destination as? UINavigationController, let webVC = navVC.topViewController as? WebViewController {
+                print("as? WVC")
+                if let book = book, let link = book.webReaderLink {
+                    let url = URL(string: link)
+                    webVC.linkString = url?.usingHTTPS
+                    print(url?.usingHTTPS)
+                }
+                if let userBookDetail = userBookDetail, let link = userBookDetail.webReaderLink {
+                    webVC.linkString = URL(string: link)?.usingHTTPS
+                    print(URL(string: link)?.usingHTTPS)
+                }
+//                if let userBookOnShelf = userBookOnShelf {
+//                    webVC.linkString = userBookOnShelf.webReaderLink
+//                }
+            }
+        }
     }
 
     private func setupSubviews() {
