@@ -105,7 +105,6 @@ class SearchController {
             do {
                 print("Data = \(data)")
                 let booksArray = try jsonDecoder.decode(SearchResult.self, from: data)
-                print("locationsArray: \(booksArray)")
                 self.searchResultBooks = booksArray.items
                 DispatchQueue.main.async {
                     completion(nil)
