@@ -26,7 +26,7 @@ Since BetterReads allows you to track your reading progress on the go, you can a
 
 ---
 
-![]() 🚫 Insert screenshot(s) here.
+<img src="Screenshots/BetterReads-Screenshots_SignUp.png" width="200"/><img src="Screenshots/BetterReads-Screenshots_SignIn.png" width="200"/><img src="Screenshots/BetterReads-Screenshots_ForgotPassword.png" width="200"/><img src="Screenshots/BetterReads-Screenshots_Home.png" width="200"/><img src="Screenshots/BetterReads-Screenshots_Library.png" width="200"/><img src="Screenshots/BetterReads-Screenshots_Shelf.png" width="200"/><img src="Screenshots/BetterReads-Screenshots_Search.png" width="200"/><img src="Screenshots/BetterReads-Screenshots_Detail.png" width="200"/><img src="Screenshots/BetterReads-Screenshots_AddBook.png" width="200"/><img src="Screenshots/BetterReads-Screenshots_WebView.png" width="200"/>
 
 ---
 
