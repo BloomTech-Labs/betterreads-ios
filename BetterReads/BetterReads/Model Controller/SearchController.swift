@@ -150,7 +150,6 @@ class SearchController {
                 let recommendation = try jsonDecoder.decode(Recommendation.self, from: data)
                 let bestSellersArray = recommendation.recommendations
                 DispatchQueue.main.async {
-                    print(bestSellersArray)
                     completion(bestSellersArray)
                 }
             } catch {

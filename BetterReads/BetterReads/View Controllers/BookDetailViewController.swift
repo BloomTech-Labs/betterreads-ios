@@ -197,7 +197,7 @@ class BookDetailViewController: UIViewController {
         AudioServicesPlaySystemSound(SystemSoundID(1105))
         addButton.buttonTap()
 
-        let act = UIAlertController(title: "Track this", message: nil, preferredStyle: .actionSheet)
+        let act = UIAlertController(title: "Choose a shelf", message: nil, preferredStyle: .actionSheet)
         act.addAction(UIAlertAction(title: "To be read", style: .default, handler: addBookToDefaultShelves))
         act.addAction(UIAlertAction(title: "In progress", style: .default, handler: addBookToDefaultShelves))
         act.addAction(UIAlertAction(title: "Finished", style: .default, handler: addBookToDefaultShelves))
@@ -230,6 +230,10 @@ class BookDetailViewController: UIViewController {
                 AudioServicesPlaySystemSound(SystemSoundID(1118))
                 self.addButton.isEnabled = false
                 self.addButton.backgroundColor = .doveGray
+                // let MyLibraryCollectionView know when to fetch library again
+                // (comment this line out if you only want users to be able refresh their library manually in MLVC)
+                NotificationCenter.default.post(name: .refreshMyLibrary,
+                                                object: self)
             }
         }
     }

@@ -51,13 +51,20 @@ class MyLibraryCollectionViewController: UICollectionViewController {
             DispatchQueue.main.async {
                 print("refreshed library")
                 self.collectionView.reloadData()
-                self.refreshControl.endRefreshing()
+                // make sure refreshControl is actually refreshing since this func can be called elsewhere
+                if self.refreshControl.isRefreshing {
+                    print("WAS refreshing, now ending it")
+                    self.refreshControl.endRefreshing()
+                }
+                //self.refreshControl.endRefreshing()
             }
         }
         // If you want to also refresh the custom shelves you just uncomment this
 //        UserController.sharedLibraryController.fetchCustomShelves { (_) in
 //            self.collectionView.reloadData()
-//            self.refreshControl.endRefreshing()
+//            if self.refreshControl.isRefreshing {
+//                self.refreshControl.endRefreshing()
+//            }
 //        }
     }
 
@@ -65,7 +72,7 @@ class MyLibraryCollectionViewController: UICollectionViewController {
         print("createNewShelf called, textField text = \(alertTextField?.text ?? "nil")")
         collectionView.reloadData()
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.barTintColor = .white
@@ -82,6 +89,14 @@ class MyLibraryCollectionViewController: UICollectionViewController {
         // leaving the "add shelf" button intact for next team, delete is enabled and delete .clear
         addShelfButtonLabel.isEnabled = false
         addShelfButtonLabel.tintColor = .clear
+
+        // Add observer to listen for when to fetch library again
+        // (Observers should be in ViewDidLoad so its not added multiple times, this
+        // way it will only run once)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(fetchLibraryAgain),
+                                               name: .refreshMyLibrary,
+                                               object: nil)
     }
 
     // MARK: UICollectionViewDataSource
