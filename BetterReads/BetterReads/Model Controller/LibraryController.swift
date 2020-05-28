@@ -222,6 +222,9 @@ class LibraryController {
                 self.myBooksArray = booksArray
                 self.allShelvesArray.append(booksArray)
 
+                // make arrays based on reading status
+                // *(reading status of 0 means book was "favorited" on website, and not given a status)
+                // so if you wish to display "Favorites" later, you'd 
                 self.toBeReadBooksArray = booksArray.filter {
                     $0.readingStatus == 1
                 }
