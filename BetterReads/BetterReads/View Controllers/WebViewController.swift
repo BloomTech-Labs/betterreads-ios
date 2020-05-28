@@ -16,11 +16,12 @@ class WebViewController: UIViewController, WKNavigationDelegate {
         return tempWebView
     }()
 
-    var linkString: URL?
+    /// Passed in from BookDetailViewController, holds book's web reader link
+    var link: URL?
     override func viewDidLoad() {
         super.viewDidLoad()
-        webView.navigationDelegate = self
         view = webView
+        webView.navigationDelegate = self
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Done",
                                                            style: .plain,
                                                            target: self,
@@ -35,28 +36,31 @@ class WebViewController: UIViewController, WKNavigationDelegate {
 
         navigationController?.navigationBar.backgroundColor = .white
         webView.allowsBackForwardNavigationGestures = true
-        if let url = linkString {
-            print("linkString = \(linkString)")
+        if let url = link {
+            print("linkString = \(link)")
             print("url = \(url)")
             webView.load(URLRequest(url: url))
         } else {
             print("no url in webVC")
-            //dismiss(animated: true, completion: nil)
         }
-        //let url = URL(string: linkString)!
-        //webView.load(URLRequest(url: url))
     }
-    
+
     @objc func reloadWebView() {
         webView.reload()
     }
 
     @objc func goBack() {
         dismiss(animated: true, completion: nil)
-        //webView.removeFromSuperview()
+        //webView.removeFromSuperview() ?
     }
     //finished loading its page
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         title = webView.title
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        print("viewDidDisappear")
+        webView.stopLoading()
     }
 }

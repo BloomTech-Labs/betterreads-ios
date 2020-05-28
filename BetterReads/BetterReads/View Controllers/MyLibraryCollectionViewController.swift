@@ -54,6 +54,11 @@ class MyLibraryCollectionViewController: UICollectionViewController {
                 self.refreshControl.endRefreshing()
             }
         }
+        // If you want to also refresh the custom shelves you just uncomment this
+//        UserController.sharedLibraryController.fetchCustomShelves { (_) in
+//            self.collectionView.reloadData()
+//            self.refreshControl.endRefreshing()
+//        }
     }
 
     private func createNewShelf() {
