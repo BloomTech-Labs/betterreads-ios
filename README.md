@@ -26,7 +26,7 @@ Since BetterReads allows you to track your reading progress on the go, you can a
 
 ---
 
-![]() 🚫 Insert screenshot(s) here.
+<img src="Screenshots/Begin.gif" width="250"/>&emsp;&emsp;&emsp;<img src="Screenshots/middle.gif" width="250"/>&emsp;&emsp;&emsp;<img src="Screenshots/end.gif" width="250"/>   
 
 ---
 
