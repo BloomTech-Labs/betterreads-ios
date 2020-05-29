@@ -12,8 +12,15 @@ private let reuseIdentifier = "ShelfDetailCell"
 
 class ShelfDetailCollectionViewController: UICollectionViewController {
 
+    // MARK: - Properties
+
+    /// Holds index passed from MyLibraryCVC so you know which array from allShelvesArray to use
     var allBooksIndex: Int?
+
+    /// Holds index passed from MyLibraryCVC so you know which array from userShelves.books to use
     var userShelvesIndex: Int?
+
+    // MARK: - View Life Cylce
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +50,7 @@ class ShelfDetailCollectionViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+
         // if the shelf is from the default shelves
         if let allBooksIndex = allBooksIndex {
             return UserController.sharedLibraryController.allShelvesArray[allBooksIndex].count
@@ -53,7 +61,7 @@ class ShelfDetailCollectionViewController: UICollectionViewController {
             let booksInShelf = UserController.sharedLibraryController.userShelves[userShelvesIndex].books {
             return booksInShelf.count
         }
-        return 100 // This should never run
+        return 100 // This should never run, but just in case
     }
 
     override func collectionView(_ collectionView: UICollectionView,
@@ -69,12 +77,14 @@ class ShelfDetailCollectionViewController: UICollectionViewController {
 
         if let userShelvesIndex = userShelvesIndex {
             print("Custom Shelf - index \(userShelvesIndex)")
-            cell.userBookOnShelf = UserController.sharedLibraryController.userShelves[userShelvesIndex].books?[indexPath.item]
+            let book = UserController.sharedLibraryController.userShelves[userShelvesIndex].books?[indexPath.item]
+            cell.userBookOnShelf = book
         }
         return cell
     }
 
     // MARK: - Navigation
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
         //ShelfToDetail
@@ -113,11 +123,11 @@ extension ShelfDetailCollectionViewController: UICollectionViewDelegateFlowLayou
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        // 20, 10, 20, 10
         return UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
     }
 
     // MARK: Flow Layout
+
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -132,5 +142,4 @@ extension ShelfDetailCollectionViewController: UICollectionViewDelegateFlowLayou
         let width = (collectionView.frame.width - horizontalInsets - itemSpacing) / itemsPerRow
         return CGSize(width: width, height: width * 1.3)
     }
-
 }

@@ -12,13 +12,18 @@ private let reuseIdentifier = "LibraryCell"
 
 class MyLibraryCollectionViewController: UICollectionViewController {
 
+    // MARK: - Properties
+
+    /// This is currently made transparent and disabled since we could not fully implement adding a custom shelf
     @IBOutlet var addShelfButtonLabel: UIBarButtonItem!
 
+    /// Presents the user with an alert that lets them create a custom shelf with a name
     @IBAction func addShelfButtonTapped(_ sender: UIBarButtonItem) {
         print("addShelfButtonTapped")
         present(alertController, animated: true)
     }
 
+    /// Alert that contains a textfield so user can create a shelf and give it a name
     fileprivate lazy var alertController: UIAlertController = {
         let alertController = UIAlertController(title: "Create new shelf",
                                                 message: "Enter shelf name below", preferredStyle: .alert)
@@ -41,10 +46,14 @@ class MyLibraryCollectionViewController: UICollectionViewController {
         return alertController
     }()
 
+    /// Textfield used inside alert for making a shelf
     fileprivate var alertTextField: UITextField?
 
+    /// Refresh wheel that's displayed when you drag down on collectionView to refresh library
     let refreshControl = UIRefreshControl()
 
+    /// Fetches the user's library (not including custom shelves right now).
+    /// Called either when a user adds a book or when they drag down the collectionView to refresh it
     @objc func fetchLibraryAgain() {
         print("called fetchLibraryAgain")
         UserController.sharedLibraryController.fetchUserLibrary { (_) in
@@ -56,10 +65,11 @@ class MyLibraryCollectionViewController: UICollectionViewController {
                     print("WAS refreshing, now ending it")
                     self.refreshControl.endRefreshing()
                 }
-                //self.refreshControl.endRefreshing()
             }
         }
-        // If you want to also refresh the custom shelves you just uncomment this
+
+        // If you want to ALSO refresh the custom shelves you just uncomment this
+        // But custom shelves are very weird and unstable so we didn't finish this
 //        UserController.sharedLibraryController.fetchCustomShelves { (_) in
 //            self.collectionView.reloadData()
 //            if self.refreshControl.isRefreshing {
@@ -68,11 +78,14 @@ class MyLibraryCollectionViewController: UICollectionViewController {
 //        }
     }
 
+    /// Insert a networking method in here used for creating a custom shelf
     private func createNewShelf() {
         print("createNewShelf called, textField text = \(alertTextField?.text ?? "nil")")
         collectionView.reloadData()
     }
-    
+
+    // MARK: - View Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.barTintColor = .white
@@ -86,6 +99,7 @@ class MyLibraryCollectionViewController: UICollectionViewController {
         }
         refreshControl.tintColor = .tundra
         refreshControl.addTarget(self, action: #selector(fetchLibraryAgain), for: .valueChanged)
+
         // leaving the "add shelf" button intact for next team, delete is enabled and delete .clear
         addShelfButtonLabel.isEnabled = false
         addShelfButtonLabel.tintColor = .clear
@@ -101,11 +115,24 @@ class MyLibraryCollectionViewController: UICollectionViewController {
 
     // MARK: UICollectionViewDataSource
 
+    // - The 4 default shelves (My Books, To be read, In progress, and Finished) and the
+    // custom shelves the user has created are treated differently on the backend unfortunately.
+    // The easiest way to display all the users "shelves" then was to have 2 sections.
+    // The first section contains shelves that can be filtered by the readingStatus all UserBooks have
+    // and the second sections contains the custom shelves the user has created (currently you can only
+    // create custom shelves on the website). Custom shelves store books known as UserBookOnShelf. When you
+    // fetch all the books a user has, the UserBooks you get back don't have a shelfId or shelfName property
+    // you can use to filter the books into their own sections. Please feel free to ask the developer responsible
+    // for our backend why it's set up this way
+
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 2
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+
+        // case 0 means Section 1 (Default Shelves) - contains UserBooks
+        // case 1 (or any other than 0) means Section 2 (Custom Shelves) - contains UserBookOnShelf
         switch section {
         case 0:
             return UserController.sharedLibraryController.allShelvesArray.count
@@ -121,6 +148,7 @@ class MyLibraryCollectionViewController: UICollectionViewController {
                                                             for: indexPath) as? LibraryCollectionViewCell
             else { return UICollectionViewCell() }
 
+        // if Section 1
         if indexPath.section == 0 {
             let allUserBooks = UserController.sharedLibraryController.allShelvesArray[indexPath.item]
             switch indexPath.item {
@@ -138,6 +166,7 @@ class MyLibraryCollectionViewController: UICollectionViewController {
             cell.allUserBooks = allUserBooks
             return cell
         } else if indexPath.section == 1 {
+            // if Section 2
             let customShelf = UserController.sharedLibraryController.userShelves[indexPath.item]
             cell.customShelf = customShelf
             cell.shelfNameLabel.text = "\(customShelf.shelfName ?? "Empty Shelf") (\(customShelf.books?.count ?? 0))"
@@ -148,6 +177,12 @@ class MyLibraryCollectionViewController: UICollectionViewController {
 
     // MARK: - Navigation
 
+    // - Each cell in this collectionView represents either an array of an array of UserBooks (Section 1)
+    // or a UserShelf (Section 2). When you click on a cell, you need to pass the index of the "shelf" you
+    // clicked on to know which "shelf" in the allShelvesArray or userShelves you need to access.
+    // * allShelvesArray is an array OF an array of UserBook objects [[UserBook]]
+    // * userShelves is an array of UserShelf objects [UserShelf]
+    // * A UserShelf object has a .books property that contains UserBookOnShelf objects
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
         if segue.identifier == "LibraryToShelf" {
@@ -165,6 +200,7 @@ class MyLibraryCollectionViewController: UICollectionViewController {
                     shelfDetailVC.userShelvesIndex = indexPath.row
                 }
 
+                // Easy way to pass name of shelf user clicked on
                 guard let indexPath = collectionView.indexPathsForSelectedItems?.first else { return }
                 let cell = collectionView.cellForItem(at: indexPath) as? LibraryCollectionViewCell
                 shelfDetailVC.title = cell?.shelfNameLabel.text

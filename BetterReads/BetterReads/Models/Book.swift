@@ -36,6 +36,7 @@ struct PostBookToShelfStruct: Encodable {
 }
 
 /// Books are returned in Recommendations and Search Results
+/// NYT books can be decoded as Books, but are unfit to be added to library
 struct Book: Codable {
     let authors: [String]?
     let categories: [String]?

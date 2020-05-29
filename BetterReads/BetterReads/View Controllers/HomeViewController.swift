@@ -34,12 +34,6 @@ Flip through the tailored recommendations below from a variety of authors and st
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-//        // Disables tab buttons
-//        tabBarController?.tabBar.backgroundColor = .white
-//        for (index, tab) in self.tabBarController!.tabBar.items!.enumerated() {
-//            guard index != 0 else { continue }
-//            tab.isEnabled = false
-//        }
         self.welcomeUser.text = "Hello, \(UserController.shared.user?.fullName.first ?? "there")!"
         topCollectionView.delegate = self
         topCollectionView.dataSource = self
@@ -69,11 +63,6 @@ Flip through the tailored recommendations below from a variety of authors and st
             self.containerView.alpha = 0
         }) { (_) in
             self.containerView.isHidden = true
-//            // Enables tab buttons
-//            for (index, tab) in self.tabBarController!.tabBar.items!.enumerated() {
-//                guard index != 0 else { continue }
-//                tab.isEnabled = true
-//            }
         }
     }
     /// Fetches recommendations based on the user's library then reloads middleCollectionView

@@ -8,6 +8,9 @@
 
 import Foundation
 
+/// Used when you search a book by its bookId
+/// This is very similar to a UserBook, it this one has additional properties
+/// Why the backend doesn't just return these instead of UserBooks is not clear to me
 struct UserBookDetail: Codable {
     let bookId: Int?
     let userBooksId: Int?

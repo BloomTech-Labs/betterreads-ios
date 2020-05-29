@@ -11,18 +11,27 @@ import AVFoundation
 
 class BookDetailViewController: UIViewController {
 
+    // MARK: - Outlets
+
+    /// Outlet for the button that takes you to a book's web reader link
     @IBOutlet var webButtonLabel: UIBarButtonItem!
-    // FIXME: give intrinsicContentSize a value so it's not -1,-1
+
+    /// Performs a segue to web view when user taps on it
     @IBAction func webButtonTapped(_ sender: UIBarButtonItem) {
         print("tapped web button")
         performSegue(withIdentifier: "PresentWebView", sender: self)
     }
+
+    // MARK: - Properties
+
+    /// Contains every view displayed
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
 
+    /// The top view that is just a big blurry version of the book cover passed in
     let blurredBackgroundView: UIImageView = {
         let backgroundView = UIImageView()
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
@@ -31,6 +40,7 @@ class BookDetailViewController: UIViewController {
         return backgroundView
     }()
 
+    /// Book cover image passed in from previous view controller
     let bookCoverImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -41,6 +51,7 @@ class BookDetailViewController: UIViewController {
         return imageView
     }()
 
+    /// Displays the title of a book (or "Untitled" if it has no title)
     let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Twilight Breaking Dawn"
@@ -52,6 +63,7 @@ class BookDetailViewController: UIViewController {
         return label
     }()
 
+    /// Displays the author of a book (or "Unknown" if it has no author)
     let authorLabel: UILabel = {
         let label = UILabel()
         label.text = "by Stephenie Meyer"
@@ -63,18 +75,17 @@ class BookDetailViewController: UIViewController {
         return label
     }()
 
+    /// Uses custom view to display a book's star rating (displays all grey stars if there's no rating)
     let ratingStackView: StarRatingStackView = {
         let ratingStackView = StarRatingStackView()
         ratingStackView.axis = .horizontal
-        //rv.distribution = .fillEqually
         ratingStackView.spacing = 4
         ratingStackView.ratingValue = 5.0
         ratingStackView.translatesAutoresizingMaskIntoConstraints = false
         return ratingStackView
     }()
 
-    // FIXME: Average Rating label (3.12 avg rating / or No ratings)
-    // Average Rating Label
+    /// Displays a book's rating as text (or "no rating" if rating is 0.0)
     let averageRatingLabel: UILabel = {
         let averageRatingLabel = UILabel()
         averageRatingLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -85,7 +96,9 @@ class BookDetailViewController: UIViewController {
         return averageRatingLabel
     }()
 
-    // FIXME: make button have default "pressing" animation that comes with storyboard buttons
+    /// Button used to add books to user's library
+    /// (only enabled when a Book is passed in
+    /// so you can't "add" books that are already in a library, sort of)
     let addButton: UIButton = {
         let tempButton = UIButton(type: .custom) // .system
         tempButton.translatesAutoresizingMaskIntoConstraints = false
@@ -101,6 +114,7 @@ class BookDetailViewController: UIViewController {
         return tempButton
     }()
 
+    /// Thin gray line that separates Add Button from Description
     let lineBreak: UIView = {
         let lineBreak = UIView()
         lineBreak.translatesAutoresizingMaskIntoConstraints = false
@@ -109,6 +123,7 @@ class BookDetailViewController: UIViewController {
         return lineBreak
     }()
 
+    /// Stackview that contains Publisher, ISBN13, and Length
     let bottomStackView: UIStackView = {
         let bottomStackView = UIStackView()
         bottomStackView.axis = .vertical
@@ -118,6 +133,7 @@ class BookDetailViewController: UIViewController {
         return bottomStackView
     }()
 
+    /// Displays book's publisher (or "No publisher" is there's no publisher)
     let publisherLabel: UILabel = {
         let publisherLabel = UILabel()
         publisherLabel.text = "Publisher: Little, Brown Books for Young Readers, 2008"
@@ -126,6 +142,7 @@ class BookDetailViewController: UIViewController {
         return publisherLabel
     }()
 
+    /// Displays a book's ISBN13 (or "no ISBN" if there's no ISBN13)
     let isbnLabel: UILabel = {
         let isbnLabel = UILabel()
         isbnLabel.text = "ISBN: 9780316032834"
@@ -133,6 +150,7 @@ class BookDetailViewController: UIViewController {
         return isbnLabel
     }()
 
+    /// Displays the pageCount of a book (or "0 pages" if there's no pageCount)
     let lengthLabel: UILabel = {
         let lengthLabel = UILabel()
         lengthLabel.text = "Length: 768 pages"
@@ -140,28 +158,27 @@ class BookDetailViewController: UIViewController {
         return lengthLabel
     }()
 
-    /// Label (it's height can be easily based on it's content (text) inside so scroll view changes accordingly)
+    /// Displays a book's description. We made this a label instead of a UITextView because
+    /// a label's height can be easily based on it's content (text) inside so the scroll view changes accordingly
     let descriptionLabel: UILabel = {
         let decriptionLabel = UILabel()
         decriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-//        decriptionLabel.backgroundColor = .magenta
         decriptionLabel.text = ""
         decriptionLabel.font = UIFont(name: "FrankRuhlLibre-Regular", size: 16)
-        decriptionLabel.numberOfLines = 4 // can change by pressing button?
+        decriptionLabel.numberOfLines = 4
         return decriptionLabel
     }()
 
-    /// Button that exands the rest of the description label
+    /// Button that expands the rest of the description label
     let readMoreButton: UIButton = {
         let tempReadMoreButton = UIButton(type: .system)
         tempReadMoreButton.translatesAutoresizingMaskIntoConstraints = false
         tempReadMoreButton.backgroundColor = .clear
-//        tempReadMoreButton.setTitle("", for: .normal)
         tempReadMoreButton.addTarget(self, action: #selector(expandDescriptionLabel), for: .touchUpInside)
         return tempReadMoreButton
     }()
 
-    /// Placeholder for where genre tags should go
+    /// Placeholder for where genre tags should go (implement a "tag" or "chips" system later if you want)
     let dummyView: UILabel = {
         let dummyView = UILabel()
         dummyView.translatesAutoresizingMaskIntoConstraints = false
@@ -179,7 +196,6 @@ class BookDetailViewController: UIViewController {
     let contentView: UIView = {
         let contentView = UIView()
         contentView.translatesAutoresizingMaskIntoConstraints = false
-        //cv.backgroundColor = .yellow
         return contentView
     }()
 
@@ -192,6 +208,7 @@ class BookDetailViewController: UIViewController {
         return tempActivityView
     }()
 
+    /// Adds current book to user's library and presents an action sheet to choose which shelf to put it in
     @objc func addBookToLibrary() {
         print("add button tapped")
         AudioServicesPlaySystemSound(SystemSoundID(1105))
@@ -208,17 +225,13 @@ class BookDetailViewController: UIViewController {
 
     /// Adds book to default shelf based on title selected
     private func addBookToDefaultShelves(action: UIAlertAction) {
-        print("action tapped")
         var readingStatus = 0
         switch action.title {
         case "To be read":
-            print(1)
             readingStatus = 1
         case "In progress":
-            print(2)
             readingStatus = 2
         case "Finished":
-            print(3)
             readingStatus = 3
         default:
             print(0)
@@ -240,7 +253,6 @@ class BookDetailViewController: UIViewController {
 
     /// Expands or collapses description (change max number of lines here and in the descriptionLabel property)
     @objc func expandDescriptionLabel() {
-        print("expandDescriptionLabel called")
         descriptionLabel.numberOfLines = descriptionLabel.numberOfLines == 0 ? 4 : 0
     }
 
@@ -267,22 +279,22 @@ class BookDetailViewController: UIViewController {
         }
     }
 
-    // NEW
+    /// This is set when a book comes from user library, and it's used to get the books web reader link
     var userBookDetail: UserBookDetail? {
         didSet {
-            print(userBookDetail?.webReaderLink)
+            print("userBookDetail was set")
+            //print(userBookDetail?.webReaderLink)
         }
     }
 
     /// Fetches detailed version of passed in book by it's bookId
     private func fetchBookById(bookId: Int) {
-        print("called fetchBookById(bookId: Int)")
         spinner.startAnimating()
         UserController.sharedLibraryController.fetchBookById(bookId: bookId, completion: { (userBookDetail) in
             DispatchQueue.main.async {
-                // NEW
+
                 self.userBookDetail = userBookDetail
-                // NEW
+
                 self.titleLabel.text = userBookDetail?.title ?? "Untitled"
 
                 if let author = userBookDetail?.authors {
@@ -315,9 +327,7 @@ class BookDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = ""
-        //navigationController?.navigationBar.tintColor = .white
         print("intrinsicContentSize = \(self.view.intrinsicContentSize)")
-        //navigationController?.navigationBar.isHidden = false
         setupSubviews()
     }
 
@@ -340,11 +350,13 @@ class BookDetailViewController: UIViewController {
         // change back so status bar text black again
         navigationController?.navigationBar.barStyle = .default
         navigationController?.navigationBar.tintColor = .trinidadOrange
-        // FIXME: change nav bar back to normal but it flashes a little now
-        // for some reason, the homescreen nav bar works perfectly, no flash and not black background
+        // Theres a bug where going to the BookDetailViewController shows a brief flash
+        // on the nav bar possibly caused from going from a white to dark nav color in the segue
+        // Be careful trying to fix it because every VC has stuff that sets the nav bar back to white.
+        // For some reason, the homescreen nav bar works perfectly, no flash and not black background
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default) //nil, .default
         navigationController?.navigationBar.shadowImage = UIImage()
-        // Setting Nav bar to NOT be translucent causes the black nav bar somehow
+        // Setting Nav bar to NOT be translucent causes the black nav bar bug somehow
         //navigationController?.navigationBar.isTranslucent = false
     }
 
@@ -366,27 +378,24 @@ class BookDetailViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "PresentWebView" {
-            print("PresentWebView Segue")
             if let navVC = segue.destination as? UINavigationController,
                 let webVC = navVC.topViewController as? WebViewController {
-                print("as? WVC")
                 if let book = book, let link = book.webReaderLink {
                     let url = URL(string: link)
                     webVC.link = url?.usingHTTPS
-                    //print(url?.usingHTTPS)
                 }
                 if let userBookDetail = userBookDetail, let link = userBookDetail.webReaderLink {
                     webVC.link = URL(string: link)?.usingHTTPS
-                    //print(URL(string: link)?.usingHTTPS)
                 }
-//                if let userBookOnShelf = userBookOnShelf {
-//                    webVC.linkString = userBookOnShelf.webReaderLink
-//                }
             }
         }
     }
 
+    // This can be broken up into smaller function that are called in order
     private func setupSubviews() {
+
+        // - scrollView contains contentView, contentView contains basically everything else displayed.
+        // Doing it this way prevents weird behaviors with scrollView
 
         // Scroll View
         // add the scroll view to self.view
@@ -395,7 +404,7 @@ class BookDetailViewController: UIViewController {
         scrollView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 0).isActive = true
         scrollView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: 0).isActive = true
         scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
-        // Very important
+        // VERY important (it pins the contentView to the very top where the scrollView is pinned)
         scrollView.contentInsetAdjustmentBehavior = .never
         // quick fix to keep from scrolling too high
         scrollView.bounces = false
@@ -413,7 +422,6 @@ class BookDetailViewController: UIViewController {
         blurredBackgroundView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         blurredBackgroundView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
         blurredBackgroundView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
-        // height anchor used to be view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.5
         blurredBackgroundView.heightAnchor.constraint(equalTo: blurredBackgroundView.widthAnchor,
                                                       multiplier: 0.8).isActive = true
 
@@ -425,10 +433,7 @@ class BookDetailViewController: UIViewController {
         blurredBackgroundView.addSubview(blurView)
 
         // Book Image View
-        contentView.addSubview(bookCoverImageView) // contentView.topAnchor, constant: 100
-        //bookCoverImageView.centerYAnchor.constraint(equalTo: blurredBackgroundView.centerYAnchor).isActive = true
-        //bookCoverImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 100).isActive = true
-        //bookCoverImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
+        contentView.addSubview(bookCoverImageView)
         bookCoverImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         bookCoverImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true
         bookCoverImageView.heightAnchor.constraint(equalTo: bookCoverImageView.widthAnchor,
@@ -437,19 +442,15 @@ class BookDetailViewController: UIViewController {
                                                    constant: -40).isActive = true
         // Title Label
         contentView.addSubview(titleLabel)
-        //titleLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
         titleLabel.topAnchor.constraint(equalTo: blurredBackgroundView.bottomAnchor, constant: 16).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
-        //titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
 
         // Author Label
         contentView.addSubview(authorLabel)
         authorLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4).isActive = true
         authorLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
         authorLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
-        //authorLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor, constant: 0).isActive = true
-        //authorLabel.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 0).isActive = true
 
         // Rating Stack View
         contentView.addSubview(ratingStackView)
@@ -462,21 +463,15 @@ class BookDetailViewController: UIViewController {
         contentView.addSubview(averageRatingLabel)
         averageRatingLabel.topAnchor.constraint(equalTo: ratingStackView.bottomAnchor, constant: 4).isActive = true
         averageRatingLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        //ratingView.leadingAnchor.constraint(equalTo: bookCoverImageView.trailingAnchor, constant: 8).isActive = true
-        //averageRatingLabel.widthAnchor.constraint(equalTo: authorLabel.widthAnchor).isActive = true
-        //averageRatingLabel.heightAnchor.constraint(equalTo: authorLabel.heightAnchor, multiplier: 1.2).isActive = true
 
         // Add Book Button
         contentView.addSubview(addButton)
         addButton.topAnchor.constraint(equalTo: averageRatingLabel.bottomAnchor, constant: 16).isActive = true
         addButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        //addButton.bottomAnchor.constraint(equalTo: bookCoverImageView.bottomAnchor).isActive = true
         addButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
         addButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
-        //addButton.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.4).isActive = true
-        //addButton.heightAnchor.constraint(equalTo: addButton.widthAnchor, multiplier: 0.3).isActive = true
         addButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        
+
         // Line Break
         contentView.addSubview(lineBreak)
         lineBreak.topAnchor.constraint(equalTo: addButton.bottomAnchor, constant: 16).isActive = true
@@ -487,16 +482,10 @@ class BookDetailViewController: UIViewController {
         // Description Label
         contentView.addSubview(descriptionLabel)
         descriptionLabel.topAnchor.constraint(equalTo: lineBreak.bottomAnchor, constant: 16).isActive = true
-        // this centerXAnchor is important (without it, the scrollView gets really wide)
+        // this centerXAnchor is IMPORTANT (without it, the scrollView gets really wide)
         descriptionLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
         descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
-        //descriptionLabel.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.8).isActive = true
-        //descriptionLabel.heightAnchor.constraint(equalToConstant: 1000).isActive = true
-        //descriptionTextView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20).isActive = true
-        //descriptionTextView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor,
-        // constant: -20).isActive = true
-        //descriptionTextView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20).isActive = true
 
         // Read More Button
         contentView.addSubview(readMoreButton)
@@ -514,16 +503,15 @@ class BookDetailViewController: UIViewController {
         bottomStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
         bottomStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
 
-        // Bottom Thing (change to genre tags later?)
+        // Bottom Thing
         contentView.addSubview(dummyView)
         dummyView.topAnchor.constraint(equalTo: bottomStackView.bottomAnchor, constant: 16).isActive = true
         dummyView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
         //dummyView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
-        // this bottom anchor is important (makes scroll view scrollable basically)
+        // this bottom anchor is IMPORTANT (makes scroll view scrollable basically)
         dummyView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16).isActive = true
         dummyView.widthAnchor.constraint(equalToConstant: 60).isActive = true
         dummyView.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        print("intrinsicContentSize at end = \(self.view.intrinsicContentSize)")
 
         // Spinner
         self.view.addSubview(spinner)
@@ -533,33 +521,3 @@ class BookDetailViewController: UIViewController {
         spinner.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
     }
 }
-
-extension String {
-    /// Removes all random HTML tags that string could contain and returns a clean one
-    func removeTags(_ string: String) -> String {
-        var cleanString = string
-        let tags = ["<br>", "<b>", "</b>", "{\"", "\"}", "<i>", "</i>", "<p>", "</p>"]
-        for tag in tags {
-            if tag == "<br>" {
-                // tag was a break, add a new line
-                cleanString = cleanString.replacingOccurrences(of: tag, with: "\n")
-            } else {
-                // any other case, replace tag with "remove" tag
-                cleanString = cleanString.replacingOccurrences(of: tag, with: "")
-            }
-        }
-        return cleanString
-    }
-}
-
-///// Removes all random HTML tags that string could contain and returns a clean one
-//func removeTags(_ string: String) -> String {
-//    var cleanString = string
-//    print("unclean: " + string)
-//    let tags = ["<br>", "<b>", "</b>", "{\"", "\"}", "<i>", "</i>"]
-//    for tag in tags {
-//        cleanString = cleanString.replacingOccurrences(of: tag, with: "")
-//    }
-//    print("clean:" + cleanString)
-//    return cleanString
-//}

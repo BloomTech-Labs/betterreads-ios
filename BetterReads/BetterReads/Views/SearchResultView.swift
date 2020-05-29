@@ -12,28 +12,45 @@ class SearchResultView: UIView {
 
     // MARK: - Properties
 
-    // FIXME: make sure image fills up imageView nicely (aspectFit vs Fill etc..)
+    /// Displays book cover image
     var imageView: UIImageView!
-    var titleLabel: UILabel!
-    var authorLabel: UILabel!
-    var ratingView: UILabel!
-    var starsView: UIView! // NEW holds 5 image views inside
-    var starsArray: [UIImageView] = [] // NEW holds stars sf icons
 
-    // FIXME: add audiobook icon in corner and ebook? icon (look at figma)
+    /// Displays title of book
+    var titleLabel: UILabel!
+
+    /// Displays author of book
+    var authorLabel: UILabel!
+
+    /// Not sure if this is even used anymore, too scared to remove right now
+    var ratingView: UILabel!
+
+    /// View that holds 5 star UIImageViews made below
+    var starsView: UIView!
+
+    /// Array that holds star UIImageViews to loop through all later
+    var starsArray: [UIImageView] = []
+
+    /// Used for padding
     var standardMargin: CGFloat = CGFloat(16.0)
-    var starSpacing: Int = 4 // change to double/float?
+
+    /// Spacing between each star in the starsView
+    var starSpacing: Int = 4
+
     private let titleFont = UIFont(name: "FrankRuhlLibre-Regular", size: 20)
     private let authorFont = UIFont(name: "SourceSansPro-Light", size: 16)
     private let authorTextColor = UIColor.tundra
+
+    /// Stores last image the cell had *(might have to delete this if you choose to implement image caches)
     private var lastThumbnailImage: String?
 
-    // MARK: - View LifeCycle
+    /// Book passed in from SearchTableViewController
     var book: Book? {
         didSet {
             updateViews()
         }
     }
+
+    // MARK: - View Life Cycle
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -50,11 +67,13 @@ class SearchResultView: UIView {
         titleLabel.text = book.title
         authorLabel.text = book.authors?.first
         updateStarRating(value: book.averageRating ?? 0.0)
-        //use cache to improve this later
         guard let thumbnail = book.thumbnail else {
             imageView.image = UIImage().chooseDefaultBookImage()
             return
         }
+
+        // there used to be a bug where images would flash, and this "fixed" it
+        // use cache to improve this later (this might not be needed anymore)
         if lastThumbnailImage != thumbnail {
             SearchController.fetchImage(with: thumbnail) { (image) in
                 DispatchQueue.main.async {
@@ -80,14 +99,14 @@ class SearchResultView: UIView {
         }
     }
 
-    // FIXME: Split this up into smaller functions
+    // This can be split up into smaller functions called in order
     private func setUpSubviews() {
+
         // Image View
         let imageView = UIImageView()
         addSubview(imageView)
         self.imageView = imageView
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        // FIXME: use top and bottom anchors instead to always give 8ish points from top and bottom?
         imageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         imageView.leadingAnchor.constraint(equalTo: leadingAnchor,
                                            constant: standardMargin).isActive = true
@@ -129,7 +148,7 @@ class SearchResultView: UIView {
         authorLabel.textColor = .tundra
         authorLabel.font = authorFont
 
-        // stars view (5 image view inside)
+        // Stars View (5 image view inside)
         let view = UIView()
         addSubview(view)
         self.starsView = view
@@ -143,8 +162,7 @@ class SearchResultView: UIView {
         starsView.widthAnchor.constraint(equalTo: imageView.heightAnchor).isActive = true
 
         // Stars Array (goes inside starsView)
-        // FIXME: change Int to double/float ?
-        let starSize = Int(self.frame.size.height * CGFloat(0.10)) // FIXME: should be based on cell size?
+        let starSize = Int(self.frame.size.height * CGFloat(0.10))
         for integer in 1...5 {
             let star = UIImageView()
             starsView.addSubview(star)

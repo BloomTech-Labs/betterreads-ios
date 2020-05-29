@@ -9,6 +9,7 @@
 import Foundation
 
 /// Used when grabbing all the user's shelves (UserShelf) with books in them
+/// These are similar to UserBooks, except they have a shelfId and shelfName
 struct UserBookOnShelf: Codable {
     let bookId: Int?
     let googleId: String?

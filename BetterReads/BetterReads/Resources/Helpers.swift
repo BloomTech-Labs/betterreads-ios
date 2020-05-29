@@ -109,3 +109,23 @@ extension Name: CustomStringConvertible {
 extension NSNotification.Name {
     static let refreshMyLibrary = NSNotification.Name("refreshMyLibrary")
 }
+
+// String
+extension String {
+
+    /// Removes all random HTML tags that string could contain and returns a clean one
+    func removeTags(_ string: String) -> String {
+        var cleanString = string
+        let tags = ["<br>", "<b>", "</b>", "{\"", "\"}", "<i>", "</i>", "<p>", "</p>"]
+        for tag in tags {
+            if tag == "<br>" {
+                // tag was a break, add a new line
+                cleanString = cleanString.replacingOccurrences(of: tag, with: "\n")
+            } else {
+                // any other case, replace tag with "remove" tag
+                cleanString = cleanString.replacingOccurrences(of: tag, with: "")
+            }
+        }
+        return cleanString
+    }
+}
