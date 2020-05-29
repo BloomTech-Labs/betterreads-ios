@@ -11,10 +11,19 @@ import UIKit
 var myBooksArray = [Book]()
 
 class SearchTableViewController: UITableViewController {
+
+    // MARK: - Properties
+
+    /// Contains the book results you get back from it's search method
     let searchController = SearchController()
+
+    /// Loading indicator displayed while searching for a book
     let spinner = UIActivityIndicatorView(style: .large)
 
     @IBOutlet var searchBar: UISearchBar!
+
+    // MARK: - View Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
@@ -45,12 +54,15 @@ class SearchTableViewController: UITableViewController {
         }
     }
 
+    // MARK: - Methods
+
     @objc private func hideKeyboardAndCancelButton() {
         searchBar.resignFirstResponder()
         searchBar.showsCancelButton = false
     }
 
     // MARK: - Table view data source
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -73,13 +85,12 @@ class SearchTableViewController: UITableViewController {
     }
 
     // MARK: - Navigation
-    // FIXME: add segue that goes to BookDetailViewController?
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SearchToDetail" {
             print("SearchToDetail")
             if let detailVC = segue.destination as? BookDetailViewController,
                 let indexPath = tableView.indexPathForSelectedRow {
-                // FIXME: pass in controller so user can add book to my books or other shelf
                 detailVC.book = searchController.searchResultBooks[indexPath.row]
                 let cell = tableView.cellForRow(at: indexPath) as? SearchResultTableViewCell
                 detailVC.bookCoverImageView.image = cell?.mainView.imageView.image
@@ -92,10 +103,13 @@ class SearchTableViewController: UITableViewController {
 // MARK: - Extensions
 
 extension SearchTableViewController: UISearchBarDelegate {
+
+    // Hides "Cancel" button when user clicks inside searchBar
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = true
     }
 
+    // clears searchBar text, clears tableView, and hides keyboard/cancel button
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
         searchController.searchResultBooks = []
@@ -103,13 +117,15 @@ extension SearchTableViewController: UISearchBarDelegate {
         hideKeyboardAndCancelButton()
     }
 
-    // dismiss keyboard so user can view all results
+    // Searches for book when user taps "return/enter" on keyboard
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+
         spinner.startAnimating()
         guard let searchTerm = searchBar.text, !searchTerm.isEmpty else {
             print("Empty searchbar")
             return
         }
+
         print("SearchButtonClicked (tapped return/search)")
         searchController.searchBook(with: searchTerm) { (error) in
             DispatchQueue.main.async {

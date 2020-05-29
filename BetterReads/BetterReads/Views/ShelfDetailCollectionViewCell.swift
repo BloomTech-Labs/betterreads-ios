@@ -8,11 +8,21 @@
 import UIKit
 class ShelfDetailCollectionViewCell: UICollectionViewCell {
 
+    // MARK: - Properties
+
+    /// Acts as "container" for views inside it, this is pinned to all sides of the cell it's in
     var customView: UIView!
+
+    /// Displays the book's cover image
     var shelfImageView: UIImageView!
+
+    /// Displays the book's title (can be up to 3 lines long)
     var shelfNameLabel: UILabel!
 
+    /// Dont think this is used anywhere in here, leaving it here just in case though
     let cornerRadius: CGFloat = 5.0
+
+    /// Container for image so it can have a corner radius AND a shadow
     let containerForImageView: UIView = {
         var tempContainer = UIView()
         tempContainer.backgroundColor = .clear
@@ -39,6 +49,8 @@ class ShelfDetailCollectionViewCell: UICollectionViewCell {
             updateViewsForCustomShelf()
         }
     }
+
+    // MARK: - View Life Cycle
 
     private func updateViews() {
         guard let userBook = userBook else { return }
@@ -93,6 +105,12 @@ class ShelfDetailCollectionViewCell: UICollectionViewCell {
                                           multiplier: 0.69).isActive = true
         //containerForImageView.bottomAnchor.constraint(equalTo: customView.bottomAnchor, constant: -50).isActive = true
 
+        // The shadow effect is not very effecient currently, so giving it a shadowPath would help
+        // This commented out code WOULD work if this view was made with a frame
+        // but it wasn't so maybe later see if you can implement something like this
+//        tempContainer.layer.shadowPath = UIBezierPath(roundedRect: containerForImageView.bounds,
+//                                                      cornerRadius: cornerRadius).cgPath
+
         // Image View
         let tempImageView = UIImageView()
         containerForImageView.addSubview(tempImageView)
@@ -102,19 +120,8 @@ class ShelfDetailCollectionViewCell: UICollectionViewCell {
         shelfImageView.leadingAnchor.constraint(equalTo: containerForImageView.leadingAnchor).isActive = true
         shelfImageView.trailingAnchor.constraint(equalTo: containerForImageView.trailingAnchor).isActive = true
         shelfImageView.bottomAnchor.constraint(equalTo: containerForImageView.bottomAnchor).isActive = true
-//        //shelfImageView.topAnchor.constraint(equalTo: customView.topAnchor, constant: 10).isActive = true
-//        //shelfImageView.leadingAnchor.constraint(equalTo: customView.leadingAnchor, constant: 10).isActive = true
-//        //shelfImageView.trailingAnchor.constraint(equalTo: customView.trailingAnchor, constant: -10).isActive = true
-//        shelfImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-////        shelfImageView.leadingAnchor.constraint(equalTo: leadingAnchor,
-////                                           constant: 8).isActive = true
-//        shelfImageView.widthAnchor.constraint(equalTo: widthAnchor,
-//                                         multiplier: 0.60).isActive = true
-//        shelfImageView.heightAnchor.constraint(equalTo: heightAnchor,
-//                                          multiplier: 0.60).isActive = true
-//        shelfImageView.bottomAnchor.constraint(equalTo: customView.bottomAnchor, constant: -50).isActive = true
         shelfImageView.layer.cornerRadius = 5
-        shelfImageView.contentMode = .scaleToFill //fill
+        shelfImageView.contentMode = .scaleToFill
         shelfImageView.clipsToBounds = true
         shelfImageView.image = UIImage().chooseDefaultBookImage()
 
@@ -124,7 +131,7 @@ class ShelfDetailCollectionViewCell: UICollectionViewCell {
         self.shelfNameLabel = tempLabel
         shelfNameLabel.translatesAutoresizingMaskIntoConstraints = false
         shelfNameLabel.topAnchor.constraint(equalTo: containerForImageView.bottomAnchor, constant: 8).isActive = true
-//        shelfNameLabel.leadingAnchor.constraint(equalTo: shelfImageView.leadingAnchor).isActive = true
+        //shelfNameLabel.leadingAnchor.constraint(equalTo: shelfImageView.leadingAnchor).isActive = true
         shelfNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
         shelfNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
         //shelfNameLabel.bottomAnchor.constraint(equalTo: customView.bottomAnchor, constant: -8).isActive = true
@@ -133,6 +140,6 @@ class ShelfDetailCollectionViewCell: UICollectionViewCell {
         shelfNameLabel.numberOfLines = 3
         shelfNameLabel.backgroundColor = .clear
         shelfNameLabel.font = UIFont(name: "SourceSansPro-Regular", size: 14)
-        shelfNameLabel.textColor = .doveGray        
+        shelfNameLabel.textColor = .doveGray
     }
 }

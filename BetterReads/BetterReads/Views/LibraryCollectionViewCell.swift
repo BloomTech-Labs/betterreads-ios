@@ -10,15 +10,30 @@ import UIKit
 
 class LibraryCollectionViewCell: UICollectionViewCell {
 
+    // MARK: - Properties
+
+    /// Acts as a "container" for other views, and is pinned to all side of cell it's in
     var customView: UIView!
+
+    /// Front book in stack
     var firstImageView: UIImageView!
+
+    /// Second book in stack
     var secondImageView: UIImageView!
+
+    /// Gray filter over second book in stack
     var secondBGView: UIView!
+
+    /// Third book in stack
     var thirdImageView: UIImageView!
+
+    /// Gray filter over third book in stack
     var thirdBGView: UIView!
+
+    /// Label that displays the name of the shelf
     var shelfNameLabel: UILabel!
 
-    /// Array of ImageViews that represent of 3 cover images of the shelf it displays
+    /// Array of UIImageViews that represent of 3 cover images of the shelf it displays
     var coversArray = [UIImageView]()
 
     /// Array of UserBooks to fill in the 3 cover images (if displaying a default shelf)
@@ -46,6 +61,8 @@ class LibraryCollectionViewCell: UICollectionViewCell {
     }
 
     /// Fills in the 3 cover images of the cell if it's passed in an array of UserBooks
+    /// (There's currently a bug where if you add a book that has a default image, it will
+    /// give some book shelves incorrect shelf covers, but the books inside are correct)
     private func fillUpCoverImages() {
         guard let allUserBooks = allUserBooks else { return }
 
@@ -148,7 +165,9 @@ class LibraryCollectionViewCell: UICollectionViewCell {
         fillUpCoverImages()
     }
 
+    // These chunks can be put into their own functions and then just be called in order
     private func setUpSubviews() {
+
         // Custom View
         let bigView = UIView()
         addSubview(bigView)
@@ -158,9 +177,6 @@ class LibraryCollectionViewCell: UICollectionViewCell {
         customView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         customView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         customView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        //customView.backgroundColor = .orange
-        customView.layer.cornerRadius = 5
-        //customView.clipsToBounds = true
 
         // Third Image Gray Underlay
         let thirdBGView2 = UIView()

@@ -10,32 +10,43 @@ import Foundation
 import UIKit
 
 class StarRatingStackView: UIStackView {
+
+    // MARK: - Properties
+
     /// Holds 5 star images inside
     var starsView: UIView!
+
     /// Array of star images
     var starsArray = [UIImageView]()
-    // FIXME: give this a didSet later that calls updateStarRating
+
     /// How many stars should be filled in
     var ratingValue: Double? {
         didSet {
             updateStarRating()
         }
     }
+
+    /// Size of each star
     var starSize: Double = 20.0
+
+    // MARK: - View Life Cycle
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         print("init with frame")
         setupSubviews()
     }
+
     required init(coder: NSCoder) {
         super.init(coder: coder)
         print("init with coder")
         setupSubviews()
     }
+
     /// Sets up stackView and stars
     private func setupSubviews() {
+
         distribution = .fillEqually
-        //let starSize = Int(20) // FIXME: should be based on view size?
         for integer in 1...5 {
             let star = UIImageView()
             star.translatesAutoresizingMaskIntoConstraints = false
@@ -51,6 +62,10 @@ class StarRatingStackView: UIStackView {
         }
         updateStarRating()
     }
+
+    // MARK: - Methods
+
+    /// Fills up each star to match the rating it represents
     private func updateStarRating() {
         let value = ratingValue ?? 0
         var chunk = value

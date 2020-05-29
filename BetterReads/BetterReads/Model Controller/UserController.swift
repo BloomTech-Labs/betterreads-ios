@@ -25,7 +25,7 @@ class UserController {
     typealias JWT = String
     private var baseURL = URL(string: "https://api.readrr.app/api")!
     var authToken: JWT?
-    var user: User? = nil
+    var user: User?
     var isNewUser: Bool?
     var recommendedBooks: [Book]?
     static let shared = UserController()
@@ -87,7 +87,9 @@ class UserController {
                             guard let fullName = fullNameClaim.string,
                                 let userID = idClaim.integer else {
                                     return completion(NetworkError.otherError) }
-                            self.user = User(userID: userID, fullName: Name(fullName: fullName), emailAddress: emailAddress)
+                            self.user = User(userID: userID,
+                                             fullName: Name(fullName: fullName),
+                                             emailAddress: emailAddress)
                             completion(nil)
                         } catch {
                             completion(NetworkError.otherError)
@@ -112,7 +114,7 @@ class UserController {
                    encoder: JSONParameterEncoder.default,
                    headers: headers).responseJSON { response in
                     switch response.result {
-                    case .success(_):
+                    case .success:
                         completion(nil)
                     case .failure(let error):
                         print("Error: \(error)")

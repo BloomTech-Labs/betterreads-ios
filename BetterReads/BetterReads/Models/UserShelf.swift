@@ -17,6 +17,7 @@ struct UserShelf: Codable {
     let isPrivate: Bool?
 }
 
+/// Used when POSTing an array of books from a user shelf to receive recommendations based on that shelf
 struct BooksForRecommendations: Encodable {
     let books: [UserBookOnShelf]
 }

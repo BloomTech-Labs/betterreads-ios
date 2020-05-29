@@ -11,15 +11,20 @@ import UIKit
 
 class SearchController {
 
+    // MARK: - Properties
+
     /// https://readrr-heroku-test.herokuapp.com/search
     let baseUrl = URL(string: "https://readrr-heroku-test.herokuapp.com/search")!
 
     /// Holds books that are returned from search
     var searchResultBooks: [Book] = []
 
-    /// Fetches image at url passed in and returns a uimage (place holder image if none exists)
+    // MARK: - Networking methods
+
+    /// Fetches image at URL passed in and returns a UIImage (returns placeholder image if none exists)
     static func fetchImage(with urlString: String, completion: @escaping (UIImage?) -> Void = { _ in }) {
 
+        /// If there are any errors fetching an image, this image is returned instead
         let defaultImage = UIImage().chooseDefaultBookImage()
 
         // This is to remove the curl on the bottom of some book images
@@ -46,8 +51,9 @@ class SearchController {
             completion(defaultImage)
             return
         }
+        // We added an extension to URL (in Helpers.swift) that can return the same URL using https, but we
+        // left this old version in just because we didn't have time to switch it out (too risky at the time)
 
-        //print("secureUrl now = \(secureUrl)")
         URLSession.shared.dataTask(with: secureUrl) { (data, _, error) in
             if let error = error {
                 NSLog("Error fetching image: \(error)")
@@ -63,7 +69,10 @@ class SearchController {
         }.resume()
     }
 
-    /// Gets ALL Listings from the server. Sets searchResultsArray to listings that contain term
+    /// Takes in a String, POSTs it to our database,
+    /// receives top 10 results based on that search (searches by title only currently).
+    /// Heroku databases go to "sleep" after while, so sometimes the first search
+    /// you make in a while will take up to 10 seconds, but the rest are less than 2 seconds.
     func searchBook(with term: String, completion: @escaping (Error?) -> Void = { _ in }) {
 
         var request = URLRequest(url: baseUrl)
@@ -103,7 +112,6 @@ class SearchController {
             jsonDecoder.dateDecodingStrategy = .iso8601
 
             do {
-                print("Data = \(data)")
                 let booksArray = try jsonDecoder.decode(SearchResult.self, from: data)
                 self.searchResultBooks = booksArray.items
                 DispatchQueue.main.async {
@@ -118,9 +126,11 @@ class SearchController {
         }.resume()
     }
 
-    /// Fetches array of NYT Best Sellers (fiction), and returns that array (can NOT be added to library though)
+    /// Fetches array of NYT Best Sellers (fiction ones), and returns that array.
+    /// WARNING! NYT books can NOT be added to library though.
+    /// (NYT added last week of Labs, and returns different Book model than other recommendations).
+    /// This method isn't in LibraryController simply for returning unusable books and LibraryController being too big
     static func fetchNYTBestSellers(completion: @escaping ([Book]?) -> Void = { _ in }) {
-        // FIXME: nil should be default books from json
         ///https://dsapi.readrr.app/nyt/fiction
         let requestUrl = URL(string: "https://dsapi.readrr.app/nyt/fiction")!
         var request = URLRequest(url: requestUrl)
